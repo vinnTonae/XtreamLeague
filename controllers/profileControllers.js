@@ -53,7 +53,8 @@ const postRegister = async (req, res) => {
     }
     
     const results = await fetch(baseUrl, options)
-    const data = await results.json()
+    console.log(`results: ${results} `)
+    const data = await results.json(`data: ${data}`)
     const teams = data.standings.results 
     res.render('register', { managers: teams })    
 }
