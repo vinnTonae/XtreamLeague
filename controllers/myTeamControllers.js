@@ -1,4 +1,6 @@
 
+
+
 const getOpponentId = async (req, res) => {
     const eventId = req.params.id
     const opponentId = req.params.opponent

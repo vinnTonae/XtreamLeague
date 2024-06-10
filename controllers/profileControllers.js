@@ -50,19 +50,11 @@ const postRegister = async (req, res) => {
         method: 'GET',
         Accept: 'application/json'
     }
-    try {
-
-        const results = await fetch(baseUrl, options)
-        const data = await results.json()
-        console.log(data)
-        const teams = data.standings.results 
-        res.render('register', { managers: teams })  
-        
-    } catch (error) {
-        console.log(error)
-        
-    }
-     
+    
+    const results = await fetch(baseUrl, options)
+    const data = await results.json()
+    const teams = data.standings.results 
+    res.render('register', { managers: teams })    
 }
 
 const getMain = async (req, res) => {

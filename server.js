@@ -17,9 +17,9 @@ const passport = require('passport')
 const flash = require('connect-flash')
 const session = require('express-session')
 const cookieSession = require('cookie-session')
-const { caseInSwitch } = require('./controllers/test')
+
 const authRoutes = require('./routes/auth-routes')
-const { authCheck, notAuthCheck, registerCheck } = require('./controllers/authControllers')
+const {  notAuthCheck } = require('./controllers/authControllers')
 
 
 const myTeamRoutes = require('./routes/myteam-routes')
@@ -63,7 +63,7 @@ app.use(cookieSession({
 
 app.use(session({
     secret: process.env.SECRET,
-    cookie: { secure: true, maxAge: 60000 },
+    cookie: { secure: true, maxAge: 5000 },
     resave: false,
     saveUninitialized: true
 }))
