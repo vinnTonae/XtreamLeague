@@ -1,6 +1,7 @@
 const User = require('../models/xtreamUsers')
 const Head = require('../models/head2head')
 const Party = require('../models/party')
+const Transactions = require('../models/transactions')
 
 
 
@@ -52,7 +53,7 @@ const postRegister = async (req, res) => {
     }
     
     const results = await fetch(baseUrl, options)
-    const data = await results.json()
+    const data = results.json()
     const teams = data.standings.results 
     res.render('register', { managers: teams })    
 }
