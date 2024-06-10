@@ -61,12 +61,6 @@ app.use(cookieSession({
     keys: [process.env.COOKIE_KEY]
 }))
 
-app.use(session({
-    secret: process.env.SECRET,
-    cookie: { secure: true, maxAge: 5000 },
-    resave: false,
-    saveUninitialized: true
-}))
 app.use(flash())
 
 
