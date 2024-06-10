@@ -1,3 +1,9 @@
+const User = require('../models/xtreamUsers')
+const Head = require('../models/head2head')
+const Party = require('../models/party')
+
+
+
 const getTransactions = async (req, res) => {
     const reqUserId = req.user._id
     const transactions = await Transactions.find({ userId: reqUserId })  

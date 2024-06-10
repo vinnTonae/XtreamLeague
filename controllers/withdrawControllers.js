@@ -1,3 +1,7 @@
+const User = require('../models/xtreamUsers')
+const Transactions = require('../models/transactions')
+
+
 const patchAuthorize = async (req, res) => {
 
     const { userid, amount } = req.body

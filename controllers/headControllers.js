@@ -1,3 +1,8 @@
+const Head = require('../models/head2head')
+const User = require('../models/xtreamUsers')
+const ObjectId = require('mongoose').Types.ObjectId
+
+
 const getBetHead = async (req, res) => {
     const xUser = req.user    
     const month = new Date().getMonth()
