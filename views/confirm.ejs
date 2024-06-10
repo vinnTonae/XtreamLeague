@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/transparent.png" type="images/x-icon" width="400" height="400">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
+    <title>Confirm</title>
+    <style>
+       
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background-image: linear-gradient(45deg, goldenrod, gold, whitesmoke, white, whitesmoke, gold, goldenrod);
+
+}
+
+.wrapper {
+    position: absolute;
+    z-index: 10;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 80vw;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-flow: column nowrap;
+    background-image: linear-gradient(45deg, gray, silver, whitesmoke, white, whitesmoke, silver, gray); 
+    border-radius: 10px;
+    margin: auto;
+    padding: 10px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.28);
+    border-radius: 30px;
+}
+ 
+.form-box form .input-box {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 5px;
+    height: 30%;
+}
+
+.form-box form .input-box.hidden {
+    display: none;
+}
+
+.form-box form .input-box button {
+    width: min(300px, 85%);
+    height: 100%;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    font-family: cursive;
+    font-weight: 300;
+    color: white;
+    background-color: blue;
+}
+
+.form-box form .input-box input {
+  width: 100%;
+  height: 100%;
+  padding-inline: 1rem;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 2px solid whitesmoke;
+  color: white;
+  font-size: 1.2rem;
+}
+
+::placeholder {
+    font-size: 1rem;
+    color: yellow;
+}
+
+.form-box form .input-box label {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    white-space: nowrap;
+    color: whitesmoke;
+    transform: translateX(-50%);
+}
+
+.header-box {
+  width: fit-content;
+  margin-left: 3px;
+  margin-bottom: 2rem;
+  margin-top: 10px;
+  height: fit-content;
+  color: white;
+}
+
+.header-box h1 {
+    color: blue;
+    white-space: nowrap;
+    font-size: 1.3rem;
+    font-style: italic;
+    text-align: center;
+    text-wrap: wrap;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.header-box .h2 {
+    margin-inline: auto;
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    height: 40%;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.header-box .h2 h2 {
+    font-size: 1.2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+
+.img {
+    position: fixed;
+    bottom: 6vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+    </style>
+</head>
+<body>
+
+    <header style="height: 10vh; width: 100%; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: cursive; font-size: 1.75rem; color: purple;">Deposit</h1>
+        </div>
+        <span style="margin-right: 20px;"><img src="logos/paypal.png" alt="Paypal" width="120" height="40"></span>
+        
+    </header>
+
+
+   <div class="wrapper">
+         
+     
+          <div class="header-box">
+            <h1>Deposit Was Successful <%= user.userName %></h1>
+          </div>
+
+          <div class="elec">
+            <ion-icon style="color: greenyellow; font-size: 3rem;" name="checkmark-circle-outline"></ion-icon>
+          </div>
+ 
+          <div class="form-box" style="display: flex; justify-content: center; width: 100%; height: 60%;">
+             <form action="/confirm-deposit?_method=PATCH" method="post" style=" display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 80%; height: 100%;">
+               
+               <div class="input-box" style="display: none;">
+                  <input type="text" name="pplEmail" value="<%= deposit.email%>">
+               </div> 
+               <div class="input-box" style="display: none;">
+                <input type="text" name="tranxId" value="<%= deposit.ajaxvv2ppl %>">
+             </div>
+               
+               <div class="input-box">
+                  <button type="submit" style="cursor: pointer;" type="submit">Continue</button>
+               </div> 
+               
+             </form>
+          </div>   
+         
+    
+   </div>
+
+   <div class="img">
+      <img src="logos/plicon.png" alt="XtreamLeague" width="120" height="120">
+   </div>
+  
+   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>   
+</body>
+</html>
+
+
+

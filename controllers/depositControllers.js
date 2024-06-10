@@ -1,0 +1,79 @@
+const getConfirmDeposit = (req, res) => {
+    res.render('confirm', { user: req.user, depost: req.query })
+}
+
+const postConfirmDeposit =  async (req, res) => {
+
+    const { valuePaid, paypalEmail } = req.body
+    const userId = req.user._id
+    const status = 'pending'
+    const valueToAdd = () => {
+        const value = valuePaid
+        if (value == '1.05') { return 100 }
+    else if (value == '1.75') { return  200}
+    else if (value == '4.05') { return 500 }
+    else if (value == '7.75') { return  1000 }
+    else if (value == '15.45') { return  2000 }
+    else if (value == '39.75') { return 5000 }
+    }
+    
+    const newTransaction = new Transactions({
+         tranx_type: 'Deposit',
+             userId: userId,
+             amount: valueToAdd(),
+             status: status,
+           pplEmail: paypalEmail
+          
+    }).save().then((result) => {
+          res.send(result)
+             
+    }).catch((error) => {
+        console.log(error)
+        req.flash('error', 'Failed to update transaction. Please contact 0111371137 ')
+        res.redirect('/main')
+    })
+
+   
+}
+
+const patchConfirmDeposit = async (req, res) => {
+    
+    const { pplEmail, tranxId } = req.body
+    const userId = req.user._id
+    const transaction = await Transactions.findOne({ _id: tranxId })
+    const user = await User.findOne({ _id: userId })
+
+    if ( transaction.status !== 'pending') {
+
+        req.flash('error', 'Buda!!..This transaction was recorded')
+        res.redirect('/main')
+    }else {
+
+        const amount = transaction.amount    
+        const userBalance = user.totalBalance
+        const userNewBalance = userBalance + amount 
+
+        const updatedUser = await User.findByIdAndUpdate({ _id: userId }, { $set: { totalBalance: userNewBalance, payPal: pplEmail } })
+
+        const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxId }, { $set: { status: 'completed'  } })
+
+        req.flash('error', 'Transaction Complete!!..User Updated ')
+        res.redirect('/main')
+    }
+
+
+
+}
+
+const getDeposit = (req, res) => {
+
+    res.render('deposit', { CLIENT: process.env.PAYPAL_CLIENT_ID })
+}
+
+
+module.exports = {
+    getConfirmDeposit,
+    postConfirmDeposit,
+    patchConfirmDeposit,
+    getDeposit
+}

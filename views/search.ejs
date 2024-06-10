@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="400" height="400">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>Register</title>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <style>
+        * {
+            margin: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+        ::placeholder {
+            color: red;
+            font-weight: bold;
+            font-family: cursive;
+            font-style: italic;
+            font-size: 1.15rem;
+        }
+        .list {
+            display: flex;
+            flex-flow: column nowrap;
+            scroll-snap-type: inline mandatory;
+            scroll-padding-inline: 15px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+        .cards {
+            height: 60px;
+            width: 90%;
+            border-radius: 5px 40px 40px 5px;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29);
+            margin: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            scroll-snap-align: start;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body style="width: 100vw; background-color: goldenrod;">
+    <header style="position: relative; height: 10vh; width: 100%; border-bottom: 1px solid purple; display: flex; align-items: center; justify-content: center;">
+       
+        <div><a href="/main"><ion-icon name="arrow-round-back" style="position: absolute; left: 30px; top: 50%; transform: translate(-50%, -50%); font-weight: bold; color: rgb(59, 4, 59); font-size: 2rem;"></ion-icon></a></div>
+
+        <div style="display: flex; align-items: center; justify-content: center; font-weight: bold; ">
+            <h1 style="font-weight: 900; font-size: 1.5rem; color: rgb(67, 5, 67); font-family: cursive;">Xtream</h1>
+            <span><img src="logos/plicon.png" alt="" width="40" height="40"></span>
+            <h1 style="font-weight: 900; font-size: 1.5rem; color: rgb(67, 5, 67); font-family: cursive;">League</h1>
+        </div>
+
+    </header>
+    <main style=" width: 100vw; height: 190vh; background-color: transparent;">
+        <div class="fantasy" style="margin-block: 40px 20px; height: 10vh; width: 100vw; background-color: transparent; display: flex; align-items: center; justify-content: flex-start;">
+             <img src="logos/plicon.png" alt="" width="70" height="70">
+             <h1 style="font-size: 2rem; font-family: cursive; font-weight: bold; color: rgb(62, 6, 62);" >FantasyPL</h1>
+        </div>
+        <div class="title" style="display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+            <h2 style="color: black; font-family: cursive; font-size: 1.75rem;">Register your FPL team</h2>
+        </div>
+        <section class="register" style="border-radius: 10px; box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3), 0 8px 22px 0 rgba(0, 0, 0, 0.29); height: 10%; width: 95%; background-image: linear-gradient(45deg, goldenrod, gold, yellow, white, yellow, gold, goldenrod); margin-inline: auto; ">
+            <div class="reg" style="margin-top: 5px; display: flex; justify-content: center; align-items: center; height: 20%;">
+                <h1 style="color: green; font-size: 1.5rem; font-weight: bold; font-family: cursive;">Search FPL Team</h1>
+            </div>
+            <form action="/register" method="post" style="display: flex; align-items: center; justify-content: center; height: 60%; background-color: transparent;">
+                    <div class="input-box" style="background-color: transparent; height: 50%; width: 60%; display: flex; justify-content: center; align-items: center;">
+                        <input type="number" name="id" placeholder="Enter League Id..." style="padding: 20px; border: 2px solid purple; border-radius: 20px 0 0 20px; height: 100%; width: 90%; font-family: cursive; font-size: 1.2rem; color: purple; font-weight: bold;">
+                    </div>
+                    <button type="submit" style="background-color: limegreen; height: 50%; width: 15%; border-radius: 0 20px 20px 0;" ><ion-icon name="search" style="font-size: 1.75rem; color: white; font-weight: bold;"></ion-icon></button>
+            </form>
+            <div class="des" style="display: flex; justify-content: center; align-items: center; height: 20%;">
+                <p style="color: purple; font-weight: bold; margin-bottom: 10px;">Pick a team from an Existing League</p>
+            </div>
+        </section>
+        <div class="guide" style="padding-inline: 20px; display: flex; justify-content: center; align-items: center; margin-top: 30px;">
+            <h2 style="color: purple; font-family: cursive; font-style: italic; font-size: 1.2rem; text-align: center;"> &lt;&lt; Access League Id from any Classic Leagues you have joined in the fpl site &gt;&gt;  </h2>
+        </div>
+        
+    
+    </main>
+      
+    <footer style="position: fixed; z-index: 2; bottom: 0; background-color: goldenrod; width: 100vw; height: 10vh; display: flex; justify-content: space-evenly; align-items: center; border-top: 1px solid purple;">
+        <a href="/main"><ion-icon name="home" style="color: rgb(67, 9, 67); font-size: 3rem;"></ion-icon></a>
+
+        <a href="/main"><img src="logos/plicon.png" alt="" width="45" height="45"></a>
+
+         
+    </footer>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="40" height="40">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>Party</title>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <style>
+        .managers {
+            display: flex;
+            margin-inline: auto;
+            border-radius: 20px;
+            background-color: rgba(105, 194, 230, 0.755);
+            flex-flow: column nowrap;
+            scroll-snap-type: inline mandatory;
+            scroll-padding-inline: 15px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+        .cards {
+            height: 30px;
+            width: 93%;
+            border-radius: 5px 40px 40px 5px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29);
+            margin: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            scroll-snap-align: start;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>    
+</head>
+<body style="position: relative; background-color: goldenrod;">
+       
+          <!-- PATCH BOX FOR OPPONENT -->
+   
+          <div class="formbox" style="display: none; border-radius: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); height: 400px; width: 75vw; background-image: linear-gradient(45deg, goldenrod, gold, greenyellow,yellow, whitesmoke, white, white, whitesmoke, yellow, greenyellow, gold, goldenrod);">
+            <div class="head-wrapper" style="width: 100%; height: 15%; position: relative; background-color: transparent; border-radius: 20px 20px 0 0; border-bottom: 1px solid red;">
+                <div class="icon-confirm" style="position: absolute; left: 0; height: 100%; width: 85%; padding: 10px; display: flex; justify-content: flex-start; align-items: center;">
+                    <img src="logos/plicon.png" alt="" width="40" height="40">
+                    <h2 style="color: purple; margin-left: 5px;">Confirm Bet</h2>
+                </div>
+                <div class="close" style="display: flex; justify-content: center; align-items: center; background-color: red; position: absolute; right: 0; height: 100%; width: 15%; border-radius: 0 20px 0 20px;">
+                    <ion-icon name="close" style="font-size: 2rem; color: white; font-weight: bold;"></ion-icon>
+                </div>
+            </div>
+            <div class="details-wrapper" style="height: 60%; padding-block: 10px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+              
+                  <!-- CONFIRM OR DENY DETAILS BOX -->
+    
+                  <section class="confirm-details" style=" padding-top: 20px; background-color: transparent;  width: 100%; height: 100%;">
+                         <h1 style="color: blueviolet; text-align: center; margin: 10px auto; font-size: 1.8rem; font-family: cursive; font-style: italic; font-weight: bold;">Head to Head</h1>
+                         <h1 style="color: blue; text-align: center; margin: 10px auto; font-size: 1.5rem; font-family: cursive; font-style: italic; font-weight: bold;"><span style="color: red;">Host: </span><%= host.teamName %></h1>
+                         <h1 style="color: green; text-align: center; margin: 10px auto; font-family: cursive; font-style: italic; font-size: 1.5rem; font-weight: bold;" ><span style="color: red;">Event: </span>GW<%= party.event %></h1>
+                         <h1 style="color: black; text-align: center; margin: 10px auto; font-size: 1.5rem; font-style: italic; font-weight: bold;"><span style="color: red;">Amount: </span>KSH <%= party.amount %></h1>
+
+                         
+                  </section>
+    
+     
+            </div>
+            <div class="confirm-btn" style="border: 1px solid grey; border-radius: 0 0 20px 20px; height: 25%; width: 100%; display: flex; align-items: center; justify-content: center;">
+                <form action="/confirm-party?_method=PATCH" method="post" style="height: 60%; width: 60%; margin-bottom: 20px; background-color: transparent;">
+                    <input type="text" name="betid" id="type" style="display: none;">
+                    
+                    <button id="submit" type="submit" style="height: 100%; width: 100%; border-radius: 40px; background-color: purple; color: white; border: none; outline: none; cursor: pointer; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1rem;">CONFIRM</button>
+                </form>
+            
+            </div>
+            
+     </div>
+
+
+    <header style="height: 9vh; width: 100vw; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <div><a href="/bets"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon></a></div>
+            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: cursive; font-size: 1.75rem; color: purple;">Details</h1>
+        </div>
+        <div class="account" style="height: 70%; display: flex; justify-content: flex-end; align-items: center;">
+            <div class="balance" style="width: 100%; height: 100%; padding-inline: 5px;  margin-right: 15px; display: flex; align-items: center; justify-content: space-evenly; background-color: rgb(67, 5, 67); border-radius: 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 15c-1.84 0-2-.86-2-1H8c0 .92.66 2.55 3 2.92V18h2v-1.08c2-.34 3-1.63 3-2.92 0-1.12-.52-3-4-3-2 0-2-.63-2-1s.7-1 2-1 1.39.64 1.4 1h2A3 3 0 0 0 13 7.12V6h-2v1.09C9 7.42 8 8.71 8 10c0 1.12.52 3 4 3 2 0 2 .68 2 1s-.62 1-2 1z"></path><path d="M5 2H2v2h2v17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4h2V2H5zm13 18H6V4h12z"></path></svg>
+                <h2 style="color: white; margin-inline: 5px;  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; text-wrap: nowrap;">KSH <%= userData.totalBalance %></h2>
+            </div>
+            
+        </div>
+        
+    </header>
+
+<main style="width: 100vw; border: 3px dotted purple; background-image: linear-gradient(-45deg, goldenrod, gold, yellow, whitesmoke, white, white,whitesmoke, yellow, gold, goldenrod);">
+        
+        <section class="bet-type" style="width: 100vw; height: 8vh; background-color: transparent; display: flex; justify-content: center; align-items: center;">
+            <h1 style="font-size: 2rem; font-family: cursive; font-style: italic; font-weight: bold; text-align: center; color: purple;">Party</h1>
+        </section>
+
+        <section class="host" style="width: 100vw; height: 4vh; display: flex; align-items: center; justify-content: space-between; ">
+            <h3 style="margin-left: 10px; font-style: italic; color: purple;"><span style="color: red; font-family: cursive; font-style: italic;">host: </span><%= host.userName %></h3> 
+            <h3 style="margin-right: 5px; font-style: italic; color: blue; font-size: .65rem;" ><%= party.createdAt %></h3>
+             
+        </section>
+
+        <section class="webshare" style="width: 100vw; height: 6vh; margin-bottom: 10px; display: flex; align-items: center; justify-content: center;">
+             
+            <h3 style="margin-right: 10px; font-style: italic; font-weight: bold; color: blue;">Bet Code</h3> 
+             
+            <div class="code-box" style="width: 35%; height: 90%; border-radius: 10px 0 0 10px; border: 1px solid purple; background-color: aliceblue; color: red; display: flex; align-items: center; justify-content: center; text-align: center;">
+                <p class="betid" style="font-size: .75rem; font-style: italic; text-wrap: wrap; text-align: center;"><%= party._id %></p>
+            </div>
+
+             <button class="share" style="outline: none; border: none; height: 90%; width: 12.5%; border-radius: 0 10px 10px 0 ; margin: 0 50px 0 10px; background-color: green; display: flex; justify-content: center; align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: white;transform: msFilter"><path d="M5.5 15a3.51 3.51 0 0 0 2.36-.93l6.26 3.58a3.06 3.06 0 0 0-.12.85 3.53 3.53 0 1 0 1.14-2.57l-6.26-3.58a2.74 2.74 0 0 0 .12-.76l6.15-3.52A3.49 3.49 0 1 0 14 5.5a3.35 3.35 0 0 0 .12.85L8.43 9.6A3.5 3.5 0 1 0 5.5 15zm12 2a1.5 1.5 0 1 1-1.5 1.5 1.5 1.5 0 0 1 1.5-1.5zm0-13A1.5 1.5 0 1 1 16 5.5 1.5 1.5 0 0 1 17.5 4zm-12 6A1.5 1.5 0 1 1 4 11.5 1.5 1.5 0 0 1 5.5 10z"></path></svg>
+             </button>
+        </section>
+        
+        <section class="pool-details" style="width: 100vw; height: 5vh; display: flex; align-items: center; justify-content: space-between;">
+            <h3 style="font-weight: bold; color: blue; font-style: italic; font-family: cursive;">Total players: <span style="color: green;"><%= players.length %></span></h3>
+            <h3 style="font-weight: bold; color: blue; font-style: italic; font-family: cursive; margin-right: 15px;">Winners: <span style="color: green;">top 3</span></h3>
+        </section>
+
+        <section class="managers" style="width: 95vw; height: 25vh;  justify-content: flex-start; align-items: flex-start;" >
+             
+            
+
+             <% players.map((player) => { %> 
+
+
+                <% if (player.teamId == host.teamId) { %>
+                                 <!-- RENDER MULTIPLE AFTER PEOPLE JOIN PARTY -->
+            <a href="/myteam/<%= player.teamId %>/<%= party.event %>" class="cards" style="background-color: rgba(255, 255, 0);">
+                <div class="entry" style="height: 100%;  display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; padding: 20px;">
+                    <h2 style="font-size: .85rem; font-family: cursive; font-style: italic; color: green;"><%= player.teamName %></h2>
+                </div>
+                <div class="id" style="margin-right: 10px; width: 20%; height: 100%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; background-color: transparent;">
+                    <p style="font-style: italic; font-weight: bold; font-size: .95rem; color: blue; display: block;">Host</p>
+                </div>
+                <div class="points" style=" height: 100%; margin-left: 5px; background-color: transparent; display: flex; justify-content: center; align-items: center; ">
+                    
+                    <h2 style="font-weight: bold; font-size: .85rem; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">76</h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="fill: limegreen;transform: msFilter"><path d="M3 19h18a1.002 1.002 0 0 0 .823-1.569l-9-13c-.373-.539-1.271-.539-1.645 0l-9 13A.999.999 0 0 0 3 19z"></path></svg>
+                 </div>       
+                </a>
+      
+                  <% } else { %>
+
+                               <!-- RENDER MULTIPLE AFTER PEOPLE JOIN PARTY -->
+            <a href="/myteam/<%= player.teamId %>/<%= party.event %>" class="cards">
+                <div class="entry" style="height: 100%;  display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; padding: 20px;">
+                    <h2 style="font-size: .85rem; font-family: cursive; font-style: italic; color: limegreen;"><%= player.teamName %></h2>
+                </div>
+                <div class="id" style="margin-right: 10px; width: 20%; height: 100%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; background-color: transparent;">
+                    <p style="font-size: .7rem; color: red; display: block;"><%= player.teamId %></p>
+                </div>
+                <div class="points" style=" height: 100%; margin-left: 5px; background-color: transparent; display: flex; justify-content: center; align-items: center; ">
+                    
+                    <h2 style="font-weight: bold; font-size: .85rem; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">76</h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="fill: limegreen;transform: msFilter"><path d="M3 19h18a1.002 1.002 0 0 0 .823-1.569l-9-13c-.373-.539-1.271-.539-1.645 0l-9 13A.999.999 0 0 0 3 19z"></path></svg>
+                 </div>       
+                </a>
+      
+
+                  <%  } %>
+
+                       
+          
+                    
+                <%  })  %>
+            
+         
+        </section>
+
+        <section class="winners" style="height: 7vh; width: 100vw; background-color: white; display: flex; align-items: center; justify-content: space-evenly;">
+
+            <h3 style="margin-left: 10px; font-style: italic; color: green;"><span style="color: blue; font-family: cursive; font-style: italic;">1st:</span> Ksh 725</h3>
+            <h3 style="margin-left: 10px; font-style: italic; color: green;"><span style="color: blueviolet; font-family: cursive; font-style: italic;">2nd:</span> Ksh 530</h3>
+            <h3 style="margin-left: 10px; font-style: italic; color: green;"><span style="color: red; font-family: cursive; font-style: italic;">3rd:</span> Ksh 0</h3>
+    
+        </section>
+
+        <section class="event" style="width: 100vw; height: 7vh; display: flex; align-items: center; justify-content: center;">
+
+            <h1 style="font-size: 1.5rem; font-family: cursive; font-style: italic; font-weight: bold; text-align: center; color: purple;">Gameweek <%= party.event %></h1>
+
+        </section>
+
+        <section class="amount" style="position: relative; width: 100vw; height: 8vh; background-color: aliceblue; display: flex; justify-content: center; align-items: center;">
+            <div class="entry" style="height: 100%; width: 50%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap;">
+                 <p style="color: red; margin: 0; font-size: 1.3rem; font-style: italic; font-weight: bold;">KSH <%= party.amount %></p>
+                 <p style="margin: 5px; font-style: italic; font-size: .95rem; color: blue; ">Entry fee</p>
+            </div>
+            <div class="winner" style="height: 100%; width: 50%; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap;">
+                <p style="color: limegreen; font-style: italic; margin: 0; font-weight: bold; font-size: 1.3rem;">Top 3 players</p>
+                <p style="margin: 5px; font-style: italic; font-size: .95rem; color: blue;">Win</p>
+            </div>
+            
+             <div class="arrow" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="45" height="24" viewBox="0 0 24 24" style="fill: purple;transform: msFilter"><path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path></svg>
+             </div>
+            
+         </section>
+
+         <section class="status" style="width: 100vw; height: 8vh; display: flex; justify-content: center; align-items: center;">
+            <h3 style="margin-right: 10px; font-style: italic; font-weight: bold; color: blue;">Bet Status:</h3>
+            <h3 style="font-style: italic; font-family: cursive; font-weight: bold; color: red;">"<%= party.betStatus.message %>"</h3>       
+      
+        </section>
+         
+           <% if (host.teamId == userData.teamId)  { %>
+                
+            <section class="join-btn" style="width: 100vw; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
+                
+                <h3 style="font-weight: bolder; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.5rem; font-style: italic;">"You are the Host"</h3>
+    
+            </section>   
+
+             <% } else { %>
+               
+            <section class="join-btn" style="width: 100vw; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
+
+                    <button id="join" style="height: 80%; width: 45%; cursor: pointer; font-weight: bolder; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.4rem; border: 2px solid gold; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); outline: none; border-radius: 20px; color: white; background-color: limegreen; " >
+                        Join Party
+                    </button>
+        
+            </section>
+
+              <%  }  %>
+        
+
+
+    </main>   
+
+    <script>
+       
+       const joinBtn = document.getElementById('join')
+       const formBox = document.querySelector('.formbox')
+       const inputPartyId = document.getElementById('type')
+       const codeElem = document.querySelector('.betid')
+       const closeBtn = document.querySelector('.close')
+       const submitBtn = document.getElementById('submit') 
+       const shareBtn = document.querySelector('.share')
+       
+       shareBtn.addEventListener('click', () => {
+
+           if( navigator.share ) {
+               navigator.share({
+                title: 'XtreamLeague',
+                url: 'https://xtreamhub.onrender.com',
+                text: 'Hi there, Join my Gameweek 22 party and compete with other FPL Managers. Entry fee is ksh 200 use link https://xtreamhub.onrender.com or use code sdfbliabav'
+               })
+           } else {
+            navigator.clipboard.writeText('sdfbliabav')
+            window.alert('code copied to clipboard')
+           }
+       })
+       
+       joinBtn.addEventListener('click', () => {
+
+           inputPartyId.value = codeElem.textContent
+           formBox.style.display = 'block'
+           console.log(inputPartyId.value)
+
+       })
+
+       closeBtn.addEventListener('click', () => {
+            formBox.style.display = 'none'
+       })
+
+
+
+    </script>
+    
+    
+</body>
+    
+
+</html>

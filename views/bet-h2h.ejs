@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="400" height="400">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    
+    <title>Bet-H2H</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+
+<body style="position: relative; width: 100vw; background-color: goldenrod;">
+    <header style="height: 10vh; width: 100vw; border-bottom: 2px solid purple; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <div><a href="/main"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon></a></div>
+            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: cursive; font-size: 1.75rem; color: purple;">1-vs-1</h1>
+        </div>
+        <div class="account" style="display: flex; justify-content: flex-end; align-items: center;">
+            <div class="balance" style="width: 100%; height: 80%; padding: 10px; margin-right: 10px; display: flex; align-items: center; justify-content: space-evenly; background-color: rgb(67, 5, 67); border-radius: 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 15c-1.84 0-2-.86-2-1H8c0 .92.66 2.55 3 2.92V18h2v-1.08c2-.34 3-1.63 3-2.92 0-1.12-.52-3-4-3-2 0-2-.63-2-1s.7-1 2-1 1.39.64 1.4 1h2A3 3 0 0 0 13 7.12V6h-2v1.09C9 7.42 8 8.71 8 10c0 1.12.52 3 4 3 2 0 2 .68 2 1s-.62 1-2 1z"></path><path d="M5 2H2v2h2v17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4h2V2H5zm13 18H6V4h12z"></path></svg>
+                <h2 style="color: white; margin-inline: 5px;  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; text-wrap: nowrap;">KSH <%= user.totalBalance %></h2>
+            </div>
+            
+        </div>
+       
+        
+    </header>
+
+    <main style="position: relative; height: 90vh; width: 100vw; background-color: transparent;">
+
+            <!-- CURRENT MONTH TITLE -->
+
+        <section class="current-month" style="height: 15%; width: 100%; background-color: transparent; display: flex; justify-content: center; align-items: center;">
+             
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: rgba(67, 5, 67, 1);transform: msFilter"><path d="M21 20V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2zM9 18H7v-2h2v2zm0-4H7v-2h2v2zm4 4h-2v-2h2v2zm0-4h-2v-2h2v2zm4 4h-2v-2h2v2zm0-4h-2v-2h2v2zm2-5H5V7h14v2z"></path></svg>
+
+            <h1 style="margin-left: 10px; text-align: center; font-size: 2.5rem; font-weight: bold; font-family: cursive; font-style: italic; color: rgb(67, 5, 67);"><%= phase %></h1>
+
+        </section>
+           
+              <!-- COUNTDOWN SECTION -->
+
+        <section class="countdown" style="width: 100%; height: 5%; padding-inline: 10px; background-color: greenyellow; display: flex; justify-content: space-between; align-items: center;">
+             
+            <h2 style="font-family: cursive; font-style: italic; color: brown;">GW1</h2>
+            <p style="color: blue;" >expires in:</p>
+            <h2 style="color: red;">04h 52m 36s</h2>
+                
+        </section>
+           <% if (gameweeks !== 'null') { %>
+            <div class="desrip" style="height: 8%; width: 100%; display: flex; justify-content: center; align-items: center;">
+                <h3 style="font-family: cursive; font-style: italic; font-weight: bold; font-size: 1.5rem; color: purple;" >Choose Gameweek</h3>
+            </div>
+                
+                  <!-- GAMEWEEK BUTTONS -->
+    
+            <section class="gameweeks-container" style="width: 100%; padding: 10px; background-color: transparent; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+      
+                
+
+
+                
+                 
+                <% gameweeks.map((gameweek) => { %>
+                      <% if (gameweek[2] < 0) { %>
+                        <button disabled class="gameweek" style="outline: none; position: relative; height: 130px; width: 160px; margin: 5px; border-radius: 20px; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; background-image: linear-gradient(45deg, gold, yellow, lime, whitesmoke, white, whitesmoke, lime, yellow, gold);">
+                            <h1 style="font-size: 2rem; font-family: cursive; font-style: italic; font-weight: bold; color: purple; text-decoration: line-through; ">GW<%= gameweek[0] %></h1>
+                            <h3 style="color: red; font-size: .95rem;">Not Active</h3>
+                           
+                            <div class="overlay" style="display: block; width: 100%; height: 100%; position: absolute; top: 0; left: 0; border-radius: inherit; background-color: rgba(128, 128, 128, 0.7);"></div>
+                        
+                       </button> 
+               
+                      <%  } else { %>
+                        <button class="gameweek" style="outline: none; position: relative; height: 130px; width: 160px; margin: 5px; border-radius: 20px; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; background-image: linear-gradient(45deg, gold, yellow, lime, whitesmoke, white, whitesmoke, lime, yellow, gold); border: 3px solid rgb(67, 5, 67); box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); ">
+                            <h1 style="font-size: 2rem; font-family: cursive; font-style: italic; font-weight: bold; color: purple;">GW<%= gameweek[0] %></h1>
+                            <h3 style="color: limegreen; font-size: .95rem;"> Active</h3>
+                           
+                            <div class="overlay" style="display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; border-radius: inherit; background-color: rgba(128, 128, 128, 0.427);"></div>
+                        
+                       </button>           
+
+                      <% } %>
+
+                  
+               
+                <% }) %>
+                
+            
+    
+               
+        </section>
+              <% } else { %>
+
+                <div class="desrip" style="height: 8%; width: 100%; display: flex; justify-content: center; align-items: center;">
+                    <h3 style="font-family: cursive; font-style: italic; font-weight: bold; font-size: 1.5rem; color: purple;" ><%= message %></h3>
+                </div>
+                    
+                      <!-- GAMEWEEK BUTTONS -->
+        
+                <section class="gameweeks-container" style="width: 100%; padding: 10px; background-color: transparent; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+          
+                             <!-- EMPTY CONTAINER SINCE NO GAMEWEEKS SHOULD BE DISPLAYED PRE-SEASON  -->
+        
+                </section>
+
+                <% } %>
+       
+
+    </main>
+
+    <div class="formbox" style="display: none; border-radius: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); height: 400px; width: 75vw; background-image: linear-gradient(45deg, goldenrod, gold, greenyellow,yellow, whitesmoke, white, white, whitesmoke, yellow, greenyellow, gold, goldenrod);">
+        <div class="head-wrapper" style="width: 100%; height: 15%; position: relative; background-color: transparent; border-radius: 20px 20px 0 0;">
+            <div class="icon-confirm" style="position: absolute; left: 0; height: 100%; width: 85%; padding: 10px; display: flex; justify-content: flex-start; align-items: center;">
+                <img src="logos/plicon.png" alt="" width="40" height="40">
+                <h2 style="color: purple; margin-left: 5px;">Create Bet</h2>
+            </div>
+            <div class="close" style="display: flex; justify-content: center; align-items: center; background-color: red; position: absolute; right: 0; height: 100%; width: 15%; border-radius: 0 20px 0 20px;">
+                <ion-icon name="close" style="font-size: 2rem; color: white; font-weight: bold;"></ion-icon>
+            </div>
+        </div>
+        <div class="details-wrapper" style="height: 60%; padding-block: 10px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+          
+            <div class="button" style="height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: gray; border: 1px solid black; border-radius: 20px; margin: 2px;">
+              <h2 style="font-size: 1rem; font-weight: bold; margin-top: 10px; color: white;">100</h2>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 6C7.03 6 2 7.546 2 10.5v4C2 17.454 7.03 19 12 19s10-1.546 10-4.5v-4C22 7.546 16.97 6 12 6zm-8 8.5v-1.197a9.989 9.989 0 0 0 2 .86v1.881c-1.312-.514-2-1.126-2-1.544zm12 .148v1.971c-.867.179-1.867.31-3 .358v-2a21.75 21.75 0 0 0 3-.329zm-5 2.33a18.788 18.788 0 0 1-3-.358v-1.971c.959.174 1.972.287 3 .33v1.999zm7-.934v-1.881a9.931 9.931 0 0 0 2-.86V14.5c0 .418-.687 1.03-2 1.544zM12 13c-5.177 0-8-1.651-8-2.5S6.823 8 12 8s8 1.651 8 2.5-2.823 2.5-8 2.5z"></path></svg>
+            </div>
+            <div class="button" style="height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;">
+                <h2 style="font-size: 1rem; font-weight: bold; margin-top: 10px; color: white; ">200</h2>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 6C7.03 6 2 7.546 2 10.5v4C2 17.454 7.03 19 12 19s10-1.546 10-4.5v-4C22 7.546 16.97 6 12 6zm-8 8.5v-1.197a9.989 9.989 0 0 0 2 .86v1.881c-1.312-.514-2-1.126-2-1.544zm12 .148v1.971c-.867.179-1.867.31-3 .358v-2a21.75 21.75 0 0 0 3-.329zm-5 2.33a18.788 18.788 0 0 1-3-.358v-1.971c.959.174 1.972.287 3 .33v1.999zm7-.934v-1.881a9.931 9.931 0 0 0 2-.86V14.5c0 .418-.687 1.03-2 1.544zM12 13c-5.177 0-8-1.651-8-2.5S6.823 8 12 8s8 1.651 8 2.5-2.823 2.5-8 2.5z"></path></svg>
+              </div>
+              <div class="button" style="height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;">
+                <h2 style="font-size: 1rem; font-weight: bold; margin-top: 10px; color: white;">500</h2>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 6C7.03 6 2 7.546 2 10.5v4C2 17.454 7.03 19 12 19s10-1.546 10-4.5v-4C22 7.546 16.97 6 12 6zm-8 8.5v-1.197a9.989 9.989 0 0 0 2 .86v1.881c-1.312-.514-2-1.126-2-1.544zm12 .148v1.971c-.867.179-1.867.31-3 .358v-2a21.75 21.75 0 0 0 3-.329zm-5 2.33a18.788 18.788 0 0 1-3-.358v-1.971c.959.174 1.972.287 3 .33v1.999zm7-.934v-1.881a9.931 9.931 0 0 0 2-.86V14.5c0 .418-.687 1.03-2 1.544zM12 13c-5.177 0-8-1.651-8-2.5S6.823 8 12 8s8 1.651 8 2.5-2.823 2.5-8 2.5z"></path></svg>
+              </div>
+              <div class="button" style="height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;" >
+                <h2 style="font-size: 1rem; font-weight: bold; margin-top: 10px; color: white;">1000</h2>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
+              </div>
+              <div class="button" style="height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;" >
+                <h2 style="font-size: 1rem; font-weight: bold; margin-top: 10px; color: white;">2000</h2>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
+              </div>
+              <div class="button" style="height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;" >
+                <h2 style="font-size: 1rem; font-weight: bold; margin-top: 10px; color: white;">5000</h2>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
+              </div>
+
+              <!-- CONFIRM OR DENY DETAILS BOX -->
+
+              <section class="confirm-details" style="display: none; position: absolute; padding-top: 50px; top: 50%; left: 50%; transform: translate(-50%, -60%); width: 92%; height: 58%; z-index: 5; background-image: linear-gradient(45deg, goldenrod, gold, lime, yellow, whitesmoke, white, white, whitesmoke, yellow, lime, gold, goldenrod) ; border-radius: 10px;">
+                     <h1 style="color: blueviolet; text-align: center; margin: 10px auto; font-size: 1.6rem; font-family: cursive; font-style: italic; font-weight: bold;">Head to Head</h1>
+                     <h1 style="color: green; text-align: center; margin: 10px auto; font-family: cursive; font-style: italic; font-size: 1.5rem; font-weight: bold;" >GW1</h1>
+                     <h1 style="color: red; text-align: center; margin: 10px auto; font-size: 1.8rem; font-style: italic; font-weight: bold;">1000</h1>
+
+              </section>
+
+ 
+        </div>
+        <div class="confirm-btn" style="background-color: transparent; border: 1px solid grey; border-radius: 0 0 20px 20px; height: 25%; width: 100%; display: flex; align-items: center; justify-content: center;">
+            <form action="/bet-head" method="post" style="height: 70%; width: 60%; background-color: transparent;">
+                <input type="text" name="betType" id="type" style="display: none;">
+                <input type="number" name="event" id="event" style="display: none;">
+                <input type="number" name="amount" id="amount" style="display: none;">
+                <button id="submit" type="submit" style="display: none; height: 100%; width: 100%; border-radius: 40px; background-color: purple; color: white; border: none; outline: none; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1rem;">CONFIRM</button>
+            </form>
+        
+        </div>
+        
+ </div>
+ 
+    <script>
+        const buttons = document.querySelectorAll('.button')
+        const inputAmount = document.querySelector('#amount')
+        const inputBetType = document.querySelector('#type')
+        const amount = document.getElementById('cash')
+        const closeBtn = document.querySelector('.close')
+        const gameweekBtns = document.querySelectorAll('.gameweek')
+        const inputEvent = document.querySelector('#event')
+        const confirmBox = document.querySelector('.confirm-details')
+        const submitBtn = document.getElementById('submit')
+
+        gameweekBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+               inputEvent.value = btn.children[0].textContent.slice(2)  
+               document.querySelector('.formbox').style.display = 'block'
+               confirmBox.children[1].textContent = inputEvent.value
+               console.log(inputEvent.value)                
+            })
+        })
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                inputAmount.value = button.children[0].textContent
+                inputBetType.value = 'head'
+                confirmBox.style.display = 'block'
+                confirmBox.children[2].textContent = inputAmount.value
+                submitBtn.style.display = 'block'
+                console.log(typeof inputAmount.value)
+            })
+        })
+
+        closeBtn.addEventListener('click', () => {
+            inputEvent.value = ''
+            inputAmount.value = ''
+            confirmBox.style.display = 'none'
+            submitBtn.style.display = 'none'
+            document.querySelector('.formbox').style.display = 'none'
+        })
+        
+   
+
+    </script>
+ 
+</body>
+</html>
