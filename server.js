@@ -20,7 +20,7 @@ const cookieSession = require('cookie-session')
 const { caseInSwitch } = require('./controllers/test')
 const authRoutes = require('./routes/auth-routes')
 const { authCheck, notAuthCheck, registerCheck } = require('./controllers/authControllers')
-const Transaction = require('./models/transactions')
+
 
 const myTeamRoutes = require('./routes/myteam-routes')
 const betHeadRoutes = require('./routes/bethead-routes')
