@@ -52,8 +52,7 @@ const postRegister = async (req, res) => {
         "Accept": "application/json"
     }
     
-    const results = await axios.get(baseUrl, axiosOptions)
-    console.log(`results: ${results} `)
+    const results = await axios.get(baseUrl)
     const data = await results.json()
     const teams = data.standings.results 
     res.render('register', { managers: teams })    
