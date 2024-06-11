@@ -43,7 +43,7 @@ const registerRoute = require('./routes/register-route')
 const patchIdRoute = require('./routes/patchid-route')
 const topdollarRoute = require('./routes/topdollar-route')
 const transactionRoute = require('./routes/transaction-route')
-
+const { getBootstrap } = require('./controllers/profileControllers')
 
 
 // MIDDLEWARE 
@@ -73,6 +73,7 @@ app.use(passport.session())
 // CONNECT TO DB
 
 const dbURI = process.env.MONGODB_URI
+
 
 mongoose.connect(dbURI)
 .then(() => {
@@ -113,7 +114,7 @@ app.get('/', notAuthCheck, (req, res) => {
     res.render('sign')
 })
 
-
+app.get('/boot', getBootstrap)
 
 
 

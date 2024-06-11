@@ -88,6 +88,16 @@ const getTopDollar = (req, res) => {
     res.render('topearners')
 }
 
+const getBootstrap = async (req, res) => {
+    const baseUrl = "https://fantasy.premierleague.com/api/bootstrap-static"
+
+    const events = await axios.get(baseUrl)
+    const data = await events.json()
+    const phases = data.phases
+
+    res.send(phases)
+
+}
 
 module.exports = {
     getTransactions,
@@ -95,5 +105,6 @@ module.exports = {
     patchUserId,
     postRegister,
     getMain,
-    getTopDollar
+    getTopDollar,
+    getBootstrap
 }
