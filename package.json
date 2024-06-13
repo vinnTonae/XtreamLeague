@@ -19,7 +19,7 @@
     "https-proxy-agent": "^5.0.1",
     "method-override": "^3.0.0",
     "mongoose": "^8.4.1",
-    "node-fetch": "^3.3.2",
+    "node-fetch": "^2.7.0",
     "passport": "^0.5.3",
     "passport-google-oauth20": "^2.0.0",
     "twilio": "^5.1.1"
