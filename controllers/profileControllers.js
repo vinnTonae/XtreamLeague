@@ -21,7 +21,7 @@ const patchUserId = async(req, res) => {
     const { teamid } = req.body
     const options = {
         method: 'GET',
-        agent: new HttpsProxyAgent({ host: '92.240.200.192', port: '8000', auth: '6SfTz2:sFmpZg' }),
+        agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
         accept: 'application/json'
     }
     const baseUrl = `https://fantasy.premierleague.com/api/entry/${teamid}/`
