@@ -3,7 +3,7 @@ const Head = require('../models/head2head')
 const Party = require('../models/party')
 const Transactions = require('../models/transactions')
 const { HttpsProxyAgent } = require('https-proxy-agent')
-const  { fetch } = require('node-fetch')
+require('node-fetch')
 
 const getTransactions = async (req, res) => {
     const reqUserId = req.user._id
