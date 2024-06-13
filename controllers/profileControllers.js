@@ -2,7 +2,8 @@ const User = require('../models/xtreamUsers')
 const Head = require('../models/head2head')
 const Party = require('../models/party')
 const Transactions = require('../models/transactions')
-
+const fetch = require('node-fetch')
+const { HttpsProxyAgent } = require('https-proxy-agent')
 
 
 const getTransactions = async (req, res) => {
@@ -20,8 +21,8 @@ const patchUserId = async(req, res) => {
     const id = req.user._id
     const { teamid } = req.body
     const options = {
-        "Content-Type": 'application/json',
-        "Accept": 'application/json'
+        agent: new HttpsProxyAgent({ host: '92.240.200.192', port: '8000', auth: '6SfTz2:sFmpZg' }),
+        accept: 'application/json'
     }
     const baseUrl = `https://fantasy.premierleague.com/api/entry/${teamid}/`
     const response = await fetch(baseUrl, options)
@@ -48,8 +49,8 @@ const postRegister = async (req, res) => {
     const id = req.body.id
     const baseUrl = `https://fantasy.premierleague.com/api/leagues-classic/${id}/standings/`
     const options = {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
+         agent: new HttpsProxyAgent({ host: '92.240.200.192', port: '8000', auth: '6SfTz2:sFmpZg' }),
+         accept: 'application/json'
     }
     
     const results = await fetch(baseUrl, options)
@@ -90,8 +91,11 @@ const getTopDollar = (req, res) => {
 
 const getBootstrap = async (req, res) => {
     const baseUrl = "https://fantasy.premierleague.com/api/bootstrap-static"
-
-    const events = await axios.get(baseUrl)
+    const options = {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    }
+    const events = await fetch(baseUrl, options)
     const data = await events.json()
     const phases = data.phases
 

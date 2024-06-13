@@ -14,9 +14,7 @@ const getBetHead = async (req, res) => {
         Accept: 'application/json'
     }
     const  response = await fetch(baseUrl, options)
-    console.log(response)
     const data = await response.json()
-    console.log(data)
     const phases = data.phases
     const currentPhase = caseInSwitch(month + 2)
     //console.log(phases)
