@@ -2,7 +2,7 @@ const User = require('../models/xtreamUsers')
 const Head = require('../models/head2head')
 const Party = require('../models/party')
 const Transactions = require('../models/transactions')
-const axios = require('axios')
+
 
 
 const getTransactions = async (req, res) => {
@@ -19,12 +19,12 @@ const getSearch = (req, res) => {
 const patchUserId = async(req, res) => {
     const id = req.user._id
     const { teamid } = req.body
-    const axiosOptions = {
+    const options = {
         "Content-Type": 'application/json',
         "Accept": 'application/json'
     }
     const baseUrl = `https://fantasy.premierleague.com/api/entry/${teamid}/`
-    const response = await axios.get(baseUrl, axiosOptions)
+    const response = await fetch(baseUrl, options)
     const data = await response.json()
     const favPlTeam = data.favourite_team
     const manager = `${data.player_first_name} ${data.player_last_name}`
@@ -47,12 +47,12 @@ const patchUserId = async(req, res) => {
 const postRegister = async (req, res) => {
     const id = req.body.id
     const baseUrl = `https://fantasy.premierleague.com/api/leagues-classic/${id}/standings/`
-    const axiosOptions = {
+    const options = {
         "Content-Type": "application/json",
         "Accept": "application/json"
     }
     
-    const results = await axios.get(baseUrl)
+    const results = await fetch(baseUrl, options)
     const data = await results.json()
     const teams = data.standings.results 
     res.render('register', { managers: teams })    

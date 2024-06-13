@@ -4,7 +4,7 @@ const ObjectId = require('mongoose').Types.ObjectId
 
 const express = require('express')
 const app = express()
-const port = 5511
+const port = 3000
 const mongoose = require('mongoose')
 const User = require('./models/xtreamUsers')
 const Head = require('./models/head2head')
