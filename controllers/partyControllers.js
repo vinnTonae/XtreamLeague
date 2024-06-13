@@ -1,7 +1,8 @@
 const User = require('../models/xtreamUsers')
 const Party = require('../models/party')
 const ObjectId = require('mongoose').Types.ObjectId
-
+const { HttpsProxyAgent } = require('https-proxy-agent')
+const fetch = require('node-fetch')
 
 const postJoinParty = async (req, res) => {
 
@@ -76,7 +77,7 @@ const patchConfirmParty = async (req, res) => {
               return false
           }
     }
-  console.log(playerAlreadyExists())
+  
 
 
     if ( partyStatus.code == 100 && playerAlreadyExists() === false ) {
@@ -88,7 +89,7 @@ const patchConfirmParty = async (req, res) => {
 
           } else if ( hostBalance < entryFee ) {
 
-              Req.flash('error', 'The Host has Insufficient Funds')
+              req.flash('error', 'The Host has Insufficient Funds')
               res.redirect('/main')
 
           } else {
@@ -187,6 +188,7 @@ const getBetParty = async (req, res) => {
     const baseUrl = 'https://fantasy.premierleague.com/api/bootstrap-static'
     const options = {
         method: 'GET',
+        agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
         Accept: 'application/json'
     }
     const  response = await fetch(baseUrl, options)

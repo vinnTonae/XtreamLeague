@@ -94,7 +94,7 @@ const getBootstrap = async (req, res) => {
     const baseUrl = "https://fantasy.premierleague.com/api/bootstrap-static"
     const options = {
         method: 'GET',
-         agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
+        agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
         accept: 'application/json'
     }
     

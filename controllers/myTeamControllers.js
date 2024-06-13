@@ -1,4 +1,5 @@
-
+const { HttpsProxyAgent } = require('https-proxy-agent')
+const fetch = require('node-fetch')
 
 
 const getOpponentId = async (req, res) => {
@@ -6,8 +7,9 @@ const getOpponentId = async (req, res) => {
     const opponentId = req.params.opponent
     const baseUrl = `https://fantasy.premierleague.com/api/entry/${opponentId}/event/${eventId}/picks/`
     const options = {
-        method: 'GET', 
-        Accept: 'application/json',
+        method: 'GET',
+        agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }), 
+        accept: 'application/json',
     }
     const results = await fetch(baseUrl, options)
     const data = await results.json()
@@ -67,7 +69,8 @@ const getMyTeamId = async (req, res) => {
     const baseUrl = `https://fantasy.premierleague.com/api/entry/${userTeamId}/event/${eventNumber}/picks/`
     const options = {
         method: 'GET', 
-        Accept: 'application/json',
+        agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
+        accept: 'application/json',
     }
     const results = await fetch(baseUrl, options)
     const data = await results.json()
@@ -125,7 +128,8 @@ const getMyTeam = async (req, res) => {
     const baseUrl = `https://fantasy.premierleague.com/api/entry/${userTeamId}/event/1/picks/`
     const options = {
         method: 'GET', 
-        Accept: 'application/json',
+        agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
+        accept: 'application/json',
     }
     const results = await fetch(baseUrl, options)
     const data = await results.json()
