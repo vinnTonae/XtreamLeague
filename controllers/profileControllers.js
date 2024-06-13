@@ -93,9 +93,11 @@ const getTopDollar = (req, res) => {
 const getBootstrap = async (req, res) => {
     const baseUrl = "https://fantasy.premierleague.com/api/bootstrap-static"
     const options = {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
+        method: 'GET',
+         agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
+        accept: 'application/json'
     }
+    
     const events = await fetch(baseUrl, options)
     const data = await events.json()
     const phases = data.phases
