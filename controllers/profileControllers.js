@@ -50,7 +50,7 @@ const postRegister = async (req, res) => {
     const baseUrl = `https://fantasy.premierleague.com/api/leagues-classic/${id}/standings/`
     const options = {
         method: 'GET',
-         agent: new HttpsProxyAgent({ host: '127.0.0.1', port: '5511' }),
+         agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
         accept: 'application/json'
     }
     
