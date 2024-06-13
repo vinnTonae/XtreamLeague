@@ -58,8 +58,8 @@
     width: 80%;
     margin: auto;
     text-decoration: none;
-    font-family: cursive;
-    font-weight: 900;
+    font-family: 'Signika', sans-serif;
+    font-weight: bold;
 }
 
 .navbar a:any-link {

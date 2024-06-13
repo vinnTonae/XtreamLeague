@@ -26,7 +26,7 @@
     <header style="height: 10vh; width: 100vw; border-bottom: 2px solid purple; display: flex; align-items: center; justify-content: space-between;">
         <div style="display: flex; align-items: center; justify-content: center;">
             <div><a href="/main"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon></a></div>
-            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: cursive; font-size: 1.75rem; color: purple;">1-vs-1</h1>
+            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">1-vs-1</h1>
         </div>
         <div class="account" style="display: flex; justify-content: flex-end; align-items: center;">
             <div class="balance" style="width: 100%; height: 80%; padding: 10px; margin-right: 10px; display: flex; align-items: center; justify-content: space-evenly; background-color: rgb(67, 5, 67); border-radius: 10px;">
@@ -47,7 +47,7 @@
              
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: rgba(67, 5, 67, 1);transform: msFilter"><path d="M21 20V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2zM9 18H7v-2h2v2zm0-4H7v-2h2v2zm4 4h-2v-2h2v2zm0-4h-2v-2h2v2zm4 4h-2v-2h2v2zm0-4h-2v-2h2v2zm2-5H5V7h14v2z"></path></svg>
 
-            <h1 style="margin-left: 10px; text-align: center; font-size: 2.5rem; font-weight: bold; font-family: cursive; font-style: italic; color: rgb(67, 5, 67);"><%= phase %></h1>
+            <h1 style="margin-left: 10px; text-align: center; font-size: 2.5rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: rgb(67, 5, 67);"><%= phase %></h1>
 
         </section>
            
@@ -55,29 +55,25 @@
 
         <section class="countdown" style="width: 100%; height: 5%; padding-inline: 10px; background-color: greenyellow; display: flex; justify-content: space-between; align-items: center;">
              
-            <h2 style="font-family: cursive; font-style: italic; color: brown;">GW1</h2>
+            <h2 style="font-family: 'Signika', sans-serif; font-style: italic; color: brown;">GW1</h2>
             <p style="color: blue;" >expires in:</p>
-            <h2 style="color: red;">04h 52m 36s</h2>
+            <p style="color: red; font-style: italic; font-weight: bold;">04h 52m 36s</p>
                 
         </section>
            <% if (gameweeks !== 'null') { %>
             <div class="desrip" style="height: 8%; width: 100%; display: flex; justify-content: center; align-items: center;">
-                <h3 style="font-family: cursive; font-style: italic; font-weight: bold; font-size: 1.5rem; color: purple;" >Choose Gameweek</h3>
+                <h3 style="font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; font-size: 1.5rem; color: purple;" >Choose Gameweek</h3>
             </div>
                 
                   <!-- GAMEWEEK BUTTONS -->
     
             <section class="gameweeks-container" style="width: 100%; padding: 10px; background-color: transparent; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
       
-                
-
-
-                
                  
                 <% gameweeks.map((gameweek) => { %>
                       <% if (gameweek[2] < 0) { %>
                         <button disabled class="gameweek" style="outline: none; position: relative; height: 130px; width: 160px; margin: 5px; border-radius: 20px; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; background-image: linear-gradient(45deg, gold, yellow, lime, whitesmoke, white, whitesmoke, lime, yellow, gold);">
-                            <h1 style="font-size: 2rem; font-family: cursive; font-style: italic; font-weight: bold; color: purple; text-decoration: line-through; ">GW<%= gameweek[0] %></h1>
+                            <h1 style="font-size: 2rem; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; color: purple; text-decoration: line-through; ">GW<%= gameweek[0] %></h1>
                             <h3 style="color: red; font-size: .95rem;">Not Active</h3>
                            
                             <div class="overlay" style="display: block; width: 100%; height: 100%; position: absolute; top: 0; left: 0; border-radius: inherit; background-color: rgba(128, 128, 128, 0.7);"></div>
@@ -86,7 +82,7 @@
                
                       <%  } else { %>
                         <button class="gameweek" style="outline: none; position: relative; height: 130px; width: 160px; margin: 5px; border-radius: 20px; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; background-image: linear-gradient(45deg, gold, yellow, lime, whitesmoke, white, whitesmoke, lime, yellow, gold); border: 3px solid rgb(67, 5, 67); box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); ">
-                            <h1 style="font-size: 2rem; font-family: cursive; font-style: italic; font-weight: bold; color: purple;">GW<%= gameweek[0] %></h1>
+                            <h1 style="font-size: 2rem; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; color: purple;">GW<%= gameweek[0] %></h1>
                             <h3 style="color: limegreen; font-size: .95rem;"> Active</h3>
                            
                             <div class="overlay" style="display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; border-radius: inherit; background-color: rgba(128, 128, 128, 0.427);"></div>
@@ -106,7 +102,7 @@
               <% } else { %>
 
                 <div class="desrip" style="height: 8%; width: 100%; display: flex; justify-content: center; align-items: center;">
-                    <h3 style="font-family: cursive; font-style: italic; font-weight: bold; font-size: 1.5rem; color: purple;" ><%= message %></h3>
+                    <h3 style="font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; font-size: 1.5rem; color: purple;" ><%= message %></h3>
                 </div>
                     
                       <!-- GAMEWEEK BUTTONS -->
@@ -162,8 +158,8 @@
               <!-- CONFIRM OR DENY DETAILS BOX -->
 
               <section class="confirm-details" style="display: none; position: absolute; padding-top: 50px; top: 50%; left: 50%; transform: translate(-50%, -60%); width: 92%; height: 58%; z-index: 5; background-image: linear-gradient(45deg, goldenrod, gold, lime, yellow, whitesmoke, white, white, whitesmoke, yellow, lime, gold, goldenrod) ; border-radius: 10px;">
-                     <h1 style="color: blueviolet; text-align: center; margin: 10px auto; font-size: 1.6rem; font-family: cursive; font-style: italic; font-weight: bold;">Head to Head</h1>
-                     <h1 style="color: green; text-align: center; margin: 10px auto; font-family: cursive; font-style: italic; font-size: 1.5rem; font-weight: bold;" >GW1</h1>
+                     <h1 style="color: blueviolet; text-align: center; margin: 10px auto; font-size: 1.6rem; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold;">Head to Head</h1>
+                     <h1 style="color: green; text-align: center; margin: 10px auto; font-family: 'Signika', sans-serif; font-style: italic; font-size: 1.5rem; font-weight: bold;" >GW1</h1>
                      <h1 style="color: red; text-align: center; margin: 10px auto; font-size: 1.8rem; font-style: italic; font-weight: bold;">1000</h1>
 
               </section>
@@ -197,7 +193,7 @@
             btn.addEventListener('click', () => {
                inputEvent.value = btn.children[0].textContent.slice(2)  
                document.querySelector('.formbox').style.display = 'block'
-               confirmBox.children[1].textContent = inputEvent.value
+               confirmBox.children[1].textContent = `GW${inputEvent.value}`
                console.log(inputEvent.value)                
             })
         })

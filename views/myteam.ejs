@@ -6,6 +6,7 @@
     <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="40" height="40">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <title>Myteam</title>
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
@@ -60,9 +61,11 @@
     <header style="height: 10vh; width: 100vw; display: flex; align-items: center; justify-content: space-between;">
         <div style="display: flex; align-items: center; justify-content: center;">
             <div><a href="/main"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon></a></div>
-            <h1 style="margin:0 10px 5px 10px; font-weight: bold; font-family: cursive; font-size: 1.75rem; color: purple;">Picks</h1>
+            <h1 style="margin:0 10px 5px 10px; font-weight: bold; font-style: italic; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Picks</h1>
         </div>
-        <h1 style="font-style: italic; margin-right: 10px; color: blue; font-weight: bold; font-size: 1.25rem; font-family: cursive;"><%= user.teamName %></h1>
+        <h1 style="font-style: italic; margin-right: 10px; color: blue; font-weight: bold; font-size: 1.25rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+            <%= user.teamName %>
+        </h1>
         
     </header>
     <section id="gw-wrapper" style="margin-bottom: 0.5vh; width: 100vw; background-color: goldenrod; display: flex; align-items: center; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-y: hidden; overflow-x: scroll;">
@@ -78,7 +81,7 @@
     <section style="position: relative; width: 100vw; height: 72.5vh; margin-bottom: 10vh; background:url('logos/pitch.png'); background-size: cover; background-repeat: no-repeat; background-position: center; backdrop-filter: blur(10px);" >
           
          <div style="position: absolute; top: 8%; left: 10%;  height: 50px; width: 80px; border: 2px solid lime; background-color: grey; color: lime; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
-            <h1 style="font-size: 1rem; font-weight: cursive;">GW<%= GW %></h1>
+            <h1 style="font-size: 1rem; font-weight: bold;">GW<%= GW %></h1>
          </div>
 
          <section id="keepers" style="display: flex; align-items: center; justify-content: space-around; height: 18.75%; width: 100vw; background-color: transparent;">
@@ -89,8 +92,12 @@
              <article class="selections">
                 <img src="jerseys/<%= goalie.team_code %>.png" alt="GK" width="50" height="50">
                 <div class="player-details " style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; margin-top: 5px; background-color: transparent;">
-                    <h3 style="text-align: center; color: white;font-size: .65rem; font-family: cursive; text-transform: uppercase;"><%= goalie.first_name %></h3>
-                    <h4 style="text-align: center; color: white; font-family: cursive; font-weight: bold; font-size: .65rem; text-transform: uppercase;"><%= goalie.second_name %></h4>
+                    <h3 style="text-align: center; color: white; font-size: .65rem; font-family: 'Signika', sans-serif; font-style: italic; text-transform: uppercase;">
+                        <%= goalie.first_name %>
+                    </h3>
+                    <h4 style="text-align: center; color: white; font-family: 'Signika' sans-serif; font-weight: bold; font-style: italic; font-size: .65rem; text-transform: uppercase;">
+                        <%= goalie.second_name %>
+                    </h4>
                 </div>
              </article>
 
@@ -107,8 +114,12 @@
                 <article class="selections">
                     <img src="jerseys/<%= def.team_code %>.png" alt="DF" width="50" height="50">
                     <div class="player-details " style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; margin-top: 5px; background-color: transparent;">
-                        <h3 style="text-align: center; color: white;font-size: .65rem; font-family: cursive; text-transform: uppercase;"><%= def.first_name %></h3>
-                        <h4 style="text-align: center; color: white; font-family: cursive; font-weight: bold; font-size: .65rem; text-transform: uppercase;"><%= def.second_name %></h4>
+                        <h3 style="text-align: center; color: white; font-size: .65rem; font-family: 'Signika', sans-serif; font-style: italic; text-transform: uppercase;">
+                            <%= def.first_name %>
+                        </h3>
+                        <h4 style="text-align: center; color: white; font-family: 'Signika', sans-serif; font-weight: bold; font-size: .65rem; text-transform: uppercase;">
+                            <%= def.second_name %>
+                        </h4>
                     </div>
                  </article>
 
@@ -126,8 +137,12 @@
                 <article class="selections">
                     <img src="jerseys/<%= mid.team_code %>.png" alt="MD" width="50" height="50">
                     <div class="player-details " style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; margin-top: 5px; background-color: transparent;">
-                        <h3 style="text-align: center; color: white;font-size: .65rem; font-family: cursive; text-transform: uppercase;"><%= mid.first_name %></h3>
-                        <h4 style="text-align: center; color: white; font-family: cursive; font-weight: bold; font-size: .65rem; text-transform: uppercase;"><%= mid.second_name %></h4>
+                        <h3 style="text-align: center; color: white; font-size: .65rem; font-family: 'Signika', sans-serif; font-style: italic; text-transform: uppercase;">
+                            <%= mid.first_name %>
+                        </h3>
+                        <h4 style="text-align: center; color: white; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; font-size: .65rem; text-transform: uppercase;">
+                            <%= mid.second_name %>
+                        </h4>
                     </div>
                  </article>    
 
@@ -149,8 +164,12 @@
              <article class="selections">
                 <img src="jerseys/<%= lethal.team_code %>.png" alt="CF" width="50" height="50">
                 <div class="player-details " style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; margin-top: 5px; background-color: transparent;">
-                    <h3 style="text-align: center; color: white;font-size: .65rem; font-family: cursive; text-transform: uppercase;"><%= lethal.first_name %></h3>
-                    <h4 style="text-align: center; color: white; font-family: cursive; font-weight: bold; font-size: .65rem; text-transform: uppercase;"><%= lethal.second_name %></h4>
+                    <h3 style="text-align: center; color: white; font-size: .65rem; font-family: 'Signika', sans-serif; font-style: italic; text-transform: uppercase;">
+                        <%= lethal.first_name %>
+                    </h3>
+                    <h4 style="text-align: center; color: white; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic; font-size: .65rem; text-transform: uppercase;">
+                        <%= lethal.second_name %>
+                    </h4>
                 </div>
              </article>
              <% }) %>
@@ -169,8 +188,12 @@
               <article class="selections">
                  <img src="jerseys/<%= sub.team_code %>.png" alt="SB" width="50" height="50">
                  <div class="player-details " style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; margin-top: 5px; background-color: transparent;">
-                    <h3 style="text-align: center; color: yellow;font-size: .65rem; font-family: cursive; text-transform: uppercase;"><%= sub.first_name %></h3>
-                    <h4 style="text-align: center; color: yellow; font-family: cursive; font-weight: bold; font-size: .65rem; text-transform: uppercase;"><%= sub.second_name %></h4>
+                    <h3 style="text-align: center; color: yellow; font-size: .65rem; font-family: 'Signika', sans-serif; font-style: italic; text-transform: uppercase;">
+                        <%= sub.first_name %>
+                    </h3>
+                    <h4 style="text-align: center; color: yellow; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; font-size: .65rem; text-transform: uppercase;">
+                        <%= sub.second_name %>
+                    </h4>
                  </div>
               </article>
               
@@ -183,15 +206,6 @@
         
     </section>
     
-    
-
-    <footer style="position: fixed; bottom: 0; height: 10svh; width: 100vw; display: flex; align-items: center; justify-content: center;">
-        <div style="padding: 20px; display: flex; align-items: center; justify-content: center; font-weight: bold; ">
-            <h1 style="font-weight: 900; font-size: 1.2rem; color: purple; font-family: cursive;">Xtream</h1>
-            <span><img src="logos/plicon.png" alt="" width="40" height="40"></span>
-            <h1 style="font-weight: 900; font-size: 1.2rem; color: purple; font-family: cursive;">League</h1>
-        </div>
-    </footer>
     
 </body>
     

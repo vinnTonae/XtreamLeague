@@ -6,6 +6,7 @@
     <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="40" height="40">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <title>Rankings</title>
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
@@ -56,7 +57,7 @@
     <header style="position: relative; height: 10vh; width: 100vw; display: flex; align-items: center; justify-content: space-between;">
         <div style="display: flex; align-items: center; justify-content: center;">
             <div><a href="/main"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 1.8rem;"></ion-icon></a></div>
-            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: cursive; font-size: 1.75rem; color: purple;">My Bets</h1>
+            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">My Bets</h1>
         </div>
 
         <span style="margin-right: 20px;"><img src="logos/plicon.png" alt="Paypal" width="40" height="40"></span>
@@ -86,7 +87,7 @@
              <% if ( hostHead.length === 0 && oppHead.length === 0 ) { %>
 
                 <div class="no-bets" style="position: absolute; z-index: 5; top: 35%; left: 50%; transform: translate(-50%, -50%); width: 100%; display: flex; justify-content: center; align-items: center; height: 20%;">
-                    <h1 style="color: purple; font-family: cursive; font-style: italic; font-weight: bold; font-size: 1.8rem; text-align: center; text-wrap: wrap;">No Bets in Gameweek <%= GW %> </h1>
+                    <h1 style="color: purple; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; font-size: 1.8rem; text-align: center; text-wrap: wrap;">No Bets in Gameweek <%= GW %> </h1>
                  </div>
 
                 <% } else { %>
@@ -99,23 +100,25 @@
                    
                 <a href="/h2h/<%= bet._id %>" class="bets-card" style="cursor: pointer; text-decoration: none; padding: 5px; display: flex; align-items: center; justify-content: space-between; width: 95%; height: 15%; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); background-image: linear-gradient(45deg, yellow, gold, rgba(0, 255, 0, 0.426), whitesmoke, white, whitesmoke, white, white, rgba(0, 255, 0, 0.466), gold, goldenrod, yellow); border-radius: 0 20px 20px 0; margin-block: 10px;">
                     <div class="competitors" style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 30%;">
-                       <h2 style="text-wrap: wrap; text-align: center; font-size: .75rem; font-family: cursive; font-style: italic; color: purple;"><%= user.teamName %></h2>
+                       <h2 style="text-wrap: wrap; text-align: center; font-size: .85rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;"><%= user.teamName %></h2>
                        <p>vs</p>
-                       <h2 style="text-align: center; text-wrap: wrap; font-size: .75rem; font-family: cursive; font-style: italic; color: purple;">Team: <%= bet.opponentId %></h2>
+                       <h2 style="text-align: center; text-wrap: wrap; font-size: .85rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;">Team: <%= bet.opponentId %></h2>
    
                     </div>
    
                     <div class="bet-status" style="width: 30%; display: flex; flex-flow: column nowrap; justify-content: space-between; align-items: center;">
-                       <h2 style="margin-bottom: 5px; text-align: center; font-size: 1.2rem; font-family: cursive; font-style: italic; color: blue;">1 vs 1</h2>
-                       <h2 style="text-align: center; font-size: .6rem; font-family: cursive; font-style: italic; color: red;"><%= bet.betStatus.message %></h2>
-                       <h2 style="margin-top: 5px; text-align: center; font-size: .65rem; font-family: cursive; font-style: italic; color: purple;">GW<%= bet.event %></h2> 
+                       <h2 style="margin-bottom: 5px; text-align: center; font-size: 1.2rem; font-family: 'Signika', sans-serif; color: blue;">1 vs 1</h2>
+                       <h2 style="text-align: center; font-size: .65rem; font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; color: red;"><%= bet.betStatus.message %></h2>
+                       <h2 style="margin-top: 5px; text-align: center; font-size: .6rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple;">GW<%= bet.event %></h2> 
                        
    
                     </div>
    
                     <div class="payout" style="display: flex; justify-content: center; align-items: center; flex-flow: column nowrap;">
-                      <h2 style="text-wrap: wrap; font-size: .85rem; font-family: cursive; font-style: italic; color: blue; font-weight: bold;">Ksh <%= bet.amount %></h2>
-                      <h2 style="text-align: center; font-style: italic; font-size: .7rem; font-family: cursive; color: green;">entry</h2>
+                      <h2 style="text-wrap: wrap; font-size: .85rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: green; font-weight: bold;">
+                        Ksh <%= bet.amount %>
+                      </h2>
+                      <h2 style="text-align: center; font-style: italic; font-size: .7rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: red;">entry</h2>
                     </div>
    
                    </a>
@@ -127,23 +130,24 @@
 
                         <a href="/h2h/<%= bet._id %>" class="bets-card" style="cursor: pointer; text-decoration: none; padding: 5px; display: flex; align-items: center; justify-content: space-between; width: 95%; height: 15%; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); background-image: linear-gradient(45deg, yellow, gold, rgba(0, 255, 0, 0.426), whitesmoke, white, whitesmoke, white, white, rgba(0, 255, 0, 0.466), gold, goldenrod, yellow); border-radius: 0 20px 20px 0; margin-block: 10px;">
                             <div class="competitors" style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 30%;">
-                               <h2 style="text-wrap: wrap; text-align: center; font-size: .75rem; font-family: cursive; font-style: italic; color: purple;"><%= user.teamName %></h2>
+                               <h2 style="text-wrap: wrap; text-align: center; font-size: .85rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;"><%= user.teamName %></h2>
                                <p>vs</p>
-                               <h2 style="text-align: center; text-wrap: wrap; font-size: .75rem; font-family: cursive; font-style: italic; color: purple;">Team: <%= bet.opponentId %></h2>
+                               <h2 style="text-align: center; text-wrap: wrap; font-size: .85rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;">Team: <%= bet.opponentId %></h2>
            
                             </div>
            
                             <div class="bet-status" style="width: 30%; display: flex; flex-flow: column nowrap; justify-content: space-between; align-items: center;">
-                               <h2 style="margin-bottom: 5px; text-align: center; font-size: 1.2rem; font-family: cursive; font-style: italic; color: blue;">1 vs 1</h2>
-                               <h2 style="text-align: center; font-size: .6rem; font-family: cursive; font-style: italic; color: red;"><%= bet.betStatus.message %></h2>
-                               <h2 style="margin-top: 5px; text-align: center; font-size: .65rem; font-family: cursive; font-style: italic; color: purple;">GW<%= bet.event %></h2> 
+                               <h2 style="margin-bottom: 5px; text-align: center; font-size: 1.2rem; font-family: 'Signika', sans-serif;  color: blue;">1 vs 1</h2>
+                               <h2 style="text-align: center; font-size: .65rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: red;"><%= bet.betStatus.message %></h2>
+                               <h2 style="margin-top: 5px; text-align: center; font-size: .6rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple;">
+                                GW<%= bet.event %>
+                               </h2> 
                                
-           
                             </div>
            
                             <div class="payout" style="display: flex; justify-content: center; align-items: center; flex-flow: column nowrap;">
-                              <h2 style="text-wrap: wrap; font-size: .85rem; font-family: cursive; font-style: italic; color: blue; font-weight: bold;">Ksh <%= bet.amount %></h2>
-                              <h2 style="text-align: center; font-style: italic; font-size: .7rem; font-family: cursive; color: green;">entry</h2>
+                              <h2 style="text-wrap: wrap; font-size: .85rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: green; font-weight: bold;">Ksh <%= bet.amount %></h2>
+                              <h2 style="text-align: center; font-style: italic; font-size: .7rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: red;">entry</h2>
                             </div>
            
                            </a>
@@ -161,9 +165,9 @@
 
     <footer style="position: fixed; bottom: 0; height: 10vh; width: 100vw; border-top: 1px solid purple; margin-block: .75rem; display: flex; align-items: center; justify-content: center;">
         <div style="display: flex; align-items: center; justify-content: center; font-weight: bold; ">
-            <h1 style="font-weight: 900; font-size: 1.2rem; color: purple; font-family: cursive;">Xtream</h1>
+            <h1 style="font-weight: bold; font-size: 1.2rem; color: purple; font-family: 'Signika', sans-serif;">Xtream</h1>
             <span><img src="logos/plicon.png" alt="" width="40" height="40"></span>
-            <h1 style="font-weight: 900; font-size: 1.2rem; color: purple; font-family: cursive;">League</h1>
+            <h1 style="font-weight: bold; font-size: 1.2rem; color: purple; font-family: 'Signika', sans-serif;">League</h1>
         </div>
 
     </footer> 

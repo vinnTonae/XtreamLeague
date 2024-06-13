@@ -6,8 +6,9 @@
     <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="40" height="40">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <title>Deposit</title>
+    <title>Transactions</title>
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
@@ -23,14 +24,14 @@
     <header style="height: 10vh; width: 100%; border-bottom: 2px solid purple; display: flex; align-items: center; justify-content: space-between;">
         <div style="display: flex; align-items: center; justify-content: center;">
           <div><a href="/main"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon></a></div>
-            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: cursive; font-size: 1.75rem; color: purple;">Transactions</h1>
+            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Transactions</h1>
         </div>
         <span style="margin-right: 20px;"><img src="logos/paypal.png" alt="Paypal" width="120" height="40"></span>
         
     </header>
 
     <div class="heading" style="width: 100vw; height: 6vh; display: flex; justify-content: center; align-items: center;">
-        <h1 style="font-family: cursive; font-size: 1.75rem; color: purple; font-style: italic;">History</h1>
+        <h1 style="font-family: 'Signika', sans-serif; font-style: italic; font-size: 1.75rem; color: purple; font-style: italic;">History</h1>
     </div>
     
     <main style="height: 74vh; width: 100vw; padding-top: 5px; display: flex; flex-flow: column nowrap; align-items: center; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-x: hidden; overflow-y: scroll;">
@@ -42,19 +43,27 @@
               
                         <div class="points" style=" height: 100%; margin-left: 5px; background-color: transparent; display: flex; justify-content: center; align-items: center; ">
                                 
-                            <h2 style="color: rgb(49, 4, 49); font-weight: bold; font-size: 1.2rem; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Deposit</h2>
+                            <h2 style="color: rgb(49, 4, 49); font-weight: bold; font-size: 1.2rem; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+                                Deposit
+                            </h2>
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="fill: limegreen;transform: msFilter"><path d="M3 19h18a1.002 1.002 0 0 0 .823-1.569l-9-13c-.373-.539-1.271-.539-1.645 0l-9 13A.999.999 0 0 0 3 19z"></path></svg>
                         </div>
                        
                         <div class="entry" style="height: 100%; width: 25%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
                            
-                           <h3 style="text-align: center; color: blue; margin: 0; font-style: italic; text-wrap: nowrap; text-align: center; font-size: .4rem;"><%= tranx.createdAt %></h3>
-                           <h3 style="color: limegreen; font-family: cursive; font-style: italic; font-size: .9rem; text-align: center;"><%= tranx.status %></h3>
+                           <h3 style="text-align: center; color: blue; margin: 0; font-style: italic; text-wrap: nowrap; text-align: center; font-size: .4rem;">
+                            <%= tranx.createdAt %>
+                           </h3>
+                           <h3 style="color: limegreen; font-family: 'Signika', sans-serif; font-style: italic; font-size: .9rem; text-align: center;">
+                            <%= tranx.status %>
+                           </h3>
                             
                         </div>
                         <div class="points" style=" height: 100%; margin-left: 5px; background-color: transparent; display: flex; justify-content: center; align-items: center; ">
                                 
-                            <h2 style="text-wrap: nowrap; font-weight: bold; margin-right: 5px; font-family: cursive; font-size: 1.2rem; color: limegreen;"><span>+</span> <%= tranx.amount %></h2>
+                            <h2 style="text-wrap: nowrap; font-weight: bold; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.2rem; color: limegreen;">
+                                <span>+</span> <%= tranx.amount %>
+                            </h2>
                             
                         </div>
                     </div>
@@ -66,32 +75,32 @@
                
                 <div class="points" style=" height: 100%; margin-left: 5px; background-color: transparent; display: flex; justify-content: center; align-items: center; ">
                    
-                   <h2 style="color: rgb(49, 4, 49); font-weight: bold; font-size: 1.2rem; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Withdraw</h2>
+                   <h2 style="color: rgb(49, 4, 49); font-weight: bold; font-size: 1.2rem; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+                    Withdraw
+                   </h2>
                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="fill: rgb(230, 16, 16);transform: msFilter"><path d="M11.178 19.569a.998.998 0 0 0 1.644 0l9-13A.999.999 0 0 0 21 5H3a1.002 1.002 0 0 0-.822 1.569l9 13z"></path></svg>
                 </div>
           
             <div class="entry" style="height: 100%; width: 25%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
               
-              <h3 style="text-align: center; color: blue; margin: 0; font-style: italic; text-wrap: nowrap; text-align: center; font-size: .4rem;"><%= tranx.createdAt %></h3>
-              <h3 style="color: red; font-family: cursive; font-style: italic; font-size: .9rem; text-align: center;"><%= tranx.status %></h3>
+              <h3 style="text-align: center; color: blue; margin: 0; font-style: italic; text-wrap: nowrap; text-align: center; font-size: .4rem;">
+                <%= tranx.createdAt %>
+              </h3>
+              <h3 style="color: red; font-family: 'Signika', sans-serif; font-style: italic; font-size: .9rem; text-align: center;">
+                <%= tranx.status %>
+              </h3>
                
             </div>
             <div class="points" style=" height: 100%; margin-left: 5px; background-color: transparent; display: flex; justify-content: center; align-items: center; ">
                    
-               <h2 style="text-wrap: nowrap; font-weight: bold; margin-right: 5px; font-family: cursive; font-size: 1.2rem; color: red;"><span>-</span> <%= tranx.amount %></h2>
+               <h2 style="text-wrap: nowrap; font-weight: bold; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.2rem; color: red;">
+                <span>-</span> <%= tranx.amount %>
+               </h2>
                
             </div>
           </div>
                    <%  }  %>
             <% }) %> 
-
-        
-   
-
-          
-           
-
-         
 
        
        
@@ -101,9 +110,9 @@
 
     <footer style="position: fixed; bottom: 0; height: 10vh; width: 100vw; margin-block: .75rem; display: flex; align-items: center; justify-content: center;">
         <div style="display: flex; align-items: center; justify-content: center; font-weight: bold; ">
-            <h1 style="font-weight: 900; font-size: 1.2rem; color: purple; font-family: cursive;">Xtream</h1>
+            <h1 style="font-weight: bold; font-size: 1.2rem; color: purple; font-family: 'Signika', sans-serif;">Xtream</h1>
             <span><img src="logos/plicon.png" alt="" width="40" height="40"></span>
-            <h1 style="font-weight: 900; font-size: 1.2rem; color: purple; font-family: cursive;">League</h1>
+            <h1 style="font-weight: bold; font-size: 1.2rem; color: purple; font-family: 'Signika', sans-serif;">League</h1>
         </div>
 
     </footer>
