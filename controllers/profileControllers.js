@@ -2,7 +2,6 @@ const User = require('../models/xtreamUsers')
 const Head = require('../models/head2head')
 const Party = require('../models/party')
 const Transactions = require('../models/transactions')
-const fetch = require('node-fetch')
 const { HttpsProxyAgent } = require('https-proxy-agent')
 
 
