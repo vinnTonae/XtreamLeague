@@ -3,7 +3,7 @@ const Head = require('../models/head2head')
 const Party = require('../models/party')
 const Transactions = require('../models/transactions')
 const { HttpsProxyAgent } = require('https-proxy-agent')
-
+const  { fetch } = require('node-fetch')
 
 const getTransactions = async (req, res) => {
     const reqUserId = req.user._id
@@ -20,6 +20,7 @@ const patchUserId = async(req, res) => {
     const id = req.user._id
     const { teamid } = req.body
     const options = {
+        method: 'GET',
         agent: new HttpsProxyAgent({ host: '92.240.200.192', port: '8000', auth: '6SfTz2:sFmpZg' }),
         accept: 'application/json'
     }
@@ -48,8 +49,9 @@ const postRegister = async (req, res) => {
     const id = req.body.id
     const baseUrl = `https://fantasy.premierleague.com/api/leagues-classic/${id}/standings/`
     const options = {
+        method: 'GET',
          agent: new HttpsProxyAgent({ host: '92.240.200.192', port: '8000', auth: '6SfTz2:sFmpZg' }),
-         accept: 'application/json'
+        accept: 'application/json'
     }
     
     const results = await fetch(baseUrl, options)
