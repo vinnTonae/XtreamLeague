@@ -135,9 +135,7 @@
             </h3> 
              
             <div class="code-box" style="width: 45%; height: 90%; padding-inline: 5px; border-radius: 10px 0 0 10px; border: 1px solid purple; background-color: aliceblue; color: red; display: flex; align-items: center; justify-content: center; text-align: center;">
-                <p class="betid" style="font-size: .75rem; font-style: italic; text-wrap: wrap; text-align: center;">
-                    <%= party._id %>
-                </p>
+                <p id="betid" style="font-size: .75rem; font-style: italic; text-wrap: wrap; text-align: center;"><%= party._id %></p>
             </div>
 
              <button class="share" style="outline: none; border: none; height: 90%; width: 12.5%; border-radius: 0 10px 10px 0 ; margin: 0 50px 0 10px; background-color: green; display: flex; justify-content: center; align-items: center;">
@@ -223,15 +221,13 @@
 
         <section class="event" style="width: 100vw; height: 7vh; display: flex; align-items: center; justify-content: center;">
 
-            <h1 class="event" style="font-size: 1.5rem; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; text-align: center; color: purple;">
-                Gameweek <%= party.event %>
-            </h1>
+            <h1 id="event" style="font-size: 1.5rem; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; text-align: center; color: purple;">Gameweek <%= party.event %></h1>
 
         </section>
 
         <section class="amount" style="position: relative; width: 100vw; height: 8vh; background-color: aliceblue; display: flex; justify-content: center; align-items: center;">
             <div class="entry" style="height: 100%; width: 50%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap;">
-                 <p class="amount" style="color: red; margin: 0; font-size: 1.3rem; font-style: italic; font-weight: bold;">KSH <%= party.amount %></p>
+                 <p id="amount" style="color: red; margin: 0; font-size: 1.3rem; font-style: italic; font-weight: bold;">KSH <%= party.amount %></p>
                  <p style="margin: 5px; font-style: italic; font-size: .95rem; color: blue; ">Entry fee</p>
             </div>
             <div class="winner" style="height: 100%; width: 50%; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap;">
@@ -284,20 +280,20 @@
        const joinBtn = document.getElementById('join')
        const formBox = document.querySelector('.formbox')
        const inputPartyId = document.getElementById('type')
-       const code = document.querySelector('.betid').textContent
-       const event = document.querySelector('.event').textContent
-       const amount = document.querySelector('.amount').textContent
+       const code = document.querySelector('#betid').textContent
+       const event = document.querySelector('#event').textContent
+       const amount = document.querySelector('#amount').textContent
        const closeBtn = document.querySelector('.close')
        const submitBtn = document.getElementById('submit') 
        const shareBtn = document.querySelector('.share')
        
-       shareBtn.addEventListener('click', () => {
+       shareBtns.addEventListener('click', () => {
 
            if( navigator.share ) {
                navigator.share({
                 title: 'XtreamLeague',
                 url: 'https://xtreamleague.onrender.com',
-                text: `Hi there,\n Join my ${event} party and compete with other FPL Managers. Entry fee is ${amount} use link https://xtreamleague.onrender.com/party/${code}\n or use code \n ${code} in the site \n`
+                text: `Hi there,\nJoin my ${event} party and compete with other FPL Managers. Entry fee is ${amount} use link https://xtreamleague.onrender.com/party/${code} or use code ${code} in the site`
                })
            } else {
             navigator.clipboard.writeText(code)
