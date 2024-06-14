@@ -249,7 +249,9 @@
         const codeElem = document.querySelector('.betid')
         const shareBtns = document.querySelectorAll('.share')
        
-       shareBtns.addEventListener('click', () => {
+       shareBtns.forEach((btn) => {
+          
+           btn.addEventListener('click', () => {
 
            if( navigator.share ) {
                navigator.share({
@@ -262,6 +264,7 @@
             window.alert('code copied to clipboard')
            }
        })
+    })
     
     joinBtn.addEventListener('click', () => {
         formBox.style.display = 'block'
