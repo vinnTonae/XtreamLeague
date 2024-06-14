@@ -3,8 +3,8 @@ const fetch = require('node-fetch')
 
 
 const getOpponentId = async (req, res) => {
-    const eventId = req.params.id
-    const opponentId = req.params.opponent
+    const eventId = req.query.id
+    const opponentId = req.query.opponent
     const baseUrl = `https://fantasy.premierleague.com/api/entry/${opponentId}/event/${eventId}/picks/`
     const options = {
         method: 'GET',
