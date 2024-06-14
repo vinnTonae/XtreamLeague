@@ -246,7 +246,7 @@
         const event = document.querySelector('#event').textContent
         const amount = document.querySelector('#amount').textContent
         const input = document.getElementById('type') 
-        const codeElem = document.querySelector('.betid')
+        const codeElem = document.querySelector('#betid')
         const shareBtns = document.querySelectorAll('.share')
        
        shareBtns.forEach((btn) => {
@@ -269,7 +269,6 @@
     joinBtn.addEventListener('click', () => {
         formBox.style.display = 'block'
         input.value = codeElem.textContent
-        console.log(input.value)
         
     })
      
