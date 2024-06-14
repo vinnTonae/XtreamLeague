@@ -161,7 +161,7 @@
                     else { return res.json().then(json => Promise.reject(json)) }
                   })
                   .then((data) => {
-                    console.log(data)
+                    
                     const tranxId =  data._id
                     const paypal = data.pplEmail 
 

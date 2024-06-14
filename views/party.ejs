@@ -64,18 +64,9 @@
                          <h1 style="color: blueviolet; text-align: center; margin: 10px auto; font-size: 1.8rem; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold;">
                             Party
                          </h1>
-                         <h1 style="color: blue; text-align: center; margin: 10px auto; font-size: 1.5rem; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold;">
-                            <span style="color: red;">Host: </span>
-                            <%= host.teamName %>
-                         </h1>
-                         <h1 style="color: green; text-align: center; margin: 10px auto; font-family: 'Signika', sans-serif; font-style: italic; font-size: 1.5rem; font-weight: bold;" >
-                            <span style="color: red;">Event: </span>
-                            GW<%= party.event %>
-                         </h1>
-                         <h1 style="color: black; text-align: center; margin: 10px auto; font-size: 1.5rem; font-style: italic; font-weight: bold;">
-                            <span style="color: red;">Amount: </span>
-                            KSH <%= party.amount %>
-                         </h1>
+                         <h1 style="color: blue; text-align: center; margin: 10px auto; font-size: 1.5rem; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold;"><span style="color: red;">Host: </span><%= host.teamName %></h1>
+                         <h1 style="color: green; text-align: center; margin: 10px auto; font-family: 'Signika', sans-serif; font-style: italic; font-size: 1.5rem; font-weight: bold;"><span style="color: red;">Event: </span>GW<%= party.event %></h1>
+                         <h1 style="color: black; text-align: center; margin: 10px auto; font-size: 1.5rem; font-style: italic; font-weight: bold;"><span style="color: red;">Amount: </span>KSH <%= party.amount %></h1>
 
                          
                   </section>
@@ -104,9 +95,7 @@
         <div class="account" style="height: 70%; display: flex; justify-content: flex-end; align-items: center;">
             <div class="balance" style="width: 100%; height: 100%; padding-inline: 5px;  margin-right: 15px; display: flex; align-items: center; justify-content: space-evenly; background-color: rgb(67, 5, 67); border-radius: 10px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 15c-1.84 0-2-.86-2-1H8c0 .92.66 2.55 3 2.92V18h2v-1.08c2-.34 3-1.63 3-2.92 0-1.12-.52-3-4-3-2 0-2-.63-2-1s.7-1 2-1 1.39.64 1.4 1h2A3 3 0 0 0 13 7.12V6h-2v1.09C9 7.42 8 8.71 8 10c0 1.12.52 3 4 3 2 0 2 .68 2 1s-.62 1-2 1z"></path><path d="M5 2H2v2h2v17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4h2V2H5zm13 18H6V4h12z"></path></svg>
-                <h2 style="color: white; margin-inline: 5px;  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; text-wrap: nowrap;">
-                    KSH <%= userData.totalBalance %>
-                </h2>
+                <h2 style="color: white; margin-inline: 5px;  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; text-wrap: nowrap;">KSH <%= userData.totalBalance %></h2>
             </div>
             
         </div>
@@ -120,10 +109,7 @@
         </section>
 
         <section class="host" style="width: 100vw; height: 4vh; display: flex; align-items: center; justify-content: flex-start;">
-            <h3 style="margin-left: 10px; font-style: italic; text-wrap: nowrap; color: purple;">
-                <span style="color: red; font-style: italic;">host: </span>
-                <%= host.userName %>
-            </h3> 
+            <h3 style="margin-left: 10px; font-style: italic; text-wrap: nowrap; color: purple;"><span style="color: red; font-style: italic;">host: </span><%= host.userName %></h3> 
             
              
         </section>
@@ -144,12 +130,8 @@
         </section>
         
         <section class="pool-details" style="width: 100vw; height: 5vh; display: flex; align-items: center; justify-content: space-between;">
-            <h3 style="font-weight: bold; color: blue; font-style: italic; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
-                Total players: <span style="color: green;"><%= players.length %></span>
-            </h3>
-            <h3 style="font-weight: bold; color: blue; font-style: italic; font-family: 'Signika', sans-serif; margin-right: 15px;">
-                Winners: <span style="color: green;">top 3</span>
-            </h3>
+            <h3 style="font-weight: bold; color: blue; font-style: italic; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Total players: <span style="color: green;"><%= players.length %></span></h3>
+            <h3 style="font-weight: bold; color: blue; font-style: italic; font-family: 'Signika', sans-serif; margin-right: 15px;">Winners: <span style="color: green;">top 3</span></h3>
         </section>
 
         <section class="managers" style="width: 95vw; height: 25vh;  justify-content: flex-start; align-items: flex-start;" >
@@ -170,9 +152,7 @@
                 </div>
                 <div class="points" style=" height: 100%; margin-left: 5px; background-color: transparent; display: flex; justify-content: center; align-items: center; ">
                     
-                    <h2 style="font-weight: bold; font-size: .85rem; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
-                        --
-                    </h2>
+                    <h2 style="font-weight: bold; font-size: .85rem; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">--</h2>
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="fill: limegreen;transform: msFilter"><path d="M3 19h18a1.002 1.002 0 0 0 .823-1.569l-9-13c-.373-.539-1.271-.539-1.645 0l-9 13A.999.999 0 0 0 3 19z"></path></svg>
                  </div>       
                 </a>
@@ -189,9 +169,7 @@
                 </div>
                 <div class="points" style=" height: 100%; margin-left: 5px; background-color: transparent; display: flex; justify-content: center; align-items: center; ">
                     
-                    <h2 style="font-weight: bold; font-size: .85rem; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
-                        76
-                    </h2>
+                    <h2 style="font-weight: bold; font-size: .85rem; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">76</h2>
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="fill: limegreen;transform: msFilter"><path d="M3 19h18a1.002 1.002 0 0 0 .823-1.569l-9-13c-.373-.539-1.271-.539-1.645 0l-9 13A.999.999 0 0 0 3 19z"></path></svg>
                 </div>       
             </a>
@@ -207,15 +185,9 @@
 
         <section class="winners" style="height: 7vh; width: 100vw; background-color: white; display: flex; align-items: center; justify-content: space-evenly;">
 
-            <h3 style="margin-left: 10px; font-style: italic; color: green;">
-                <span style="color: blue; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">1st:</span> Ksh 725
-            </h3>
-            <h3 style="margin-left: 10px; font-style: italic; color: green;">
-                <span style="color: blueviolet; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">2nd:</span> Ksh 530
-            </h3>
-            <h3 style="margin-left: 10px; font-style: italic; color: green;">
-                <span style="color: red; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">3rd:</span> Ksh 0
-            </h3>
+            <h3 style="margin-left: 10px; font-style: italic; color: green;"><span style="color: blue; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">1st:</span> Ksh 725</h3>
+            <h3 style="margin-left: 10px; font-style: italic; color: green;"><span style="color: blueviolet; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">2nd:</span> Ksh 530</h3>
+            <h3 style="margin-left: 10px; font-style: italic; color: green;"><span style="color: red; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">3rd:</span> Ksh 0</h3>
     
         </section>
 
@@ -243,9 +215,7 @@
 
          <section class="status" style="width: 100vw; height: 8vh; display: flex; justify-content: center; align-items: center;">
             <h3 style="margin-right: 10px; font-style: italic; font-weight: bold; color: blue;">Bet Status:</h3>
-            <h3 style="font-style: italic; font-family: 'Signika', sans-serif; font-weight: bold; color: red;">
-                "<%= party.betStatus.message %>"
-            </h3>       
+            <h3 style="font-style: italic; font-family: 'Signika', sans-serif; font-weight: bold; color: red;">"<%= party.betStatus.message %>"</h3>       
       
         </section>
          
@@ -253,9 +223,7 @@
                 
             <section class="join-btn" style="width: 100vw; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
                 
-                <h3 style="font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.5rem; font-style: italic;">
-                    "You are the Host"
-                </h3>
+                <h3 style="font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.5rem; font-style: italic;">"You are the Host"</h3>
     
             </section>   
 

@@ -87,7 +87,7 @@
              <% if ( hostHead.length === 0 && oppHead.length === 0 ) { %>
 
                 <div class="no-bets" style="position: absolute; z-index: 5; top: 35%; left: 50%; transform: translate(-50%, -50%); width: 100%; display: flex; justify-content: center; align-items: center; height: 20%;">
-                    <h1 style="color: purple; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; font-size: 1.8rem; text-align: center; text-wrap: wrap;">No Bets in Gameweek <%= GW %> </h1>
+                    <h1 style="color: purple; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; font-size: 1.8rem; text-align: center; text-wrap: wrap;">No Bets in Gameweek <%= GW %></h1>
                  </div>
 
                 <% } else { %>
@@ -115,9 +115,7 @@
                     </div>
    
                     <div class="payout" style="display: flex; justify-content: center; align-items: center; flex-flow: column nowrap;">
-                      <h2 style="text-wrap: wrap; font-size: .85rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: green; font-weight: bold;">
-                        Ksh <%= bet.amount %>
-                      </h2>
+                      <h2 style="text-wrap: wrap; font-size: .85rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: green; font-weight: bold;">Ksh <%= bet.amount %></h2>
                       <h2 style="text-align: center; font-style: italic; font-size: .7rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: red;">entry</h2>
                     </div>
    
@@ -139,9 +137,7 @@
                             <div class="bet-status" style="width: 30%; display: flex; flex-flow: column nowrap; justify-content: space-between; align-items: center;">
                                <h2 style="margin-bottom: 5px; text-align: center; font-size: 1.2rem; font-family: 'Signika', sans-serif;  color: blue;">1 vs 1</h2>
                                <h2 style="text-align: center; font-size: .65rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: red;"><%= bet.betStatus.message %></h2>
-                               <h2 style="margin-top: 5px; text-align: center; font-size: .6rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple;">
-                                GW<%= bet.event %>
-                               </h2> 
+                               <h2 style="margin-top: 5px; text-align: center; font-size: .6rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple;">GW<%= bet.event %></h2> 
                                
                             </div>
            

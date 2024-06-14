@@ -108,19 +108,13 @@
        
                         <div class="bet-status" style="width: 25%; display: flex; flex-flow: column nowrap; justify-content: space-between; align-items: center;">
                             <h2 style="margin-bottom: 5px; text-align: center; font-size: 1.2rem; font-family: 'Signika', sans-serif; color: purple;">Party</h2>
-                            <h2 style="text-align: center; font-size: .7rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; color: red;">
-                            <%= party.betStatus.message %>
-                            </h2>
-                            <h2 style="margin-top: 5px; text-align: center; font-size: .65rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple;">
-                                GW<%= party.event %>
-                            </h2>
+                            <h2 style="text-align: center; font-size: .7rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; color: red;"><%= party.betStatus.message %></h2>
+                            <h2 style="margin-top: 5px; text-align: center; font-size: .65rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple;">GW<%= party.event %></h2>
                            
                         </div>
        
                         <div class="payout" style="display: flex; justify-content: center; align-items: center; flex-flow: column nowrap;">
-                          <h2 style="text-wrap: wrap; font-size: .85rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: green; font-weight: bold;">
-                            Ksh <%= party.amount %>
-                          </h2>
+                          <h2 style="text-wrap: wrap; font-size: .85rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: green; font-weight: bold;">Ksh <%= party.amount %></h2>
                           <h2 style="text-align: center; font-style: italic; font-weight: bold; font-size: .7rem; color: red;">entry</h2>
                         </div>
        
