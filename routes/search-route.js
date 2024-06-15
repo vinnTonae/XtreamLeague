@@ -1,9 +1,9 @@
 const { getSearch } = require('../controllers/profileControllers')
-const { authCheck } = require('../controllers/authControllers')
+const { authCheck, alreadyRegisterCheck } = require('../controllers/authControllers')
 
 const router = require('express').Router()
 
-router.get('/', authCheck, getSearch)
+router.get('/', authCheck, alreadyRegisterCheck, getSearch)
 
 
 

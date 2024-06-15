@@ -23,8 +23,18 @@ const registerCheck = (req, res, next) => {
     }
 }
 
+const alreadyRegisterCheck = (req, res, next) => {
+    if (req.user.teamId !== 'none') {
+        req.flash('error', 'You have already registered an FPL team')
+        res.redirect('/main')
+    } else {
+        next()
+    }
+}
+
 module.exports = {
     authCheck,
     notAuthCheck,
-    registerCheck
+    registerCheck,
+    alreadyRegisterCheck
 }

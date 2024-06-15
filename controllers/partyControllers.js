@@ -249,13 +249,14 @@ const getParties = async (req, res) => {
 
     const partyHost = partyBetsHost.filter( bet => bet.event == 1 )
     const partyOpp = partyOppArray.filter( bet => bet.event == 1 )
+    const currentPartiesArray = partyHost.concat(partyOpp) 
     const events = []
     const chunk = 38
     for(let i = 0; i < chunk; i++) {
         events.push(i + 1)
     }
     const currentGameweek = 1
-    res.render('parties', { user: userDetails, hostParty: partyHost, oppParty: partyOpp, gameweeks: events, GW: currentGameweek, messages: req.flash('success') })
+    res.render('parties', { user: userDetails, Parties: currentPartiesArray, gameweeks: events, GW: currentGameweek, messages: req.flash('success') })
 }
 
 const getPartiesEvents = async (req, res) => {
