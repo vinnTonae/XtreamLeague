@@ -274,6 +274,7 @@ const getPartiesEvents = async (req, res) => {
     //    Filter bets for each gameweek
    const partyHost = partyBetsHost.filter( bet => bet.event == eventParam )
    const partyOpp = partyOppArray.filter( bet => bet.event == eventParam )
+   const currentPartiesArray = partyHost.concat(partyOpp)
    const events = []
    const chunk = 38
 for(let i = 0; i < chunk; i++) {
@@ -281,7 +282,7 @@ for(let i = 0; i < chunk; i++) {
 }
    const currentGameweek = eventParam
  
-res.render('parties', { user: userDetails, hostParty: partyHost, oppParty: partyOpp, gameweeks: events, GW: currentGameweek })
+res.render('parties', { user: userDetails, Parties: currentPartiesArray, gameweeks: events, GW: currentGameweek })
 }
 
 module.exports = {
