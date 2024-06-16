@@ -185,9 +185,22 @@
 
         <section class="winners" style="height: 7vh; width: 100vw; background-color: white; display: flex; align-items: center; justify-content: space-evenly;">
 
-            <h3 style="margin-left: 10px; font-style: italic; color: green;"><span style="color: blue; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">1st:</span> Ksh 725</h3>
-            <h3 style="margin-left: 10px; font-style: italic; color: green;"><span style="color: blueviolet; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">2nd:</span> Ksh 530</h3>
-            <h3 style="margin-left: 10px; font-style: italic; color: green;"><span style="color: red; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">3rd:</span> Ksh 0</h3>
+             <div class="first" style="width: fit-content; display: flex; align-items: center; justify-content: center;">
+                <span style="color: blue; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">1st: Ksh</span>
+                <h3 id="first" style="margin-left: 10px; font-style: italic; color: green;"><%= winners[0] %></h3>
+             </div>
+
+             <div class="second" style="width: fit-content; display: flex; align-items: center; justify-content: center;">
+                <span style="color: blueviolet; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">2nd: Ksh</span>
+                <h3 id="second" style="margin-left: 10px; font-style: italic; color: green;"><%= winners[1] %></h3>
+             </div>
+
+             <div class="third" style="width: fit-content; display: flex; align-items: center; justify-content: center;">
+                 <span style="color: red; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">3rd: Ksh</span>
+                 <h3 id="third" style="margin-left: 10px; font-style: italic; color: green;"><%= winners[2] %></h3> 
+             </div>
+       
+           
     
         </section>
 

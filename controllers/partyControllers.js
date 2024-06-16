@@ -49,7 +49,40 @@ const getPartyId = async (req, res) => {
          }))
      }
 
-     res.render('party', { userData: user, host: hostDetails, party: partyDetails, players: detailsArray  })
+     // WINNERS CALCULATIONS
+     const totalPlayers = playerArray.length
+
+     const calculateWinner = (partyDetails, totalPlayers) => {
+        const entryAmount = partyDetails.amount
+        let first = 0
+        let second = 0
+        let third = 0
+
+        if ( totalPlayers <= 3 ) {
+            first = Math.floor((entryAmount * totalPlayers) * 0.85 )
+            second = 0
+            third = 0 
+         return [first, second, third]
+
+        } else if ( 4 <= totalPlayers <= 10 )  {
+             const amountToSpread = Math.floor( (entryAmount * totalPlayers) * 0.85 )
+             first = Math.floor(amountToSpread * 0.6)
+             second = Math.floor(amountToSpread * 0.3)
+             third = Math.floor(amountToSpread * 0.1)
+            return [first, second, third]
+
+        } else if ( totalPlayers > 10 ) {
+            const amountToSpread = Math.floor( (entryAmount * totalPlayers) * 0.85)
+            first = Math.floor(amountToSpread * 0.6)
+            second = Math.floor(amountToSpread * 0.25)
+            third = Math.floor(amountToSpread * 0.15)
+           return [first, second, third] 
+        }
+     }
+     const winner = await calculateWinner(partyDetails, totalPlayers)
+
+
+     res.render('party', { userData: user, winners: winner, host: hostDetails, party: partyDetails, players: detailsArray  })
 
 }
 
