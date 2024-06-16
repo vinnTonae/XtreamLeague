@@ -8,6 +8,11 @@ const partySchema = new Schema({
     event: { type: Number, required: true },
     amount: { type: Number, required: true },
     players: { type: [String], default: [], required: false },
+    winners: { 
+        first: { type: Number, required: false },
+        second: { type: Number, required: false},
+        third: { type: Number, required: false }
+     },
     betStatus: { 
         code: { type: Number, default: 100, required: false },
         message: { type: String, default: 'waiting for opponents', required: false }

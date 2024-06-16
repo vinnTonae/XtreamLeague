@@ -9,6 +9,10 @@ const headSchema = new Schema({
        event: { type: Number, required: true },
       amount: { type: Number, required: true },
   opponentId: { type: String, default:'none', required: false },
+      winner: {
+        winnerId: { type: String, required: false },
+        winAmount: { type: Number, required: false }
+      },
    betStatus: { 
             code: { type: Number, default: 100, required: false },
             message: { type: String, default: 'waiting for opponent', required: false }
