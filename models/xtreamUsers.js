@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const pointsSchema = new Schema({
-    gameweek: { type: Number, required: false },
-      points: { type: Number, required: false }
+    gameweek: { type: Number, default: 1, required: false },
+      points: { type: Number, default: 0, required: false }
 })
 
 const xtreamSchema = new Schema({
