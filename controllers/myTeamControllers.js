@@ -1,6 +1,6 @@
 const { HttpsProxyAgent } = require('https-proxy-agent')
 const fetch = require('node-fetch')
-
+const User = require('../models/xtreamUsers')
 
 const getOpponentId = async (req, res) => {
     const eventId = req.params.id
@@ -57,8 +57,10 @@ const getOpponentId = async (req, res) => {
      }
     
      const gameweek = eventId
+     const opponentDetails = await User.findOne({ teamId: opponentId })
+     
 
-    res.render('myteam', { array: dataArray, data: opponentId , goalie: keeper, defs: defenders, mids: midfielders, talismen: strikers, subs: substitutes, GW: gameweek })
+    res.render('myteam', { array: dataArray, user: opponentDetails, data: opponentId , goalie: keeper, defs: defenders, mids: midfielders, talismen: strikers, subs: substitutes, GW: gameweek })
 }
 
 const getMyTeamId = async (req, res) => {

@@ -213,12 +213,7 @@
             
          </section>
 
-         <section class="status" style="width: 100vw; height: 8vh; display: flex; justify-content: center; align-items: center;">
-            <h3 style="margin-right: 10px; font-style: italic; font-weight: bold; color: blue;">Bet Status:</h3>
-            <h3 style="font-style: italic; font-family: 'Signika', sans-serif; font-weight: bold; color: red;">"<%= party.betStatus.message %>"</h3>       
-      
-        </section>
-         
+       
            <% if (host.teamId == userData.teamId)  { %>
                 
             <section class="join-btn" style="width: 100vw; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
@@ -239,7 +234,11 @@
 
               <%  }  %>
         
-
+              <section class="status" style="width: 100vw; height: 8vh; display: flex; justify-content: center; align-items: center;">
+                <h3 style="margin-right: 10px; font-style: italic; font-weight: bold; color: blue;">Bet Status:</h3>
+                <h3 style="font-style: italic; font-family: 'Signika', sans-serif; font-weight: bold; color: red;">"<%= party.betStatus.message %>"</h3>       
+          
+              </section>
 
     </main>   
 
