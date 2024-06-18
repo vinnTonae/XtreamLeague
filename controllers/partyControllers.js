@@ -276,7 +276,7 @@ const getParties = async (req, res) => {
     
     const partyOppArray = allParties.filter((party) => {         // All parties this User was invited
          
-        return party.players.some( playerId =>  playerId == userTeamId ) === true 
+        return party.players.some( playerId =>  playerId == userTeamId ) && party.hostId !== userTeamId
    })
                     // filter for gameweek 1 for parent route
 
@@ -302,7 +302,7 @@ const getPartiesEvents = async (req, res) => {
     
     const partyOppArray = allParties.filter((party) => {         // All parties this User was invited
          
-        return party.players.some( playerId =>  playerId == userTeamId ) === true 
+        return party.players.some( playerId =>  playerId == userTeamId ) && party.hostId !== userTeamId 
    })
     //    Filter bets for each gameweek
    const partyHost = partyBetsHost.filter( bet => bet.event == eventParam )

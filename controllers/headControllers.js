@@ -183,6 +183,7 @@ const getBets = async (req, res) => {
 
     const headsHost = headBetsHost.filter( bet => bet.event == 1 )
     const headsOpp = headBetsOpponent.filter( bet => bet.event == 1 )
+    const allHeadBets = headsHost.concat(headsOpp)
    
     
     const events = []
@@ -193,7 +194,7 @@ const getBets = async (req, res) => {
     
      const currentGameweek = 1
 
-    res.render('bets', { user: userDetails, hostHead: headsHost, oppHead: headsOpp, gameweeks: events, GW: currentGameweek, messages: req.flash('success') })
+    res.render('bets', { user: userDetails, Heads: allHeadBets, gameweeks: events, GW: currentGameweek, messages: req.flash('success') })
 }
 
 const getBetsEvents = async (req, res) => {

@@ -68,7 +68,7 @@ const getMain = async (req, res) => {
     const allParties = await Party.find()
     const invitedParties = allParties.filter((party) => {
 
-           return party.players.some( player => player == userTeamId ) === true
+           return party.players.some( player => player == userTeamId ) && party.hostId !== userTeamId
     })
     const headHost = await Head.find({ hostId: userTeamId })
     const invitedHost = await Head.find({ opponentId: userTeamId })
