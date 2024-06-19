@@ -18,22 +18,22 @@ closeBtn.addEventListener('click', () => {
 })
 
 function purchase( token ) {
-    if (token == 100) {
+    if (token == '100') {
         inputAmount.setAttribute('value', 1.05)
         display()
-    } else if (token == 200 ) {
+    } else if (token == '200' ) {
         inputAmount.setAttribute('value', 2.15)
         display()
-    } else if (token == 500 ) {
+    } else if (token == '500' ) {
         inputAmount.setAttribute('value', 5.195)
         display()
-    } else if (token == 1000 ) {
+    } else if (token == '1000' ) {
         inputAmount.setAttribute('value', 10.725)
         display()
-    } else if (token == 2000 ) {
+    } else if (token == '2000' ) {
         inputAmount.setAttribute('value', 20.595)
         display()
-    } else if (token == 5000 ) {
+    } else if (token == '5000' ) {
         inputAmount.setAttribute('value', 50.35)
         display()
     }
