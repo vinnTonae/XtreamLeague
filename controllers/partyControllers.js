@@ -35,6 +35,7 @@ const getPartyId = async (req, res) => {
     console.log(partyId)
     
      const partyDetails = await Party.findOne({ _id: partyId })
+     const event = partyDetails.event
      const host = partyDetails.hostId
      const hostDetails = await User.findOne({ teamId: host })
      const user = req.user
@@ -43,11 +44,38 @@ const getPartyId = async (req, res) => {
      const playerArray = partyDetails.players
 
      const detailsArray = []
+     const playersInParty = []
      for (let i = 0; i < playerArray.length; i++) {
-         detailsArray.push(allPlayers.find((player) => {
+         playersInParty.push(allPlayers.find((player) => {
               return player.teamId == playerArray[i]
          }))
      }
+
+     playersInParty.forEach((user) => {
+        const teamid = user.teamId
+        const team = user.teamName
+        const pointsObject = user.points.find((oneObject) => {
+            return oneObject.gameweek == event
+        })
+
+        if (!pointsObject) {
+
+            detailsArray.push({ teamId: teamid, teamName: team, points: 0 })
+        } else {
+
+            const eventPoints = pointsObject.points
+
+            detailsArray.push({ teamId: teamid, teamName: team, points: eventPoints })
+        }
+     })
+       // Sort DETAILS ARRAY
+
+       detailsArray.sort((a, b) => b.points - a.points)
+
+       const firstWinner = detailsArray[0]
+       const secondWinner = detailsArray[1] || { teamId: 'none', teamName: 'none' }
+       const thirdWinner = detailsArray[2]  || { teamId: 'none', teamName: 'none' } 
+  
 
      // WINNERS CALCULATIONS
      const totalPlayers = playerArray.length
@@ -82,7 +110,7 @@ const getPartyId = async (req, res) => {
      const winner = await calculateWinner(partyDetails, totalPlayers)
 
 
-     res.render('party', { userData: user, winners: winner, host: hostDetails, party: partyDetails, players: detailsArray  })
+     res.render('party', { userData: user, winners: winner, firstObject: firstWinner, secondObject: secondWinner, thirdObject: thirdWinner, host: hostDetails, party: partyDetails, players: detailsArray  })
 
 }
 
@@ -92,6 +120,7 @@ const patchConfirmParty = async (req, res) => {
     const playerTeamId = player.teamId
     const playerId = player._id
     const partyDetails = await Party.findOne({ _id: betid })
+    const partyEvent = partyDetails.event
     const hostId = partyDetails.hostId
     const hostDetails = await User.findOne({ teamId: hostId })
     const entryFee = partyDetails.amount
@@ -136,7 +165,7 @@ const patchConfirmParty = async (req, res) => {
                   const updatedParty = await Party.findByIdAndUpdate({ _id: betid }, { $set: { betStatus: { code: 200, message: 'Party is now Active' } } })
                   const newUpdatedParty = await Party.findByIdAndUpdate({ _id: betid }, { $addToSet: { players: playerTeamId } })
 
-                  req.flash('success', 'Joined Party successfully')
+                  req.flash('success', `Successfully Joined Party in GW${partyEvent}`)
                   res.redirect('/parties')
 
               } catch (error) {
@@ -160,9 +189,8 @@ const patchConfirmParty = async (req, res) => {
                 const newPlayerBalance = playerBalance - entryFee 
                 const updatedPlayer = await User.findByIdAndUpdate({ _id: playerId }, { $set: { totalBalance: newPlayerBalance } })
                 const updatedParty = await Party.findByIdAndUpdate({ _id: betid }, { $addToSet: { players: playerTeamId } })
-                const event = partyDetails.event
-
-                req.flash('success', `You have successfully joined Party in GW${event}`)
+                
+                req.flash('success', `You have successfully joined Party in GW${partyEvent}`)
                 res.redirect('/parties')
                 
             } catch (error) {
@@ -176,8 +204,8 @@ const patchConfirmParty = async (req, res) => {
 
     } else if ( partyStatus.code == 400 ) {
 
-        const event = partyDetails.event
-      req.flash('error', `Gameweek ${event} joining Time has Expired`)
+        
+      req.flash('error', `Gameweek ${partyEvent} joining Time has Expired`)
       res.redirect('/main')
 
     } else if ( playerAlreadyExists() === true ) {
@@ -202,9 +230,10 @@ const postBetParty = (req, res) => {
            players: [hostId]
 
     }).save().then((party) => {
+
           const id = party._id
           res.redirect(`/party/${id}`)
-        console.log('New Party Created')
+        
     })
     .catch((error) => {
 
@@ -228,7 +257,7 @@ const getBetParty = async (req, res) => {
     const  response = await fetch(baseUrl, options)
     const data = await response.json()
     const phases = data.phases
-    const currentPhase = caseInSwitch(month + 3)
+    const currentPhase = caseInSwitch(month + 2)
     //console.log(phases)
     const array = []
     const chunk = 38
@@ -253,11 +282,21 @@ const getBetParty = async (req, res) => {
                  const bootstrapDeadline = new Date(event.deadline_time)
                  const dateNow = new Date()
                  const customDiffMs = (dateNow - bootstrapDeadline) + 86400000 
+
                  dataArray.push([gameweek, event.deadline_time, customDiffMs])
                     
             }) 
+
+            const latestGameweek = dataArray.find((event) => {
+                return event[2] > 0
+            })
+            const msToDeadline = latestGameweek[2]
+            const daysLeft = Math.ceil( (msToDeadline / 86400000) )
+            const eventObject = [latestGameweek[0], daysLeft]
+
+
             const alert = 'Choose Gameweek'
-            res.render('bet-party', { user: userData, gameweeks: dataArray, message: alert, phase: currentPhase })
+            res.render('bet-party', { user: userData, gameweeks: dataArray, eventData: eventObject, message: alert, phase: currentPhase })
         } else{
             const alert = 'PL is currently in Pre-Season'
             const dataArray = 'null'  

@@ -9,9 +9,21 @@ const partySchema = new Schema({
     amount: { type: Number, required: true },
     players: { type: [String], default: [], required: false },
     winners: { 
-        first: { type: Number, default: 0, required: false },
-        second: { type: Number, default: 0, required: false},
-        third: { type: Number, default: 0, required: false }
+        first: {
+              teamId: { type: String, default: 'none', required: false },
+            teamName: { type: String, default: 'none', required: false },
+              amount: { type: Number, default: 0, required: false }
+        },
+        second: {
+              teamId: { type: String, default: 'none', required: false},
+            teamName: { type: String, default: 'none', required: false },
+              amount: { type: Number, default: 0, required: false }
+        },
+        third: {
+            teamId: { type: String, default: 'none', required: false},
+            teamName: { type: String, default: 'none', required: false },
+            amount: { type: Number, default: 0, required: false}
+        }
      },
     betStatus: { 
         code: { type: Number, default: 100, required: false },

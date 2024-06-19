@@ -50,8 +50,16 @@ const getBetHead = async (req, res) => {
                 dataArray.push( [gameweek, event.deadline_time, customDiffMs ] )
             })
 
+            const latestGameweek = dataArray.find((event) => {
+                return event[2] > 0
+            })
+            const msToDeadline = latestGameweek[2]
+            const daysLeft = Math.ceil(msToDeadline / 86400000)
+            const eventObject = [latestGameweek[0], daysLeft]
+
+
             const alert = 'Choose Gameweek'
-            res.render('bet-h2h', { user: xUser, gameweeks: dataArray, message: alert, phase: currentPhase })
+            res.render('bet-h2h', { user: xUser, gameweeks: dataArray, eventData: eventObject, message: alert, phase: currentPhase })
         } else{
             const alert = 'PL is currently in Pre-Season'
             const dataArray = 'null'  
@@ -209,7 +217,7 @@ const getBetsEvents = async (req, res) => {
 
     const headsHost = headBetsHost.filter( bet => bet.event == eventParam )
     const headsOpp = headBetsOpponent.filter( bet => bet.event == eventParam )
-   
+    const allHeadBets = headsHost.concat(headsOpp)
 
     const events = []
     const chunk = 38
@@ -218,7 +226,7 @@ for(let i = 0; i < chunk; i++) {
 }
    const currentGameweek = eventParam    
 
-   res.render('bets', { user: userDetails, hostHead: headsHost, oppHead: headsOpp, gameweeks: events, GW: currentGameweek })
+   res.render('bets', { user: userDetails, Heads: allHeadBets, gameweeks: events, GW: currentGameweek })
 }
 
 module.exports = {

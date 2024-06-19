@@ -9,9 +9,13 @@ const headSchema = new Schema({
        event: { type: Number, required: true },
       amount: { type: Number, required: true },
   opponentId: { type: String, default:'none', required: false },
+      points: {
+            host: { type: Number, default: 0 },
+        opponent: { type: Number, default: 0}
+      },
       winner: {
-        winnerId: { type: String, default: 'none', required: false },
-        winAmount: { type: Number, default: 0, required: false }
+          winnerId: { type: String, default: 'none', required: false },
+         winAmount: { type: Number, default: 0, required: false }
       },
    betStatus: { 
             code: { type: Number, default: 100, required: false },

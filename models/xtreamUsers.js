@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const pointsSchema = new Schema({
-    gameweek: { type: Number, default: 1, required: false },
-      points: { type: Number, default: 0, required: false }
-})
 
 const xtreamSchema = new Schema({
      
@@ -16,7 +12,8 @@ const xtreamSchema = new Schema({
     totalBalance: { type: Number, default: 0.00, required: false  },
           payPal: { type: String, default: 'xxx@paypal.com', required: false },
          favTeam: { type: Number, default: 0, required: false },
-          points: { type: [pointsSchema], default: [], required: false }  
+          points: { type: Array, default: [], required: false },
+     totalEarned: { type: Number, default: 0, required: false }    
 
 }, {timestamps: true})
 

@@ -21,20 +21,20 @@ function purchase( token ) {
     if (token == '100') {
         inputAmount.setAttribute('value', 1.05)
         display()
-    } else if (token == '200' ) {
-        inputAmount.setAttribute('value', 2.15)
+    } else if (token == 200 ) {
+        inputAmount.setAttribute('value', 1.75)
         display()
-    } else if (token == '500' ) {
-        inputAmount.setAttribute('value', 5.195)
+    } else if (token == 500 ) {
+        inputAmount.setAttribute('value', 4.25)
         display()
-    } else if (token == '1000' ) {
-        inputAmount.setAttribute('value', 10.725)
+    } else if (token == 1000 ) {
+        inputAmount.setAttribute('value', 8.15)
         display()
-    } else if (token == '2000' ) {
-        inputAmount.setAttribute('value', 20.595)
+    } else if (token == 2000 ) {
+        inputAmount.setAttribute('value', 16.42)
         display()
-    } else if (token == '5000' ) {
-        inputAmount.setAttribute('value', 50.35)
+    } else if (token == 5000 ) {
+        inputAmount.setAttribute('value', 39.25)
         display()
     }
    
