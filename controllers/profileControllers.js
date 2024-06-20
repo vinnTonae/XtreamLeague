@@ -42,7 +42,7 @@ const patchUserId = async (req, res) => {
 
        try {
 
-        const updatedUser = await User.findByIdAndUpdate( { _id: id }, { teamId: teamid, managerName: manager, teamName: team, favTeam: favPlTeam })
+        const updatedUser = await User.findByIdAndUpdate( { _id: id }, { $set: { teamId: teamid, managerName: manager, teamName: team, favTeam: favPlTeam } })
         req.flash('error', 'Team Updated')
         res.redirect('/main')
         
@@ -99,8 +99,13 @@ const getMain = async (req, res) => {
     res.render('main', { user: xUser, head: headCounts, party: partyCount, messages: req.flash('error') })
 }
 
-const getTopDollar = (req, res) => {
-    res.render('topearners')
+const getTopDollar = async (req, res) => {
+
+    const users = await User.find({ totalEarned: { $gt: 15 } })
+    const Sorted = users.sort((a, b) => b.totalEarned - a.totalEarned)
+    const limitedSort = Sorted.slice(0, 20)
+
+    res.render('topearners', { Earners: limitedSort })
 }
 
 const getBootstrap = async (req, res) => {
