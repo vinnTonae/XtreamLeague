@@ -32,9 +32,21 @@ const alreadyRegisterCheck = (req, res, next) => {
     }
 }
 
+const devCheck = (req, res, next) => {
+    if (req.user.teamId !== '6425858') {
+        req.flash('error', 'Authorization failed')
+        res.redirect('/main')
+    } else {
+        next()
+    }
+
+
+}
+
 module.exports = {
     authCheck,
     notAuthCheck,
     registerCheck,
-    alreadyRegisterCheck
+    alreadyRegisterCheck,
+    devCheck
 }

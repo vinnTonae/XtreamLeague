@@ -16,7 +16,7 @@ const getSearch = (req, res) => {
     res.render('search')
 }
 
-const patchUserId = async(req, res) => {
+const patchUserId = async (req, res) => {
     const id = req.user._id
     const { teamid } = req.body
     const options = {
@@ -31,17 +31,30 @@ const patchUserId = async(req, res) => {
     const manager = `${data.player_first_name} ${data.player_last_name}`
     const team = data.name
     
+    // CHECK IF TEAM WAS ALREADY SELECTED
+    const teamExists = await User.findOne({ teamId: teamid })
+
+    if ( teamExists ) {
+
+        req.flash('error', 'That FPL Team was Already Selected!!')
+        res.redirect('/main')
+    } else {
+
+       try {
+
+        const updatedUser = await User.findByIdAndUpdate( { _id: id }, { teamId: teamid, managerName: manager, teamName: team, favTeam: favPlTeam })
+        req.flash('error', 'Team Updated')
+        res.redirect('/main')
+        
+       } catch (error) {
+        console.log(error)
+        req.flash('error', 'Server Error!! Try again Later')
+        res.redirect('/main')
+        
+       }
+
+    }
    
-    
-    const updatedUser = User.findByIdAndUpdate( { _id: id }, { teamId: teamid, managerName: manager, teamName: team, favTeam: favPlTeam } )
-    .then(() => {
-       req.flash('error', 'User Updated')
-       res.redirect('/main')
-    })
-    .catch((error) => {
-         console.log(error)
-         res.redirect('/main')
-         })
 
 }
 

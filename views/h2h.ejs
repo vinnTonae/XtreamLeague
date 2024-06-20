@@ -68,12 +68,12 @@
 
 
     <header style="height: 10vh; width: 100vw; display: flex; align-items: center; justify-content: space-between;">
-        <div style="display: flex; align-items: center; justify-content: center;">
+        <div style="margin-left: 10px; display: flex; align-items: center; justify-content: center;">
             <div><a href="/bets"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon></a></div>
             <h1 style="margin:0 10px 10px 5px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Bet Details</h1>
         </div>
-        <div class="account" style="display: flex; justify-content: flex-end; align-items: center;">
-            <div class="balance" style="width: 100%; padding-inline: 5px; height: 60%; margin-right: 10px; display: flex; align-items: center; justify-content: space-evenly; background-color: rgb(67, 5, 67); border-radius: 15px;">
+        <div class="account" style="height: 60%; display: flex; justify-content: flex-end; align-items: center;">
+            <div class="balance" style="width: 100%; padding-inline: 5px; height: 100%; margin-right: 10px; display: flex; align-items: center; justify-content: space-evenly; background-color: rgb(67, 5, 67); border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 15c-1.84 0-2-.86-2-1H8c0 .92.66 2.55 3 2.92V18h2v-1.08c2-.34 3-1.63 3-2.92 0-1.12-.52-3-4-3-2 0-2-.63-2-1s.7-1 2-1 1.39.64 1.4 1h2A3 3 0 0 0 13 7.12V6h-2v1.09C9 7.42 8 8.71 8 10c0 1.12.52 3 4 3 2 0 2 .68 2 1s-.62 1-2 1z"></path><path d="M5 2H2v2h2v17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4h2V2H5zm13 18H6V4h12z"></path></svg>
                 <h2 style="color: white; margin-inline: 5px;  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; text-wrap: nowrap;">KSH <%= balance %></h2>
             </div>
@@ -161,8 +161,11 @@
                           <p style="margin-top: 0; text-align: center; font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; color: limegreen; font-size: 1rem;"><%= opponent.managerName %></p>
                     </div>
                     
-                    <div class="img" style="position: absolute; bottom: 0; height: 20%; width: 100%; display: flex; justify-content: center; align-items: center;">
+                    <div class="img" style="position: absolute; bottom: 0; height: 20%; width: 100%; display: flex; justify-content: space-evenly; align-items: center;">
                           <img src="logos/<%= opponent.favTeam %>.png" loading="lazy" alt="PL" width="30" height="30">
+                          <div class="points" style="display: flex; justify-content: center; align-items: center;">
+                            <h1 style="font-style: italic; text-align: center; font-size: 1.5rem; color: green;"><span style="color: blue; font-size: 1.2rem; font-style: italic;">points: </span><%= bet.points.opponent %></h1>
+                        </div>
                     </div> 
 
 
