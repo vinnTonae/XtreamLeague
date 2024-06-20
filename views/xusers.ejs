@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="40" height="40">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>dev-Users</title>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <style>
+
+     * {
+        border: 0;
+        margin: 0;
+        box-sizing: border-box;
+     }   
+
+    .cards {
+        height: 50px;
+        width: 93%;
+        border-radius: 5px 40px 40px 5px;
+        cursor: pointer;
+        text-decoration: none;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29);
+        margin: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        scroll-snap-align: start;
+    }
+    </style>
+
+</head>
+<body style="width: 100vw;">
+    <header style="height: 10svh; width: 100vw; display: flex; align-items: center; justify-content: space-evenly; border-bottom: 1px solid purple;">
+    
+            <a href="/dev/<%= event %>"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2.5rem;"></ion-icon></a>
+            
+            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.8rem; color: purple; font-style: italic;">xtreamUsers</h1>
+            
+    </header>
+    <section style="height: 4svh; width: 100vw; display: flex; align-items: center; justify-content: center;">
+          <h2 style="font-size: 1.1rem; font-weight: bold; font-style: italic; color: purple; font-family: 'Signika', sans-serif;">GW<%= event %></h2>
+          <% if (locals.messages) { %>
+                <h2 style="font-size: 1.1rem; margin-left: 20px; font-weight: bold; font-style: italic; color: red; font-family: 'Signika', sans-serif;"><%= messages %></h2>
+          <% } %>
+    </section>
+
+    <main style="width: 100vw;  display: flex; margin-inline: auto; background-color: aliceblue; flex-flow: column nowrap; scroll-snap-type: inline mandatory; scroll-padding-inline: 15px; overflow-x: hidden; overflow-y: scroll;">
+
+       <% users.forEach((user) => { %>
+
+        <% const points =  user.points.find((eventPoints) => { %>
+             <% return eventPoints.gameweek === event %>
+            <% }) %>
+
+
+            <% if (!points) { %>
+
+                <form action="/dev/<%= event %>/xUsers?_method=PATCH" method="post" class="cards">
+                    <div class="entry" style="height: 100%;  display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; padding: 20px;">
+                        <h2 style="font-size: .9rem; font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; color: purple;"><%= user.teamName %></h2>
+                    </div>
+                   
+                    <div class="points" style=" height: 100%; margin-left: 5px; background-color: transparent; display: flex; justify-content: center; align-items: center; ">
+                        
+                        <h2 style="color: red; font-weight: bold; font-size: 1.4rem; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">--</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="fill: limegreen;transform: msFilter"><path d="M3 19h18a1.002 1.002 0 0 0 .823-1.569l-9-13c-.373-.539-1.271-.539-1.645 0l-9 13A.999.999 0 0 0 3 19z"></path></svg>
+                    </div>
+
+                    <input type="text" name="userid" value="<%= user._id %>" style="display: none;">
+                    
+                    <button type="submit"  style="border-radius: inherit; background-color: red; width: 20%; height: 100%; outline: none; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center;">
+                        <p style="font-style: italic; font-weight: bold; font-family: 'Signika', sans-serif; color: white;">UPDATE</p>
+                    </button>
+                </form>
+              
+             
+            <% } else { %>
+
+                <form action="/dev/<%= event %>/xUsers?_method=PATCH" method="post" class="cards">
+                    <div class="entry" style="height: 100%;  display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; padding: 20px;">
+                        <h2 style="font-size: .9rem; font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; color: purple;"><%= user.teamName %></h2>
+                    </div>
+                   
+                    <div class="points" style=" height: 100%; margin-left: 5px; background-color: transparent; display: flex; justify-content: center; align-items: center; ">
+                        
+                        <h2 style="font-weight: bold; font-size: .85rem; margin-right: 5px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: green;"><%= points.points %></h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="fill: limegreen;transform: msFilter"><path d="M3 19h18a1.002 1.002 0 0 0 .823-1.569l-9-13c-.373-.539-1.271-.539-1.645 0l-9 13A.999.999 0 0 0 3 19z"></path></svg>
+                    </div>
+
+                    <input type="text" name="userid" value="<%= user._id %>" style="display: none;">
+
+                    <button type="submit"  style="border: none; outline: none; cursor: pointer; border-radius: inherit; background-color: lime; width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                        <p style="color: white; font-style: italic; font-weight: bold; font-family: 'Signika', sans-serif;">OK</p>
+                    </button>
+                </form>
+              
+              <% } %>
+
+        <% }) %> 
+          
+
+    </main>
+     
+     
+       
+
+            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+           
+    </body>
+    </html>
+

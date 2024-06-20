@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="40" height="40">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>Dev Menu</title>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <style>
+        * {
+            margin: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+    </style>    
+</head>
+<body style="height: 100svh; width: 100vw;">
+    <header style="height: 10svh; width: 100vw; display: flex; align-items: center; justify-content: space-evenly; border-bottom: 1px solid purple;">
+    
+            <a href="/dev"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2.5rem;"></ion-icon></a>
+            
+            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.8rem; color: purple; font-style: italic;">Dev Menu</h1>
+            
+    </header>
+
+    <main style="height: 90svh; width: 100vw;">
+        <section style="height: 40%; width: 100vw;">
+
+            <div class="user-wrapper" style="height: 50%; width: 100vw; display: flex; justify-content: center; align-items: center;">
+                <a href="/dev/<%= event %>/xUsers" style="width: 90%; height: 70%; background-color: aliceblue; text-decoration: none; border-radius: 20px; border: 2px solid black; box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3), 0 7px 14px 0 rgba(0, 0, 0, 0.29); display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+                    <h2 style="color: purple; margin: 0; font-size: 2rem; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic;">UsersHUB</h2>
+                    <div class="counts" style="display: flex; align-items: center; justify-content: center;">
+                        <h3 style="color: blue; margin: 5px; font-size: 1.5rem; font-weight: bold; font-style: italic;">Current: <span style="font-weight: bold; font-style: italic; font-size: 1.8rem; color: limegreen;"><%= users %></span></h3>
+                        <h3 style="color: red; margin: 5px; font-size: 1.5rem; font-weight: bold; font-style: italic;">Updated: <span style="font-weight: bold; font-style: italic; font-size: 1.8rem; color: limegreen;"><%= updated %></span></h3>
+                    </div>
+                 
+                </a>    
+            </div>
+
+            <div class="head-party" style="height: 50%; width: 100vw; display: flex; justify-content: center; align-items: center;">
+               <a href="/dev/<%= event %>/heads" style="width: 42.5%; margin-inline: 5px; height: 70%; background-color: aliceblue; text-decoration: none; border-radius: 20px; border: 2px solid black; box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3), 0 7px 14px 0 rgba(0, 0, 0, 0.29); display: flex; justify-content: center; align-items: center; flex-flow: column nowrap;">
+                  <h2 style="color: purple; margin: 0; font-size: 2rem; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic;">Heads</h2>
+                  <div class="counts" style="display: flex; align-items: center; justify-content: center;">
+                    <h3 style="color: blue; margin: 5px; font-size: 1rem; font-weight: bold; font-style: italic;">GW<%= event %>: <span style="font-weight: bold; font-style: italic; font-size: 1.5rem; color: limegreen;"><%= heads %></span></h3>  
+                    <h3 style="color: red; margin: 5px; font-size: 1rem; font-weight: bold; font-style: italic;">Updated: <span style="font-weight: bold; font-style: italic; font-size: 1.5rem; color: limegreen;"><%= updatedHead %></span></h3>
+                </div>
+                
+               </a>
+               <a href="/dev/<%= event %>/party" style="width: 42.5%; margin-inline: 5px; height: 70%; background-color: aliceblue; text-decoration: none; border-radius: 20px; border: 2px solid black; box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3), 0 7px 14px 0 rgba(0, 0, 0, 0.29); display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+                  <h2 style="color: purple; margin: 0; font-size: 2rem; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic;">Party</h2>
+                  <div class="counts" style="display: flex; align-items: center; justify-content: center;">
+                    <h3 style="color: blue; margin: 5px; font-size: 1rem; font-weight: bold; font-style: italic;">GW<%= event %>: <span style="font-weight: bold; font-style: italic; font-size: 1.5rem; color: limegreen;"><%= party %></span></h3>  
+                    <h3 style="color: red; margin: 5px; font-size: 1rem; font-weight: bold; font-style: italic;">Updated: <span style="font-weight: bold; font-style: italic; font-size: 1.5rem; color: limegreen;"><%= updatedParty %></span></h3>
+                </div>   
+               </a>
+            </div>
+
+        </section> 
+        <section style="height: 55%; width: 100vw; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+            
+            <form action="/dev/<%= event %>/headsdelete?_method=DELETE" method="post"  style="height: 45%; width: 90%; border: 2px solid red; margin: 8px; border-radius: 20px; background-color: antiquewhite; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+                <h2 style= "color: purple; margin: 0; font-family: 'Signika', sans-serif; font-size: 2rem;">Heads Depricated</h2>
+                <h3 style="color: blue; margin: 5px; font-size: 1.3rem; font-weight: bold; font-style: italic;">GW<%= event %>: <span style="font-weight: bold; font-style: italic; font-size: 1.8rem; color: limegreen;"><%= deps[0] %></span></h3>
+                
+                <input type="number" style="display: none;" name="event" value="<%= event %>">
+                
+                <button type="submit" style="height: 30%; width: 70%; background-color: red; color: white; font-weight: bold; font-style: italic; font-family: 'Signika', sans-serif; border: none; outline: none; border-radius: 25px; font-size: 1.5rem;" >DELETE ALL</button>
+            
+
+            </form>
+            
+            <form action="/dev/<%= event %>/partydelete?_method=DELETE" method="post"  style="height: 45%; width: 90%; border: 2px solid red; margin: 8px; border-radius: 20px; background-color: antiquewhite; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+                <h2 style= "color: purple; margin: 0; font-family: 'Signika', sans-serif; font-size: 2rem;">Parties Depricated</h2>
+                <h3 style="color: blue; margin: 5px; font-size: 1.3rem; font-weight: bold; font-style: italic;">GW<%= event %>: <span style="font-weight: bold; font-style: italic; font-size: 1.8rem; color: limegreen;"><%= deps[1] %></span></h3>
+                
+                <input type="number" style="display: none;" name="event" value="<%= event %>">
+                
+                <button type="submit" style="height: 30%; width: 70%; background-color: red; color: white; font-weight: bold; font-style: italic; font-family: 'Signika', sans-serif; border: none; outline: none; border-radius: 25px; font-size: 1.5rem;" >DELETE ALL</button>
+            
+
+            </form>
+
+        </section>
+        
+        
+
+
+    </main>
+     
+     
+       
+
+            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+           
+    </body>
+    </html>
+

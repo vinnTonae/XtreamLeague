@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="40" height="40">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>Developer</title>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <style>
+        * {
+            margin: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+<body style="background-color: whitesmoke; height: 100svh; width: 100vw;">
+    <header style="height: 10svh; width: 100vw; display: flex; align-items: center; justify-content: space-evenly;">
+    
+            <a href="/main"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2.5rem;"></ion-icon></a>
+            
+            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Developer</h1>
+            
+    </header>
+    <main style="width: 100vw; display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
+
+        <% GW.map((gameweek) => { %>
+
+            <% if ( gameweek[1] == true ) { %>
+                
+                <a href="/dev/<%= gameweek[0] %>" style="box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); color: white; font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; text-decoration: none; display: flex; align-items: center; justify-content: center; margin: 5px; width: 120px; height: 60px; background-color: limegreen; border: 1px solid purple; border-radius: 20px;">
+                    <h2>GW<%= gameweek[0] %></h2>
+                </a>
+    
+             <% } else { %>
+
+                <a href="/dev/<%= gameweek[0] %>" style="color: white; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; text-decoration: none; display: flex; align-items: center; justify-content: center; margin: 5px; width: 120px; height: 60px; background-color: lightcoral; border-radius: 20px;">
+                    <h2>GW<%= gameweek[0] %></h2>
+                </a>
+    
+             <% } %>
+          
+        <% }) %>
+
+    </main>
+
+     
+     
+       
+
+            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+           
+    </body>
+    </html>
+

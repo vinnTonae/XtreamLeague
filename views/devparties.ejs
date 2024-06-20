@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="40" height="40">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>devParty</title>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <style>
+        * {
+            border: 0;
+            margin: 0;
+            box-sizing: border;
+        }
+    </style>
+
+    
+</head>
+<body style="background-color: white;">
+    <header style="height: 10svh; width: 100vw; border-bottom: 2px solid purple; display: flex; align-items: center; justify-content: space-around;">
+    
+
+        <a href="/dev/<%= event %>"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon></a>
+
+        <h1 style="font-style: italic; margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">partyBets</h1>
+    
+    
+    </header>
+     
+      
+    <section class="list-wrapper" style="background-color: aliceblue; position: relative; width: 100vw; padding-top: 5px; display: flex; flex-flow: column nowrap; align-items: center; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-x: hidden; overflow-y: scroll;">
+             
+          
+               
+             <%  parties.map((party) => { %>
+
+                <%  if ( party.betStatus.code === 200 ) { %>
+
+                    <a href="/dev/<%= event %>/party/<%= party._id %>" class="bets-card" style="scroll-snap-align: start; cursor: pointer; text-decoration: none; padding: 5px; display: flex; align-items: center; justify-content: space-between; width: 95%; height: 55px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); background-image: linear-gradient(45deg, blue, skyblue, skyblue, aliceblue, whitesmoke,  white, whitesmoke, aliceblue, skyblue, skyblue, blue); border-radius: 0 20px 20px 0; margin-block: 10px;">
+                        <div class="competitors" style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 30%;">
+                           <h2 style="text-wrap: wrap; text-align: center; font-size: .85rem; font-family: 'Signika', sans-serif; font-style: italic; color: rgba(65, 5, 65);"><%= party.hostId %></h2>
+                           <p style="color: red; font-size: .75rem; font-style: italic;">host</p>
+                        
+                        </div>
+       
+                        <div class="bet-status" style="width: 25%; display: flex; flex-flow: column nowrap; justify-content: space-between; align-items: center;">
+                    
+                            <h2 style="text-wrap: nowrap; text-align: center; font-size: .85rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; color: red;"><%= party.betStatus.message %></h2>
+                            <h2 style="margin-top: 5px; text-align: center; font-size: .9rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple;">GW<%= event %></h2>
+                           
+                        </div>
+       
+                        <div class="payout" style="display: flex; justify-content: center; align-items: center; flex-flow: column nowrap;">
+                          <h2 style="text-wrap: wrap; font-size: .85rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: gold; font-weight: bold;">Ksh <%= party.amount %></h2>
+                          <h2 style="text-align: center; font-style: italic; font-weight: bold; font-size: .7rem; color: red;">entry</h2>
+                        </div>
+       
+                       </a>
+
+                  <% } else { %>
+                       
+                    <a href="/dev/<%= event %>/party/<%= party._id %>" class="bets-card" style="scroll-snap-align: start; cursor: pointer; text-decoration: none; padding: 5px; display: flex; align-items: center; justify-content: space-between; width: 95%; height: 55px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); background-image: linear-gradient(45deg, black, gray, grey, antiquewhite, antiquewhite, antiquewhite, antiquewhite, grey, grey, black); border-radius: 0 20px 20px 0; margin-block: 10px;">
+                        <div class="competitors" style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 30%;">
+                           <h2 style="text-wrap: wrap; text-align: center; font-size: .85rem; font-family: 'Signika', sans-serif; font-style: italic; color: rgba(65, 5, 65);"><%= party.hostId %></h2>
+                           <p style="color: red; font-size: .75rem; font-style: italic;">host</p>
+                        
+                        </div>
+       
+                        <div class="bet-status" style="width: 25%; display: flex; flex-flow: column nowrap; justify-content: space-between; align-items: center;">
+                    
+                            <h2 style="text-wrap: nowrap; text-align: center; font-size: .85rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; color: limegreen;"><%= party.betStatus.message %></h2>
+                            <h2 style="margin-top: 5px; text-align: center; font-size: .9rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: blue;">GW<%= event %></h2>
+                           
+                        </div>
+       
+                        <div class="payout" style="display: flex; justify-content: center; align-items: center; flex-flow: column nowrap;">
+                          <h2 style="text-wrap: wrap; font-size: .85rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: gold; font-weight: bold;">Ksh <%= party.amount %></h2>
+                          <h2 style="text-align: center; font-style: italic; font-weight: bold; font-size: .7rem; color: red;">entry</h2>
+                        </div>
+       
+                       </a>
+
+                     <% } %>
+                   
+          
+
+              <% }) %>
+
+             
+    </section>
+
+
+     
+        
+
+            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+           
+    </body>
+    </html>
+
