@@ -1,4 +1,4 @@
-const { getDev, getDevConsole, getDevUsers, patchDevUsers, getDevHeads, updateDevHeads, settleDevHeads, getDevParties, getDevParty, updateDevParty, deleteDepHeads, deleteDepParties } = require('../controllers/devControllers.js')
+const { getDev, getDevConsole, getDevUsers, patchDevUsers, getDevHeads, updateDevHeads, settleDevHeads, getDevParties, getDevParty, updateDevParty, deleteDepHeads, deleteDepParties, settleDevParty } = require('../controllers/devControllers.js')
 const { devCheck, authCheck } = require('../controllers/authControllers')
 
 
@@ -25,7 +25,7 @@ router.get('/:id/party/:party', getDevParty)
 
 router.patch('/:id/party/:party/update', updateDevParty)
 
-router.patch('/:id/party/settle', )
+router.patch('/:id/party/settle', settleDevParty)
 
 
 router.delete('/:id/headsdelete', deleteDepHeads)

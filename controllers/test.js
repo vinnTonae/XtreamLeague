@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const caseInSwitch = (month)  => {
     let answer = ''
     switch (month) {
@@ -35,8 +37,13 @@ const caseInSwitch = (month)  => {
     return answer
 }
 
-
+const proxyInstance = {
+    host: process.env.HOST,
+    port: process.env.PORT,
+    auth: `${process.env.PROXY_AUTH_USER}:${process.env.PROXY_AUTH_PASS}`
+}
 
 module.exports = {
-    caseInSwitch
+    caseInSwitch,
+    proxyInstance
 }

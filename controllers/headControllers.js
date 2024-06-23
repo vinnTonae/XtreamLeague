@@ -5,6 +5,7 @@ const User = require('../models/xtreamUsers')
 const ObjectId = require('mongoose').Types.ObjectId
 const { HttpsProxyAgent } = require('https-proxy-agent')
 const fetch = require('node-fetch')
+const { proxyInstance } = require('../controllers/test')
 
 const getBetHead = async (req, res) => {
     const xUser = req.user    
@@ -12,7 +13,7 @@ const getBetHead = async (req, res) => {
     const baseUrl = 'https://fantasy.premierleague.com/api/bootstrap-static'
     const options = {
         method: 'GET',
-        agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
+        agent: new HttpsProxyAgent(proxyInstance),
         Accept: 'application/json'
     }
     const  response = await fetch(baseUrl, options)

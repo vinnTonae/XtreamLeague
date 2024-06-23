@@ -3,6 +3,7 @@ const Head = require('../models/head2head')
 const Party = require('../models/party')
 const fetch = require('node-fetch')
 const { HttpsProxyAgent } = require('https-proxy-agent')
+const { proxyInstance } = require('../controllers/test')
 
 
 const getDev = async (req, res) => {
@@ -11,7 +12,7 @@ const getDev = async (req, res) => {
      const baseUrl = 'https://fantasy.premierleague.com/api/bootstrap-static'
      const options = {
          method: 'GET',
-         agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
+         agent: new HttpsProxyAgent(proxyInstance),
          Accept: 'application/json'
      }
 
@@ -96,7 +97,7 @@ const patchDevUsers = async (req, res) => {
     const baseUrl = `https://fantasy.premierleague.com/api/entry/${teamId}/history`
     const options = {
         method: 'GET',
-        agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
+        agent: new HttpsProxyAgent(proxyInstance),
         Accept: 'application/json'
     }
     const response = await fetch(baseUrl, options)

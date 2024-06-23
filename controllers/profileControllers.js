@@ -4,6 +4,7 @@ const Party = require('../models/party')
 const Transactions = require('../models/transactions')
 const { HttpsProxyAgent } = require('https-proxy-agent')
 const fetch = require('node-fetch')
+const { proxyInstance } = require('../controllers/test')
 
 const getTransactions = async (req, res) => {
     const reqUserId = req.user._id
@@ -21,7 +22,7 @@ const patchUserId = async (req, res) => {
     const { teamid } = req.body
     const options = {
         method: 'GET',
-        agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
+        agent: new HttpsProxyAgent(proxyInstance),
         accept: 'application/json'
     }
     const baseUrl = `https://fantasy.premierleague.com/api/entry/${teamid}/`
@@ -63,7 +64,7 @@ const postRegister = async (req, res) => {
     const baseUrl = `https://fantasy.premierleague.com/api/leagues-classic/${id}/standings/`
     const options = {
         method: 'GET',
-         agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
+         agent: new HttpsProxyAgent(proxyInstance),
         accept: 'application/json'
     }
     
@@ -112,7 +113,7 @@ const getBootstrap = async (req, res) => {
     const baseUrl = "https://fantasy.premierleague.com/api/bootstrap-static"
     const options = {
         method: 'GET',
-        agent: new HttpsProxyAgent({ host: '45.141.179.179', port: '8000', auth: '4adwq0:6DBTA2' }),
+        agent: new HttpsProxyAgent(proxyInstance),
         accept: 'application/json'
     }
     

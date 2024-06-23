@@ -17,10 +17,10 @@ const postConfirmDeposit =  async (req, res) => {
         const value = valuePaid
         if (value == '1.05') { return 100 }
     else if (value == '1.75') { return  200}
-    else if (value == '4.05') { return 500 }
-    else if (value == '7.75') { return  1000 }
-    else if (value == '15.45') { return  2000 }
-    else if (value == '39.75') { return 5000 }
+    else if (value == '4.25') { return 500 }
+    else if (value == '8.15') { return  1000 }
+    else if (value == '16.42') { return  2000 }
+    else if (value == '39.25') { return 5000 }
     }
     
     const newTransaction = new Transactions({
