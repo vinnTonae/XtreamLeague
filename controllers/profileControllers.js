@@ -14,7 +14,7 @@ const getTransactions = async (req, res) => {
 }
 
 const getSearch = (req, res) => {
-    res.render('search')
+    res.render('search', { messages: req.flash('error') })
 }
 
 const patchUserId = async (req, res) => {
@@ -61,6 +61,12 @@ const patchUserId = async (req, res) => {
 
 const postRegister = async (req, res) => {
     const id = req.body.id
+    
+    if (!id) {
+        req.flash('error', 'Please Enter a League ID' )
+        res.redirect('/search')
+    } else {
+
     const baseUrl = `https://fantasy.premierleague.com/api/leagues-classic/${id}/standings/`
     const options = {
         method: 'GET',
@@ -72,6 +78,7 @@ const postRegister = async (req, res) => {
     const data = await results.json()
     const teams = data.standings.results 
     res.render('register', { managers: teams })    
+}
 }
 
 const getMain = async (req, res) => {
