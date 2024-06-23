@@ -5,7 +5,7 @@ const Transactions = require('../models/transactions')
 const fetch = require('node-fetch')
 const { HttpsProxyAgent } = require('https-proxy-agent')
 const { proxyInstance } = require('../controllers/test')
-const Transactions = require('../models/transactions')
+
 
 
 const getDev = async (req, res) => {
