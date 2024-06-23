@@ -26,6 +26,12 @@
             
             <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.8rem; color: purple; font-style: italic;">Dev Menu</h1>
             
+            <% if (locals.messages) { %>
+                    
+                <h1 style="color: red; font-size: .8rem; position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); font-style: italic; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; "><%= messages %></h1>
+            
+                <% } %>    
+            
     </header>
 
     <main style="height: 90svh; width: 100vw;">

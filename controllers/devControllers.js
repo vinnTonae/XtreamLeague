@@ -9,6 +9,9 @@ const { proxyInstance } = require('../controllers/test')
 const getDev = async (req, res) => {
     const array = []
     const chunk = 38
+
+    try {
+             
      const baseUrl = 'https://fantasy.premierleague.com/api/bootstrap-static'
      const options = {
          method: 'GET',
@@ -40,6 +43,14 @@ const getDev = async (req, res) => {
 
     
      res.render('dev', { GW: dataArray })  
+        
+    } catch (error) {
+
+        req.flash('error', 'Proxy Errors To Fix')
+        res.redirect('/main')
+        
+    }
+
 }
 
 const getDevConsole = async (req, res) => {  
@@ -77,7 +88,7 @@ const getDevConsole = async (req, res) => {
     const depPartyCount = depricatedParty.length 
     const depArray = [depHeadCount, depPartyCount]
 
-    res.render('devconsole', { event: id, heads: headCount, party: partyCount, users: userCount, updated: updatedCount, updatedHead: updatedHeadCount, updatedParty: updatedPartyCount, deps: depArray })
+    res.render('devconsole', { event: id, messages: req.flash('error'), heads: headCount, party: partyCount, users: userCount, updated: updatedCount, updatedHead: updatedHeadCount, updatedParty: updatedPartyCount, deps: depArray })
 }
 
 const getDevUsers = async (req, res) => {
@@ -420,10 +431,22 @@ const updateDevParty = async (req, res) => {
 
     const deleteDepHeads = async (req, res) => {
     
-        const { event } = req.body 
-        const updatedHeads = await Head.deleteMany( { "betStatus.code": 100 } )
+        const { event } = req.body
+
+        try {
+
+            const updatedHeads = await Head.deleteMany( { "betStatus.code": 100 } )
     
-        res.redirect(`/dev/${event}`)
+            res.redirect(`/dev/${event}`)
+            
+        } catch (error) {
+
+            req.flash('error', 'Delete Request Failed')
+            res.redirect(`/dev/${event}`)
+            
+        }
+        
+      
     
     }
 
@@ -437,7 +460,8 @@ const updateDevParty = async (req, res) => {
             res.redirect(`/dev/${event}`)
         
         } catch (error) {
-
+            
+            req.flash('error', 'Delete Request Failed')
             res.redirect(`/dev/${event}`)
             
         }
