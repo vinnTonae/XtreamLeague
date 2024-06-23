@@ -39,7 +39,7 @@ const caseInSwitch = (month)  => {
 
 const proxyInstance = {
     host: process.env.HOST,
-    port: process.env.PORT,
+    port: process.env.PROXY_PORT,
     auth: `${process.env.PROXY_AUTH_USER}:${process.env.PROXY_AUTH_PASS}`
 }
 
