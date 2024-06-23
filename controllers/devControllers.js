@@ -62,8 +62,14 @@ const getDevConsole = async (req, res) => {
     const updatedUsers = allUsers.filter((user) => {
         return user.points.some((pointsObject) => { return pointsObject.gameweek == id })
     })
-
     
+    const withdraws = await Transactions.find({ tranx_type: 'Withdraw' })
+    const withdrawCount = withdraws.length
+
+    const updatedWithdraws = withdraws.filter((tranx) => {
+            return tranx.status == 'settled'
+    })
+    const updatedWithCount = updatedWithdraws.length    
 
     const updatedCount = updatedUsers.length
 
@@ -90,7 +96,7 @@ const getDevConsole = async (req, res) => {
     const depPartyCount = depricatedParty.length 
     const depArray = [depHeadCount, depPartyCount]
 
-    res.render('devconsole', { event: id, messages: req.flash('error'), heads: headCount, party: partyCount, users: userCount, updated: updatedCount, updatedHead: updatedHeadCount, updatedParty: updatedPartyCount, deps: depArray })
+    res.render('devconsole', { event: id, messages: req.flash('error'), withdraws: withdrawCount, heads: headCount, party: partyCount, users: userCount, updated: updatedCount, updatedWithdraws: updatedWithCount, updatedHead: updatedHeadCount, updatedParty: updatedPartyCount, deps: depArray })
 }
 
 const getDevUsers = async (req, res) => {
