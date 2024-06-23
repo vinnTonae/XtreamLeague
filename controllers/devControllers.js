@@ -1,9 +1,11 @@
 const User = require('../models/xtreamUsers')
 const Head = require('../models/head2head')
 const Party = require('../models/party')
+const Transactions = require('../models/transactions')
 const fetch = require('node-fetch')
 const { HttpsProxyAgent } = require('https-proxy-agent')
 const { proxyInstance } = require('../controllers/test')
+const Transactions = require('../models/transactions')
 
 
 const getDev = async (req, res) => {
@@ -469,7 +471,32 @@ const updateDevParty = async (req, res) => {
         
     }
 
+    const getDevWithdraws = async (req, res) => {
+        const event = req.params.id
+        const withdraws = await Transactions.find({ tranx_type: 'Withdraw' })
 
+        res.render('devwithdraws', { gameweek: event, Transactions: withdraws, messages: req.flash('error') })
+    }
+
+    const patchDevWithdraws = async (req, res) => {
+
+        const event = req.params.id
+        const { tranxid } = req.body
+
+        try {
+
+            const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxid }, { $set: { status: 'settled' } })
+            req.flash('error', 'Transaction Updated')
+            res.redirect(`/dev/${event}/withdraws`)
+            
+        } catch (error) {
+
+            req.flash('error', 'Update Failed')
+            res.redirect(`/dev/${event}/withdraws`)
+            console.log('MongoDB Access Errors')
+            
+        }
+    }
 
 
 
@@ -486,5 +513,7 @@ module.exports = {
     updateDevParty,
     settleDevParty,
     deleteDepHeads,
-    deleteDepParties
+    deleteDepParties,
+    getDevWithdraws,
+    patchDevWithdraws
 }

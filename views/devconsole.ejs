@@ -38,14 +38,22 @@
         <section style="height: 40%; width: 100vw;">
 
             <div class="user-wrapper" style="height: 50%; width: 100vw; display: flex; justify-content: center; align-items: center;">
-                <a href="/dev/<%= event %>/xUsers" style="width: 90%; height: 70%; background-color: aliceblue; text-decoration: none; border-radius: 20px; border: 2px solid black; box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3), 0 7px 14px 0 rgba(0, 0, 0, 0.29); display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+                <a href="/dev/<%= event %>/xUsers" style="width: 42.5%; margin-inline: 5px; height: 70%; background-color: aliceblue; text-decoration: none; border-radius: 20px; border: 2px solid black; box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3), 0 7px 14px 0 rgba(0, 0, 0, 0.29); display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
                     <h2 style="color: purple; margin: 0; font-size: 2rem; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic;">UsersHUB</h2>
                     <div class="counts" style="display: flex; align-items: center; justify-content: center;">
                         <h3 style="color: blue; margin: 5px; font-size: 1.5rem; font-weight: bold; font-style: italic;">Current: <span style="font-weight: bold; font-style: italic; font-size: 1.8rem; color: limegreen;"><%= users %></span></h3>
                         <h3 style="color: red; margin: 5px; font-size: 1.5rem; font-weight: bold; font-style: italic;">Updated: <span style="font-weight: bold; font-style: italic; font-size: 1.8rem; color: limegreen;"><%= updated %></span></h3>
                     </div>
                  
-                </a>    
+                </a>
+                <a href="/dev/withdraws" style="width: 42.5%; margin-inline: 5px; height: 70%; background-color: rgba(0, 255, 0, 0.22); text-decoration: none; border-radius: 20px; border: 2px solid black; box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3), 0 7px 14px 0 rgba(0, 0, 0, 0.29); display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+                    <h2 style="color: purple; margin: 0; font-size: 2rem; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic;">Payouts</h2>
+                    <div class="counts" style="display: flex; align-items: center; justify-content: center;">
+                        <h3 style="color: blue; margin: 5px; font-size: .85rem; font-weight: bold; font-style: italic;">All: <span style="font-weight: bold; font-style: italic; font-size: 1.5rem; color: orangered;"><%= users %></span></h3>
+                        <h3 style="color: blueviolet; margin: 5px; font-size: .85rem; font-weight: bold; font-style: italic;">Updated: <span style="font-weight: bold; font-style: italic; font-size: 1.5rem; color: orangered;"><%= updated %></span></h3>
+                    </div>
+                 
+                </a>        
             </div>
 
             <div class="head-party" style="height: 50%; width: 100vw; display: flex; justify-content: center; align-items: center;">

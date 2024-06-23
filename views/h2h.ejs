@@ -204,14 +204,42 @@
            
         </section>
 
-       
-         <% if (host.teamId === user) { %>
+           
+        <% if ( bet.betStatus.code === 1000 ) { %>
+           
             <section class="join-btn" style="width: 100vw; height: 10vh; display: flex; align-items: center; justify-content: center;">
 
-                <h3 style="font-weight: bolder; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.5rem; font-style: italic;">"You are the Host"</h3>
-    
-            </section>
+                <% if ( bet.winner.winnerId == host.teamId ) { %>
+
+                    <h3 style="font-weight: bold; color: limegreen; font-family: 'Signika', sans-serif; font-size: 1.3rem; font-style: italic;"><%= host.teamName %> WON</h3>
+
+
+                 <% } else if ( bet.winner.winnerId == opponent.teamId ) { %>
+
+                    <h3 style="font-weight: bold; color: limegreen; font-family: 'Signika', sans-serif; font-size: 1.3rem; font-style: italic;"><%= opponent.teamName %> WON</h3>
+
+
+                  <% } else { %>
+
+                    <h3 style="font-weight: bold; color: orangered; font-family: 'Signika', sans-serif; font-size: 1.5rem; font-style: italic;">DRAW</h3>
+
+
+                   <% } %>
+
+            </section> 
+  
          <% } else { %>
+              <!-- BEFORE BETS ARE SETTLED  -->
+           
+
+       
+           <% if (host.teamId === user) { %>
+              <section class="join-btn" style="width: 100vw; height: 10vh; display: flex; align-items: center; justify-content: center;">
+
+                  <h3 style="font-weight: bolder; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.5rem; font-style: italic;">"You are the Host"</h3>
+    
+              </section>
+           <% } else { %>
             <section class="join-btn" style="width: 100vw; height: 10vh; display: flex; align-items: center; justify-content: center;">
 
                  <button id="join"  style="height: 80%; width: 45%; cursor: pointer; font-weight: bolder; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.4rem; border: 2px solid gold; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); outline: none; border-radius: 20px; color: white; background-color: limegreen; " >
@@ -221,6 +249,8 @@
             </section>
 
             <% } %>
+
+        <% } %>
       
             <section class="status" style="width: 100vw; height: 8vh; display: flex; justify-content: center; align-items: center;">
                 <h3 style="margin-right: 10px; font-style: italic; font-weight: bold; color: blue;">Bet Status:</h3>
