@@ -430,9 +430,19 @@ const updateDevParty = async (req, res) => {
     const deleteDepParties =  async (req, res) => {
 
         const { event } = req.body
-        const updatedParties = await Party.deleteMany( { "betStatus.code": 100 } )
-    
-        res.redirect(`/dev/${event}`)
+        
+        try {
+
+            const updatedParties = await Party.deleteMany( { "betStatus.code": 100 } )
+            res.redirect(`/dev/${event}`)
+        
+        } catch (error) {
+
+            res.redirect(`/dev/${event}`)
+            
+        }
+
+        
     }
 
 

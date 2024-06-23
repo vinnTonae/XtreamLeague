@@ -20,42 +20,51 @@ const getSearch = (req, res) => {
 const patchUserId = async (req, res) => {
     const id = req.user._id
     const { teamid } = req.body
-    const options = {
-        method: 'GET',
-        agent: new HttpsProxyAgent(proxyInstance),
-        accept: 'application/json'
-    }
-    const baseUrl = `https://fantasy.premierleague.com/api/entry/${teamid}/`
-    const response = await fetch(baseUrl, options)
-    const data = await response.json()
-    const favPlTeam = data.favourite_team
-    const manager = `${data.player_first_name} ${data.player_last_name}`
-    const team = data.name
     
-    // CHECK IF TEAM WAS ALREADY SELECTED
-    const teamExists = await User.findOne({ teamId: teamid })
+    try {
 
-    if ( teamExists ) {
-
-        req.flash('error', 'That FPL Team was Already Selected!!')
-        res.redirect('/main')
-    } else {
-
-       try {
-
-        const updatedUser = await User.findByIdAndUpdate( { _id: id }, { $set: { teamId: teamid, managerName: manager, teamName: team, favTeam: favPlTeam } })
-        req.flash('error', 'Team Updated')
-        res.redirect('/main')
+        const options = {
+            method: 'GET',
+            agent: new HttpsProxyAgent(proxyInstance),
+            accept: 'application/json'
+        }
+        const baseUrl = `https://fantasy.premierleague.com/api/entry/${teamid}/`
+        const response = await fetch(baseUrl, options)
+        const data = await response.json()
+        const favPlTeam = data.favourite_team
+        const manager = `${data.player_first_name} ${data.player_last_name}`
+        const team = data.name
         
-       } catch (error) {
-        console.log(error)
+        // CHECK IF TEAM WAS ALREADY SELECTED
+        const teamExists = await User.findOne({ teamId: teamid })
+    
+        if ( teamExists ) {
+    
+            req.flash('error', 'That FPL Team was Already Selected!!')
+            res.redirect('/main')
+        } else {
+    
+           try {
+    
+            const updatedUser = await User.findByIdAndUpdate( { _id: id }, { $set: { teamId: teamid, managerName: manager, teamName: team, favTeam: favPlTeam } })
+            req.flash('error', 'Team Updated')
+            res.redirect('/main')
+            
+           } catch (error) {
+            console.log(error)
+            req.flash('error', 'Server Error!! Try again Later')
+            res.redirect('/main')
+            
+           }
+    
+        }
+       
+        
+    } catch (error) {
         req.flash('error', 'Server Error!! Try again Later')
         res.redirect('/main')
         
-       }
-
     }
-   
 
 }
 

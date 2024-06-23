@@ -33,8 +33,10 @@ const postJoinParty = async (req, res) => {
 const getPartyId = async (req, res) => {
     
     const partyId = req.params.id
-    console.log(partyId)
     
+    try {
+
+         
      const partyDetails = await Party.findOne({ _id: partyId })
      const event = partyDetails.event
      const host = partyDetails.hostId
@@ -113,6 +115,14 @@ const getPartyId = async (req, res) => {
 
      res.render('party', { userData: user, winners: winner, firstObject: firstWinner, secondObject: secondWinner, thirdObject: thirdWinner, host: hostDetails, party: partyDetails, players: detailsArray  })
 
+        
+    } catch (error) {
+
+        req.flash('success', 'Server Error!! Try again Later')
+        res.redirect('/parties')
+        console.log('MongoDB Access Errors')
+    }
+   
 }
 
 const patchConfirmParty = async (req, res) => {
@@ -120,6 +130,10 @@ const patchConfirmParty = async (req, res) => {
     const player = req.user
     const playerTeamId = player.teamId
     const playerId = player._id
+
+try {
+
+        
     const partyDetails = await Party.findOne({ _id: betid })
     const partyEvent = partyDetails.event
     const hostId = partyDetails.hostId
@@ -215,6 +229,15 @@ const patchConfirmParty = async (req, res) => {
         res.redirect('/main')
     }
 
+    } catch (error) {
+
+        req.flash('error', 'Server Error!! Try Again later')
+        res.redirect('/main')
+        console.log('MongoDB Access Errors')
+        
+    }
+
+
 }
 
 const postBetParty = (req, res) => {
@@ -240,7 +263,7 @@ const postBetParty = (req, res) => {
 
         req.flash('error', 'Server Error!! Party not created')        
         res.redirect('/main')
-        console.log(error)
+        console.log('MongoDB Access Errors')
     })
 
 }
@@ -248,6 +271,9 @@ const postBetParty = (req, res) => {
 const getBetParty = async (req, res) => {
     
     const userData = req.user
+    
+    try {
+     
     const month = new Date().getMonth()
     const baseUrl = 'https://fantasy.premierleague.com/api/bootstrap-static'
     const options = {
@@ -304,6 +330,14 @@ const getBetParty = async (req, res) => {
             res.render('bet-party', { user: userData, gameweeks: dataArray, message: alert, phase: currentPhase }  )
         }
    
+        
+    } catch (error) {
+        req.flash('error', 'Server Error!! Try again Later')
+        res.redirect('/main')
+        console.log('PROXY DEPRICATION ERRORS')
+        
+    }
+
        
 }
 
@@ -311,25 +345,38 @@ const getParties = async (req, res) => {
       
     const userDetails = req.user
     const userTeamId = req.user.teamId
-    const partyBetsHost = await Party.find({ hostId: userTeamId })   // All parties this User has hosted
-    const allParties = await Party.find()
-    
-    const partyOppArray = allParties.filter((party) => {         // All parties this User was invited
-         
-        return party.players.some( playerId =>  playerId == userTeamId ) && party.hostId !== userTeamId
-   })
-                    // filter for gameweek 1 for parent route
 
-    const partyHost = partyBetsHost.filter( bet => bet.event == 1 )
-    const partyOpp = partyOppArray.filter( bet => bet.event == 1 )
-    const currentPartiesArray = partyHost.concat(partyOpp) 
-    const events = []
-    const chunk = 38
-    for(let i = 0; i < chunk; i++) {
-        events.push(i + 1)
+    try {
+
+        const partyBetsHost = await Party.find({ hostId: userTeamId })   // All parties this User has hosted
+        const allParties = await Party.find()
+        
+        const partyOppArray = allParties.filter((party) => {         // All parties this User was invited
+             
+            return party.players.some( playerId =>  playerId == userTeamId ) && party.hostId !== userTeamId
+       })
+                        // filter for gameweek 1 for parent route
+    
+        const partyHost = partyBetsHost.filter( bet => bet.event == 1 )
+        const partyOpp = partyOppArray.filter( bet => bet.event == 1 )
+        const currentPartiesArray = partyHost.concat(partyOpp) 
+        const events = []
+        const chunk = 38
+        for(let i = 0; i < chunk; i++) {
+            events.push(i + 1)
+        }
+        const currentGameweek = 1
+        res.render('parties', { user: userDetails, Parties: currentPartiesArray, gameweeks: events, GW: currentGameweek, messages: req.flash('success') })
+    
+        
+    } catch (error) {
+
+        req.flash('error', 'Server Error!! Try again Later')
+        res.redirect('/main')
+        console.log('MongoDB Access Error')
+
     }
-    const currentGameweek = 1
-    res.render('parties', { user: userDetails, Parties: currentPartiesArray, gameweeks: events, GW: currentGameweek, messages: req.flash('success') })
+   
 }
 
 const getPartiesEvents = async (req, res) => {
@@ -337,25 +384,37 @@ const getPartiesEvents = async (req, res) => {
     const eventParam = req.params.event
     const userDetails = req.user
     const userTeamId = req.user.teamId
-    const partyBetsHost = await Party.find({ hostId: userTeamId })   // All parties this User has hosted
-    const allParties = await Party.find()
     
-    const partyOppArray = allParties.filter((party) => {         // All parties this User was invited
-         
-        return party.players.some( playerId =>  playerId == userTeamId ) && party.hostId !== userTeamId 
-   })
-    //    Filter bets for each gameweek
-   const partyHost = partyBetsHost.filter( bet => bet.event == eventParam )
-   const partyOpp = partyOppArray.filter( bet => bet.event == eventParam )
-   const currentPartiesArray = partyHost.concat(partyOpp)
-   const events = []
-   const chunk = 38
-for(let i = 0; i < chunk; i++) {
-   events.push(i + 1)
-}
-   const currentGameweek = eventParam
- 
-res.render('parties', { user: userDetails, Parties: currentPartiesArray, gameweeks: events, GW: currentGameweek })
+    try {
+
+        const partyBetsHost = await Party.find({ hostId: userTeamId })   // All parties this User has hosted
+        const allParties = await Party.find()
+        
+        const partyOppArray = allParties.filter((party) => {         // All parties this User was invited
+             
+            return party.players.some( playerId =>  playerId == userTeamId ) && party.hostId !== userTeamId 
+       })
+        //    Filter bets for each gameweek
+       const partyHost = partyBetsHost.filter( bet => bet.event == eventParam )
+       const partyOpp = partyOppArray.filter( bet => bet.event == eventParam )
+       const currentPartiesArray = partyHost.concat(partyOpp)
+       const events = []
+       const chunk = 38
+    for(let i = 0; i < chunk; i++) {
+       events.push(i + 1)
+    }
+       const currentGameweek = eventParam
+     
+    res.render('parties', { user: userDetails, Parties: currentPartiesArray, gameweeks: events, GW: currentGameweek })
+    
+        
+    } catch (error) {
+
+        req.flash('success', `Server Error!!. Cant Access GW${eventParam} Parties`)
+        res.redirect('/parties')
+        console.log('MongoDB Access Errors')
+    }
+
 }
 
 module.exports = {
