@@ -66,18 +66,27 @@ const postRegister = async (req, res) => {
         req.flash('error', 'Please Enter a League ID' )
         res.redirect('/search')
     } else {
+    
+    try {
 
     const baseUrl = `https://fantasy.premierleague.com/api/leagues-classic/${id}/standings/`
     const options = {
         method: 'GET',
          agent: new HttpsProxyAgent(proxyInstance),
         accept: 'application/json'
-    }
-    
+    }    
     const results = await fetch(baseUrl, options)
     const data = await results.json()
     const teams = data.standings.results 
-    res.render('register', { managers: teams })    
+    res.render('register', { managers: teams }) 
+        
+    } catch (error) {
+        req.flash('error', 'Bad Request!!..That League ID is Invalid')
+        res.redirect('/search')
+
+    }    
+
+     
 }
 }
 
