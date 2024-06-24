@@ -499,7 +499,7 @@ const updateDevParty = async (req, res) => {
 
             req.flash('error', 'Update Failed')
             res.redirect(`/dev/${event}/withdraws`)
-            console.log(error)
+            console.log('mongoDB Access Errors')
             
         }
     }
