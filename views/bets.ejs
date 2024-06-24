@@ -17,14 +17,39 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
         ::-webkit-scrollbar {
-            display: none;
+            height: 1rem;
+            width: 1rem;
         }
+
+        ::-webkit-scrollbar-track {
+             background-color: rgba(128, 0, 128, 0.67);
+             margin-inline: 50px;
+             border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-image: linear-gradient(45deg, purple, limegreen, white, limegreen, purple );
+            border-radius: 10px;
+            border: 2px solid gold;
+        }
+
+        @media screen and ( max-aspect-ratio: 16/9 ) {
+            
+             ::-webkit-scrollbar {
+                display: none;
+             }
+        }
+        
+       
+        
+      
         .buttons {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 80%;
+            height: 60%;
             width: 150px;
             margin-inline: 5px;
             padding: 20px;
@@ -71,7 +96,7 @@
 
     <main style="height: 80svh; background-color: transparent; width: 100vw; padding-top: 10px;">
 
-        <section id="gw-wrapper" style="height: 10%; width: 100%; background-color: goldenrod; display: flex; align-items: center; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-y: hidden; overflow-x: scroll;">
+        <section id="gw-wrapper" style="height: 15%; width: 100%; display: flex; align-items: flex-start; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-y: hidden; overflow-x: scroll;">
          
              <% gameweeks.map((gameweek) => { %>
                  
@@ -82,7 +107,7 @@
                  
         </section>    
         
-        <section class="list-wrapper" style="height: 90%; width: 100%; padding-top: 5px; display: flex; flex-flow: column nowrap; align-items: center; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-x: hidden; overflow-y: scroll;">
+        <section class="list-wrapper" style="height: 85%; width: 100%; padding-top: 5px; display: flex; flex-flow: column nowrap; align-items: center; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-x: hidden; overflow-y: scroll;">
              
              <% if ( Heads.length === 0  ) { %>
 
@@ -118,12 +143,14 @@
                                 </div>
                
                                </a>
+            
+
 
                          <% } else { %>
-                           
+                            
                             <a href="/h2h/<%= bet._id %>" class="bets-card" style="cursor: pointer; text-decoration: none; padding: 5px; display: flex; align-items: center; justify-content: space-between; width: 95%; height: 15%; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); background-image: linear-gradient(45deg, yellow, gold, rgba(0, 255, 0, 0.426), whitesmoke, white, whitesmoke, white, white, rgba(0, 255, 0, 0.466), gold, goldenrod, yellow); border-radius: 0 20px 20px 0; margin-block: 10px;">
                                 <div class="competitors" style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 30%;">
-                                   <h2 style="text-wrap: wrap; text-align: center; font-size: .85rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;">Host: <%= bet.hostId %></h2>
+                                   <h2 style="text-wrap: wrap; text-align: center; font-size: .85rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;">Team: <%= bet.hostId %></h2>
                                    <p>vs</p>
                                    <h2 style="text-align: center; text-wrap: wrap; font-size: .85rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;"><%= user.teamName %></h2>
                
@@ -141,11 +168,12 @@
                                   <h2 style="text-align: center; font-style: italic; font-size: .7rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: red;">entry</h2>
                                 </div>
                
-                               </a>            
+                               </a>
+    
 
-                         <% } %>
+                          <% } %>
 
-                     <% }) %>
+                   <% }) %>
 
                  <% } %>
 

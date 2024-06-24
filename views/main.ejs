@@ -65,7 +65,7 @@
 
 
 
-    <header style="position: relative; height: 10vh; width: 100vw; display: flex; align-items: center; justify-content: space-between;">
+    <header style="position: relative; height: 10svh; width: 100vw; display: flex; align-items: center; justify-content: space-between;">
         <section style="display: flex; align-items: center; justify-content: center;">
             <span><img src="logos/plicon.png" alt="XL" width="50" height="50"></span>
             <h1 style="font-weight: 900; font-size: 1.2rem; color: rgb(67, 5, 67); font-family: 'Signika', sans-serif; font-style: italic;">Fantasy</h1>
@@ -97,7 +97,7 @@
           <% } %>
         
     </header>
-    <main style="height: 82.5vh; width: 100vw; background-color: transparent;">
+    <main style="height: 90svh; width: 100vw; background-color: transparent;">
                        
                        <!-- CHECKING IF REGISTERED  -->
 
@@ -154,9 +154,9 @@
      
     
         
-        <section class="bets" style="background-color: transparent; display: flex; flex-flow: column nowrap; align-items: center; justify-content: space-around; width: 100vw; height: 55%;">
+        <section class="bets">
             
-            <div class="head" style="display: block; width: 95%; height: 45%; border-radius: 25px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.303), 0 6px 12px 0 rgba(0, 0, 0, 0.292); background-color: gold;">
+            <div class="head">
                 <div class="details" style="height: 60%; width: 100%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; border-radius: 25px 25px 0 0;">
                      <h1 style="margin-bottom: 5px; font-size: 1.4rem; color: purple; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">Head to Head</h1>
                      <p style="text-align: center; text-wrap: wrap; font-style: italic; font-size: .85rem; color: green; font-weight: bold;">Place Head to Head Bets with other FPL managers</p>
@@ -178,7 +178,7 @@
                 </div>
             </div>
 
-            <div class="party" style="display: block; width: 95%; height: 45%; border-radius: 25px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.303), 0 6px 12px 0 rgba(0, 0, 0, 0.292); background-color: gold;">
+            <div class="party">
                 
                 <div class="details" style="padding-top: 10px; height: 60%; width: 100%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; border-radius: 25px 25px 0 0;">
                     <h1 style="margin-bottom: 5px; font-size: 1.4rem; color: purple; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic;" >Party</h1>
@@ -205,12 +205,12 @@
         
         <section class="links" style="width: 100vw; height: 15%; display: flex; align-items: center; justify-content: space-evenly;">
               
-              <a href="/myteam" class="my-teams" style="height: 80%; width: 15%; text-decoration: none; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+              <a href="/myteam" class="my-teams">
                  <img src="logos/uefaicon.png" alt="" width="32" height="32">
                  <h3 style="color: rgb(67, 5, 67); font-size: .85rem; font-style: italic; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; margin-top: 3px; font-weight: bold;">MyTeams</h3>
               </a>
 
-              <a href="/bets" class="all-bets" style="height: 70%; width: 15%; position: relative; text-decoration: none; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+              <a href="/bets" class="all-bets">
                 <div class="count" style="position: absolute; top: 2px; right: 2px; z-index: 2; height: 22px; width: 22px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-color: red; text-align: center;">
                     <p style="font-weight: bold; color: white; font-style: italic;"><%= head %></p>
                  </div>
@@ -218,7 +218,7 @@
                  <h3 style="color: rgb(67, 5, 67); font-size: .85rem; font-style: italic; margin-top: 3px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold;">H-2-H</h3>
               </a>
 
-              <a href="/parties" class="Rankings" style="height: 70%; width: 15%; position: relative;  text-decoration: none; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+              <a href="/parties" class="Rankings">
                 <div class="count" style="position: absolute; top: 2px; right: 2px; z-index: 2; height: 22px; width: 22px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-color: blue; text-align: center;">
                     <p style="font-weight: bold; color: white; font-style: italic;" ><%= party %></p>
                  </div>
@@ -226,7 +226,7 @@
                 <h3 style="color: rgb(67, 5, 67); font-size: .85rem; font-style: italic; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; margin-top: 3px; font-weight: bold;">Party</h3>
               </a>
 
-              <a href="/topdollar" class="top-earners" style="height: 80%; width: 15%; text-decoration: none; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+              <a href="/topdollar" class="top-earners">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: rgba(67, 5, 67);transform: msFilter"><path d="M15.999 8.5h2c0-2.837-2.755-4.131-5-4.429V2h-2v2.071c-2.245.298-5 1.592-5 4.429 0 2.706 2.666 4.113 5 4.43v4.97c-1.448-.251-3-1.024-3-2.4h-2c0 2.589 2.425 4.119 5 4.436V22h2v-2.07c2.245-.298 5-1.593 5-4.43s-2.755-4.131-5-4.429V6.1c1.33.239 3 .941 3 2.4zm-8 0c0-1.459 1.67-2.161 3-2.4v4.799c-1.371-.253-3-1.002-3-2.399zm8 7c0 1.459-1.67 2.161-3 2.4v-4.8c1.33.239 3 .941 3 2.4z"></path></svg>
                 <h3 style="color: rgb(67, 5, 67); font-size: .85rem; font-style: italic; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; margin-top: 3px; font-weight: bold;">TopEarners</h3>
               </a>

@@ -23,7 +23,7 @@
     }
 
     80% {
-        transform: scaleY(1.2);
+        transform: scaleY(1.3);
     }
 
     100% {
@@ -113,3 +113,153 @@
 .navbar.display {
     display: block;
 }
+
+
+
+
+
+.bets {
+    background-color: transparent;
+    display: flex; 
+    flex-flow: column nowrap; 
+    align-items: center; 
+    justify-content: space-around; 
+    width: 100vw; 
+    height: 55%;
+ }
+ 
+ .head {
+    display: block; 
+    width: 95%; 
+    height: 45%; 
+    border-radius: 25px; 
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.303), 0 6px 12px 0 rgba(0, 0, 0, 0.292); 
+    background-color: gold;
+ }
+ 
+ .party {
+     display: block; 
+     width: 95%; 
+     height: 45%; 
+     border-radius: 25px; 
+     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.303), 0 6px 12px 0 rgba(0, 0, 0, 0.292); 
+     background-color: gold;
+ }
+ 
+ .my-teams {
+     height: 80%; 
+     width: 15%; 
+     text-decoration: none; 
+     display: flex; 
+     flex-flow: column nowrap; 
+     justify-content: center; 
+     align-items: center;
+ }
+ 
+ .all-bets {
+     height: 70%; 
+     width: 15%; 
+     position: relative; 
+     text-decoration: none; 
+     display: flex; 
+     flex-flow: column nowrap; 
+     justify-content: center; 
+     align-items: center;
+ }
+ 
+ .Rankings {
+     height: 70%; 
+     width: 15%; 
+     position: relative;  
+     text-decoration: none; 
+     display: flex; 
+     flex-flow: column nowrap; 
+     justify-content: center; 
+     align-items: center;
+ }
+ 
+ .top-earners {
+     height: 80%; 
+     width: 15%; 
+     text-decoration: none; 
+     display: flex; 
+     flex-flow: column nowrap; 
+     justify-content: center; 
+     align-items: center;
+ }
+ 
+ 
+ @media screen and ( min-aspect-ratio: 16/9 ) {
+ 
+     .bets {
+       display: flex;
+       flex-flow: row nowrap;
+       justify-content: space-around;
+       align-items: center;
+       width: 100vw;
+       height: 55%;
+    }
+ 
+    .head {
+       display: block;
+       width: 45%;
+       height: 80%;
+       border-radius: 25px;
+       box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.303), 0 6px 12px 0 rgba(0, 0, 0, 0.292);
+       background-color: gold; 
+ 
+    }
+ 
+    .party {
+     display: block;
+     width: 45%;
+     height: 80%;
+     border-radius: 25px;
+     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.303), 0 6px 12px 0 rgba(0, 0, 0, 0.292);
+     background-color: gold; 
+ 
+  }
+   
+  .top-earners {
+     height: 90%; 
+     width: 80px; 
+     text-decoration: none; 
+     display: flex; 
+     flex-flow: column nowrap; 
+     justify-content: center; 
+     align-items: center;
+ }
+  
+  .Rankings {
+     height: 90%; 
+     width: 80px; 
+     position: relative;  
+     text-decoration: none; 
+     display: flex; 
+     flex-flow: column nowrap; 
+     justify-content: center; 
+     align-items: center;
+ }
+ 
+ .all-bets {
+     height: 90%; 
+     width: 80px; 
+     position: relative; 
+     text-decoration: none; 
+     display: flex; 
+     flex-flow: column nowrap; 
+     justify-content: center; 
+     align-items: center;
+ }
+ 
+ .my-teams {
+     height: 90%; 
+     width: 80px; 
+     text-decoration: none; 
+     display: flex; 
+     flex-flow: column nowrap; 
+     justify-content: center; 
+     align-items: center;
+ }
+ 
+ }

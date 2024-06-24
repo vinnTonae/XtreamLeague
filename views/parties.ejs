@@ -17,14 +17,36 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
         ::-webkit-scrollbar {
-            display: none;
+            height: 1rem;
+            width: 1rem;
         }
+
+        ::-webkit-scrollbar-track {
+            background-color: rgba(0, 0, 255, 0.41);
+            margin-inline: 50px;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-image: linear-gradient(45deg, purple, red white, red, purple);
+            border-radius: 10px;
+            border: 2px solid yellow;
+        }
+
+        @media screen and ( max-aspect-ratio: 16/9 ) {
+
+            ::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
         .buttons {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 80%;
+            height: 60%;
             width: 150px;
             margin-inline: 5px;
             padding: 20px;
@@ -71,7 +93,7 @@
 
     <main style="height: 80svh; background-color: transparent; width: 100vw; padding-top: 10px;">
 
-        <section id="gw-wrapper" style="height: 10%; width: 100%; background-color: goldenrod; display: flex; align-items: center; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-y: hidden; overflow-x: scroll;">
+        <section id="gw-wrapper" style="height: 15%; width: 100%; background-color: goldenrod; display: flex; align-items: flex-start; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-y: hidden; overflow-x: scroll;">
          
              <% gameweeks.map((gameweek) => { %>
                  
@@ -84,7 +106,7 @@
         
         
         
-        <section class="list-wrapper" style="position: relative; height: 90%; width: 100%; padding-top: 5px; display: flex; flex-flow: column nowrap; align-items: center; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-x: hidden; overflow-y: scroll;">
+        <section class="list-wrapper" style="position: relative; height: 85%; width: 100%; padding-top: 5px; display: flex; flex-flow: column nowrap; align-items: center; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-x: hidden; overflow-y: scroll;">
              
           
                 <% if ( Parties.length === 0 ) { %>
