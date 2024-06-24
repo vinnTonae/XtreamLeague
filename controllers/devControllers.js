@@ -57,7 +57,10 @@ const getDev = async (req, res) => {
 
 const getDevConsole = async (req, res) => {  
     const id = req.params.id
-    const allUsers = await User.find()
+
+    try {
+
+        const allUsers = await User.find()
 
     const updatedUsers = allUsers.filter((user) => {
         return user.points.some((pointsObject) => { return pointsObject.gameweek == id })
@@ -97,22 +100,50 @@ const getDevConsole = async (req, res) => {
     const depArray = [depHeadCount, depPartyCount]
 
     res.render('devconsole', { event: id, messages: req.flash('error'), withdraws: withdrawCount, heads: headCount, party: partyCount, users: userCount, updated: updatedCount, updatedWithdraws: updatedWithCount, updatedHead: updatedHeadCount, updatedParty: updatedPartyCount, deps: depArray })
+
+        
+    } catch (error) {
+
+        req.flash('error', 'MongoDB Access Errors')
+        res.redirect('/main')
+        
+    }
+
+    
 }
 
 const getDevUsers = async (req, res) => {
     
     const event = req.params.id
+    
+    try {
+
+        
     const allUsers = await User.find()
     
     res.render('xusers', { users: allUsers, event: event, messages: req.flash('success') })
+
+        
+    } catch (error) {
+
+        req.flash('error', 'MongoDB Access Errors')
+        res.redirect(`/dev/${event}`)
+        
+    }
+
 }
 
 const patchDevUsers = async (req, res) => {
 
     const event = req.params.id
     const { userid } = req.body
+  
     const userToUpdate = await User.findOne({ _id: userid })
     const teamId = userToUpdate.teamId
+    
+    try {
+
+        
     const baseUrl = `https://fantasy.premierleague.com/api/entry/${teamId}/history`
     const options = {
         method: 'GET',
@@ -140,43 +171,83 @@ const patchDevUsers = async (req, res) => {
 
         req.flash('success', `Gw${event} Points not Found`)
         res.redirect(`/dev/${event}/xUsers`)
+        console.log('POINTS NOT FOUND')
 
     }
+        
+    } catch (error) {
+
+        req.flash('error', 'PROXY ERRORS')
+        res.redirect(`/dev/${event}`)
+        console.log('PROXY IMENASWA')
+        
+    }
+
+   
    
 }
 
 const getDevHeads = async (req, res) => {
 
     const event = req.params.id
-    const allHeads = await Head.find({ event: event })
 
-    res.render('devheads', { gameweek: event, heads: allHeads, messages: req.flash('success') })
+    try {
+
+        const allHeads = await Head.find({ event: event })
+
+        res.render('devheads', { gameweek: event, heads: allHeads, messages: req.flash('success') })
+
+        
+    } catch (error) {
+
+        req.flash('error', 'MongoDB Access Errors')
+        res.redirect(`/dev/${event}`)
+        
+    }
+
+    
 }
 
 const updateDevHeads = async (req, res) => {
 
     const event = req.params.id
     const { betid } = req.body
-    const betDetails = await Head.findOne({ _id: betid })
-    const hostId = betDetails.hostId
-    const opponentId = betDetails.opponentId
-    const Host = await User.findOne({ teamId: hostId })
-    const Opponent = await User.findOne({ teamId: opponentId })
+    
+    try {
 
-    const hostPoints = Host.points[event - 1].points
-    const oppPoints = Opponent.points[event - 1].points
+        const betDetails = await Head.findOne({ _id: betid })
+        const hostId = betDetails.hostId
+        const opponentId = betDetails.opponentId
+        const Host = await User.findOne({ teamId: hostId })
+        const Opponent = await User.findOne({ teamId: opponentId })
+    
+        const hostPoints = Host.points[event - 1].points
+        const oppPoints = Opponent.points[event - 1].points
+    
+        const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { points: { host: hostPoints, opponent: oppPoints  } })
+    
+        req.flash('success', 'Bet Updated')
+        res.redirect(`/dev/${event}/heads`)
+    
+        
+    } catch (error) {
 
-    const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { points: { host: hostPoints, opponent: oppPoints  } })
-
-    req.flash('success', 'Bet Updated')
-    res.redirect(`/dev/${event}/heads`)
+        req.flash('success', 'Update Failed, MongoDB err')
+        res.redirect(`/dev/${event}/heads`)
+        console.log('MongoDB Update errors')
+        
+    }
+   
 }
 
 const settleDevHeads = async (req, res) => {
 
     const event = req.params.id
     const { betid } = req.body
-    const betDetails = await Head.findOne({ _id: betid })
+
+    try {
+
+        const betDetails = await Head.findOne({ _id: betid })
     const entryAmount = betDetails.amount
     const amountToPay = entryAmount * 2 
     const hostId = betDetails.hostId
@@ -250,21 +321,45 @@ const settleDevHeads = async (req, res) => {
 
 
     }
+        
+    } catch (error) {
+    
+        req.flash('success', 'MongoDB Access Errors')
+        res.redirect(`/dev/${event}/heads`)
+        console.log('MongoDB Access Errors')
+        
+    }
+   
 
 }
 
 const getDevParties = async (req, res) => {
     const event = req.params.id
-    const currentParties = await Party.find({ event: event })
+    try {
+
+        const currentParties = await Party.find({ event: event })
     
-    res.render('devparties', { parties: currentParties, event: event })
+        res.render('devparties', { parties: currentParties, event: event, messages: req.flash('error')})
+    
+        
+    } catch (error) {
+
+        req.flash('error', 'Error Accessing Parties')
+        res.redirect(`/dev/${event}`)
+        console.log('MongoDB Access Errors')
+        
+    }
+   
 }
 
 const getDevParty = async (req, res) => {
 
     const gameweek = req.params.id
     const partyId = req.params.party
-    const party = await Party.findOne({ _id: partyId })
+    
+    try {
+
+        const party = await Party.findOne({ _id: partyId })
     
     const host = party.hostId
     const hostDetails = await User.findOne({ teamId: host })
@@ -342,6 +437,16 @@ const getDevParty = async (req, res) => {
 
     res.render('devParty', {messages: req.flash('success'), event: gameweek, Party: party, winners: winner, firstObject: first, secondObject: second, thirdObject: third, host: hostDetails, players: detailsArray })
 
+        
+    } catch (error) {
+
+        req.flash('error', 'Error Accessing Party Details')
+        res.redirect(`/dev/${gameweek}/party`)
+        console.log('MongoDB Access Errors')
+        
+    }
+
+    
 }
 
 const updateDevParty = async (req, res) => {
@@ -479,9 +584,19 @@ const updateDevParty = async (req, res) => {
 
     const getDevWithdraws = async (req, res) => {
         const event = req.params.id
-        const withdraws = await Transactions.find({ tranx_type: 'Withdraw' })
+        try {
 
-        res.render('devwithdraws', { gameweek: event, Transactions: withdraws, messages: req.flash('error') })
+            const withdraws = await Transactions.find({ tranx_type: 'Withdraw' })
+
+            res.render('devwithdraws', { gameweek: event, Transactions: withdraws, messages: req.flash('error') })
+        
+            
+        } catch (error) {
+             req.flash('error', 'MongoDB Access Errors')
+             res.redirect(`/dev/${event}`)
+             console.log(error)
+        }
+       
     }
 
     const patchDevWithdraws = async (req, res) => {

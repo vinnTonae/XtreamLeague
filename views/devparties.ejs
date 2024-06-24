@@ -28,7 +28,12 @@
         <a href="/dev/<%= event %>"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon></a>
 
         <h1 style="font-style: italic; margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">partyBets</h1>
-    
+        
+        <% if (locals.messages) { %>
+                    
+            <h1 style="color: red; font-size: .8rem; position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); font-style: italic; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; "><%= messages %></h1>
+        
+        <% } %>    
     
     </header>
      
