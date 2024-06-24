@@ -238,8 +238,18 @@
              </div>
             
          </section>
+           
+         <% if ( party.betStatus.code === 1000 ) { %>
 
-       
+            <section class="join-btn" style="width: 100vw; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
+                
+                <h3 style="color: limegreen; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.5rem; font-style: italic;">Party Closed</h3>
+    
+            </section>  
+
+           <% } else { %> 
+     
+            
            <% if (host.teamId == userData.teamId)  { %>
                 
             <section class="join-btn" style="width: 100vw; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
@@ -258,7 +268,9 @@
         
             </section>
 
-             <%  }  %>
+             <% } %>
+
+        <% } %>
         
               <section class="status" style="width: 100vw; height: 8vh; display: flex; justify-content: center; align-items: center;">
                 <h3 style="margin-right: 10px; font-style: italic; font-weight: bold; color: blue;">Bet Status:</h3>
