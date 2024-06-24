@@ -256,6 +256,10 @@ const settleDevHeads = async (req, res) => {
     const Opponent = await User.findOne({ teamId: opponentId })
     const hostBalance = Host.totalBalance
     const oppBalance = Opponent.totalBalance
+    const hostTotalEarned = Host.totalEarned
+    const oppTotalEarned = Opponent.totalEarned
+    const newHostEarned = hostTotalEarned + amountToPay
+    const newOppEarned = oppTotalEarned + amountToPay
     const hostNewBalance = hostBalance + amountToPay
     const oppNewBalance = oppBalance + amountToPay
 
@@ -266,8 +270,8 @@ const settleDevHeads = async (req, res) => {
 
         try {
             
-            const updatedWinner = await User.findOneAndUpdate({ teamId: opponentId }, { totalBalance: oppNewBalance })
-            const updatedBetDetails = await Head.findByIdAndUpdate({ _id: betid }, { winner: { winnerId: opponentId, winAmount: amountToPay }, betStatus: { code: 1000, message: "Bet settled" } })
+            const updatedWinner = await User.findOneAndUpdate({ teamId: opponentId }, { $set: { totalBalance: oppNewBalance, totalEarned: newOppEarned } })
+            const updatedBetDetails = await Head.findByIdAndUpdate({ _id: betid }, { $set: { winner: { winnerId: opponentId, winAmount: amountToPay }, betStatus: { code: 1000, message: "Bet settled" } } })
             
             req.flash('success', 'Opponent Paid')
             res.redirect(`/dev/${event}/heads`)
@@ -284,8 +288,8 @@ const settleDevHeads = async (req, res) => {
 
         try {
             
-           const updatedWinner = await User.findOneAndUpdate({ teamId: hostId }, { totalBalance: hostNewBalance })
-           const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { winner: { winnerId: hostId, winAmount: amountToPay }, betStatus: { code: 1000, message: "Bet settled" } }) 
+           const updatedWinner = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: hostNewBalance, totalEarned: newHostEarned } })
+           const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { $set: { winner: { winnerId: hostId, winAmount: amountToPay }, betStatus: { code: 1000, message: "Bet settled" } } }) 
 
            req.flash('success', 'Host Paid')
            res.redirect(`/dev/${event}/heads`)
@@ -304,9 +308,9 @@ const settleDevHeads = async (req, res) => {
             const hostCompensation =  entryAmount + hostBalance
             const oppCompensation = entryAmount + oppBalance
 
-            const newHost = await User.findOneAndUpdate({ teamId: hostId }, { totalBalance: hostCompensation  })
-            const newOpp = await User.findOneAndUpdate({ teamId: hostId }, { totalBalance: oppCompensation  })
-            const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { winner: { winnerId: 'Draw', winAmount: entryAmount }, betStatus: { code: 1000, message: "Bet settled" } })
+            const newHost = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: hostCompensation  } })
+            const newOpp = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: oppCompensation  } })
+            const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { $set: { winner: { winnerId: 'Draw', winAmount: entryAmount }, betStatus: { code: 1000, message: "Bet settled" } } })
 
             req.flash('success', 'Both users Compensated')            
             res.redirect(`/dev/${event}/heads`)
@@ -462,7 +466,7 @@ const updateDevParty = async (req, res) => {
     
       try {
           
-        const updatedParty = await Party.findByIdAndUpdate({ _id: partyId }, { winners: winnerObject  })
+        const updatedParty = await Party.findByIdAndUpdate({ _id: partyId }, { $set: { winners: winnerObject  } })
 
         req.flash('success', 'Party details Updated') 
         res.redirect(`/dev/${event}/party/${partyId}`)
@@ -491,6 +495,11 @@ const updateDevParty = async (req, res) => {
         const second = await User.findOne({ teamId: secondId})
         const firstBalance = first.totalBalance
         const secondBalance = second.totalBalance
+        const firstEarned = first.totalEarned
+        const secondEarned = second.totalEarned
+        const newFirstTotalEarned = firstEarned + firstAmount
+        const newSecondTotalEarned = secondEarned + secondAmount
+
         const firstNewBalance = firstBalance + firstAmount
         const secondNewBalance = secondBalance + secondAmount
         
@@ -501,9 +510,9 @@ const updateDevParty = async (req, res) => {
      try {
               
                 
-                 const uptFirst = await User.findOneAndUpdate({ teamId: firstId }, { totalBalance: firstNewBalance })
-                 const uptSecond = await User.findOneAndUpdate({ teamId: secondId }, { totalBalance: secondNewBalance })
-                 const upParty = await Party.findByIdAndUpdate({ _id: partyid}, { betStatus: { code: 1000, message: "Bet settled" }  })
+                 const uptFirst = await User.findOneAndUpdate({ teamId: firstId }, { $set: { totalBalance: firstNewBalance, totalEarned: newFirstTotalEarned } })
+                 const uptSecond = await User.findOneAndUpdate({ teamId: secondId }, { $set: { totalBalance: secondNewBalance, totalEarned: newSecondTotalEarned } })
+                 const upParty = await Party.findByIdAndUpdate({ _id: partyid}, { $set: { betStatus: { code: 1000, message: "Bet settled" }  } })
                  
                  req.flash('success', 'Bet Settled for 2 player Party')
                  res.redirect(`/dev/${event}/party/${partyid}`)
@@ -521,14 +530,16 @@ const updateDevParty = async (req, res) => {
             const thirdAmount = partyDetails.winners.third.amount
             const third = await User.findOne({ teamId: thirdId })
             const thirdBalance = third.totalBalance
+            const thirdEarned = third.totalEarned
+            const newThirdEarned = thirdEarned + thirdAmount
             const thirdNewBalance = thirdBalance + thirdAmount
     
             try {
                 
-                const uptFirst = await User.findOneAndUpdate({ teamId: firstId }, { totalBalance: firstNewBalance })
-                const uptSecond = await User.findOneAndUpdate({ teamId: secondId }, { totalBalance: secondNewBalance })
-                const uptThird = await User.findOneAndUpdate({ teamId: thirdId }, { totalBalance: thirdNewBalance })
-                const upParty = await Party.findByIdAndUpdate({ _id: partyid}, { betStatus: { code: 1000, message: "Bet settled" } })
+                const uptFirst = await User.findOneAndUpdate({ teamId: firstId }, { $set: { totalBalance: firstNewBalance, totalEarned: newFirstTotalEarned } })
+                const uptSecond = await User.findOneAndUpdate({ teamId: secondId }, { $set: { totalBalance: secondNewBalance, totalEarned: newSecondTotalEarned  } })
+                const uptThird = await User.findOneAndUpdate({ teamId: thirdId }, { $set: { totalBalance: thirdNewBalance, totalEarned: newThirdEarned } })
+                const upParty = await Party.findByIdAndUpdate({ _id: partyid}, { $set: { betStatus: { code: 1000, message: "Bet settled" } } })
     
                 req.flash('success', 'Bet Settled for above 2 Players party')
                 res.redirect(`/dev/${event}/party/${partyid}`)
