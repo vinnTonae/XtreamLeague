@@ -64,28 +64,23 @@ const postWithdraw = async (req, res) => {
    }      
 }
 
+const postWithdrawMpesa = async (req, res) => {
+    
+    req.flash('error', 'Not yet Functional')
+    res.redirect('/main')
+     
+}
+
 const getWithdraw = async (req, res) => {
-
-    const userId = req.user._id 
-
-    try {
-      const userDetails = await User.findOne({ _id: userId }) 
+    const userDetails = await User.findOne({ _id: req.user._id }) 
 
     res.render('withdraw', { user: userDetails, messages: req.flash('error') })
-  
-    } catch (error) {
-
-        req.flash('error', 'Withdrawals are Scheduled for Wednesday')
-        res.redirect('/main')
-        console.log('MongoDB Access Errors')
-        
-    }
-    
 }
 
 module.exports = {
     patchAuthorize,
     getAuthorize,
     postWithdraw,
+    postWithdrawMpesa,
     getWithdraw
 }
