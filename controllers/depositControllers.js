@@ -73,7 +73,7 @@ const patchConfirmDeposit = async (req, res) => {
 
 const getDeposit = (req, res) => {
 
-    res.render('deposit', { CLIENT: process.env.PAYPAL_CLIENT_ID })
+    res.render('deposit', { CLIENT: process.env.PAYPAL_CLIENT_ID, messages: req.flash('error') })
 }
 
 

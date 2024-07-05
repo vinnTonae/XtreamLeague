@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 router.get('/', (req, res) => {
-    res.render('mpesa-confirm', { messages: req.flash('error') })
+    res.render('mpesaconfirm', { messages: req.flash('error') })
 })
 
 router.post('/stk', (req, res) => {
