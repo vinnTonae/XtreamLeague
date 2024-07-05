@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.loading-box {
+
+padding-top: 70px; 
+height: 84svh; 
+width: 100vw; 
+background-color: inherit; 
+display: flex; 
+flex-flow: column nowrap; 
+align-items: center; 
+justify-content: flex-start;
+ 
+}
+
+
+.spining {
+   animation: spin 1s ease-in-out 0.1s 8 normal forwards ;
+}
+
+@keyframes spin {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3) rotate(360deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(360deg);
+    }
+}

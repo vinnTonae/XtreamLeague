@@ -78,7 +78,7 @@
     height: 55%;
     width: 90%;
     padding: 15px;
-    text-align: center;
+    text-align: start;
     margin-bottom: 10px;
     border: 2px solid limegreen;
     font-size: 1.5rem;
@@ -133,7 +133,15 @@
         
     </header>
 
-    <main style="height: 80vh; width: 100vw; background-color: transparent; transition: all 1.5s ease-in-out;">
+    <div class="error-box" style="width: 100vw; height: 8vh; display: flex; align-items: center; justify-content: center;">
+      <% if (locals.messages) { %>
+       <p style="color: red; background-color: #fff; text-align: center; border-radius: 4px; font-size: 1.3rem; font-style: italic; width: 90%;
+        font-weight: bold; font-family: 'Signika', sans-serif;"><%= messages %></p>
+      <% } %>
+       
+   </div>
+
+    <main style="height: 72vh; width: 100vw; background-color: transparent; transition: all 1.5s ease-in-out;">
 
        <div class="choose" style="height: 10vh; width: 100vw; display: flex; align-items: center; justify-content: center; background-color: #fff;">
         
@@ -224,7 +232,7 @@
 
       </div>
       
-      <!-- MPESA CONTAINER FORM -->
+      <!-- ! MPESA CONTAINER FORM -->
       
       <div class="mpesa-wrapper" style="position: absolute; display: none; flex-flow: column nowrap; z-index: 10; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; height: 350px; width: 300px; border-radius: 20px; background-color: antiquewhite; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29);">
 
@@ -239,7 +247,7 @@
         
       </article>
       
-      <form action="/token" method="post" class="formbox-mpesa">
+      <form action="mpesa/stk" method="post" class="formbox-mpesa">
         
         <div class="token-select">
         

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm</title>
+    <link rel="stylesheet" href="mpesa.css">
+    <script defer src="mpesa.js"></script>
+</head>
+<body style="background-color: rgba(0, 255, 0, 0.21); position: relative; height: 100svh; width: 100vw;">
+
+    <header style="height: 8svh; width: 100vw; display: flex; align-items: center; justify-content: space-between; padding-inline: 10px;">
+        <img src="/logos/mpesa.png" alt="Mpesa" width="120" height="70">
+        <img src="/logos/safaricom.png" alt="Safaricom" width="150" height="70">
+    </header>
+
+    <section class="error" style="width: 100vw; height: 8svh; display: flex; align-items: center; justify-content: center;">
+        
+        <!-- ! ALL ERROR MESSAGES DISPLAYED HERE -->
+           <% if (locals.messages) { %> 
+
+            <p style="color: red; background-color: #fff; text-align: center; border-radius: 4px; font-size: 1.2rem; font-style: italic; width: 90%;
+             font-weight: bold; font-family: 'Signika', sans-serif;"><%= messages %></p>
+           
+           <% } %>
+            
+    </section>
+
+    <!-- TODO: TWO BOXES NEEDED, { Loading icon BOX }, { formBox comfirm patch BOX } -->
+    <!-- ! CURRENTLY DISPLAY SPINNING LOGO ON LOAD 5 SECONDS ITERATION -->
+
+    <section class="loading-box">
+        
+        <h1 style="font-family: 'Signika', sans-serif;  font-size: 1.35rem; text-align: center; font-style: italic; font-weight: bold; color: purple; margin-bottom: 40px;">Success!!..Transaction Processing... </h1>
+        <h2 style="font-family: 'Signika', sans-serif;  font-size: 1.1rem; text-align: center; font-style: italic; font-weight: bold; color: blue;">An STK prompt will be pushed To Your Phone</h2>
+        <article style="background-image: linear-gradient(45deg, lime, white, white, lime); margin-block: 40px; width: 100vw; height: 40%; display: grid; place-items: center;">
+
+            <img class="spining" src="/logos/plicon.png" alt="" height="70" width="70">
+            
+        </article>
+        <h2 style="font-family: 'Signika', sans-serif;  font-size: 1.1rem; text-align: center; font-style: italic; font-weight: bold; color: purple;">Powered by Safaricom</h2>
+        
+
+    </section>
+
+    <!-- todo: Attach eventlisteners for form below  -->
+    <!-- ! CURRENTLY DISPLAY NONE -->
+
+    <form class="confirm-box" style="position: absolute; top: 50%;  left: 50%; transform: translate(-50%, -50%); height: 50%; width: 95%; border-radius: 20px; 
+       background-color: aliceblue; border: 2px solid lightblue; box-shadow: 0 5px 10px 0 rgba(11, 103, 196, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29) ; 
+       display: none; flex-flow: column nowrap; align-items: center; justify-content: center; padding-top: 10px;">
+
+        <h1 style="color: limegreen; margin-bottom: 10px; font-family: 'Signika', sans-serif; font-style: italic; font-size: 1.7rem; font-weight: bold;">Recharge Your Account</h1>
+        <article style="display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 5px;">
+            <img src="/logos/mpesa.png" alt="MPESA" height="80" width="120" />
+            <img src="/logos/plicon.png" alt="PL" height="50" width="50">
+        </article>
+        <div class="instructions" style="margin-bottom: 10px; width: 100%; display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; background-color: #fff; height: 30%;">
+           <p style="margin-bottom: 20px; color: blue; text-align: center; text-wrap: wrap; 
+           font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.1rem; font-style: italic; 
+           font-weight: bold;">Confirm After Receiving Confirmation message</p>
+           <p style="color: blue; text-align: center; text-wrap: wrap; 
+           font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.1rem; font-style: italic; 
+           font-weight: bold;" >Confirm also after You Cancelled the transaction</p>
+        </div>
+        
+        <input type="text" name="reqid" value="mpesa-checkout-request-id" style="display: none;">
+
+        <button style="height: 8svh; width: 85%; border: none; border-radius: 10px; font-size: 1.5rem; background-color: purple; color: white; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic;
+         outline: none;" >Confirm Payment</button>
+       
+
+    </form>
+
+    
+  
+</body>
+</html>

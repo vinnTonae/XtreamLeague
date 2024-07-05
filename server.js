@@ -43,6 +43,7 @@ const registerRoute = require('./routes/register-route')
 const patchIdRoute = require('./routes/patchid-route')
 const topdollarRoute = require('./routes/topdollar-route')
 const transactionRoute = require('./routes/transaction-route')
+const mpesaRoutes = require('./routes/mpesa-routes')
 const devRoutes = require('./routes/dev-routes')
 const { getBootstrap } = require('./controllers/profileControllers')
 
@@ -109,6 +110,7 @@ app.use('/main', mainRoute)
 app.use('/patchId', patchIdRoute)
 app.use('/register', registerRoute)
 app.use('/search', searchRoute)
+app.use('/mpesa', mpesaRoutes)
 app.use('/dev', devRoutes)
 
 
