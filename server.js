@@ -43,7 +43,7 @@ const registerRoute = require('./routes/register-route')
 const patchIdRoute = require('./routes/patchid-route')
 const topdollarRoute = require('./routes/topdollar-route')
 const transactionRoute = require('./routes/transaction-route')
-const mpesaRoutes = require('./routes/mpesa-routes')
+const mpesaRoutes = require('./routes/mpesa')
 const devRoutes = require('./routes/dev-routes')
 const { getBootstrap } = require('./controllers/profileControllers')
 
