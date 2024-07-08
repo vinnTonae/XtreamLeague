@@ -25,6 +25,8 @@ const getAccessToken =  async () => {
         return token
         
     } catch (error) {
+
+        console.log(error)
         
         const token = null
         return token
