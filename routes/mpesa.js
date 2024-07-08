@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const router = require('express').Router()
 
+const axios = require('axios')
 const Transactions = require('../models/transactions')
 const User = require('../models/xtreamUsers')
 
@@ -26,7 +27,6 @@ const getAccessToken =  async () => {
         
     } catch (error) {
 
-        console.log(error)
         
         const token = null
         return token
