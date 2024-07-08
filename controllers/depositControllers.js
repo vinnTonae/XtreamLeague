@@ -25,6 +25,7 @@ const postConfirmDeposit =  async (req, res) => {
     
     const newTransaction = new Transactions({
          tranx_type: 'Deposit',
+             method: 'paypal',
              userId: userId,
              amount: valueToAdd(),
              status: status,

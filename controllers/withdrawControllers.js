@@ -25,6 +25,7 @@ const postWithdraw = async (req, res) => {
     const userId = req.user._id
     const userDetails = await User.findOne({ _id: userId })
     const pplEmail = userDetails.payPal
+    const method = 'paypal'
     const status = "pending"
     const tranx_type = "Withdraw"
     const userBalance = userDetails.totalBalance
@@ -34,9 +35,9 @@ const postWithdraw = async (req, res) => {
          req.flash('error', 'You have Insufficient Funds')
          res.redirect('/withdraw') 
 
-    } else if ( amount < 300 ) {
+    } else if ( amount < 150 ) {
           
-         req.flash('error', 'Minimum Withdrawable Amount is KSH 300')
+         req.flash('error', 'Minimum Withdrawable Amount is KSH 150')
          res.redirect('/withdraw')
         
     } else {
@@ -45,6 +46,7 @@ const postWithdraw = async (req, res) => {
     const withdrawTransaction = new Transactions({
           tranx_type,
           userId,
+          method,
           amount,
           status,
           pplEmail
@@ -66,8 +68,51 @@ const postWithdraw = async (req, res) => {
 
 const postWithdrawMpesa = async (req, res) => {
     
-    req.flash('error', 'Not yet Functional')
-    res.redirect('/main')
+    const { amount } = req.body
+    const userId = req.user._id
+    const userDetails = await User.findOne({ _id: userId })
+    const method = 'mpesa'
+    const status = "pending"
+    const tranx_type = "Withdraw"
+    const mpesa = userDetails.mpesa
+    const userBalance = userDetails.totalBalance
+
+    if ( userBalance < amount ) {
+
+         req.flash('error', 'You have Insufficient Funds')
+         res.redirect('/withdraw') 
+
+    } else if ( amount < 50 ) {
+          
+         req.flash('error', 'Minimum Withdrawable Amount is KSH 300')
+         res.redirect('/withdraw')
+        
+    } else {
+
+
+    const withdrawTransaction = new Transactions({
+          tranx_type,
+          userId,
+          method,
+          amount,
+          status,
+          mpesaObject: {
+            mpesaNumber: mpesa, 
+          }
+    }).save().then((tranx) => {
+        const amount = tranx.amount
+        const user = tranx.userId
+       
+
+        res.redirect(`/authorize?ajaxppluser=${user}&deduct=${amount}`)
+            
+    })
+    .catch((error) => {
+        console.log(error)
+        req.flash('error', 'Withdraw request Failed')
+        res.redirect('/main')
+        })
+   }   
      
 }
 

@@ -11,6 +11,7 @@ const xtreamSchema = new Schema({
         teamName: { type: String, default: 'none', required: false },
     totalBalance: { type: Number, default: 0.00, required: false  },
           payPal: { type: String, default: 'xxx@paypal.com', required: false },
+           mpesa: { type: String, default: 254, required: false},
          favTeam: { type: Number, default: 0, required: false },
           points: { type: Array, default: [], required: false },
      totalEarned: { type: Number, default: 0, required: false }    

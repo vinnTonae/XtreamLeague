@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const transactionSchema = new Schema({
-    tranx_type: { type: String, required: true }, 
+    tranx_type: { type: String, required: true },
+        method: { type: String, required: true}, 
         userId: { type: String, required: true },
         amount: { type: Number, default: 0, required: false },
         status: { type: String, required: true },         

@@ -46,7 +46,7 @@
     <!-- todo: Attach eventlisteners for form below  -->
     <!-- ! CURRENTLY DISPLAY NONE -->
 
-    <form class="confirm-box" style="position: absolute; top: 50%;  left: 50%; transform: translate(-50%, -50%); height: 50%; width: 95%; border-radius: 20px; 
+    <form action="/mpesa/confirm?_method=PATCH" method="post" class="confirm-box" style="position: absolute; top: 50%;  left: 50%; transform: translate(-50%, -50%); height: 50%; width: 95%; border-radius: 20px; 
        background-color: aliceblue; border: 2px solid lightblue; box-shadow: 0 5px 10px 0 rgba(11, 103, 196, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29) ; 
        display: none; flex-flow: column nowrap; align-items: center; justify-content: center; padding-top: 10px;">
 
@@ -61,12 +61,12 @@
            font-weight: bold;">Confirm After Receiving Confirmation message</p>
            <p style="color: blue; text-align: center; text-wrap: wrap; 
            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.1rem; font-style: italic; 
-           font-weight: bold;" >Confirm also after You Cancelled the transaction</p>
+           font-weight: bold;" >Confirm also after You Cancel the transaction</p>
         </div>
         
-        <input type="text" name="reqid" value="mpesa-checkout-request-id" style="display: none;">
+        <input type="text" name="reqid" value="<%= reqID %>" style="display: none;">
 
-        <button style="height: 8svh; width: 85%; border: none; border-radius: 10px; font-size: 1.5rem; background-color: purple; color: white; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic;
+        <button type="submit" style="height: 8svh; width: 85%; border: none; border-radius: 10px; font-size: 1.5rem; background-color: purple; color: white; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic;
          outline: none;" >Confirm Payment</button>
        
 
