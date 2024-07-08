@@ -39,7 +39,7 @@ const getAccessToken =  async () => {
 router.post('/stk', async (req, res) => {
      
     const { mpesaAmount, phone } = req.body
-    
+    const amount = 1    
     const requiredlength = phone.toString().length
     const startingNum = phone.toString().charAt(0)
 
@@ -83,7 +83,7 @@ router.post('/stk', async (req, res) => {
             "Password": password,    
             "Timestamp": timestamp,    
             "TransactionType": "CustomerBuyGoodsOnline",    
-            "Amount": mpesaAmount,    
+            "Amount": amount,    
             "PartyA": correctPhone,    
             "PartyB": '8811882',    
             "PhoneNumber": correctPhone,    
