@@ -597,7 +597,7 @@ const updateDevParty = async (req, res) => {
         
     }
 
-    router.delete('/:id/mpesa-delete', async (req, res) => {
+    const deleteMpesaDeps = async (req, res) => {
     
         const { event } = req.body
         const deleteDeprDeposits = await Transactions.deleteMany({ userId: 'failed' })
@@ -606,7 +606,9 @@ const updateDevParty = async (req, res) => {
     
         
     
-    })
+    }
+
+  
 
 
 
@@ -663,6 +665,7 @@ module.exports = {
     settleDevParty,
     deleteDepHeads,
     deleteDepParties,
+    deleteMpesaDeps,
     getDevWithdraws,
     patchDevWithdraws
 }
