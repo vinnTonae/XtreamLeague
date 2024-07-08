@@ -36,7 +36,7 @@ const postConfirmDeposit =  async (req, res) => {
              
     }).catch((error) => {
         console.log(error)
-        req.flash('error', 'Failed to update transaction. Please contact 0111371137 ')
+        req.flash('error', 'Failed to update transaction. Please contact 0701280373')
         res.redirect('/main')
     })
 
