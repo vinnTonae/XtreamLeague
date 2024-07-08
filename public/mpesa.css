@@ -19,7 +19,7 @@ justify-content: flex-start;
 
 
 .spining {
-   animation: spin 1s ease-in-out 0.1s 8 normal forwards ;
+   animation: spin 1s ease-in-out 0.1s 13 normal forwards ;
 }
 
 @keyframes spin {

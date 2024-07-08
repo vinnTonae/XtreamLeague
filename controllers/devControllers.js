@@ -65,6 +65,10 @@ const getDevConsole = async (req, res) => {
     const updatedUsers = allUsers.filter((user) => {
         return user.points.some((pointsObject) => { return pointsObject.gameweek == id })
     })
+
+    const deprecatedTranx = await Transactions.find({ tranx_type: 'Deposit', userId: 'failed' })
+    const depTranxCount = deprecatedTranx.length
+
     
     const withdraws = await Transactions.find({ tranx_type: 'Withdraw' })
     const withdrawCount = withdraws.length
@@ -97,7 +101,7 @@ const getDevConsole = async (req, res) => {
     const updatedPartyCount = updatedParty.length     
     const depHeadCount = depricatedHeads.length
     const depPartyCount = depricatedParty.length 
-    const depArray = [depHeadCount, depPartyCount]
+    const depArray = [depHeadCount, depPartyCount, depTranxCount]
 
     res.render('devconsole', { event: id, messages: req.flash('error'), withdraws: withdrawCount, heads: headCount, party: partyCount, users: userCount, updated: updatedCount, updatedWithdraws: updatedWithCount, updatedHead: updatedHeadCount, updatedParty: updatedPartyCount, deps: depArray })
 
@@ -592,6 +596,19 @@ const updateDevParty = async (req, res) => {
 
         
     }
+
+    router.delete('/:id/mpesa-delete', async (req, res) => {
+    
+        const { event } = req.body
+        const deleteDeprDeposits = await Transactions.deleteMany({ userId: 'failed' })
+    
+        res.redirect(`/dev/${event}`)
+    
+        
+    
+    })
+
+
 
     const getDevWithdraws = async (req, res) => {
         const event = req.params.id

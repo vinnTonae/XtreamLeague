@@ -8,7 +8,7 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         loadingBox.style.display = 'none'
         formBox.style.display = 'flex'
-    }, 9000)
+    }, 15000)
 })
 
     

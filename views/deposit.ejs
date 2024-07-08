@@ -125,7 +125,7 @@
 </head>
 <body style="width: 100vw; background-color: white;">
     <header style="height: 10vh; width: 100%; display: flex; align-items: center; justify-content: space-between;">
-        <div style="margin-left: 10px; display: flex; align-items: center; justify-content: center;">
+        <div style="display: flex; align-items: center; justify-content: center;">
           <div><a href="/main"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon></a></div>
             <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Deposit</h1>
         </div>
@@ -133,13 +133,15 @@
         
     </header>
 
+    
+
     <div class="error-box" style="width: 100vw; height: 8vh; display: flex; align-items: center; justify-content: center;">
-      <% if (locals.messages) { %>
-       <p style="color: red; background-color: #fff; text-align: center; border-radius: 4px; font-size: 1.3rem; font-style: italic; width: 90%;
-        font-weight: bold; font-family: 'Signika', sans-serif;"><%= messages %></p>
-      <% } %>
-       
-   </div>
+       <% if (locals.messages) { %>
+        <p style="color: red; background-color: #fff; text-align: center; border-radius: 4px; font-size: 1.3rem; font-style: italic; width: 90%;
+         font-weight: bold; font-family: 'Signika', sans-serif;"><%= messages %></p>
+       <% } %>
+        
+    </div>
 
     <main style="height: 72vh; width: 100vw; background-color: transparent; transition: all 1.5s ease-in-out;">
 
@@ -232,9 +234,9 @@
 
       </div>
       
-      <!-- ! MPESA CONTAINER FORM -->
+      <!-- MPESA CONTAINER FORM -->
       
-      <div class="mpesa-wrapper" style="position: absolute; display: none; flex-flow: column nowrap; z-index: 10; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; height: 350px; width: 300px; border-radius: 20px; background-color: antiquewhite; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29);">
+      <div class="mpesa-wrapper" style="position: absolute; display: none; flex-flow: column nowrap; z-index: 10; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; height: 350px; width: 300px; border-radius: 20px; background-color: firebrick;">
 
       <!-- CLOSE BTN -->
       <article>
@@ -247,12 +249,12 @@
         
       </article>
       
-      <form action="mpesa/stk" method="post" class="formbox-mpesa">
+      <form action="/mpesa/stk" method="post" class="formbox-mpesa">
         
         <div class="token-select">
         
           <img src="/logos/coin.png" alt="kSH" height="35" width="35" style="margin-right: 10px;"> 
-          <h3 id="token-display">KSH <span id="displayAmount">100</span></h3>
+          <h3 id="token-display">KSH <span id="displayAmount"></span></h3>
         </div>
           
           <div class="input-box">
@@ -262,7 +264,7 @@
           
          <div class="input-amount" style="display: none;">
  
-            <input id="mpesa-amount" name="mpesaAmount" type="number"/>
+            <input id="mpesa-amount" name="mpesaAmount" type="number" required>
 
          </div>
 
@@ -272,6 +274,8 @@
        </form>
     </div>
 
+
+ 
 
    
 
