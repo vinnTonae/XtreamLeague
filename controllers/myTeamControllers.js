@@ -6,11 +6,12 @@ const User = require('../models/xtreamUsers')
 const getOpponentId = async (req, res) => {
     const eventId = req.params.id
     const opponentId = req.params.opponent
+    const fplBaseUrl = process.env.FPLBASE
 
     try {
 
         
-    const baseUrl = `https://fantasy.premierleague.com/api/entry/${opponentId}/event/${eventId}/picks/`
+    const baseUrl = `${fplBaseUrl}/entry/${opponentId}/event/${eventId}/picks/`
     const options = {
         method: 'GET',
         agent: new HttpsProxyAgent(proxyInstance), 
@@ -23,7 +24,7 @@ const getOpponentId = async (req, res) => {
     for (let i = 0; i < players.length; i++) {
         array.push(players[i].element)
     }
-    const baseUrl2 = 'https://fantasy.premierleague.com/api/bootstrap-static/'
+    const baseUrl2 = `${fplBaseUrl}/bootstrap-static/`
     const bootstrap = await fetch(baseUrl2, options)
     const bootstrapAll  = await bootstrap.json()
     const playersAll = await bootstrapAll.elements
@@ -83,10 +84,11 @@ const getMyTeamId = async (req, res) => {
     const userData = req.user
     const userTeamId = req.user.teamId
     const eventNumber = req.params.id
+    const fplBaseUrl = process.env.FPLBASE
      
     try {
 
-        const baseUrl = `https://fantasy.premierleague.com/api/entry/${userTeamId}/event/${eventNumber}/picks/`
+        const baseUrl = `${fplBaseUrl}/entry/${userTeamId}/event/${eventNumber}/picks/`
         const options = {
             method: 'GET', 
             agent: new HttpsProxyAgent(proxyInstance),
@@ -99,7 +101,7 @@ const getMyTeamId = async (req, res) => {
         for (let i = 0; i < players.length; i++) {
             array.push(players[i].element)
         }
-        const baseUrl2 = 'https://fantasy.premierleague.com/api/bootstrap-static/'
+        const baseUrl2 = `${fplBaseUrl}/bootstrap-static/`
         const bootstrap = await fetch(baseUrl2, options)
         const bootstrapAll  = await bootstrap.json()
         const playersAll = await bootstrapAll.elements
@@ -155,10 +157,11 @@ const getMyTeam = async (req, res) => {
     
     const userData = req.user
     const userTeamId = req.user.teamId
+    const fplBaseUrl = process.env.FPLBASE
 
     try {
 
-        const baseUrl = `https://fantasy.premierleague.com/api/entry/${userTeamId}/event/1/picks/`
+        const baseUrl = `${fplBaseUrl}/entry/${userTeamId}/event/1/picks/`
         const options = {
             method: 'GET', 
             agent: new HttpsProxyAgent(proxyInstance),
@@ -171,7 +174,7 @@ const getMyTeam = async (req, res) => {
         for (let i = 0; i < players.length; i++) {
             array.push(players[i].element)
         }
-        const baseUrl2 = 'https://fantasy.premierleague.com/api/bootstrap-static/'
+        const baseUrl2 = `${fplBaseUrl}/bootstrap-static/`
         const bootstrap = await fetch(baseUrl2, options)
         const bootstrapAll  = await bootstrap.json()
         const playersAll = await bootstrapAll.elements

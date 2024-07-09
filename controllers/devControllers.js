@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const User = require('../models/xtreamUsers')
 const Head = require('../models/head2head')
 const Party = require('../models/party')
@@ -11,10 +13,11 @@ const { proxyInstance } = require('../controllers/test')
 const getDev = async (req, res) => {
     const array = []
     const chunk = 38
+    const fplBaseUrl = process.env.FPLBASE
 
     try {
              
-     const baseUrl = 'https://fantasy.premierleague.com/api/bootstrap-static'
+     const baseUrl = `${fplBaseUrl}/bootstrap-static`
      const options = {
          method: 'GET',
          agent: new HttpsProxyAgent(proxyInstance),

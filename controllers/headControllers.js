@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const { caseInSwitch } = require('../controllers/test')
 
 const Head = require('../models/head2head')
@@ -10,10 +12,11 @@ const { proxyInstance } = require('../controllers/test')
 const getBetHead = async (req, res) => {
     const xUser = req.user
     const month = new Date().getMonth()
+    const fplBaseUrl = process.env.FPLBASE
 
     try {
 
-        const baseUrl = 'https://fantasy.premierleague.com/api/bootstrap-static'
+        const baseUrl = `${fplBaseUrl}/bootstrap-static`
         const options = {
             method: 'GET',
             agent: new HttpsProxyAgent(proxyInstance),
@@ -22,7 +25,7 @@ const getBetHead = async (req, res) => {
         const  response = await fetch(baseUrl, options)
         const data = await response.json()
         const phases = data.phases
-        const currentPhase = caseInSwitch(month + 2)
+        const currentPhase = caseInSwitch(month)
         //console.log(phases)
         const array = []
         const chunk = 38
@@ -48,7 +51,7 @@ const getBetHead = async (req, res) => {
                     })
                     const bootstrapDeadline = new Date(event.deadline_time)
                     const dateNow = new Date()
-                    const customDiffMs = ( dateNow - bootstrapDeadline ) + 86400000
+                    const customDiffMs = ( bootstrapDeadline - dateNow ) + 86400000
                 
             
                     dataArray.push( [gameweek, event.deadline_time, customDiffMs ] )
@@ -58,7 +61,7 @@ const getBetHead = async (req, res) => {
                     return event[2] > 0
                 })
                 const msToDeadline = latestGameweek[2]
-                const daysLeft = Math.ceil(msToDeadline / 86400000)
+                const daysLeft = Math.floor(msToDeadline / 86400000)
                 const eventObject = [latestGameweek[0], daysLeft]
     
     

@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const { caseInSwitch } = require('../controllers/test')
 const User = require('../models/xtreamUsers')
 const Party = require('../models/party')
@@ -271,11 +273,12 @@ const postBetParty = (req, res) => {
 const getBetParty = async (req, res) => {
     
     const userData = req.user
+    const fplBaseUrl = process.env.FPLBASE
     
     try {
      
     const month = new Date().getMonth()
-    const baseUrl = 'https://fantasy.premierleague.com/api/bootstrap-static'
+    const baseUrl = `${fplBaseUrl}/bootstrap-static`
     const options = {
         method: 'GET',
         agent: new HttpsProxyAgent(proxyInstance),
@@ -284,7 +287,7 @@ const getBetParty = async (req, res) => {
     const  response = await fetch(baseUrl, options)
     const data = await response.json()
     const phases = data.phases
-    const currentPhase = caseInSwitch(month + 2)
+    const currentPhase = caseInSwitch(month)
     //console.log(phases)
     const array = []
     const chunk = 38
@@ -308,7 +311,7 @@ const getBetParty = async (req, res) => {
                 })
                  const bootstrapDeadline = new Date(event.deadline_time)
                  const dateNow = new Date()
-                 const customDiffMs = (dateNow - bootstrapDeadline) + 86400000 
+                 const customDiffMs = ( bootstrapDeadline - dateNow ) + 86400000 
 
                  dataArray.push([gameweek, event.deadline_time, customDiffMs])
                     
@@ -318,7 +321,7 @@ const getBetParty = async (req, res) => {
                 return event[2] > 0
             })
             const msToDeadline = latestGameweek[2]
-            const daysLeft = Math.ceil( (msToDeadline / 86400000) )
+            const daysLeft = Math.floor( (msToDeadline / 86400000) )
             const eventObject = [latestGameweek[0], daysLeft]
 
 

@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const User = require('../models/xtreamUsers')
 const Head = require('../models/head2head')
 const Party = require('../models/party')
@@ -20,6 +22,7 @@ const getSearch = (req, res) => {
 const patchUserId = async (req, res) => {
     const id = req.user._id
     const { teamid } = req.body
+    const fplBaseUrl = process.env.FPLBASE
     
     try {
 
@@ -28,7 +31,7 @@ const patchUserId = async (req, res) => {
             agent: new HttpsProxyAgent(proxyInstance),
             accept: 'application/json'
         }
-        const baseUrl = `https://fantasy.premierleague.com/api/entry/${teamid}/`
+        const baseUrl = `${fplBaseUrl}/entry/${teamid}/`
         const response = await fetch(baseUrl, options)
         const data = await response.json()
         const favPlTeam = data.favourite_team
@@ -70,6 +73,8 @@ const patchUserId = async (req, res) => {
 
 const postRegister = async (req, res) => {
     const id = req.body.id
+
+    const fplBaseUrl = process.env.FPLBASE
     
     if (!id) {
         req.flash('error', 'Please Enter a League ID' )
@@ -78,7 +83,7 @@ const postRegister = async (req, res) => {
     
     try {
 
-    const baseUrl = `https://fantasy.premierleague.com/api/leagues-classic/${id}/standings/`
+    const baseUrl = `${fplBaseUrl}/leagues-classic/${id}/standings/`
     const options = {
         method: 'GET',
          agent: new HttpsProxyAgent(proxyInstance),
@@ -135,7 +140,10 @@ const getTopDollar = async (req, res) => {
 }
 
 const getBootstrap = async (req, res) => {
-    const baseUrl = "https://fantasy.premierleague.com/api/bootstrap-static"
+
+    const fplBaseUrl = process.env.FPLBASE
+    
+    const baseUrl = `${fplBaseUrl}/bootstrap-static`
     const options = {
         method: 'GET',
         agent: new HttpsProxyAgent(proxyInstance),
