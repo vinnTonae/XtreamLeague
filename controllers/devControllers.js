@@ -600,9 +600,19 @@ const updateDevParty = async (req, res) => {
     const deleteMpesaDeps = async (req, res) => {
     
         const { event } = req.body
-        const deleteDeprDeposits = await Transactions.deleteMany({ userId: 'failed' })
+
+        try {
+            const deleteDeprDeposits = await Transactions.deleteMany({ userId: 'failed' })
     
-        res.redirect(`/dev/${event}`)
+            res.redirect(`/dev/${event}`)
+            
+        } catch (error) {
+
+            req.flash('error', 'MongoDB error')
+            res.redirect(`/dev/${event}`)
+            
+        }
+       
     
         
     
