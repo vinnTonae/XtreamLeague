@@ -48,7 +48,17 @@
             <section style="position: relative; background-color: antiquewhite; scroll-snap-align: start; display: flex; align-items: center; justify-content: flex-start; width: 95%; height: 80px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); border-radius: 0 20px 20px 0; margin-block: 10px;">
             
                 <div class="competitors" style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; padding: 5px; height: 100%; width: 85%;">
-                   <h2 style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;"><%= tranx.pplEmail %></h2>
+                     
+                    <% if (tranx.method == 'paypal') { %>
+                      
+                      <h2 style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;"><%= tranx.pplEmail %></h2>
+                      
+                      <% } else { %>
+                        
+                        <h2 style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;"><%= tranx.mpesaObject.mpesaNumber %></h2>
+
+                      <% } %>
+                     
                    
                    <h2 style="margin-block: 5px; text-align: center; text-wrap: wrap; font-size: 1.1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: limegreen;">KSH <%= tranx.amount %></h2>
     
@@ -66,8 +76,17 @@
                 <form action="/dev/<%= gameweek %>/withdraws/settle?_method=PATCH" method="post" style="position: relative; background-color: white; scroll-snap-align: start; display: flex; align-items: center; justify-content: flex-start; width: 95%; height: 80px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); border-radius: 0 20px 20px 0; margin-block: 10px;">
             
                     <div class="competitors" style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; padding: 5px; height: 100%; width: 85%;">
-                       <h2 style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;"><%= tranx.pplEmail %></h2>
-                       
+
+                      <% if (tranx.method == 'paypal') { %>
+                      
+                        <h2 style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;"><%= tranx.pplEmail %></h2>
+                        
+                        <% } else { %>
+                          
+                          <h2 style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;"><%= tranx.mpesaObject.mpesaNumber %></h2>
+  
+                        <% } %>
+                      
                        <h2 style="margin-block: 5px; text-align: center; text-wrap: wrap; font-size: 1.1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: limegreen;">KSH <%= tranx.amount %></h2>
         
                     </div>

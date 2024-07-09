@@ -82,9 +82,9 @@ const postWithdrawMpesa = async (req, res) => {
          req.flash('error', 'You have Insufficient Funds')
          res.redirect('/withdraw') 
 
-    } else if ( amount < 50 ) {
+    } else if ( amount < 150 ) {
           
-         req.flash('error', 'Minimum Withdrawable Amount is KSH 300')
+         req.flash('error', 'Minimum Withdrawable Amount is KSH 150')
          res.redirect('/withdraw')
         
     } else {
