@@ -46,7 +46,7 @@
     <!-- todo: Attach eventlisteners for form below  -->
     <!-- ! CURRENTLY DISPLAY NONE -->
 
-    <form action="/mpesa/confirm?_method=PATCH" method="post" class="confirm-box" style="position: absolute; top: 50%;  left: 50%; transform: translate(-50%, -50%); height: 50%; width: 95%; border-radius: 20px; 
+    <form action="/mpesa/confirm?_method=PATCH" method="post" onsubmit="disable()" class="confirm-box" style="position: absolute; top: 50%;  left: 50%; transform: translate(-50%, -50%); height: 50%; width: 95%; border-radius: 20px; 
        background-color: aliceblue; border: 2px solid lightblue; box-shadow: 0 5px 10px 0 rgba(11, 103, 196, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29) ; 
        display: none; flex-flow: column nowrap; align-items: center; justify-content: center; padding-top: 10px;">
 
@@ -66,13 +66,22 @@
         
         <input type="text" name="reqid" value="<%= reqID %>" style="display: none;">
 
-        <button type="submit" style="height: 8svh; width: 85%; border: none; border-radius: 10px; font-size: 1.5rem; background-color: purple; color: white; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic;
-         outline: none;" >Confirm Payment</button>
+        <button type="submit" id="confirm-btn" style="height: 8svh; width: 85%; border: none; border-radius: 10px; font-size: 1.5rem; background-color: purple; color: white; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic;
+         outline: none;">Confirm Payment</button>
        
 
     </form>
 
-    
+    <script>
+       
+       const button = document.getElementById('confirm-btn')
+
+       function disable() {
+        button.disabled = true;
+        button.style.backgroundColor = 'blue';
+       }
+
+    </script>
   
 </body>
 </html>

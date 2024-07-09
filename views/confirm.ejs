@@ -17,14 +17,14 @@
 
 
 body {
-    background-image: linear-gradient(45deg, goldenrod, gold, whitesmoke, white, whitesmoke, gold, goldenrod);
+    background-color: rgba(0, 0, 255, 0.25);
 
 }
 
 .wrapper {
     position: absolute;
     z-index: 10;
-    top: 40%;
+    top: 45%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     width: 80vw;
@@ -56,16 +56,16 @@ body {
 }
 
 .form-box form .input-box button {
-    width: min(300px, 85%);
+    width: 100%;
     height: 100%;
     outline: none;
     border: none;
-    border-radius: 20px;
-    font-size: 1.3rem;
-    font-family: cursive;
-    font-weight: 300;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-family: 'Signika', sans-serif;
+    font-weight: bold;
     color: white;
-    background-color: blue;
+    background-color: purple;
 }
 
 .form-box form .input-box input {
@@ -104,13 +104,12 @@ body {
 
 .header-box h1 {
     color: blue;
-    white-space: nowrap;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-style: italic;
     text-align: center;
     text-wrap: wrap;
     font-weight: bold;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Signika', sans-serif;
 }
 
 .header-box .h2 {
@@ -163,7 +162,7 @@ body {
           </div>
  
           <div class="form-box" style="display: flex; justify-content: center; width: 100%; height: 60%;">
-             <form action="/confirm-deposit?_method=PATCH" method="post" style=" display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 80%; height: 100%;">
+             <form action="/confirm-deposit?_method=PATCH" method="post" onsubmit="disable()" style=" display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 80%; height: 100%;">
                
                <div class="input-box" style="display: none;">
                   <input type="text" name="pplEmail" value="<%= deposit.email%>">
@@ -173,7 +172,7 @@ body {
              </div>
                
                <div class="input-box">
-                  <button type="submit" style="cursor: pointer;" type="submit">Continue</button>
+                  <button type="submit" style="cursor: pointer;" id="btnSubmit">Continue</button>
                </div> 
                
              </form>
@@ -188,6 +187,16 @@ body {
   
    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>   
+   <script>
+      
+      const button = document.getElementById('btnSubmit')
+
+      function disable() {
+            button.disabled = true;
+            button.style.display = 'none';
+      }
+
+   </script>
 </body>
 </html>
 
