@@ -137,7 +137,7 @@ router.post(`/${process.env.CALLBACK}`, (req, res) => {
            tranx_type: 'Deposit',
                method: 'mpesa',
                userId: 'failed',
-               status: 'pending',
+               status: 'complete',
           mpesaObject: {
                    reqID: merchantID,
                    status: {

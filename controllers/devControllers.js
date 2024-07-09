@@ -662,6 +662,7 @@ const updateDevParty = async (req, res) => {
         }
     }
 
+    
 
 
 module.exports = {
@@ -680,5 +681,6 @@ module.exports = {
     deleteDepParties,
     deleteMpesaDeps,
     getDevWithdraws,
-    patchDevWithdraws
+    patchDevWithdraws,
+    getDevDeposits
 }
