@@ -52,14 +52,30 @@
         </section>
            
               <!-- COUNTDOWN SECTION -->
+           
+            <% if ( countdown !== 'null') { %>
 
-        <section class="countdown" style="width: 100%; height: 5%; padding-inline: 10px; background-color: greenyellow; display: flex; justify-content: space-between; align-items: center;">
+                <section class="countdown" style="width: 100%; height: 5%; padding-inline: 10px; background-color: greenyellow; display: flex; justify-content: space-between; align-items: center;">
              
-            <h2 style="font-family: 'Signika', sans-serif; font-style: italic; color: brown;">GW<%= eventData[0] %></h2>
-            <p style="color: blue;" >expires in:</p>
-            <p style="color: red; font-style: italic; font-weight: bold;"><%= eventData[1] %> Days Left</p>
-                
-        </section>
+                    <h2 style="font-family: 'Signika', sans-serif; font-style: italic; color: brown;">GW<%= eventData[0] %></h2>
+                    <p style="color: blue;" >expires in:</p>
+                    <p style="color: red; font-style: italic; font-weight: bold;"><%= eventData[1] %> Days Left</p>
+                        
+                </section>
+
+             <% } else { %>
+
+                <section class="countdown" style="width: 100%; height: 5%; padding-inline: 10px; background-color: greenyellow; display: flex; justify-content: space-between; align-items: center;">
+             
+                    <h2 style="font-family: 'Signika', sans-serif; font-style: italic; color: brown;">No Active GWs</h2>
+                    <p style="color: blue;" >expires in:</p>
+                    <p style="color: red; font-style: italic; font-weight: bold;">Until further notice</p>
+                        
+                </section>
+
+             <% } %>  
+               
+        
            <% if (gameweeks !== 'null') { %>
             <div class="desrip" style="height: 8%; width: 100%; display: flex; justify-content: center; align-items: center;">
                 <h3 style="font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; font-size: 1.5rem; color: purple;" >Choose Gameweek</h3>
