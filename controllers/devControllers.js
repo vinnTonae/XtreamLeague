@@ -681,6 +681,5 @@ module.exports = {
     deleteDepParties,
     deleteMpesaDeps,
     getDevWithdraws,
-    patchDevWithdraws,
-    getDevDeposits
+    patchDevWithdraws
 }
