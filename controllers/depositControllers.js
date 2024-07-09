@@ -5,7 +5,7 @@ require('dotenv').config()
 
 const getConfirmDeposit = (req, res) => {
 
-    res.render('confirm', { user: req.user, depost: req.query })
+    res.render('confirm', { user: req.user, deposit: req.query })
 }
 
 const postConfirmDeposit =  async (req, res) => {
