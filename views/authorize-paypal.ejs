@@ -3,18 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/transparent.png" type="images/x-icon" width="400" height="400">
+    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="400" height="400">
     <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
-    <title>Authorize</title>
+    <title>Paypal-Authorize</title>
     <style>
        
-       * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+.spining {
+   animation: spin 1s ease-in-out 0.1s 10 normal forwards ;
+}
+
+@keyframes spin {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3) rotate(360deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(360deg);
+    }
+}
 
 body {
     height: 100svh;
@@ -106,7 +123,7 @@ body {
 
 .header-box h1 {
     color: blue;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-style: italic;
     text-align: center;
     text-wrap: wrap;
@@ -164,17 +181,14 @@ body {
           </div>
  
           <div class="form-box" style="display: flex; justify-content: center; width: 100%; height: 60%;">
-             <form action="/authorize?_method=PATCH" method="post" onsubmit="disable()" style=" display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 80%; height: 100%;">
+             <form action="/authorize?_method=PATCH" method="post" style=" display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 80%; height: 100%;">
                
              <div class="input-box" style="display: none;">
-                <input type="text" name="userid" value="<%= deposit.ajaxppluser %>">
+                <input id="input-target" type="text" name="tranxid" value="<%= deposit.ajaxtranxID %>">
              </div>
-             <div class="input-box" style="display: none;">
-                <input type="number" name="amount" value="<%= deposit.deduct %>">
-             </div>
-               
+                <!-- spinning logo -->
                <div class="input-box">
-                  <button type="submit" style="cursor: pointer;" id="btnSubmit">Continue</button>
+                  <img class="spining"  src="/logos/plicon.png" alt="PL" width="80" height="80">
                </div> 
                
              </form>
@@ -184,21 +198,48 @@ body {
    </div>
 
    <div class="img">
-      <img src="logos/plicon.png" alt="XtreamLeague" width="120" height="120">
+      <img src="logos/paypal.png" alt="XtreamLeague" width="200" height="70">
    </div>
   
    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>   
+   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
    <script>
+      const inputTranx = document.getElementById('input-target')
       
-      const button = document.getElementById('btnSubmit')
+      window.addEventListener('load', setTimeout(() => {
+          const tranxId = inputTranx.value
+         return new Promise((resolve, reject) => {
+            fetch('/authorize/paypal', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                tranxid: tranxId
+            })
+           })    
+            .then((res) => {
+                if (res.ok) {
+                    return res.json()
+                } else {
+                    reject('Failed to Connect')
+                }
+            })
+            .then((data) => {
+                
+                resolve(data)
+                window.location.href = '/main'
+            })
+            .catch((err) => {
+                reject('SERVER ERROR!!')
+            })
+        
+         })
+           
+      }, 1000) )
 
-      function disable() {
-          button.disabled = true;
-          button.style.display = 'none'
-      }
-
-   </script>
+   </script>   
+    
 </body>
 </html>
 

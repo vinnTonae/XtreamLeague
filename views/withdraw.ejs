@@ -40,55 +40,32 @@
 
      
     <div style="height: 8svh; width: 100vw; display: flex; align-items: center; justify-content: center;" class="current-bal">
-       <p style="white-space: nowrap; margin-right: 10px; font-size: 1.1rem;">Current Balance</p>
-       <h1 style="font-size: 1.2rem; white-space: nowrap;">KSH: <span style="color: green"> <%= user.totalBalance %> </span></h1>
+        <p style="white-space: nowrap; margin-right: 10px; font-size: 1.1rem;">Current Balance</p>
+        <h1 style="font-size: 1.2rem; white-space: nowrap;">KSH: <span style="color: green"> <%= user.totalBalance %> </span></h1>
     </div>
-        <section style="position: relative; height: 82svh; width: 100vw; display: flex; flex-flow: column nowrap; align-items: center; justify-content: center;">
-            
-              <!-- ! TOGGLE BUTTONS  -->
-              <div class="toggle" style="position: absolute; top: 0; width: 100%; height: 10%; display: flex; align-items: center; justify-content: space-evenly;">
+    <section style="position: relative; height: 82svh; width: 100vw; display: flex; flex-flow: column nowrap; align-items: center; justify-content: center;">
+        
+        <!-- ! TOGGLE BUTTONS  -->
+        <div class="toggle" style="position: absolute; top: 0; width: 100%; height: 10%; display: flex; align-items: center; justify-content: space-evenly;">
                   <div class="mpesa" style="width: 20%; height: 70%; border-radius: 10px; background-color: green; color: white;
                   font-size: 1.1rem; font-family: 'Signika', sans-serif; font-weight: bold; display: grid; 
-                   place-items: center;" >Mpesa</div>
+                  place-items: center;" >Mpesa</div>
                   <div class="paypal" style="width: 20%; height: 70%; border-radius: 10px; background-color: rgba(0, 0, 255, 0.695); color: white;
                   font-size: 1.1rem; font-family: 'Signika', sans-serif; font-weight: bold; display: grid;
-                   place-items: center;" >Paypal</div>
+                  place-items: center;" >Paypal</div>
                   
               </div>
 
-            <!-- TODO:  UTILIZE THIS DIV TO SWITCH FROM BOTH FORMS -->
+              <!-- TODO:  UTILIZE THIS DIV TO SWITCH FROM BOTH FORMS -->
 
-         <div style="position: relative; overflow: hidden; display: flex; justify-content: center; height: 40vh; width: min(450px, 90%);">
-        
-            <form action="/withdraw" method="post" id="paypal-form" style="position: absolute; left: 50%; transform: translateX(-50%); transition: all .75s ease-in-out; width: 70%; height: 100%; display: flex; flex-flow: column nowrap; justify-content: flex-start; align-items: center;">
-                    <div class="descrip" style="width: 100%; height: 20%; display: grid; place-items: center;" >
-                        
-                       <img src="/logos/paypal.png" alt="PAYPAL" width="120" height="40">
-
-                    </div>
-                    <div style="height: 30%; width: 100%; margin-bottom: 10px; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
-                        <label for="phone" style="font-style: italic; font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: green; font-size: 1.2rem; margin-bottom: 10px;"> Amount to Withdraw </label>
-                        <input id="phone" type="number" name="amount" placeholder="Enter your amount here (KSH)" style="font-family: 'Signika', sans-serif; height: 60%; width: 100%; text-align: center;  font-size: 1.2rem; border-radius: 10px; padding: 15px;" required/>
-                       
-                    </div>
-                    <p style="color: black; font-weight: bold; white-space: nowrap; font-size: .8rem; font-style: italic; "> Minimum KSH 300, Maximum KSH 30,000</p>
-                    <div style="width: 100%; height: 30%; margin-block: 10px; height: 25%; display: flex; align-items: center; justify-content: center;" >
-                       <button style="width: 100%; height: 80%; font-weight: bold; font-style: italic;
-                        font-family: 'Signika', sans-serif; font-size: 1.5rem; color: white; border: none; outline: none; background-color: rgba(0, 0, 255, 0.695); border-radius: 10px;" type="submit">Withdraw</button>
-                    </div> 
-                    <% if (locals.messages) { %>
-                    
-                        <h1 style="color: red; font-size: .8rem; font-style: italic; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; "><%= messages %></h1>
-                    
+              <div style="position: relative; overflow: hidden; display: flex; justify-content: center; height: 40vh; width: min(450px, 90%);">
                 
-                        <% } %>    
-            </form>
-           
-             <form action="/withdraw/mpesa" method="post" id='mpesa-form' style="position: absolute; left: -150%; transform: translateX(-50%); transition: all .75s ease-in-out; width: 70%; height: 100%; display: flex; flex-flow: column nowrap; justify-content: flex-start; align-items: center;">
+            
+             <form action="/withdraw/mpesa" method="post" id='mpesa-form' style="position: absolute; left: 50%; transform: translateX(-50%); transition: all .75s ease-in-out; width: 70%; height: 100%; display: flex; flex-flow: column nowrap; justify-content: flex-start; align-items: center;">
                     <div class="descrip" style="width: 100%; height: 20%; display: grid; place-items: center;" >
                         
-                       <img src="/logos/mpesa.png" alt="MPESA" width="120" height="70">
-
+                        <img src="/logos/mpesa.png" alt="MPESA" width="120" height="70">
+                        
                     </div>
                     <div style="height: 30%; width: 100%; margin-bottom: 10px; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
                        <label for="amount" style="font-style: italic; font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: green; font-size: 1.2rem; margin-bottom: 10px;"> Amount to Withdraw </label>
@@ -96,20 +73,48 @@
                     </div>
                     <p style="color: black; font-weight: bold; white-space: nowrap; font-size: .8rem; font-style: italic; "> Minimum KSH 300, Maximum KSH 30,000</p>
                     <div style="width: 100%; height: 30%; margin-block: 10px; height: 25%; display: flex; align-items: center; justify-content: center;" >
+                        
+                        <button style="width: 100%; height: 80%; font-weight: bold; font-style: italic; font-family: 'Signika', sans-serif; font-size: 1.5rem; color: white; border: none; outline: none; background-color: green; border-radius: 10px;">Withdraw</button>
 
-                       <button style="width: 100%; height: 80%; font-weight: bold; font-style: italic; font-family: 'Signika', sans-serif; font-size: 1.5rem; color: white; border: none; outline: none; background-color: green; border-radius: 10px;" 
-                         type="submit">Withdraw</button>
-
-                    </div> 
+                        </div> 
                     <% if (locals.messages) { %>
-                    
+                        
                         <h1 style="color: red; font-size: .8rem; font-style: italic; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; "><%= messages %></h1>
                     
-                
+                        
                         <% } %>    
-            </form>
-        
-             
+                    </form>
+
+                    <form action="/withdraw" method="post" id="paypal-form" style="position: absolute; left: 150%; transform: translateX(-50%); transition: all .75s ease-in-out; width: 70%; height: 100%; display: flex; flex-flow: column nowrap; justify-content: flex-start; align-items: center;">
+                        <div class="descrip" style="width: 100%; height: 20%; display: grid; place-items: center;" >
+                            
+                            <img src="/logos/paypal.png" alt="PAYPAL" width="120" height="40">
+                            
+                        </div>
+                        <div style="height: 30%; width: 100%; margin-bottom: 10px; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+                            <label for="phone" style="font-style: italic; font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: blue; font-size: 1.2rem; margin-bottom: 10px;"> Amount to Withdraw </label>
+                            <input id="phone" type="number" name="amount" placeholder="Enter your amount here (KSH)" style="font-family: 'Signika', sans-serif; height: 60%; width: 100%; text-align: center;  font-size: 1.2rem; border-radius: 10px; padding: 15px;" required/>
+                            
+                        </div>
+                        <p style="color: black; font-weight: bold; white-space: nowrap; font-size: .8rem; font-style: italic; "> Minimum KSH 300, Maximum KSH 30,000</p>
+                        <div style="width: 100%; height: 30%; margin-block: 10px; height: 25%; display: flex; align-items: center; justify-content: center;" >
+                            
+                           <button id="submit-paypal" style="width: 100%; height: 80%; font-weight: bold; font-style: italic;
+                            font-family: 'Signika', sans-serif; font-size: 1.5rem; color: white; border: none; outline: none; background-color: rgba(0, 0, 255, 0.695);
+                            border-radius: 10px;">Withdraw</button>
+                            
+                            
+                        </div>
+    
+                        <% if (locals.messages) { %>
+                            
+                            <h1 style="color: red; font-size: .8rem; font-style: italic; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; "><%= messages %></h1>
+                        
+                            <% } %>    
+                        </form>
+               
+                    
+                    
                
          </div>
          <div class="img" style="width: 100vw; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
@@ -117,37 +122,37 @@
             <h2 style="margin-top: 20px; font-style: italic; color: purple; font-size: .8rem; font-weight: bold;" >"It is Better To Die with HONOUR than to Live Without"</h2>
             <h2 style="font-style: italic; color: orangered ; font-size: .9rem;">&lt;&lt;Bruce Lee&gt;&gt;</h2>
         
-         </div>
+        </div>
         </section> 
        
-
-            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+          <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+          <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+          <script>
             
-            <script>
+        
+            const submitBtn = document.getElementById('submit-paypal')
+            const mpesaBtn = document.querySelector('.mpesa')
+            const paypalBtn = document.querySelector('.paypal')
+            const paypalForm = document.getElementById('paypal-form')
+            const mpesaForm = document.getElementById('mpesa-form')
 
-              const mpesaBtn = document.querySelector('.mpesa')
-              const paypalBtn = document.querySelector('.paypal')
-              const paypalForm = document.getElementById('paypal-form')
-              const mpesaForm = document.getElementById('mpesa-form')
+            mpesaBtn.addEventListener('click', () => {
 
-              mpesaBtn.addEventListener('click', () => {
+                 mpesaForm.style.left = '50%'
+                 paypalForm.style.left = '150%'
 
-                mpesaForm.style.left = '50%'
-                paypalForm.style.left = '150%'
-            
+            })
 
-              })
+            paypalBtn.addEventListener('click', () => {
+   
+                 mpesaForm.style.left = '-150%'
+                 paypalForm.style.left = '50%'
 
-              paypalBtn.addEventListener('click', () => {
-                 
-                mpesaForm.style.left = '-150%'
-                paypalForm.style.left = '50%'
-                
+            })
 
-              })
 
-            </script>
+
+          </script>
            
     </body>
     </html>

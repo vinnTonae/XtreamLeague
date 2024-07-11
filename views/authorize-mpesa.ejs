@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/logos/plicon.png" type="images/x-icon" width="400" height="400">
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
+    <title>MPESA-Authorize</title>
+    <style>
+       
+       
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.spining {
+   animation: spin 1s ease-in-out 0.1s 13 normal forwards ;
+}
+
+@keyframes spin {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3) rotate(360deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+body {
+    height: 100svh;
+    background-color: rgba(50, 205, 50, 0.258);
+
+}
+
+.wrapper {
+    position: absolute;
+    z-index: 10;
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 80vw;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-flow: column nowrap;
+    background-image: linear-gradient(45deg, gray, silver, whitesmoke, white, whitesmoke, silver, gray); 
+    border-radius: 10px;
+    margin: auto;
+    padding: 10px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.28);
+    border-radius: 30px;
+}
+ 
+.form-box form .input-box {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 5px;
+    height: 30%;
+}
+
+.form-box form .input-box.hidden {
+    display: none;
+}
+
+.form-box form .input-box button {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-family: 'Signika', sans-serif;
+    font-weight: bold;
+    color: white;
+    background-color: purple;
+}
+
+
+.form-box form .input-box input {
+  width: 100%;
+  height: 100%;
+  padding-inline: 1rem;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 2px solid whitesmoke;
+  color: white;
+  font-size: 1.2rem;
+}
+
+::placeholder {
+    font-size: 1rem;
+    color: yellow;
+}
+
+.form-box form .input-box label {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    white-space: nowrap;
+    color: whitesmoke;
+    transform: translateX(-50%);
+}
+
+.header-box {
+  width: fit-content;
+  margin-left: 3px;
+  margin-bottom: 2rem;
+  margin-top: 10px;
+  height: fit-content;
+  color: white;
+}
+
+.header-box h1 {
+    color: green;
+    font-size: 1.5rem;
+    font-style: italic;
+    text-align: center;
+    text-wrap: wrap;
+    font-weight: bold;
+    font-family: 'Signika', sans-serif;
+}
+
+.header-box .h2 {
+    margin-inline: auto;
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    height: 40%;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.header-box .h2 h2 {
+    font-size: 1.2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+
+.img {
+    position: fixed;
+    bottom: 6vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+    </style>
+</head>
+<body>
+
+    <header style="height: 10vh; width: 100%; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: green;">Withdraw</h1>
+        </div>
+        <span style="margin-right: 20px;"><img src="logos/mpesa.png" alt="Paypal" width="120" height="80"></span>
+        
+    </header>
+
+
+   <div class="wrapper">
+         
+     
+          <div class="header-box">
+            <h1>Withdraw Was Successful <%= user.userName %></h1>
+          </div>
+
+          <div class="elec">
+            <ion-icon style="color: greenyellow; font-size: 3rem;" name="checkmark-circle-outline"></ion-icon>
+          </div>
+ 
+          <div class="form-box" style="display: flex; justify-content: center; width: 100%; height: 60%;">
+             <form action="/authorize?_method=PATCH" method="post" style=" display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 80%; height: 100%;">
+               
+             <div class="input-box" style="display: none;">
+                <input id="input-target" type="text" name="tranxid" value="<%= deposit.ajaxtranxID %>">
+             </div>
+                <!-- spinning logo -->
+               <div class="input-box">
+                  <img class="spining" src="/logos/plicon.png" alt="PL" width="80" height="80">
+               </div> 
+               
+             </form>
+          </div>   
+         
+    
+   </div>
+
+   <div class="img">
+      <img src="logos/mpesa.png" alt="XtreamLeague" width="200" height="120">
+   </div>
+  
+   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>   
+   <script>
+      
+      const inputTranx = document.getElementById('input-target')
+      
+      
+      window.addEventListener('load', setTimeout( () => {
+          const tranxId = inputTranx.value
+         return new Promise((resolve, reject) => {
+            fetch('/authorize/mpesa', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                tranxid: tranxId
+            })
+           })    
+            .then((res) => {
+                if (res.ok) {
+                    return res.json()
+                } else {
+                    reject('Failed to Connect')
+                }
+            })
+            .then((data) => {
+                
+                resolve(data)
+                window.location.href = '/main'
+            })
+            .catch((err) => {
+                reject('SERVER ERROR!!')
+            })
+        
+         })
+           
+      }, 1000))
+
+   </script>
+</body>
+</html>
+
+
+

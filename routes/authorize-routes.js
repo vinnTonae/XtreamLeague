@@ -1,11 +1,15 @@
-const { patchAuthorize, getAuthorize } = require('../controllers/withdrawControllers')
+const { patchAuthorize, getAuthorizePaypal, getAuthorizeMpesa, patchAuthorizeMpesa } = require('../controllers/withdrawControllers')
 
 const router = require('express').Router()
 
 
-router.get('/', getAuthorize)
+router.get('/mpesa', getAuthorizeMpesa)
 
-router.patch('/', patchAuthorize)
+router.get('/paypal', getAuthorizePaypal)
+
+router.patch('/paypal', patchAuthorize)
+
+router.patch('/mpesa', patchAuthorizeMpesa)
 
 
 
