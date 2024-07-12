@@ -38,13 +38,13 @@ mpesaCloseBtn.addEventListener('click', () => {
 
 function purchase(token) {
     if (token == 100 ) {
-        inputAmount.setAttribute('value', 1.05)
+        inputAmount.setAttribute('value', 1.08)
         mpesaInputAmount.setAttribute('value', 100)
         displayAmount.textContent = '100'
         console.log(mpesaInputAmount.value)
         display()
     } else if (token == 200 ) {
-        inputAmount.setAttribute('value', 1.75)
+        inputAmount.setAttribute('value', 1.85)
         mpesaInputAmount.setAttribute('value', 200)
         displayAmount.textContent = '200'
         console.log(mpesaInputAmount.value)
@@ -68,7 +68,7 @@ function purchase(token) {
         console.log(mpesaInputAmount.value)
         display()
     } else if (token == 5000 ) {
-        inputAmount.setAttribute('value', 39.25)
+        inputAmount.setAttribute('value', 39.45)
         mpesaInputAmount.setAttribute('value', 5000)
         displayAmount.textContent = '5000'
         console.log(mpesaInputAmount.value)

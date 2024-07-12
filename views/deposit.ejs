@@ -308,39 +308,45 @@
            return actions.order.capture().then((details) => {
                   const paidValue = details.purchase_units[0].amount.value
                   const email = details.payer.email_address 
-               
-                  fetch('/confirm-deposit', {
-                    method: 'POST',
-                    headers: {
-                      "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                      valuePaid: paidValue,
-                      paypalEmail: email,
-                    })
+               return new Promise((resolve, reject) => {
+                    fetch('/confirm-deposit', {
+                         method: 'POST',
+                         headers: {
+                            "Content-Type": "application/json"
+                                  },
+                         body: JSON.stringify({
+                                  valuePaid: paidValue,
+                                  paypalEmail: email,
+                             })
 
-                  })
-                  .then((res) => {
+                  }).then((res) => {
+
                     if (res.ok) { 
                     
                       return res.json()
-                     }
-                    else { return res.json().then(json => Promise.reject(json)) }
+
+                     }else { 
+                      
+                      reject('Failed To Coonect')
+                    }
                   })
                   .then((data) => {
                     
-                    const tranxId =  data._id
-                    const paypal = data.pplEmail 
-
-                    window.location.href = `/confirm-deposit?ajaxvv2ppl=${tranxId}&email=${paypal}`
+                    
+                    resolve(data)
+                    
+                    window.location.href = `/confirm-deposit?ajaxvv2ppl=${data._id}&email=${data.pplEmail}`
+                    
                   })
 
-                  .catch((e) => { 
-                    console.error(e.error)
-                    alert('Server Error!!.Please contact Customer support') 
-                    window.location.href = '/main'
+                  .catch((err) => { 
+
+                    reject('NETWORK ERROR!!')
+                    
                   })
-       })
+
+               })
+           })
       },
        onCancel: function () {
            alert('You Canceled the Request')

@@ -102,13 +102,12 @@ const postWithdraw = async (req, res) => {
           status,
           pplEmail
     }).save().then((tranx) => {
-        console.log('--TRANSACTION CREATED SUCCESSFULLY--')
-        console.log(tranx)
+        console.log('--NEW WITHDRAW TRANSACTION--')
           
         res.redirect(`/authorize/paypal?ajaxtranxID=${tranx._id}`)
     })
     .catch((error) => {
-        console.log(error)
+        console.log('MongoDB eRROR')
         
         req.flash('error', 'Withdraw request Failed')
         res.redirect('/main')
@@ -157,7 +156,7 @@ const postWithdrawMpesa = async (req, res) => {
             
     })
     .catch((error) => {
-        console.log(error)
+        console.log('Mongodb eRROR')
          req.flash('error', 'Withdraw request Failed')
          res.redirect('/main')
         })

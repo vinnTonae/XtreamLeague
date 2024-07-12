@@ -15,12 +15,12 @@ const postConfirmDeposit =  async (req, res) => {
     const status = 'pending'
     const valueToAdd = () => {
         const value = valuePaid
-        if (value == '1.05') { return 100 }
-    else if (value == '1.75') { return  200}
+        if (value == '1.08') { return 100 }
+    else if (value == '1.85') { return  200}
     else if (value == '4.25') { return 500 }
     else if (value == '8.15') { return  1000 }
-    else if (value == '16.42') { return  2000 }
-    else if (value == '39.25') { return 5000 }
+    else if (value == '16.45') { return  2000 }
+    else if (value == '39.45') { return 5000 }
     }
     
     const newTransaction = new Transactions({
@@ -32,7 +32,9 @@ const postConfirmDeposit =  async (req, res) => {
            pplEmail: paypalEmail
           
     }).save().then((result) => {
-          res.send(result)
+          
+          console.log('--NEW DEPOSIT PAYPAL--')
+          res.send(result)  
              
     }).catch((error) => {
         console.log(error)
@@ -47,28 +49,43 @@ const patchConfirmDeposit = async (req, res) => {
     
     const { pplEmail, tranxId } = req.body
     const userId = req.user._id
-    const transaction = await Transactions.findOne({ _id: tranxId })
-    const user = await User.findOne({ _id: userId })
+    
+    try {
 
-    if ( transaction.status !== 'pending') {
-
-        req.flash('error', 'Buda!!..This transaction was recorded')
-        res.redirect('/main')
-    }else {
-
+        const transaction = await Transactions.findOne({ _id: tranxId })
+        const user = await User.findOne({ _id: userId })
+        const existingPaypal = user.payPal    
         const amount = transaction.amount    
         const userBalance = user.totalBalance
         const userNewBalance = userBalance + amount 
+          
+        if (existingPaypal == 'none') {
 
-        const updatedUser = await User.findByIdAndUpdate({ _id: userId }, { $set: { totalBalance: userNewBalance, payPal: pplEmail } })
+            const updatedUser = await User.findByIdAndUpdate({ _id: userId }, { $set: { totalBalance: userNewBalance, payPal: pplEmail } })
+    
+            const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxId }, { $set: { status: 'completed'  } })
+    
+            req.flash('error', 'Deposit Complete!!..Account Credited')
+            res.redirect('/main')
 
-        const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxId }, { $set: { status: 'completed'  } })
+        } else {
 
-        req.flash('error', 'Transaction Complete!!..User Updated ')
+            const updatedUser = await User.findByIdAndUpdate({ _id: userId }, { $set: { totalBalance: userNewBalance } })
+
+            const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxId }, { $set: { status: 'completed' } })
+
+            req.flash('error', 'Deposit Complete!!..Account Credited')
+            res.redirect('/main')
+
+        }
+
+         
+        
+    } catch (error) {
+        console.log('MongoDB eRROR')
+        req.flash('error','Transaction not Recorded!!.. call 0701280373')
         res.redirect('/main')
     }
-
-
 
 }
 
