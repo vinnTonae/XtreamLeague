@@ -1,120 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="40" height="40">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <title>Dev Withdraws</title>
-    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
-    <style>
-      * {
-        margin: 0;
-        border: 0;
-        box-sizing: border-box;
-      }
-     
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="40" height="40">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+    rel="stylesheet">
+  <title>Dev Withdraws</title>
+  <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+  <style>
+    * {
+      margin: 0;
+      border: 0;
+      box-sizing: border-box;
+    }
+  </style>
 
-    
+
 </head>
+
 <body style="background-color: white;">
-    <header style="height: 10svh; width: 100vw; border-bottom: 2px solid purple; display: flex; align-items: center; justify-content: space-around;">
-    
-
-            <a href="/dev/<%= gameweek %>"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon></a>
-
-            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Withdraws</h1>
-        
-        
-    </header>
-    <section style="height: 4svh; width: 100vw; display: flex; align-items: center; justify-content: center;">
-    
-         <% if (locals.messages) { %>
-              <h2 style="font-size: 1.1rem; margin-left: 20px; font-weight: bold; font-style: italic; color: red; font-family: 'Signika', sans-serif;"><%= messages %></h2>
-        <% } %> 
-    </section>
-
-    <main style="width: 100vw;  display: flex; margin-inline: auto; background-color: aliceblue; flex-flow: column nowrap; align-items: center; scroll-snap-type: inline mandatory; scroll-padding-inline: 15px; overflow-x: hidden; overflow-y: scroll;">
-         
-       <% Transactions.map((tranx) => { %>
-
-          <% if ( tranx.status !== 'pending' ) { %>
-
-            <section style="position: relative; background-color: antiquewhite; scroll-snap-align: start; display: flex; align-items: center; justify-content: flex-start; width: 95%; height: 80px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); border-radius: 0 20px 20px 0; margin-block: 10px;">
-            
-                <div class="competitors" style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; padding: 5px; height: 100%; width: 85%;">
-                     
-                    <% if (tranx.method == 'paypal') { %>
-                      
-                      <h2 style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;"><%= tranx.pplEmail %></h2>
-                      
-                      <% } else { %>
-                        
-                        <h2 style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;"><%= tranx.mpesaObject.mpesaNumber %></h2>
-
-                      <% } %>
-                     
-                   
-                   <h2 style="margin-block: 5px; text-align: center; text-wrap: wrap; font-size: 1.1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: limegreen;">KSH <%= tranx.amount %></h2>
-    
-                </div>
-    
-                  <button style="border-radius: inherit; background-color: limegreen; width: 15%; height: 80px; outline: none; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center;">
-                    <p style="font-style: italic; font-weight: bold; font-family: 'Signika', sans-serif; color: white;">PAID</p>
-                </button>  
-          
-            </section>  
+  <header
+    style="height: 10svh; width: 100vw; border-bottom: 2px solid purple; display: flex; align-items: center; justify-content: space-around;">
 
 
-            <% } else { %>
+    <a href="/dev/<%= gameweek %>"><ion-icon name="arrow-round-back"
+        style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon></a>
 
-                <form action="/dev/<%= gameweek %>/withdraws/settle?_method=PATCH" method="post" style="position: relative; background-color: white; scroll-snap-align: start; display: flex; align-items: center; justify-content: flex-start; width: 95%; height: 80px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); border-radius: 0 20px 20px 0; margin-block: 10px;">
-            
-                    <div class="competitors" style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; padding: 5px; height: 100%; width: 85%;">
+    <h1
+      style="margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">
+      Withdraws</h1>
 
-                      <% if (tranx.method == 'paypal') { %>
-                      
-                        <h2 style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;"><%= tranx.pplEmail %></h2>
-                        
-                        <% } else { %>
-                          
-                          <h2 style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;"><%= tranx.mpesaObject.mpesaNumber %></h2>
-  
-                        <% } %>
-                      
-                       <h2 style="margin-block: 5px; text-align: center; text-wrap: wrap; font-size: 1.1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: limegreen;">KSH <%= tranx.amount %></h2>
-        
-                    </div>
-        
-                   
-        
-                    <input type="text" name="tranxid" value="<%= tranx._id %>" style="display: none;">
-        
-                      <button type="submit"  style="border-radius: inherit; background-color: red; width: 15%; height: 80px; outline: none; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center;">
-                        <p style="font-style: italic; font-weight: bold; font-family: 'Signika', sans-serif; color: white;">PAY</p>
-                    </button>  
-              
-                </form>  
 
-             <% } %>
+  </header>
+  <section style="height: 4svh; width: 100vw; display: flex; align-items: center; justify-content: center;">
 
-         <% }) %>
-        
-       
-     
-          
-           
+    <% if (locals.messages) { %>
+      <h2
+        style="font-size: 1.1rem; margin-left: 20px; font-weight: bold; font-style: italic; color: red; font-family: 'Signika', sans-serif;">
+        <%= messages %>
+      </h2>
+      <% } %>
+  </section>
 
-    </main>  
+  <main
+    style="width: 100vw;  display: flex; margin-inline: auto; background-color: aliceblue; flex-flow: column nowrap; align-items: center; scroll-snap-type: inline mandatory; scroll-padding-inline: 15px; overflow-x: hidden; overflow-y: scroll;">
 
-            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-           
-    </body>
-    </html>
+    <% Transactions.map((tranx)=> { %>
 
+      <% if ( tranx.status=='settled' ) { %>
+
+        <section
+          style="position: relative; background-color: antiquewhite; scroll-snap-align: start; display: flex; align-items: center; justify-content: flex-start; width: 95%; height: 80px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); border-radius: 0 20px 20px 0; margin-block: 10px;">
+
+          <div class="competitors"
+            style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; padding: 5px; height: 100%; width: 85%;">
+
+            <% if (tranx.method=='paypal' ) { %>
+
+              <h2
+                style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;">
+                <%= tranx.pplEmail %>
+              </h2>
+
+              <% } else { %>
+
+                <h2
+                  style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;">
+                  <%= tranx.mpesaObject.mpesaNumber %>
+                </h2>
+
+                <% } %>
+
+
+                  <h2
+                    style="margin-block: 5px; text-align: center; text-wrap: wrap; font-size: 1.1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: limegreen;">
+                    KSH <%= tranx.amount %>
+                  </h2>
+
+          </div>
+
+          <button
+            style="border-radius: inherit; background-color: limegreen; width: 15%; height: 80px; outline: none; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center;">
+            <p style="font-style: italic; font-weight: bold; font-family: 'Signika', sans-serif; color: white;">PAID</p>
+          </button>
+
+        </section>
+
+
+        <% } else { %>
+
+          <form action="/dev/<%= gameweek %>/withdraws/settle?_method=PATCH" method="post"
+            style="position: relative; background-color: white; scroll-snap-align: start; display: flex; align-items: center; justify-content: flex-start; width: 95%; height: 80px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); border-radius: 0 20px 20px 0; margin-block: 10px;">
+
+            <div class="competitors"
+              style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; padding: 5px; height: 100%; width: 85%;">
+
+              <% if (tranx.method=='paypal' ) { %>
+
+                <h2
+                  style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;">
+                  <%= tranx.pplEmail %>
+                </h2>
+
+                <% } else { %>
+
+                  <h2
+                    style="margin-block: 5px; text-wrap: wrap; text-align: center; font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: purple;">
+                    <%= tranx.mpesaObject.mpesaNumber %>
+                  </h2>
+
+                  <% } %>
+
+                    <h2
+                      style="margin-block: 5px; text-align: center; text-wrap: wrap; font-size: 1.1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: limegreen;">
+                      KSH <%= tranx.amount %>
+                    </h2>
+
+            </div>
+
+
+
+            <input type="text" name="tranxid" value="<%= tranx._id %>" style="display: none;">
+
+            <button type="submit"
+              style="border-radius: inherit; background-color: red; width: 15%; height: 80px; outline: none; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center;">
+              <p style="font-style: italic; font-weight: bold;
+               font-family: 'Signika', sans-serif; color: white;">PAY</p>
+            </button>
+
+          </form>
+
+          <% } %>
+
+            <% }) %>
+
+
+
+
+
+
+  </main>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
