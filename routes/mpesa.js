@@ -87,7 +87,7 @@ router.post('/stk', async (req, res) => {
                     "PartyA": correctPhone,
                     "PartyB": '8811882',
                     "PhoneNumber": correctPhone,
-                    "CallBackURL": `https://xtreamleague.onrender.com/mpesa/${process.env.CALLBACK}`,
+                    "CallBackURL": `${process.env.MY_DOMAIN}/mpesa/${process.env.CALLBACK}`,
                     "AccountReference": correctPhone,
                     "TransactionDesc": "Test"
                 },
