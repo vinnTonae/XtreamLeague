@@ -40,6 +40,7 @@ router.post('/stk', async (req, res) => {
 
     const { mpesaAmount, phone } = req.body
 
+
     const requiredlength = phone.toString().length
     const startingNum = phone.toString().charAt(0)
 
@@ -87,7 +88,7 @@ router.post('/stk', async (req, res) => {
                     "PartyA": correctPhone,
                     "PartyB": '8811882',
                     "PhoneNumber": correctPhone,
-                    "CallBackURL": `${process.env.MY_DOMAIN}/mpesa/${process.env.CALLBACK}`,
+                    "CallBackURL": `https://f35d-102-211-145-107.ngrok-free.app/mpesa/${process.env.CALLBACK}`,
                     "AccountReference": correctPhone,
                     "TransactionDesc": "Test"
                 },
@@ -118,6 +119,7 @@ router.post('/stk', async (req, res) => {
 
 
 router.post(`/${process.env.CALLBACK}`, (req, res) => {
+
     const mpesaResponse = req.body
 
 
@@ -201,63 +203,75 @@ router.get('/', (req, res) => {
 })
 
 
-router.patch('/confirm', async (req, res) => {
+router.patch('/', async (req, res) => {
 
     const userId = req.user._id
     const { reqid } = req.body
-    const transaction = await Transactions.findOne({ "mpesaObject.reqID": reqid })
 
-    if (!transaction) {
+    try {
 
-        req.flash('error', 'Transaction Not recorded..CONTACT 0701280373')
-        res.redirect('/main')
+        const transaction = await Transactions.findOne({ "mpesaObject.reqID": reqid })
 
-    } else {
+        if (!transaction) {
 
-        try {
+            req.flash('error', 'Network Failure!!..Pending Transacttions will be updated shortly')
+            res.redirect('/deposit')
+
+        } else {
+
+            try {
 
 
-            const userObject = await User.findOne({ _id: userId })
-            const mpesaNumber = userObject.mpesa
-            const currentBalance = userObject.totalBalance
-            const tranxAmount = transaction.amount
-            const tranxPhone = transaction.mpesaObject.mpesaNumber
-            const newBalance = currentBalance + tranxAmount
-            const resDesc = transaction.mpesaObject.status.resultDesc
-            const tranxId = transaction._id
+                const userObject = await User.findOne({ _id: userId })
+                const mpesaNumber = userObject.mpesa
+                const currentBalance = userObject.totalBalance
+                const tranxAmount = transaction.amount
+                const tranxPhone = transaction.mpesaObject.mpesaNumber
+                const newBalance = currentBalance + tranxAmount
+                const resDesc = transaction.mpesaObject.status.resultDesc
+                const tranxId = transaction._id
 
-            if (tranxAmount === 0) {
+                if (tranxAmount == 0) {
 
-                req.flash('error', resDesc)
-                res.redirect('/deposit')
-
-            } else {
-
-                if (mpesaNumber === 254) {
-
-                    const updatedUser = await User.findByIdAndUpdate({ _id: userId }, { totalBalance: newBalance, mpesa: tranxPhone })
-                    const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxId }, { status: 'complete', userId: userId })
-
-                    req.flash('error', 'Deposit Complete')
-                    res.redirect('/main')
+                    req.flash('error', resDesc)
+                    res.redirect('/deposit')
 
                 } else {
 
-                    const updatedUser = await User.findByIdAndUpdate({ _id: userId }, { totalBalance: newBalance })
-                    const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxId }, { status: 'complete', userId: userId })
+                    if (mpesaNumber === 254) {
 
-                    req.flash('error', 'Deposit Complete')
-                    res.redirect('/main')
+                        const updatedUser = await User.findByIdAndUpdate({ _id: userId }, { totalBalance: newBalance, mpesa: tranxPhone })
+                        const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxId }, { status: 'complete', userId: userId })
+
+                        req.flash('error', 'Deposit Complete')
+                        res.redirect('/main')
+
+                    } else {
+
+                        const updatedUser = await User.findByIdAndUpdate({ _id: userId }, { totalBalance: newBalance })
+                        const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxId }, { status: 'complete', userId: userId })
+
+                        req.flash('error', 'Deposit Complete')
+                        res.redirect('/main')
+                    }
+
                 }
 
+            } catch (error) {
+
+                console.log(error)
+
+                req.flash('error', 'Transaction Not recorded!!..All pending Deposits will be settled shortly')
+                res.redirect('/main')
+
             }
-
-        } catch (error) {
-
-            req.flash('error', 'Transaction Not recorded..CONTACT 0701280373')
-            res.redirect('/main')
-
         }
+
+    } catch (error) {
+
+        console.log('mongoDB eRROR')
+        req.flash('error', 'Server Error!!..All pending Deposits will be settled shortly')
+        res.redirect('/deposit')
 
     }
 

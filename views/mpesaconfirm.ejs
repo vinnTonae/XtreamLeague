@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,81 +8,91 @@
     <link rel="stylesheet" href="mpesa.css">
     <script defer src="mpesa.js"></script>
 </head>
+
 <body style="background-color: rgba(0, 255, 0, 0.21); position: relative; height: 100svh; width: 100vw;">
 
-    <header style="height: 8svh; width: 100vw; display: flex; align-items: center; justify-content: space-between; padding-inline: 10px;">
+    <header
+        style="height: 8svh; width: 100vw; display: flex; align-items: center; justify-content: space-between; padding-inline: 10px;">
         <img src="/logos/mpesa.png" alt="Mpesa" width="120" height="70">
         <img src="/logos/safaricom.png" alt="Safaricom" width="150" height="70">
     </header>
 
-    <section class="error" style="width: 100vw; height: 8svh; display: flex; align-items: center; justify-content: center;">
-        
+    <section class="error"
+        style="width: 100vw; height: 8svh; display: flex; align-items: center; justify-content: center;">
+
         <!-- ! ALL ERROR MESSAGES DISPLAYED HERE -->
-           <% if (locals.messages) { %> 
+        <% if (locals.messages) { %>
 
             <p style="color: red; background-color: #fff; text-align: center; border-radius: 4px; font-size: 1.2rem; font-style: italic; width: 90%;
-             font-weight: bold; font-family: 'Signika', sans-serif;"><%= messages %></p>
-           
-           <% } %>
-            
+             font-weight: bold; font-family: 'Signika', sans-serif;">
+                <%= messages %>
+            </p>
+
+            <% } %>
+
     </section>
 
     <!-- TODO: TWO BOXES NEEDED, { Loading icon BOX }, { formBox comfirm patch BOX } -->
     <!-- ! CURRENTLY DISPLAY SPINNING LOGO ON LOAD 5 SECONDS ITERATION -->
 
     <section class="loading-box">
-        
-        <h1 style="font-family: 'Signika', sans-serif;  font-size: 1.35rem; text-align: center; font-style: italic; font-weight: bold; color: purple; margin-bottom: 40px;">Success!!..Transaction Processing... </h1>
-        <h2 style="font-family: 'Signika', sans-serif;  font-size: 1.1rem; text-align: center; font-style: italic; font-weight: bold; color: blue;">An STK prompt will be pushed To Your Phone</h2>
-        <article style="background-image: linear-gradient(45deg, lime, white, white, lime); margin-block: 40px; width: 100vw; height: 40%; display: grid; place-items: center;">
+
+        <h1
+            style="font-family: 'Signika', sans-serif;  font-size: 1.35rem; text-align: center; font-style: italic; font-weight: bold; color: purple; margin-bottom: 40px;">
+            Success!!..Transaction Processing... </h1>
+        <h2
+            style="font-family: 'Signika', sans-serif;  font-size: 1.1rem; text-align: center; font-style: italic; font-weight: bold; color: blue;">
+            An STK prompt will be pushed To Your Phone</h2>
+        <article
+            style="background-image: linear-gradient(45deg, lime, white, white, lime); margin-block: 40px; width: 100vw; height: 40%; display: grid; place-items: center;">
 
             <img class="spining" src="/logos/plicon.png" alt="" height="70" width="70">
-            
+
         </article>
-        <h2 style="font-family: 'Signika', sans-serif;  font-size: 1.1rem; text-align: center; font-style: italic; font-weight: bold; color: purple;">Powered by Safaricom</h2>
-        
+        <h2
+            style="font-family: 'Signika', sans-serif;  font-size: 1.1rem; text-align: center; font-style: italic; font-weight: bold; color: purple;">
+            Powered by Safaricom</h2>
+
 
     </section>
 
     <!-- todo: Attach eventlisteners for form below  -->
     <!-- ! CURRENTLY DISPLAY NONE -->
 
-    <form action="/mpesa/confirm?_method=PATCH" method="post" onsubmit="disable()" class="confirm-box" style="position: absolute; top: 50%;  left: 50%; transform: translate(-50%, -50%); height: 50%; width: 95%; border-radius: 20px; 
-       background-color: aliceblue; border: 2px solid lightblue; box-shadow: 0 5px 10px 0 rgba(11, 103, 196, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29) ; 
-       display: none; flex-flow: column nowrap; align-items: center; justify-content: center; padding-top: 10px;">
+    <form action="/mpesa?_method=PATCH" method="post" class="confirm-box">
 
-        <h1 style="color: limegreen; margin-bottom: 10px; font-family: 'Signika', sans-serif; font-style: italic; font-size: 1.7rem; font-weight: bold;">Recharge Your Account</h1>
-        <article style="display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 5px;">
+        <h1
+            style="text-align: center; text-wrap: wrap; color: limegreen; margin-bottom: 10px; font-family: 'Signika', sans-serif; font-style: italic; font-size: 1.7rem; font-weight: bold;">
+            Checking Transaction Status....</h1>
+        <article
+            style="display: flex; align-items: center; justify-content: space-evenly; width: 100%; margin-bottom: 5px;">
+            <svg class="small-spin" xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24"
+                style="fill: limegreen;transform: msFilter">
+                <path
+                    d="M7.08 11.25A4.84 4.84 0 0 1 8 9.05L4.43 5.49A9.88 9.88 0 0 0 2 11.25zM9.05 8a4.84 4.84 0 0 1 2.2-.91V2a9.88 9.88 0 0 0-5.76 2.43zm3.7-6v5A4.84 4.84 0 0 1 15 8l3.56-3.56A9.88 9.88 0 0 0 12.75 2zM8 15a4.84 4.84 0 0 1-.91-2.2H2a9.88 9.88 0 0 0 2.39 5.76zm3.25 1.92a4.84 4.84 0 0 1-2.2-.92l-3.56 3.57A9.88 9.88 0 0 0 11.25 22zM16 9.05a4.84 4.84 0 0 1 .91 2.2h5a9.88 9.88 0 0 0-2.39-5.76zM15 16a4.84 4.84 0 0 1-2.2.91v5a9.88 9.88 0 0 0 5.76-2.39zm1.92-3.25A4.84 4.84 0 0 1 16 15l3.56 3.56A9.88 9.88 0 0 0 22 12.75z">
+                </path>
+            </svg>
             <img src="/logos/mpesa.png" alt="MPESA" height="80" width="120" />
-            <img src="/logos/plicon.png" alt="PL" height="50" width="50">
         </article>
-        <div class="instructions" style="margin-bottom: 10px; width: 100%; display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; background-color: #fff; height: 30%;">
-           <p style="margin-bottom: 20px; color: blue; text-align: center; text-wrap: wrap; 
+        <div class="instructions"
+            style="margin-bottom: 10px; width: 100%; display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; background-color: #fff; height: 30%;">
+            <p style="margin-bottom: 20px; color: blue; text-align: center; text-wrap: wrap; 
            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.1rem; font-style: italic; 
-           font-weight: bold;">Confirm After Receiving Confirmation message</p>
-           <p style="color: blue; text-align: center; text-wrap: wrap; 
-           font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.1rem; font-style: italic; 
-           font-weight: bold;" >Confirm also after You Cancel the transaction</p>
+           font-weight: bold;">Waiting for Confirmation from Safaricom</p>
+            <p style="color: limegreen; text-align: center; text-wrap: wrap; 
+           font-family: 'Signika', sans-serif; font-size: 1.4rem; font-style: italic; 
+           font-weight: bold;">You Will be redirected Shortly</p>
         </div>
-        
-        <input type="text" name="reqid" value="<%= reqID %>" style="display: none;">
 
-        <button type="submit" id="confirm-btn" style="height: 8svh; width: 85%; border: none; border-radius: 10px; font-size: 1.5rem; background-color: purple; color: white; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic;
-         outline: none;">Confirm Payment</button>
-       
+        <input id="merchant" type="text" name="reqid" value="<%= reqID %>" style="display: none;">
+
+        <button disabled id="confirm-btn" style="height: 8svh; width: 85%; border: none; border-radius: 10px; font-size: 1.6rem; background-color: limegreen; color: white; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic;
+         outline: none;">Please Wait...</button>
+
 
     </form>
 
-    <script>
-       
-       const button = document.getElementById('confirm-btn')
 
-       function disable() {
-        button.disabled = true;
-        button.style.backgroundColor = 'limegreen';
-       }
-
-    </script>
-  
 </body>
+
 </html>
