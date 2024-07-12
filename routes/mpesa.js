@@ -88,7 +88,7 @@ router.post('/stk', async (req, res) => {
                     "PartyA": correctPhone,
                     "PartyB": '8811882',
                     "PhoneNumber": correctPhone,
-                    "CallBackURL": `https://f35d-102-211-145-107.ngrok-free.app/mpesa/${process.env.CALLBACK}`,
+                    "CallBackURL": `${process.env.MY_DOMAIN}/mpesa/${process.env.CALLBACK}`,
                     "AccountReference": correctPhone,
                     "TransactionDesc": "Test"
                 },
