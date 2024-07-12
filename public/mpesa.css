@@ -19,7 +19,7 @@
 
 
 .spining {
-    animation: spin .75s ease-in-out 0.1s 33 normal forwards;
+    animation: spin 1s ease-in-out 0.1s 25 normal forwards;
 }
 
 @keyframes spin {
