@@ -89,9 +89,9 @@ const postRegister = async (req, res) => {
          agent: new HttpsProxyAgent(proxyInstance),
         accept: 'application/json'
     }    
-    const results = await fetch(baseUrl, options)
-    const data = await results.json()
-    const teams = data.standings.results 
+    const response = await fetch(baseUrl, options)
+    const data = await response.json()
+    const teams = data.results 
     res.render('register', { managers: teams }) 
         
     } catch (error) {
