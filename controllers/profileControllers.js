@@ -91,9 +91,8 @@ const postRegister = async (req, res) => {
     }    
     const response = await fetch(baseUrl, options)
     const data = await response.json()
-    console.log(data)
-    // const teams = data.results 
-    // res.render('register', { managers: teams }) 
+    const teams = data.new_entries.results 
+    res.render('register', { managers: teams }) 
         
     } catch (error) {
         req.flash('error', 'Bad Request!!..That League ID is Invalid')
