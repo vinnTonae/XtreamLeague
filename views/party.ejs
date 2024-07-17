@@ -149,7 +149,7 @@
 
                 <% if (player.teamId == host.teamId) { %>
                                  <!-- RENDER MULTIPLE AFTER PEOPLE JOIN PARTY -->
-            <a href="/myteam/<%= player.teamId %>/<%= party.event %>" class="cards" style="background-color: rgba(255, 255, 0);">
+            <a href="/myteam/<%= player.teamId %>/<%= party.event %>" class="cards" style="background-color: rgba(255, 255, 0); pointer-events: none;">
                 <div class="entry" style="height: 100%;  display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; padding: 20px;">
                     <h2 style="font-size: .85rem; font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; color: green;"><%= player.teamName %></h2>
                 </div>
@@ -166,7 +166,7 @@
                   <% } else { %>
 
                                <!-- RENDER MULTIPLE AFTER PEOPLE JOIN PARTY -->
-            <a href="/myteam/<%= player.teamId %>/<%= party.event %>" class="cards">
+            <a href="/myteam/<%= player.teamId %>/<%= party.event %>" class="cards" style="pointer-events: none;">
                 <div class="entry" style="height: 100%;  display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; padding: 20px;">
                     <h2 style="font-size: .85rem; font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; color: limegreen;"><%= player.teamName %></h2>
                 </div>
