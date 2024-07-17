@@ -66,7 +66,7 @@ const getBetHead = async (req, res) => {
     
     
                 const alert = 'Choose Gameweek'
-                res.render('bet-h2h', { user: xUser, gameweeks: dataArray, eventData: eventObject, message: alert, phase: currentPhase })
+                res.render('bet-h2h', { user: xUser, gameweeks: dataArray, countdown: eventObject, message: alert, phase: currentPhase })
             } else{
                 
                 const alert = 'PL is currently in Pre-Season'

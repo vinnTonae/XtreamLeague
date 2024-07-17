@@ -326,7 +326,7 @@ const getBetParty = async (req, res) => {
 
 
             const alert = 'Choose Gameweek'
-            res.render('bet-party', { user: userData, gameweeks: dataArray, eventData: eventObject, message: alert, phase: currentPhase })
+            res.render('bet-party', { user: userData, gameweeks: dataArray, countdown: eventObject, message: alert, phase: currentPhase })
         } else{
             const alert = 'PL is currently in Pre-Season'
             const dataArray = 'null'
