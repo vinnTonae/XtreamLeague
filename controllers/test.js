@@ -18,6 +18,12 @@ const caseInSwitch = (month)  => {
         case 4: 
             answer = 'May'
             break;
+        case 5:
+            answer = 'June'
+            break;
+        case 6:
+            answer = 'July'
+            break;        
         case 7:
             answer = 'August'
             break;

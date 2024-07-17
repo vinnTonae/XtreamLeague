@@ -25,8 +25,8 @@ const getBetHead = async (req, res) => {
         const  response = await fetch(baseUrl, options)
         const data = await response.json()
         const phases = data.phases
-        const currentPhase = caseInSwitch(month + 1)
-        //console.log(phases)
+        const currentPhase = caseInSwitch(month)
+    
         const array = []
         const chunk = 38
       for (i = 0; i < chunk; i++) {
