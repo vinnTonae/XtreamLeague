@@ -90,7 +90,10 @@
         </div>
         
         <section class="list" style="height: 210%; width: 100vw; background-color: transparent;">
-        
+                
+
+              <% if ( managers.length > 0 ) { %>
+
                 <% managers.map((manager) => { %>
                     <div class="cards">
                         <div class="entry" style="height: 100%; width: 75%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: flex-start; padding: 20px;">
@@ -99,10 +102,12 @@
                         </div>
                         <div class="id" style="margin-right: 10px; width: 20%; height: 100%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; background-color: transparent;">
                             <h4 style="font-size: .75rem; color: black;"><%= manager.entry %></h4>
-                            <p style="font-size: .7rem; color: red;">Manager id</p>
+                            <p style="font-size: .7rem; color: red;">Team id</p>
                         </div>
                     </div>
                     <% }) %>
+
+                    <% } %>
                 
                        
                             
