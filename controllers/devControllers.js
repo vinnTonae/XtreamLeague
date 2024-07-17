@@ -69,6 +69,9 @@ const getDevConsole = async (req, res) => {
         return user.points.some((pointsObject) => { return pointsObject.gameweek == id })
     })
 
+    const depWithdraws = await Transactions.find({ tranx_type: 'Withdraw', status: 'waiting' })
+    const depWithCount = depWithdraws.length
+
     const deprecatedTranx = await Transactions.find({ tranx_type: 'Deposit', userId: 'failed' })
     const depTranxCount = deprecatedTranx.length
 
@@ -104,7 +107,7 @@ const getDevConsole = async (req, res) => {
     const updatedPartyCount = updatedParty.length     
     const depHeadCount = depricatedHeads.length
     const depPartyCount = depricatedParty.length 
-    const depArray = [depHeadCount, depPartyCount, depTranxCount]
+    const depArray = [depHeadCount, depPartyCount, depTranxCount, depWithCount]
 
     res.render('devconsole', { event: id, messages: req.flash('error'), withdraws: withdrawCount, heads: headCount, party: partyCount, users: userCount, updated: updatedCount, updatedWithdraws: updatedWithCount, updatedHead: updatedHeadCount, updatedParty: updatedPartyCount, deps: depArray })
 
@@ -256,7 +259,8 @@ const settleDevHeads = async (req, res) => {
 
         const betDetails = await Head.findOne({ _id: betid })
     const entryAmount = betDetails.amount
-    const amountToPay = entryAmount * 2 
+    const toWin = Math.floor(entryAmount * 0.85)
+    const amountToPay = entryAmount + toWin  
     const hostId = betDetails.hostId
     const opponentId = betDetails.opponentId
     const Host = await User.findOne( { teamId: hostId } )
@@ -311,9 +315,10 @@ const settleDevHeads = async (req, res) => {
     } else {
 
         try {
-             
-            const hostCompensation =  entryAmount + hostBalance
-            const oppCompensation = entryAmount + oppBalance
+            
+            const compensated = Math.floor(entryAmount * 0.85)
+            const hostCompensation =  compensated + hostBalance
+            const oppCompensation = compensated + oppBalance
 
             const newHost = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: hostCompensation  } })
             const newOpp = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: oppCompensation  } })
@@ -621,6 +626,22 @@ const updateDevParty = async (req, res) => {
     
     }
 
+    const deleteWithdrawDeps = async (req, res) => {
+        const { event } = req.body
+
+        try {
+            
+            const deleteDeprWithdraws = await Transactions.deleteMany({ status: 'waiting' })
+
+            res.redirect(`/dev/${event}`)
+
+        } catch (error) {
+
+            req.flash('error', 'MongoDB error')
+            res.redirect(`/dev/${event}`)
+        }
+    }
+
   
 
 
@@ -680,6 +701,7 @@ module.exports = {
     deleteDepHeads,
     deleteDepParties,
     deleteMpesaDeps,
+    deleteWithdrawDeps,
     getDevWithdraws,
     patchDevWithdraws
 }

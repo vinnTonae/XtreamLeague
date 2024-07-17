@@ -19,7 +19,7 @@
         }
     </style>    
 </head>
-<body style="height: 125svh; width: 100vw;">
+<body style="height: 150svh; width: 100vw;">
     <header style="height: 10svh; width: 100vw; display: flex; align-items: center; justify-content: space-evenly; border-bottom: 1px solid purple;">
     
             <a href="/dev"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2.5rem;"></ion-icon></a>
@@ -99,7 +99,7 @@
 
             <form action="/dev/<%= event %>/mpesa-delete?_method=DELETE" method="post"  style="height: 95%; width: 90%; border: 2px solid red; margin: 8px; border-radius: 20px; background-color: rgba(50, 205, 50, 0.314); display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
                 <h2 style= "color: purple; margin: 0; font-family: 'Signika', sans-serif; font-size: 2rem;">Mpesa Depricated</h2>
-                <h3 style="color: blue; margin: 5px; font-size: 1.3rem; font-weight: bold; font-style: italic;">ALL: <span style="font-weight: bold; font-style: italic; font-size: 1.8rem; color: limegreen;"><%= deps[2] %></span></h3>
+                <h3 style="color: blue; margin: 5px; font-size: 1.3rem; font-weight: bold; font-style: italic;">ALL: <span style="font-weight: bold; font-style: italic; font-size: 1.8rem; color: red;"><%= deps[2] %></span></h3>
                 
                 <input type="number" style="display: none;" name="event" value="<%= event %>">
                 
@@ -107,6 +107,22 @@
             
 
             </form>
+            
+        </section>
+
+        <section style="height: 25svh; display: flex; align-items: center; justify-content: center;">
+
+            <form action="/dev/<%= event %>/withdraw-delete?_method=DELETE" method="post"  style="height: 95%; width: 90%; border: 2px solid red; margin: 8px; border-radius: 20px; background-color: rgba(0, 0, 255, 0.274); display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+                <h2 style= "color: purple; margin: 0; font-family: 'Signika', sans-serif; font-size: 2rem;">Withdraws Depricated</h2>
+                <h3 style="color: blue; margin: 5px; font-size: 1.3rem; font-weight: bold; font-style: italic;">ALL: <span style="font-weight: bold; font-style: italic; font-size: 1.8rem; color: red;"><%= deps[3] %></span></h3>
+                
+                <input type="number" style="display: none;" name="event" value="<%= event %>">
+                
+                <button type="submit" style="height: 30%; width: 70%; background-color: rgba(255, 255, 0, 0.493); color: red; font-weight: bold; font-style: italic; font-family: 'Signika', sans-serif; border: none; outline: none; border-radius: 25px; font-size: 1.5rem;" >DELETE ALL</button>
+            
+
+            </form>
+
         </section>
         
         

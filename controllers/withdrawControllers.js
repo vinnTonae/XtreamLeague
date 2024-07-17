@@ -76,7 +76,7 @@ const postWithdraw = async (req, res) => {
     const userDetails = await User.findOne({ _id: userId })
     const pplEmail = userDetails.payPal
     const method = 'paypal'
-    const status = "pending"
+    const status = "waiting"
     const tranx_type = "Withdraw"
     const userBalance = userDetails.totalBalance
 
@@ -121,7 +121,7 @@ const postWithdrawMpesa = async (req, res) => {
     const userId = req.user._id
     const userDetails = await User.findOne({ _id: userId })
     const method = 'mpesa'
-    const status = "pending"
+    const status = "waiting"
     const tranx_type = "Withdraw"
     const mpesa = userDetails.mpesa
     const userBalance = userDetails.totalBalance
