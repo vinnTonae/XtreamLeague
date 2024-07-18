@@ -643,7 +643,21 @@ const updateDevParty = async (req, res) => {
     }
 
   
+    const getDevdeposits = async (req, res) => {
+        const event = req.params.id
+        try {
+             
+            const deposits = await Transactions.find({ tranx_type: 'Deposit' })
 
+            res.render('devdeposits', { gameweek: event, Transactions: deposits, messages: req.flash('error') })
+
+        } catch (error) {
+            
+            req.flash('error', 'MongoDB Access Errors')
+            res.redirect(`/dev/${event}`)
+            console.log(error)
+        }
+    }
 
 
     const getDevWithdraws = async (req, res) => {
@@ -702,6 +716,7 @@ module.exports = {
     deleteDepParties,
     deleteMpesaDeps,
     deleteWithdrawDeps,
+    getDevdeposits,
     getDevWithdraws,
     patchDevWithdraws
 }
