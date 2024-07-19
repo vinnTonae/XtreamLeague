@@ -1,4 +1,4 @@
-const { getDev, getDevConsole, getDevUsers, patchDevUsers, getDevHeads, updateDevHeads, settleDevHeads, getDevParties, getDevParty, updateDevParty, deleteDepHeads, deleteDepParties, settleDevParty, getDevdeposits, getDevWithdraws, patchDevWithdraws, deleteMpesaDeps, deleteWithdrawDeps } = require('../controllers/devControllers.js')
+const { getDev, getDevConsole, getDevUsers, patchDevUsers, getDevHeads, updateDevHeads, settleDevHeads, getDevParties, getDevParty, updateDevParty, deleteDepHeads, deleteDepParties, settleDevParty, getDevdeposits, updateDeposit, getDevWithdraws, patchDevWithdraws, deleteMpesaDeps, deleteWithdrawDeps } = require('../controllers/devControllers.js')
 const { devCheck, authCheck } = require('../controllers/authControllers')
 
 
@@ -7,21 +7,21 @@ const router = require('express').Router()
 
 router.get('/', authCheck, devCheck, getDev)
 
-router.get('/:id', getDevConsole)
+router.get('/:id', authCheck, devCheck, getDevConsole)
 
-router.get('/:id/xUsers', getDevUsers)
+router.get('/:id/xUsers', authCheck, devCheck, getDevUsers)
 
 router.patch('/:id/xUsers/', patchDevUsers)
 
-router.get('/:id/heads', getDevHeads)
+router.get('/:id/heads', authCheck, devCheck, getDevHeads)
 
 router.patch('/:id/heads/update', updateDevHeads)
 
 router.patch('/:id/heads/settle', settleDevHeads)
 
-router.get('/:id/party', getDevParties)
+router.get('/:id/party', authCheck, devCheck, getDevParties)
 
-router.get('/:id/party/:party', getDevParty)
+router.get('/:id/party/:party', authCheck, devCheck, getDevParty)
 
 router.patch('/:id/party/:party/update', updateDevParty)
 
@@ -36,9 +36,11 @@ router.delete('/:id/mpesa-delete', deleteMpesaDeps )
 
 router.delete('/:id/withdraw-delete', deleteWithdrawDeps )
 
-router.get('/:id/deposits', getDevdeposits)
+router.get('/:id/deposits', authCheck, devCheck, getDevdeposits)
 
-router.get('/:id/withdraws', getDevWithdraws)
+router.patch('/:id/deposits/settle', updateDeposit )
+
+router.get('/:id/withdraws', authCheck, devCheck, getDevWithdraws)
 
 router.patch('/:id/withdraws/settle', patchDevWithdraws)
 

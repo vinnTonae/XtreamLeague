@@ -65,15 +65,34 @@ const getDevConsole = async (req, res) => {
 
         const allUsers = await User.find()
 
-    const updatedUsers = allUsers.filter((user) => {
-        return user.points.some((pointsObject) => { return pointsObject.gameweek == id })
+        const updatedUsers = allUsers.filter((user) => {
+            return user.points.some((pointsObject) => { return pointsObject.gameweek == id })
     })
 
+    // TODO: REDUCE DEPS AND WITHDRAWS
+    
+    const completedDepos = await Transactions.find({ tranx_type: 'Deposit', status: 'complete' })
+    const completedWiths = await Transactions.find({ tranx_type: 'Withdraw', status: 'passed' })
+    
+    const totalDepos = completedDepos.reduce(( currentTotal, tranx ) => {
+           
+            return tranx.amount + currentTotal 
+    }, 0)
+
+    const totalWiths = completedWiths.reduce(( currentTotal, tranx ) => {
+
+          return tranx.amount + currentTotal
+    }, 0)
+
+
+    
     const depWithdraws = await Transactions.find({ tranx_type: 'Withdraw', status: 'waiting' })
     const depWithCount = depWithdraws.length
 
     const deprecatedTranx = await Transactions.find({ tranx_type: 'Deposit', userId: 'failed' })
     const depTranxCount = deprecatedTranx.length
+    const pendingDeposits = await Transactions.find({ status: 'pending' })
+    const pendingCounts = pendingDeposits.length
 
     
     const withdraws = await Transactions.find({ tranx_type: 'Withdraw' })
@@ -107,14 +126,16 @@ const getDevConsole = async (req, res) => {
     const updatedPartyCount = updatedParty.length     
     const depHeadCount = depricatedHeads.length
     const depPartyCount = depricatedParty.length 
-    const depArray = [depHeadCount, depPartyCount, depTranxCount, depWithCount]
+    const depArray = [depHeadCount, depPartyCount, depTranxCount, depWithCount, pendingCounts]
+    const reducedArray = [totalDepos, totalWiths]
 
-    res.render('devconsole', { event: id, messages: req.flash('error'), withdraws: withdrawCount, heads: headCount, party: partyCount, users: userCount, updated: updatedCount, updatedWithdraws: updatedWithCount, updatedHead: updatedHeadCount, updatedParty: updatedPartyCount, deps: depArray })
+    res.render('devconsole', { event: id, messages: req.flash('error'), finance: reducedArray, withdraws: withdrawCount, heads: headCount, party: partyCount, users: userCount, updated: updatedCount, updatedWithdraws: updatedWithCount, updatedHead: updatedHeadCount, updatedParty: updatedPartyCount, deps: depArray })
 
         
     } catch (error) {
 
         req.flash('error', 'MongoDB Access Errors')
+        console.log(error)
         res.redirect('/main')
         
     }
@@ -660,6 +681,34 @@ const updateDevParty = async (req, res) => {
     }
 
 
+    const updateDeposit = async (req, res) => {
+        const event = req.params.id
+        const { tranxid } = req.body
+
+        try {
+            
+             const transaction = await Transactions.findOne({ _id: tranxid })
+             const tranxAmount = transaction.amount
+             const userId = transaction.userId
+             const userToUpdate = await User.findOne({ _id: userId })
+             const currentBalance = userToUpdate.totalBalance
+             const newBalance = currentBalance + tranxAmount
+             
+             const updatedUser = await User.findByIdAndUpdate({ _id: userId }, { $set: { totalBalance: newBalance  } })
+
+             const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxid }, { $set: { status: 'complete' } })
+
+             req.flash('error', 'User Account Credited')
+             res.redirect(`/dev/${event}/deposits`)
+
+        } catch (error) {
+
+            req.flash('error', 'Error Updating User')
+            res.redirect(`/dev/${event}/deposits`)
+        }
+
+    }
+
     const getDevWithdraws = async (req, res) => {
         const event = req.params.id
         try {
@@ -717,6 +766,7 @@ module.exports = {
     deleteMpesaDeps,
     deleteWithdrawDeps,
     getDevdeposits,
+    updateDeposit,
     getDevWithdraws,
     patchDevWithdraws
 }

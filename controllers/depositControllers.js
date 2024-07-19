@@ -63,7 +63,7 @@ const patchConfirmDeposit = async (req, res) => {
 
             const updatedUser = await User.findByIdAndUpdate({ _id: userId }, { $set: { totalBalance: userNewBalance, payPal: pplEmail } })
     
-            const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxId }, { $set: { status: 'completed'  } })
+            const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxId }, { $set: { status: 'complete'  } })
     
             req.flash('error', 'Deposit Complete!!..Account Credited')
             res.redirect('/main')
@@ -72,7 +72,7 @@ const patchConfirmDeposit = async (req, res) => {
 
             const updatedUser = await User.findByIdAndUpdate({ _id: userId }, { $set: { totalBalance: userNewBalance } })
 
-            const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxId }, { $set: { status: 'completed' } })
+            const updatedTranx = await Transactions.findByIdAndUpdate({ _id: tranxId }, { $set: { status: 'complete' } })
 
             req.flash('error', 'Deposit Complete!!..Account Credited')
             res.redirect('/main')
