@@ -38,7 +38,7 @@ const getDev = async (req, res) => {
             return event.id ===gameweek
         })
         if(event){
-            const eventStatus = event.finished
+            const eventStatus = event.data_checked
           dataArray.push( [gameweek, eventStatus] ) 
         } else {
             dataArray.push([gameweek, false])
