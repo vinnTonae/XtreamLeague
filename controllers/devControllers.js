@@ -251,9 +251,17 @@ const updateDevHeads = async (req, res) => {
         const opponentId = betDetails.opponentId
         const Host = await User.findOne({ teamId: hostId })
         const Opponent = await User.findOne({ teamId: opponentId })
+
+        const hostPointsObject = Host.points.find((object) => {
+            return object.gameweek == event
+        })
+
+        const oppPointsObject = Opponent.points.find((object) => {
+            return object.gameweek == event
+        })
     
-        const hostPoints = Host.points[event - 1].points
-        const oppPoints = Opponent.points[event - 1].points
+        const hostPoints = hostPointsObject.points
+        const oppPoints = oppPointsObject.points
     
         const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { points: { host: hostPoints, opponent: oppPoints  } })
     
@@ -278,7 +286,7 @@ const settleDevHeads = async (req, res) => {
 
     try {
 
-        const betDetails = await Head.findOne({ _id: betid })
+    const betDetails = await Head.findOne({ _id: betid })
     const entryAmount = betDetails.amount
     const toWin = Math.floor(entryAmount * 0.85)
     const amountToPay = entryAmount + toWin  
@@ -340,9 +348,11 @@ const settleDevHeads = async (req, res) => {
             const compensated = Math.floor(entryAmount * 0.85)
             const hostCompensation =  compensated + hostBalance
             const oppCompensation = compensated + oppBalance
+            const newhostEarned = hostTotalEarned + hostCompensation
+            const newoppEarned = oppCompensation + oppTotalEarned
 
-            const newHost = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: hostCompensation  } })
-            const newOpp = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: oppCompensation  } })
+            const newHost = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: hostCompensation, totalEarned: newhostEarned } })
+            const newOpp = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: oppCompensation, totalEarned: newoppEarned  } })
             const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { $set: { winner: { winnerId: 'Draw', winAmount: entryAmount }, betStatus: { code: 1000, message: "Bet settled" } } })
 
             req.flash('success', 'Both users Compensated')            
@@ -400,8 +410,7 @@ const getDevParty = async (req, res) => {
     
     const host = party.hostId
     const hostDetails = await User.findOne({ teamId: host })
-    const user = req.user
-
+    
     const allPlayers = await User.find()
     const playerArray = party.players
 
