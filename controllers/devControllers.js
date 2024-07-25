@@ -269,6 +269,74 @@ const patchDevUsers = async (req, res) => {
    
 }
 
+const getDevUser = async (req, res) => {
+
+    const event  = req.params.id
+    const userid = req.params.userId
+    try {
+        
+        const userDetails = await User.findOne({ _id: userid })
+
+        // TODO: ALL TRANSACTIONS
+        const mpesaDeposits = await Transactions.find({ method: 'mpesa', userId: userid, tranx_type: 'Deposit'  })
+        const paypalDeposits = await Transactions.find({ method: 'paypal', userId: userid, tranx_type: 'Deposit' })
+
+        const mpesaWithdraws = await Transactions.find({ method: 'mpesa', userId: userid, tranx_type: 'Withdraw' })
+        const paypalWithdraws = await Transactions.find({ method: 'paypal', userId: userid, tranx_type: 'Withdraw' })
+
+        const mpesaDepcounts = mpesaDeposits.length
+        const paypalDepcounts = paypalDeposits.length
+        const mpesaWithcounts = mpesaWithdraws.length
+        const paypalWithcounts = paypalWithdraws.length
+
+        const mpesaDepTotal = mpesaDeposits.reduce((current, tranx) => {
+              return tranx.amount + current
+        }, 0)
+
+        const paypalDepTotal = paypalDeposits.reduce((current, tranx) => {
+              return tranx.amount + current
+        }, 0)
+
+        const totalDeposits = mpesaDepTotal + paypalDepTotal
+
+        const mpesaWithTotal = mpesaWithdraws.reduce((current, tranx) => {
+              return tranx.amount + current
+        }, 0)
+
+        const paypalWithTotal = paypalWithdraws.reduce((current, tranx) => {
+              return tranx.amount + current
+        }, 0)
+
+        const totalWithdraws = mpesaWithTotal + paypalWithTotal
+
+        // TODO: BETS PARTICIPATED
+        
+        const userteamId = userDetails.teamId
+        const headsPlayedHost = await Head.find({ hostId: userteamId })
+        const headsPlayedOpp = await Head.find({ opponentId: userteamId })
+        const TotalHeadCounts = headsPlayedHost.length + headsPlayedOpp.length
+        
+        const allParties = await Party.find()
+
+        const partiesPlayed =  allParties.filter((party) => {
+            return party.players.some((player) => { return player == userteamId})
+        })
+        const TotalPartiesCount = partiesPlayed.length
+
+        const Bets = [TotalHeadCounts, TotalPartiesCount ]
+        const Amounts = [mpesaDepTotal, paypalDepTotal, mpesaWithTotal, paypalWithTotal, totalDeposits, totalWithdraws ]
+        const Counts = [mpesaDepcounts, paypalDepcounts, mpesaWithcounts, paypalWithcounts ] 
+
+        res.render('userDetails', { user: userDetails, gameweek: event, tranxCount: Counts, amounts: Amounts, betCount: Bets })
+
+    } catch (error) {
+
+        req.flash('error', 'MongoDB Access Errors')
+        res.redirect(`/dev/${event}`)      
+    }
+    
+}
+
 const getDevHeads = async (req, res) => {
 
     const event = req.params.id
@@ -805,6 +873,7 @@ module.exports = {
     getDevConsole,
     getDevUsers,
     patchDevUsers,
+    getDevUser,
     getDevHeads,
     updateDevHeads,
     settleDevHeads,
