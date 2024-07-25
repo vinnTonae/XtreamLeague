@@ -64,10 +64,21 @@ const getDevConsole = async (req, res) => {
     try {
 
         const allUsers = await User.find()
+        const dev = await User.findOne({ teamId: '571043' })
 
         const updatedUsers = allUsers.filter((user) => {
             return user.points.some((pointsObject) => { return pointsObject.gameweek == id })
     })
+
+    // TODO: USERTOTALBAL
+
+    const totalUserBal = allUsers.reduce((currentTotal, user) => {
+           return user.totalBalance + currentTotal
+    }, 0)
+
+    const userTotal = totalUserBal - dev.totalBalance  //! USERTOTAL 
+
+
 
     // TODO: REDUCE DEPS AND WITHDRAWS
     
@@ -104,12 +115,23 @@ const getDevConsole = async (req, res) => {
     const updatedWithCount = updatedWithdraws.length    
 
     const updatedCount = updatedUsers.length
-
     const userCount = allUsers.length
+
+    // TODO: BETS & PROFITS
+
     const currentHeads = await Head.find({ event: id })
     const currentParties = await Party.find({ event: id })
+
+    // TODO: BETS
+
     const headCount = currentHeads.length 
     const partyCount = currentParties.length
+    const currentActiveHeads = currentHeads.filter((bet) => {
+             return bet.betStatus.code !== 100
+    })
+    const currentActiveParties = currentParties.filter((party) => {
+             return party.betStatus.code !== 100
+    })
     const depricatedHeads = currentHeads.filter((bet) => {
              return bet.betStatus.code == 100
     })
@@ -126,8 +148,37 @@ const getDevConsole = async (req, res) => {
     const updatedPartyCount = updatedParty.length     
     const depHeadCount = depricatedHeads.length
     const depPartyCount = depricatedParty.length 
+
+    // TODO: PROFITS 
+
+    const profitHeadArray = []
+    const profitPartyArray = []
+
+    currentActiveHeads.forEach((bet) => {
+        const profit = Math.floor( (bet.amount * 2) * 0.85 )
+        profitHeadArray.push(profit)
+    })
+
+    const totalProfHeads =  profitHeadArray.reduce((current, value) => { return value + current }, 0)
+
+
+    currentActiveParties.forEach((party) => {
+        const totalPlayers = party.players.length
+        const partyAmount = party.amount
+        const profit = Math.floor( ( totalPlayers * partyAmount ) * 0.85 )
+        profitPartyArray.push(profit)
+    })
+
+    const totalProfParty = profitPartyArray.reduce((current, value) => {
+        return value + current
+    }, 0)
+    
+    const totalProfit = totalProfParty + totalProfHeads
+                            
+
+
     const depArray = [depHeadCount, depPartyCount, depTranxCount, depWithCount, pendingCounts]
-    const reducedArray = [totalDepos, totalWiths]
+    const reducedArray = [totalDepos, totalWiths, userTotal, totalProfHeads, totalProfParty, totalProfit]
 
     res.render('devconsole', { event: id, messages: req.flash('error'), finance: reducedArray, withdraws: withdrawCount, heads: headCount, party: partyCount, users: userCount, updated: updatedCount, updatedWithdraws: updatedWithCount, updatedHead: updatedHeadCount, updatedParty: updatedPartyCount, deps: depArray })
 
@@ -251,17 +302,9 @@ const updateDevHeads = async (req, res) => {
         const opponentId = betDetails.opponentId
         const Host = await User.findOne({ teamId: hostId })
         const Opponent = await User.findOne({ teamId: opponentId })
-
-        const hostPointsObject = Host.points.find((object) => {
-            return object.gameweek == event
-        })
-
-        const oppPointsObject = Opponent.points.find((object) => {
-            return object.gameweek == event
-        })
     
-        const hostPoints = hostPointsObject.points
-        const oppPoints = oppPointsObject.points
+        const hostPoints = Host.points[event - 1].points
+        const oppPoints = Opponent.points[event - 1].points
     
         const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { points: { host: hostPoints, opponent: oppPoints  } })
     
@@ -286,7 +329,7 @@ const settleDevHeads = async (req, res) => {
 
     try {
 
-    const betDetails = await Head.findOne({ _id: betid })
+        const betDetails = await Head.findOne({ _id: betid })
     const entryAmount = betDetails.amount
     const toWin = Math.floor(entryAmount * 0.85)
     const amountToPay = entryAmount + toWin  
@@ -348,11 +391,9 @@ const settleDevHeads = async (req, res) => {
             const compensated = Math.floor(entryAmount * 0.85)
             const hostCompensation =  compensated + hostBalance
             const oppCompensation = compensated + oppBalance
-            const newhostEarned = hostTotalEarned + hostCompensation
-            const newoppEarned = oppCompensation + oppTotalEarned
 
-            const newHost = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: hostCompensation, totalEarned: newhostEarned } })
-            const newOpp = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: oppCompensation, totalEarned: newoppEarned  } })
+            const newHost = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: hostCompensation  } })
+            const newOpp = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: oppCompensation  } })
             const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { $set: { winner: { winnerId: 'Draw', winAmount: entryAmount }, betStatus: { code: 1000, message: "Bet settled" } } })
 
             req.flash('success', 'Both users Compensated')            
@@ -410,7 +451,8 @@ const getDevParty = async (req, res) => {
     
     const host = party.hostId
     const hostDetails = await User.findOne({ teamId: host })
-    
+    const user = req.user
+
     const allPlayers = await User.find()
     const playerArray = party.players
 
