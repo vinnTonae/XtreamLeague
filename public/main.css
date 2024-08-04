@@ -7,7 +7,7 @@
 .navbar {
     position: absolute;
     top: 10.5vh;
-    width: 50%;
+    width: 55%;
     border-radius: 20px 0 0 20px;
     z-index: 2;
     background-color: antiquewhite;
@@ -38,7 +38,7 @@
 }
 
 .navbar li {
-    padding: 0.5rem;
+    padding: 1rem;
     border-bottom: 1px solid purple;
 }
 
@@ -60,6 +60,7 @@
     text-decoration: none;
     font-family: 'Signika', sans-serif;
     font-weight: bold;
+    font-size: 1.2rem;
 }
 
 .navbar a:any-link {

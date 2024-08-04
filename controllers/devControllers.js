@@ -155,7 +155,7 @@ const getDevConsole = async (req, res) => {
     const profitPartyArray = []
 
     currentActiveHeads.forEach((bet) => {
-        const profit = Math.floor( (bet.amount * 2) * 0.85 )
+        const profit = Math.floor( (bet.amount * 2) * 0.15 )
         profitHeadArray.push(profit)
     })
 
@@ -165,7 +165,7 @@ const getDevConsole = async (req, res) => {
     currentActiveParties.forEach((party) => {
         const totalPlayers = party.players.length
         const partyAmount = party.amount
-        const profit = Math.floor( ( totalPlayers * partyAmount ) * 0.85 )
+        const profit = Math.floor( ( totalPlayers * partyAmount ) * 0.15 )
         profitPartyArray.push(profit)
     })
 
