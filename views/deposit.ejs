@@ -229,15 +229,15 @@
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
       </button>
-
+      
       <button onclick="purchase(5000)" class="amounts"
-        style="cursor: pointer; height: 100px; width: 140px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; border: .5px solid purple; outline: none; margin: 8px; box-shadow: 0 4px 8px 0 rgba(65, 5, 65, 0.656), 0 5px 10px 0 rgba(65, 5, 65, 0.456); background-image: linear-gradient(45deg, grey, silver, whitesmoke, white, whitesmoke, silver,grey) ; border-radius: 15px;">
-        <div class="amount-span" style="display: flex; align-items: center; justify-content: center;">
-          <h1
-            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
-            KSH</h1>
-          <h1
-            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px;">
+      style="cursor: pointer; height: 100px; width: 140px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; border: .5px solid purple; outline: none; margin: 8px; box-shadow: 0 4px 8px 0 rgba(65, 5, 65, 0.656), 0 5px 10px 0 rgba(65, 5, 65, 0.456); background-image: linear-gradient(45deg, grey, silver, whitesmoke, white, whitesmoke, silver,grey) ; border-radius: 15px;">
+      <div class="amount-span" style="display: flex; align-items: center; justify-content: center;">
+        <h1
+        style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
+        KSH</h1>
+        <h1
+        style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px;">
             5000</h1>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
@@ -252,27 +252,27 @@
     style="display: none; overflow: hidden; position: absolute; width: 95vw; margin-top: 5px; border-radius: 20px; height: 40vh; top: 40%; left: 50%; transform: translate(-50%, -50%); z-index: 2; background-color: aliceblue; transition: all 1s ease-in-out;">
     <div class="paypal-container" style="position: relative; width: 100%; height: 50%; background-color: inherit;">
       <div class="close"
-        style="width: 100%; height: 35%; display: flex; justify-content: space-between; padding-left: 10px;">
+      style="width: 100%; height: 35%; display: flex; justify-content: space-between; padding-left: 10px;">
         <img src="/logos/paypal.png" alt="" width="120" height="40">
         <button id="close"
           style="height: 70%; width: 50px; display: flex; justify-content: center; align-items: center; outline: none; border: none; background-image: linear-gradient(135deg, blue, limegreen); border-radius: 0 20px 0 20px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
             style="fill: white;transform: msFilter">
             <path
-              d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
+            d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
             </path>
           </svg>
         </button>
       </div>
       <div id="paypal-button-container"
-        style="height: 30%; width: 75%; position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); ">
+      style="height: 30%; width: 75%; position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); ">
       </div>
       <input type="number" id="amount" name="amount" style="display: none;">
 
     </div>
-
+    
     <div class="mpesa-container"
-      style="border: 1px solid limegreen; border-top: none; position: relative; width: 100%; height: 50%; border-radius: 0 0 20px 20px; background-image: linear-gradient(45deg, rgba(0, 255, 0, 0.3), white, white, rgba(0, 255, 0, 0.3));">
+    style="border: 1px solid limegreen; border-top: none; position: relative; width: 100%; height: 50%; border-radius: 0 0 20px 20px; background-image: linear-gradient(45deg, rgba(0, 255, 0, 0.3), white, white, rgba(0, 255, 0, 0.3));">
 
       <img src="/logos/mpesa.png" alt="" width="120" height="60" style="position: absolute; top: 0; left: 10px;">
       <button id="lipa-mpesa"
@@ -281,41 +281,42 @@
           style="font-size: 1.3rem; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic; color: white;">
           Lipa Na Mpesa</h2>
       </button>
-
+      
       <img src="/logos/safaricom.png" alt="" width="120" height="60" style="position: absolute; bottom: 0; right: 5px;">
 
 
     </div>
-
+    
 
   </div>
-
+  
   <!-- MPESA CONTAINER FORM -->
 
   <div class="mpesa-wrapper"
-    style="position: absolute; display: none; flex-flow: column nowrap; z-index: 10; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; height: 350px; width: 300px; border-radius: 20px; background-color: antiquewhite;">
-
-    <!-- CLOSE BTN -->
-    <article>
-
-      <div class="close-mpesa">
+  style="position: absolute; display: none; flex-flow: column nowrap; z-index: 10; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; height: 350px; width: 300px; border-radius: 20px; background-color: antiquewhite;">
+  
+  <!-- CLOSE BTN -->
+  <article>
+    
+    <div class="close-mpesa">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-          style="fill: white;transform: msFilter">
-          <path
-            d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
-          </path>
+        style="fill: white;transform: msFilter">
+        <path
+        d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
+      </path>
         </svg>
       </div>
-
+      
       <img src="/logos/mpesa.png" width="180" height="80" alt="Lipa na Mpesa">
-
+      
     </article>
-
+    
     <form action="/mpesa/stk" method="post" class="formbox-mpesa">
-
+      
       <div class="token-select">
-
-        <img src="/logos/coin.png" alt="kSH" height="35" width="35" style="margin-right: 10px;">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: limegreen; transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
+      
         <h3 id="token-display">KSH <span id="displayAmount"></span></h3>
       </div>
 
