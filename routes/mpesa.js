@@ -214,7 +214,7 @@ router.patch('/', async (req, res) => {
 
         if (!transaction) {
 
-            req.flash('error', 'Network Failure!!..Pending Transacttions will be updated shortly')
+            req.flash('error', 'Network Failure!!..Please Contact support 0701280373 via Whatsapp')
             res.redirect('/deposit')
 
         } else {
