@@ -1,9 +1,9 @@
 const router = require('express').Router()
 
-const { authCheck } = require('../controllers/authControllers')
+const { authCheck, registerCheck } = require('../controllers/authControllers')
 const { h2hId } = require('../controllers/headControllers')
 
-router.get('/:id', authCheck, h2hId)
+router.get('/:id', authCheck, registerCheck, h2hId)
 
 
 
