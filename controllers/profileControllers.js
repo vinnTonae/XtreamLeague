@@ -117,10 +117,10 @@ const getMain = async (req, res) => {
     const headHost = await Head.find({ hostId: userTeamId })
     const invitedHost = await Head.find({ opponentId: userTeamId })
 
-    const filHeadHost = headHost.filter((bet) => { return bet.betStatus.code == 100 || bet.betStatus.code == 200  })
-    const filHeadInvited = invitedHost.filter((bet) => { return bet.betStatus.code == 100 || bet.betStatus.code == 200 })
-    const filPartyInvited = invitedParties.filter((party) => { return party.betStatus.code == 100 || party.betStatus.code == 200 }) 
-    const filPartyHost = partiesHosting.filter((party) => { return party.betStatus.code == 100 || party.betStatus.code == 200  })
+    const filHeadHost = headHost.filter((bet) => { return bet.betStatus.code !== 1000 })
+    const filHeadInvited = invitedHost.filter((bet) => { return bet.betStatus.code !== 1000 })
+    const filPartyInvited = invitedParties.filter((party) => { return party.betStatus.code !== 1000 }) 
+    const filPartyHost = partiesHosting.filter((party) => { return party.betStatus.code !== 1000 })
 
     const headCounts =  filHeadHost.length + filHeadInvited.length
     

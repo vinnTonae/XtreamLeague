@@ -217,7 +217,7 @@
 
               <a href="/bets" class="all-bets">
 
-                    <% if ( head == 0 ) { %> 
+                    <% if ( head === 0 ) { %> 
                         <div class="count" style="position: absolute; top: 2px; right: 2px; z-index: 2; height: 22px; width: 22px; display: none; align-items: center; justify-content: center; border-radius: 50%; background-color: darkgreen; text-align: center;">
                             <p style="font-weight: bold; color: white; font-style: italic;"><%= head %></p>
                          </div>
@@ -233,7 +233,7 @@
 
               <a href="/parties" class="Rankings">
 
-                     <% if ( party == 0 )  { %>
+                     <% if ( party === 0 )  { %>
                         <div class="count" style="position: absolute; top: 2px; right: 2px; z-index: 2; height: 22px; width: 22px; display: none; align-items: center; justify-content: center; border-radius: 50%; background-color: blue; text-align: center;">
                             <p style="font-weight: bold; color: white; font-style: italic;" ><%= party %></p>
                          </div>
