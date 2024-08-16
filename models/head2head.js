@@ -8,10 +8,10 @@ const headSchema = new Schema({
       hostId: { type: String, required: true },
        event: { type: Number, required: true },
       amount: { type: Number, required: true },
-  opponentId: { type: String, default:'none', required: false },
+  opponentId: { type: String, default: 'null', required: false },
       points: {
-            host: { type: Number, default: 0 },
-        opponent: { type: Number, default: 0}
+            host: { type: Number, default: 0, required: false },
+        opponent: { type: Number, default: 0, required: false }
       },
       winner: {
           winnerId: { type: String, default: 'none', required: false },
