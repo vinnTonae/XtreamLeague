@@ -575,8 +575,8 @@ const getDevParty = async (req, res) => {
        } else if ( 4 <= totalPlayers <= 10 )  {
             const amountToSpread = Math.floor( (entryAmount * totalPlayers) * 0.85 )
             first = Math.floor(amountToSpread * 0.6)
-            second = Math.floor(amountToSpread * 0.3)
-            third = Math.floor(amountToSpread * 0.1)
+            second = Math.floor(amountToSpread * 0.4)
+            third = 0
            return [first, second, third]
 
        } else if ( totalPlayers > 10 ) {
