@@ -68,7 +68,7 @@
 
 
     <header style="height: 10svh; width: 100vw; display: flex; align-items: center; justify-content: space-between;">
-        <a href="/main" style="text-decoration: none; margin-left: 5px; display: flex; align-items: center; justify-content: center;">
+        <a href="/bets" style="text-decoration: none; margin-left: 5px; display: flex; align-items: center; justify-content: center;">
             <ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon>
             <h1 style="text-decoration: none; margin-inline: 3px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Bet Details</h1>
         </a>
@@ -132,7 +132,7 @@
 
             <h1 style="color: purple; font-size: .95rem; margin-inline: 3px;">VS</h1>
 
-             <% if ( bet.opponentId == 'none' ) { %>
+             <% if ( bet.opponentId == 'null' ) { %>
                     
                 <div class="opponent-box" style="position: relative; width: 45%; height: 95%; background-color: aliceblue; border: 2px solid purple; border-radius: 20px;">
                      
