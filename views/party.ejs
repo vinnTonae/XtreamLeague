@@ -67,12 +67,12 @@
                   <!-- CONFIRM OR DENY DETAILS BOX -->
     
                   <section class="confirm-details" style=" padding-top: 20px; background-color: transparent;  width: 100%; height: 100%;">
-                         <h1 style="color: blueviolet; text-align: center; margin: 10px auto; font-size: 1.8rem; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold;">
+                         <h1 style="color: blueviolet; text-align: center; margin: 10px auto; font-size: 1.8rem; font-family: 'Signika', sans-serif; font-weight: bold;">
                             Party
                          </h1>
-                         <h1 style="color: blue; text-align: center; margin: 10px auto; font-size: 1.5rem; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold;"><span style="color: red;">Host: </span><%= host.teamName %></h1>
-                         <h1 style="color: green; text-align: center; margin: 10px auto; font-family: 'Signika', sans-serif; font-style: italic; font-size: 1.5rem; font-weight: bold;"><span style="color: red;">Event: </span>GW<%= party.event %></h1>
-                         <h1 style="color: black; text-align: center; margin: 10px auto; font-size: 1.5rem; font-style: italic; font-weight: bold;"><span style="color: red;">Amount: </span>KSH <%= party.amount %></h1>
+                         <h1 style="color: blue; text-align: center; margin: 10px auto; font-size: 1.5rem; font-family: 'Signika', sans-serif; font-weight: bold;"><span style="color: red;">Host: </span><%= host.teamName %></h1>
+                         <h1 style="color: green; text-align: center; margin: 10px auto; font-family: 'Signika', sans-serif; font-size: 1.5rem; font-weight: bold;"><span style="color: red;">Event: </span>GW<%= party.event %></h1>
+                         <h1 style="color: black; text-align: center; margin: 10px auto; font-size: 1.5rem; font-weight: bold;"><span style="color: red;">Amount: </span>KSH <%= party.amount %></h1>
 
                          
                   </section>
@@ -111,11 +111,11 @@
 <main style="height: 91svh; width: 100vw; border: 3px dotted purple; background-image: linear-gradient(-45deg, goldenrod, gold, yellow, whitesmoke, white, white,whitesmoke, yellow, gold, goldenrod);">
         
         <section class="bet-type" style="width: 100vw; height: 8vh; background-color: transparent; display: flex; justify-content: center; align-items: center;">
-            <h1 style="font-size: 2rem; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; text-align: center; color: purple;">Party</h1>
+            <h1 style="font-size: 2rem; font-family: 'Signika', sans-serif; font-weight: bold; text-align: center; color: purple;">Party</h1>
         </section>
 
         <section class="host" style="width: 100vw; height: 4vh; display: flex; align-items: center; justify-content: flex-start;">
-            <h3 style="margin-left: 10px; font-style: italic; text-wrap: nowrap; color: purple;"><span style="color: red; font-style: italic;">host: </span><%= host.userName %></h3> 
+            <h3 style="margin-left: 10px; text-wrap: nowrap; color: purple;"><span style="color: red; font-style: italic;">Host: </span><%= host.userName %></h3> 
             
              
         </section>
@@ -127,7 +127,7 @@
             </h3> 
              
             <div class="code-box" style="width: 45%; height: 90%; padding-inline: 5px; border-radius: 10px 0 0 10px; border: 1px solid purple; background-color: aliceblue; color: red; display: flex; align-items: center; justify-content: center; text-align: center;">
-                <p id="betid" style="font-size: .75rem; font-style: italic; text-wrap: wrap; text-align: center;"><%= party._id %></p>
+                <p id="betid" style="font-size: .75rem; text-wrap: wrap; text-align: center;"><%= party._id %></p>
             </div>
 
              <button class="share" style="outline: none; border: none; height: 90%; width: 12.5%; border-radius: 0 10px 10px 0 ; margin: 0 50px 0 10px; background-color: green; display: flex; justify-content: center; align-items: center;">
@@ -135,9 +135,9 @@
              </button>
         </section>
         
-        <section class="pool-details" style="width: 100vw; height: 5vh; display: flex; align-items: center; justify-content: space-between;">
-            <h3 style="font-weight: bold; color: blue; font-style: italic; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Total players: <span style="color: green;"><%= players.length %></span></h3>
-            <h3 style="font-weight: bold; color: blue; font-style: italic; font-family: 'Signika', sans-serif; margin-right: 15px;">Winners: <span style="color: green;">top 3</span></h3>
+        <section class="pool-details" style="width: 100vw; height: 5vh; display: flex; align-items: center; justify-content: space-between; padding-inline: 5px;">
+            <h3 style="font-weight: bold; color: blue; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Total players: <span style="color: green;"><%= players.length %></span></h3>
+            <h3 style="font-weight: bold; color: blue; font-family: 'Signika', sans-serif; margin-right: 15px;">Winners: <span style="color: green;">top 3</span></h3>
         </section>
 
         <section class="managers" style="width: 95vw; height: 25vh;  justify-content: flex-start; align-items: flex-start;" >
@@ -193,22 +193,22 @@
 
             <div class="first" style="width: fit-content; display: flex; flex-flow: column nowrap; align-items: center; justify-content: center;">
 
-                <h2 style="font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: blue;"><%= firstObject.teamName %></h2>
-                <h3 id="first" style="margin-left: 10px; font-style: italic; color: limegreen;"> <span style="color: black; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">1st: Ksh</span> <%= winners[0] %></h3>
+                <h2 style="font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; color: blue;"><%= firstObject.teamName %></h2>
+                <h3 id="first" style="margin-left: 10px; color: limegreen;"> <span style="color: black; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">1st: Ksh</span> <%= winners[0] %></h3>
 
              </div>
 
              <div class="second" style="width: fit-content; display: flex; flex-flow: column nowrap; align-items: center; justify-content: center;">
 
-                <h2 style="font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: blue;"><%= secondObject.teamName %></h2>
-                <h3 id="second" style="margin-left: 10px; font-style: italic; color: limegreen;"> <span style="color: blueviolet; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">2nd: Ksh</span> <%= winners[1] %></h3>
+                <h2 style="font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; color: blue;"><%= secondObject.teamName %></h2>
+                <h3 id="second" style="margin-left: 10px; color: limegreen;"> <span style="color: blueviolet; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">2nd: Ksh</span> <%= winners[1] %></h3>
 
              </div>
 
              <div class="third" style="width: fit-content; display: flex; flex-flow: column nowrap; align-items: center; justify-content: center;">
 
-                <h2 style="font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic; color: blue;"><%= thirdObject.teamName %></h2>
-                <h3 id="third" style="margin-left: 10px; font-style: italic; color: limegreen;"> <span style="color: goldenrod; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">3rd: Ksh</span> <%= winners[2] %></h3>
+                <h2 style="font-size: 1rem; font-weight: bold; font-family: 'Signika', sans-serif; color: blue;"><%= thirdObject.teamName %></h2>
+                <h3 id="third" style="margin-left: 10px; color: limegreen;"> <span style="color: goldenrod; font-weight: bold; font-family: 'Signika', sans-serif; font-style: italic;">3rd: Ksh</span> <%= winners[2] %></h3>
 
              </div>
        
@@ -219,17 +219,17 @@
 
         <section class="event" style="width: 100vw; height: 5vh; display: flex; align-items: center; justify-content: center;">
 
-            <h1 id="event" style="font-size: 1.4rem; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; text-align: center; color: purple;">Gameweek <%= party.event %></h1>
+            <h1 id="event" style="font-size: 1.4rem; font-family: 'Signika', sans-serif; font-weight: bold; text-align: center; color: purple;">Gameweek <%= party.event %></h1>
 
         </section>
 
         <section class="amount" style="position: relative; width: 100vw; height: 7vh; background-color: aliceblue; display: flex; justify-content: center; align-items: center;">
             <div class="entry" style="height: 100%; width: 50%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap;">
-                 <p id="amount" style="color: red; margin: 0; font-size: 1.3rem; font-style: italic; font-weight: bold;">KSH <%= party.amount %></p>
+                 <p id="amount" style="color: red; margin: 0; font-size: 1.3rem; font-weight: bold;">KSH <%= party.amount %></p>
                  <p style="margin: 5px; font-style: italic; font-size: .95rem; color: blue; ">Entry fee</p>
             </div>
             <div class="winner" style="height: 100%; width: 50%; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap;">
-                <p style="color: limegreen; font-style: italic; margin: 0; font-weight: bold; font-size: 1.1rem;">Top 3 players</p>
+                <p style="color: limegreen; margin: 0; font-weight: bold; font-size: 1.1rem;">Top 3 players</p>
                 <p style="margin: 5px; font-style: italic; font-size: .95rem; color: blue;">Win</p>
             </div>
             
@@ -243,7 +243,7 @@
 
             <section class="join-btn" style="width: 100vw; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
                 
-                <h3 style="color: limegreen; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.5rem; font-style: italic;">Party Closed</h3>
+                <h3 style="color: limegreen; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.5rem;">Party Closed</h3>
     
             </section>  
 
@@ -254,7 +254,7 @@
                 
             <section class="join-btn" style="width: 100vw; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
                 
-                <h3 style="font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.5rem; font-style: italic;">"You are the Host"</h3>
+                <h3 style="font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.5rem;">&lt;&lt;You are the Host&gt;&gt;</h3>
     
             </section>   
 
@@ -273,7 +273,7 @@
         <% } %>
         
               <section class="status" style="width: 100vw; height: 8vh; display: flex; justify-content: center; align-items: center;">
-                <h3 style="margin-right: 10px; font-style: italic; font-weight: bold; color: blue;">Bet Status:</h3>
+                <h3 style="margin-right: 10px; font-weight: bold; color: blue;">Bet Status:</h3>
                 <h3 style="font-style: italic; font-family: 'Signika', sans-serif; font-weight: bold; color: red;">"<%= party.betStatus.message %>"</h3>       
           
               </section>
@@ -298,7 +298,7 @@
            if( navigator.share ) {
                navigator.share({
                 title: 'XtreamLeague',
-                url: 'https://xtreamleague.onrender.com',
+                url: `https://xtreamleague.onrender.com/party/${code}`,
                 text: `Hi there,\nJoin my ${event} party and compete with other FPL Managers. Entry fee is ${amount} use link https://xtreamleague.onrender.com/party/${code} or use code ${code} in the site`
                })
            } else {

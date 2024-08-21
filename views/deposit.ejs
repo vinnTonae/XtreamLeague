@@ -61,7 +61,6 @@
     #token-display {
       font-family: 'Signika', sans-serif;
       font-size: 1.2rem;
-      font-style: italic;
       font-weight: bold;
       color: limegreen;
     }
@@ -140,7 +139,7 @@
   <div class="error-box"
     style="width: 100vw; height: 8vh; display: flex; align-items: center; justify-content: center;">
     <% if (locals.messages) { %>
-      <p style="color: red; background-color: #fff; text-align: center; border-radius: 4px; font-size: 1.3rem; font-style: italic; width: 90%;
+      <p style="color: red; background-color: #fff; text-align: center; border-radius: 4px; font-size: 1.3rem; width: 90%;
          font-weight: bold; font-family: 'Signika', sans-serif;">
         <%= messages %>
       </p>
@@ -154,7 +153,7 @@
       style="height: 10vh; width: 100vw; display: flex; align-items: center; justify-content: center; background-color: #fff;">
 
       <h1
-        style="color: blue; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; font-size: 1.8rem; text-align: center; text-wrap: wrap;">
+        style="color: blue; font-family: 'Signika', sans-serif; font-weight: bold; font-size: 1.8rem; text-align: center; text-wrap: wrap;">
         Choose Amount </h1>
 
     </div>
@@ -166,49 +165,49 @@
         style="cursor: pointer; height: 100px; width: 140px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; border: .5px solid purple; outline: none; margin: 8px; box-shadow: 0 4px 8px 0 rgba(65, 5, 65, 0.656), 0 5px 10px 0 rgba(65, 5, 65, 0.456); background-image: linear-gradient(45deg, grey, silver, whitesmoke, white, whitesmoke, silver,grey) ; border-radius: 15px;">
         <div class="amount-span" style="display: flex; align-items: center; justify-content: center;">
           <h1
-            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
+            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
             KSH</h1>
           <h1
-            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px;">
+            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple; margin-bottom: 5px;">
             100</h1>
         </div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: grey; transform: msFilter"><path d="M12 6C7.03 6 2 7.546 2 10.5v4C2 17.454 7.03 19 12 19s10-1.546 10-4.5v-4C22 7.546 16.97 6 12 6zm-8 8.5v-1.197a9.989 9.989 0 0 0 2 .86v1.881c-1.312-.514-2-1.126-2-1.544zm12 .148v1.971c-.867.179-1.867.31-3 .358v-2a21.75 21.75 0 0 0 3-.329zm-5 2.33a18.788 18.788 0 0 1-3-.358v-1.971c.959.174 1.972.287 3 .33v1.999zm7-.934v-1.881a9.931 9.931 0 0 0 2-.86V14.5c0 .418-.687 1.03-2 1.544zM12 13c-5.177 0-8-1.651-8-2.5S6.823 8 12 8s8 1.651 8 2.5-2.823 2.5-8 2.5z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: gold; transform: msFilter"><path d="M12 6C7.03 6 2 7.546 2 10.5v4C2 17.454 7.03 19 12 19s10-1.546 10-4.5v-4C22 7.546 16.97 6 12 6zm-8 8.5v-1.197a9.989 9.989 0 0 0 2 .86v1.881c-1.312-.514-2-1.126-2-1.544zm12 .148v1.971c-.867.179-1.867.31-3 .358v-2a21.75 21.75 0 0 0 3-.329zm-5 2.33a18.788 18.788 0 0 1-3-.358v-1.971c.959.174 1.972.287 3 .33v1.999zm7-.934v-1.881a9.931 9.931 0 0 0 2-.86V14.5c0 .418-.687 1.03-2 1.544zM12 13c-5.177 0-8-1.651-8-2.5S6.823 8 12 8s8 1.651 8 2.5-2.823 2.5-8 2.5z"></path></svg>
       </button>
 
       <button onclick="purchase(200)" class="amounts"
         style="cursor: pointer; height: 100px; width: 140px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; border: .5px solid purple; outline: none; margin: 8px; box-shadow: 0 4px 8px 0 rgba(65, 5, 65, 0.656), 0 5px 10px 0 rgba(65, 5, 65, 0.456); background-image: linear-gradient(45deg, grey, silver, whitesmoke, white, whitesmoke, silver,grey) ; border-radius: 15px;">
         <div class="amount-span" style="display: flex; align-items: center; justify-content: center;">
           <h1
-            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
+            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
             KSH</h1>
           <h1
-            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px;">
+            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple; margin-bottom: 5px;">
             200</h1>
         </div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: grey; transform: msFilter"><path d="M12 6C7.03 6 2 7.546 2 10.5v4C2 17.454 7.03 19 12 19s10-1.546 10-4.5v-4C22 7.546 16.97 6 12 6zm-8 8.5v-1.197a9.989 9.989 0 0 0 2 .86v1.881c-1.312-.514-2-1.126-2-1.544zm12 .148v1.971c-.867.179-1.867.31-3 .358v-2a21.75 21.75 0 0 0 3-.329zm-5 2.33a18.788 18.788 0 0 1-3-.358v-1.971c.959.174 1.972.287 3 .33v1.999zm7-.934v-1.881a9.931 9.931 0 0 0 2-.86V14.5c0 .418-.687 1.03-2 1.544zM12 13c-5.177 0-8-1.651-8-2.5S6.823 8 12 8s8 1.651 8 2.5-2.823 2.5-8 2.5z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: gold; transform: msFilter"><path d="M12 6C7.03 6 2 7.546 2 10.5v4C2 17.454 7.03 19 12 19s10-1.546 10-4.5v-4C22 7.546 16.97 6 12 6zm-8 8.5v-1.197a9.989 9.989 0 0 0 2 .86v1.881c-1.312-.514-2-1.126-2-1.544zm12 .148v1.971c-.867.179-1.867.31-3 .358v-2a21.75 21.75 0 0 0 3-.329zm-5 2.33a18.788 18.788 0 0 1-3-.358v-1.971c.959.174 1.972.287 3 .33v1.999zm7-.934v-1.881a9.931 9.931 0 0 0 2-.86V14.5c0 .418-.687 1.03-2 1.544zM12 13c-5.177 0-8-1.651-8-2.5S6.823 8 12 8s8 1.651 8 2.5-2.823 2.5-8 2.5z"></path></svg>
       </button>
 
       <button onclick="purchase(500)" class="amounts"
         style="cursor: pointer; height: 100px; width: 140px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; border: .5px solid purple; outline: none; margin: 8px; box-shadow: 0 4px 8px 0 rgba(65, 5, 65, 0.656), 0 5px 10px 0 rgba(65, 5, 65, 0.456); background-image: linear-gradient(45deg, grey, silver, whitesmoke, white, whitesmoke, silver,grey) ; border-radius: 15px;">
         <div class="amount-span" style="display: flex; align-items: center; justify-content: center;">
           <h1
-            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
+            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
             KSH</h1>
           <h1
-            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px;">
+            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple; margin-bottom: 5px;">
             500</h1>
         </div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: grey; transform: msFilter"><path d="M12 6C7.03 6 2 7.546 2 10.5v4C2 17.454 7.03 19 12 19s10-1.546 10-4.5v-4C22 7.546 16.97 6 12 6zm-8 8.5v-1.197a9.989 9.989 0 0 0 2 .86v1.881c-1.312-.514-2-1.126-2-1.544zm12 .148v1.971c-.867.179-1.867.31-3 .358v-2a21.75 21.75 0 0 0 3-.329zm-5 2.33a18.788 18.788 0 0 1-3-.358v-1.971c.959.174 1.972.287 3 .33v1.999zm7-.934v-1.881a9.931 9.931 0 0 0 2-.86V14.5c0 .418-.687 1.03-2 1.544zM12 13c-5.177 0-8-1.651-8-2.5S6.823 8 12 8s8 1.651 8 2.5-2.823 2.5-8 2.5z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: gold; transform: msFilter"><path d="M12 6C7.03 6 2 7.546 2 10.5v4C2 17.454 7.03 19 12 19s10-1.546 10-4.5v-4C22 7.546 16.97 6 12 6zm-8 8.5v-1.197a9.989 9.989 0 0 0 2 .86v1.881c-1.312-.514-2-1.126-2-1.544zm12 .148v1.971c-.867.179-1.867.31-3 .358v-2a21.75 21.75 0 0 0 3-.329zm-5 2.33a18.788 18.788 0 0 1-3-.358v-1.971c.959.174 1.972.287 3 .33v1.999zm7-.934v-1.881a9.931 9.931 0 0 0 2-.86V14.5c0 .418-.687 1.03-2 1.544zM12 13c-5.177 0-8-1.651-8-2.5S6.823 8 12 8s8 1.651 8 2.5-2.823 2.5-8 2.5z"></path></svg>
       </button>
 
       <button onclick="purchase(1000)" class="amounts"
         style="cursor: pointer; height: 100px; width: 140px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; border: .5px solid purple; outline: none; margin: 8px; box-shadow: 0 4px 8px 0 rgba(65, 5, 65, 0.656), 0 5px 10px 0 rgba(65, 5, 65, 0.456); background-image: linear-gradient(45deg, grey, silver, whitesmoke, white, whitesmoke, silver,grey) ; border-radius: 15px;">
         <div class="amount-span" style="display: flex; align-items: center; justify-content: center;">
           <h1
-            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
+            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
             KSH</h1>
           <h1
-            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px;">
+            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple; margin-bottom: 5px;">
             1000</h1>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: gold; transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
@@ -218,10 +217,10 @@
         style="cursor: pointer; height: 100px; width: 140px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; border: .5px solid purple; outline: none; margin: 8px; box-shadow: 0 4px 8px 0 rgba(65, 5, 65, 0.656), 0 5px 10px 0 rgba(65, 5, 65, 0.456); background-image: linear-gradient(45deg, grey, silver, whitesmoke, white, whitesmoke, silver,grey) ; border-radius: 15px;">
         <div class="amount-span" style="display: flex; align-items: center; justify-content: center;">
           <h1
-            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
+            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
             KSH</h1>
           <h1
-            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px;">
+            style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple; margin-bottom: 5px;">
             2000</h1>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
@@ -231,10 +230,10 @@
       style="cursor: pointer; height: 100px; width: 140px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; border: .5px solid purple; outline: none; margin: 8px; box-shadow: 0 4px 8px 0 rgba(65, 5, 65, 0.656), 0 5px 10px 0 rgba(65, 5, 65, 0.456); background-image: linear-gradient(45deg, grey, silver, whitesmoke, white, whitesmoke, silver,grey) ; border-radius: 15px;">
       <div class="amount-span" style="display: flex; align-items: center; justify-content: center;">
         <h1
-        style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
+        style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple; margin-bottom: 5px; margin-right: 5px;">
         KSH</h1>
         <h1
-        style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: purple; margin-bottom: 5px;">
+        style="font-size: 1.35rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; color: purple; margin-bottom: 5px;">
             5000</h1>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
@@ -275,7 +274,7 @@
       <button id="lipa-mpesa"
         style="display: flex; justify-content: center; align-items: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); outline: none; border: 1px solid gold; min-height: calc( min(25%, 150px)); min-width: calc( min(75%, 800px)); border-radius: 25px; background-color: limegreen;">
         <h2
-          style="font-size: 1.3rem; font-family: 'Signika', sans-serif; font-weight: bold; font-style: italic; color: white;">
+          style="font-size: 1.3rem; font-family: 'Signika', sans-serif; font-weight: bold; color: white;">
           Lipa Na Mpesa</h2>
       </button>
       
@@ -319,7 +318,7 @@
 
       <div class="input-box">
         <p
-          style="margin-bottom: 8px; font-size: 1.2rem; font-style: italic; font-weight: bold; font-family: 'Signika', sans-serif; color: purple;">
+          style="margin-bottom: 8px; font-size: 1.2rem; font-weight: bold; font-family: 'Signika', sans-serif; color: purple;">
           Enter Mpesa Number.</p>
         <input name="phone" type="number" placeholder="07 or 01...(10-digit-num)" required>
       </div>

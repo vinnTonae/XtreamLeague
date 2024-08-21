@@ -85,7 +85,7 @@
         <span style="margin-right: 20px;"><img src="logos/plicon.png" alt="Paypal" width="40" height="40"></span>
         
          <% if (locals.messages) { %> 
-            <p style="color: red; text-align: center; border-radius: 4px; font-size: 1.2rem; font-style: italic; width: 80%; top: 92%; left: 50%; transform: translate(-50%, -50%);
+            <p style="color: red; text-align: center; border-radius: 4px; font-size: 1.2rem; width: 80%; top: 92%; left: 50%; transform: translate(-50%, -50%);
              font-weight: bold; position: absolute;"><%= messages %></p>
              <% } %> 
 
@@ -112,7 +112,7 @@
                 <% if ( Parties.length === 0 ) { %>
 
                    <div class="no-bets" style="position: absolute; z-index: 5; top: 35%; left: 50%; transform: translate(-50%, -50%); width: 100%; display: flex; justify-content: center; align-items: center; height: 20%;">
-                      <h1 style="color: blue; font-family: 'Signika', sans-serif; font-style: italic; font-weight: bold; font-size: 1.8rem; text-align: center; text-wrap: wrap;">No Bets in Gameweek <%= GW %> </h1>
+                      <h1 style="color: blue; font-family: 'Signika', sans-serif; font-weight: bold; font-size: 1.8rem; text-align: center; text-wrap: wrap;">No Bets in Gameweek <%= GW %> </h1>
                    </div>
 
                  <% } else { %>
@@ -124,7 +124,7 @@
 
                         <a href="/party/<%= party._id %>" class="bets-card" style="cursor: pointer; text-decoration: none; padding: 5px; display: flex; align-items: center; justify-content: space-between; width: 95%; height: 15%; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); background-image: linear-gradient(45deg, blue, skyblue, skyblue, aliceblue, whitesmoke,  white, whitesmoke, aliceblue, skyblue, skyblue, blue); border-radius: 0 20px 20px 0; margin-block: 10px;">
                             <div class="competitors" style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 30%;">
-                               <h2 style="text-wrap: wrap; text-align: center; font-size: .85rem; font-family: 'Signika', sans-serif; font-style: italic; color: rgba(65, 5, 65);"><%= user.teamName %></h2>
+                               <h2 style="text-wrap: wrap; text-align: center; font-size: .85rem; font-family: 'Signika', sans-serif; color: rgba(65, 5, 65);"><%= user.teamName %></h2>
                                <p style="color: red; font-size: .75rem; font-style: italic;">host</p>
                             
                             </div>
@@ -147,8 +147,8 @@
 
                             <a href="/party/<%= party._id %>" class="bets-card" style="cursor: pointer; text-decoration: none; padding: 5px; display: flex; align-items: center; justify-content: space-between; width: 95%; height: 15%; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); background-image: linear-gradient(45deg, blue, skyblue, skyblue, aliceblue, whitesmoke,  white, whitesmoke, aliceblue, skyblue, skyblue, blue); border-radius: 0 20px 20px 0; margin-block: 10px;">
                                 <div class="competitors" style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 30%;">
-                                   <h2 style="text-wrap: wrap; text-align: center; font-size: .85rem; font-family: 'Signika', sans-serif; font-style: italic; color: rgba(65, 5, 65);"><%= party.hostId %></h2>
-                                   <p style="color: red; font-size: .75rem; font-style: italic;">host</p>
+                                   <h2 style="text-wrap: wrap; text-align: center; font-size: .85rem; font-family: 'Signika', sans-serif; color: rgba(65, 5, 65);">user<%= party.hostId %></h2>
+                                   <p style="color: red; font-size: .75rem; font-style: italic;">invited</p>
                             
                                 </div>
                
