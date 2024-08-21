@@ -399,8 +399,7 @@ const settleDevHeads = async (req, res) => {
 
         const betDetails = await Head.findOne({ _id: betid })
     const entryAmount = betDetails.amount
-    const toWin = Math.floor(entryAmount * 0.85)
-    const amountToPay = entryAmount + toWin  
+    const amountToPay = Math.floor( (entryAmount * 2) * 0.85 )  
     const hostId = betDetails.hostId
     const opponentId = betDetails.opponentId
     const Host = await User.findOne( { teamId: hostId } )
@@ -456,7 +455,7 @@ const settleDevHeads = async (req, res) => {
 
         try {
             
-            const compensated = Math.floor(entryAmount * 0.85)
+            const compensated = Math.floor(entryAmount * 0.9)
             const hostCompensation =  compensated + hostBalance
             const oppCompensation = compensated + oppBalance
 
