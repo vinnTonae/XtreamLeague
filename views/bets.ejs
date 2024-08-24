@@ -99,8 +99,17 @@
         <section id="gw-wrapper" style="height: 15%; width: 100%; display: flex; align-items: flex-start; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-y: hidden; overflow-x: scroll;">
          
              <% gameweeks.map((gameweek) => { %>
+
+                <% if ( gameweek === GW) { %> 
+
+                    <div id="<%= gameweek %>" class="buttons" style="background-color: limegreen; transform: scale(1.15); border: 3px solid limegreen;" ><a class="links" style="color: white;"  href="/bets/<%= gameweek %>">GW<%= gameweek %></a></div>  
+                    
+                <% } else { %>
+                        
+                    <div id="<%= gameweek %>" class="buttons"><a class="links" href="/bets/<%= gameweek %>">GW<%= gameweek %></a></div>  
+
+                <% } %>
                  
-                <div id="<%= gameweek %>" class="buttons"><a class="links" href="/bets/<%= gameweek %>">GW<%= gameweek %></a></div>  
                  
                <%  }) %>
            
