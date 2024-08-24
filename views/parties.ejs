@@ -58,6 +58,12 @@
             font-weight: bold;
             scroll-snap-align: start;
         }
+
+        .buttons.focused {
+            background-color: #fff;
+            transform: scale(1.2);
+        }
+
         .bets-card {
             font-size: 1rem;
             font-weight: bold;
@@ -68,11 +74,16 @@
             color: white;
         }
 
+        .links.active {
+            text-decoration: none;
+            color: blue;
+        }
+
          a:focus-within {
             transform: scale(1.025);
             color: goldenrod;
         }
-        
+
     </style>     
 </head>
 <body style="background-color: goldenrod; height: 100svh; width: 100vw;">
@@ -96,8 +107,17 @@
         <section id="gw-wrapper" style="height: 15%; width: 100%; background-color: goldenrod; display: flex; align-items: flex-start; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-y: hidden; overflow-x: scroll;">
          
              <% gameweeks.map((gameweek) => { %>
+
+                <% if ( gameweek == GW ) { %>
+                    
+                    <div class="buttons focused" id="<%= gameweek %>"><a class="links active" href="/parties/<%= gameweek %>">GW<%= gameweek %></a></div 
+
+                <% } else { %> 
+
+                    <div id="<%= gameweek %>" class="buttons"><a class="links" href="/parties/<%= gameweek %>">GW<%= gameweek %></a></div>  
+
+                  <% } %>
                  
-                <div id="<%= gameweek %>" class="buttons"><a class="links" href="/parties/<%= gameweek %>">GW<%= gameweek %></a></div>  
                  
                <%  }) %>
            

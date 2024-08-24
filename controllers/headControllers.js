@@ -150,20 +150,19 @@ const patchConfirmBet = async (req, res) => {
     const entryFee = bet.amount
     const oppId = opponent.teamId
 
-    if ( hostBalance < entryFee ) {
-        
-        req.flash('error', 'The Host has insufficient Funds')
-        res.redirect('/main')
-    } else if ( opponentBalance < entryFee ) {
-
-        req.flash('error', 'You have insufficient Funds to Join the Bet')
-        res.redirect('/main')
-
-    } else if ( bet.betStatus.code !== 100 ) {
+    if (  bet.betStatus.code !== 100  ) {
         
         req.flash('error', 'This Bet has already been Placed')
         res.redirect('/main')
-
+    } else if ( opponentBalance < entryFee ) {
+        
+        req.flash('error', 'You have insufficient Funds to Join the Bet')
+        res.redirect('/main')
+        
+    } else if ( hostBalance < entryFee ) {
+        
+        req.flash('error', 'The Host has insufficient Funds')
+        res.redirect('/main')
     } else if ( bet.betStatus.code == 400 ) {
         
         const event = bet.event
@@ -180,7 +179,7 @@ const patchConfirmBet = async (req, res) => {
        const event = bet.event 
 
        req.flash('success', `Successfully joined Bet in GW${event}`)
-       res.redirect('/bets')
+       res.redirect(`/bets/${event}`)
 
     } catch (error) {
          

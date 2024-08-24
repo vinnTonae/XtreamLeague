@@ -183,7 +183,7 @@ try {
                   const newUpdatedParty = await Party.findByIdAndUpdate({ _id: betid }, { $addToSet: { players: playerTeamId } })
 
                   req.flash('success', `Successfully Joined Party in GW${partyEvent}`)
-                  res.redirect('/parties')
+                  res.redirect(`/parties/${partyEvent}`)
 
               } catch (error) {
                       console.log(error)
@@ -208,7 +208,7 @@ try {
                 const updatedParty = await Party.findByIdAndUpdate({ _id: betid }, { $addToSet: { players: playerTeamId } })
                 
                 req.flash('success', `You have successfully joined Party in GW${partyEvent}`)
-                res.redirect('/parties')
+                res.redirect(`/parties/${partyEvent}`)
                 
             } catch (error) {
                
