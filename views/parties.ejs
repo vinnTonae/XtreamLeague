@@ -109,9 +109,9 @@
          
              <% gameweeks.map((gameweek) => { %>
 
-                   <% if ( gameweek === GW ) { %>
+                   <% if ( gameweek == GW ) { %>
 
-                    <div id="<%= gameweek %>" class="buttons" style="background-color: white; transform: scale(1.15);" >
+                    <div id="<%= gameweek %>" class="buttons" style="background-color: white;" >
                         <a class="links" style="color: blue;" href="/parties/<%= gameweek %>">GW<%= gameweek %></a>
                     </div>  
 

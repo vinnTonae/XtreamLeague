@@ -100,9 +100,9 @@
          
              <% gameweeks.map((gameweek) => { %>
 
-                <% if ( gameweek === GW) { %> 
+                <% if ( gameweek == GW) { %> 
 
-                    <div id="<%= gameweek %>" class="buttons" style="background-color: limegreen; transform: scale(1.15); border: 3px solid limegreen;" ><a class="links" style="color: white;"  href="/bets/<%= gameweek %>">GW<%= gameweek %></a></div>  
+                    <div id="<%= gameweek %>" class="buttons" style="background-color: limegreen;" ><a class="links" style="color: white;"  href="/bets/<%= gameweek %>">GW<%= gameweek %></a></div>  
                     
                 <% } else { %>
                         
