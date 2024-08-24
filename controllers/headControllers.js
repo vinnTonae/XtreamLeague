@@ -167,7 +167,7 @@ const patchConfirmBet = async (req, res) => {
         
         const event = bet.event
         req.flash('error',  `Gameweek ${event} time to Join has expired`)
-    
+        res.redirect('/main')
     }else {
        try {
          
@@ -296,7 +296,7 @@ const getBetsEvents = async (req, res) => {
     }
        const currentGameweek = eventParam    
     
-       res.render('bets', { user: userDetails, Heads: allHeadBets, gameweeks: events, GW: currentGameweek })
+       res.render('bets', { user: userDetails, Heads: allHeadBets, gameweeks: events, GW: currentGameweek, messages: req.flash('success') })
     
         
     } catch (error) {

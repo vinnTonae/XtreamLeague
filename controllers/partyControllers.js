@@ -409,7 +409,7 @@ const getPartiesEvents = async (req, res) => {
     }
        const currentGameweek = eventParam
      
-    res.render('parties', { user: userDetails, Parties: currentPartiesArray, gameweeks: events, GW: currentGameweek })
+    res.render('parties', { user: userDetails, Parties: currentPartiesArray, gameweeks: events, GW: currentGameweek, messages: req.flash("success") })
     
         
     } catch (error) {
