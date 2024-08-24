@@ -59,22 +59,6 @@
             scroll-snap-align: start;
         }
 
-        .buttons.focused {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 60%;
-            width: 150px;
-            margin-inline: 5px;
-            padding: 20px;
-            border: 3px solid purple;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            scroll-snap-align: start;
-            background-color: #fff;
-            transform: scale(1.2);
-        }
 
         .bets-card {
             font-size: 1rem;
@@ -88,7 +72,8 @@
 
         .links.active {
             text-decoration: none;
-            color: blue;
+            color: limegreen;
+            transform: scale(1.1);
         }
 
          a:focus-within {
@@ -119,18 +104,20 @@
         <section id="gw-wrapper" style="height: 15%; width: 100%; background-color: goldenrod; display: flex; align-items: flex-start; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-y: hidden; overflow-x: scroll;">
          
              <% gameweeks.map((gameweek) => { %>
-
-                <% if ( gameweek == GW ) { %>
                     
-                    <div class="buttons focused" id="<%= gameweek %>"><a class="links active" href="/parties/<%= gameweek %>">GW<%= gameweek %></a></div 
+                    <div id="<%= gameweek %>" class="buttons">
 
+                        <% if ( gameweek === GW ) { %> 
+                            
+                            <a class="links active" href="/parties/<%= gameweek %>">GW<%= gameweek %></a>
 
-                <% } else { %> 
-                    
-                    <div id="<%= gameweek %>" class="buttons"><a class="links" href="/parties/<%= gameweek %>">GW<%= gameweek %></a></div>  
+                         <% } else { %>
 
-                 <% } %>
-                        
+                            <a class="links" href="/parties/<%= gameweek %>">GW<%= gameweek %></a>
+
+                         <% } %>
+
+                    </div>  
                  
                <%  }) %>
            
