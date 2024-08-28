@@ -16,11 +16,9 @@ window.addEventListener('load', () => {
     }, 20000)
 })
 
-window.BeforeUnloadEvent((e) => {
-    e.preventDefault()
-    return "Your Transaction will not be Updated if you leave this Page!!"
+window.addEventListener('beforeunload', () => {
+       return "Your Transaction will not be Updated if you leave this Page!!"
 })
-
 
 
 
