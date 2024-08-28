@@ -16,10 +16,10 @@ window.addEventListener('load', () => {
     }, 20000)
 })
 
-window.addEventListener('beforeunload', () => {
-       return "Your Transaction will not be Updated if you leave this Page!!"
-})
-
+history.pushState(null, null, location.href)
+window.onpopstate = () => {
+    history.go(1)
+}
 
 
 
