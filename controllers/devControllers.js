@@ -468,7 +468,7 @@ const settleDevHeads = async (req, res) => {
             const oppCompensation = compensated + oppBalance
 
             const newHost = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: hostCompensation  } })
-            const newOpp = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: oppCompensation  } })
+            const newOpp = await User.findOneAndUpdate({ teamId: opponentId }, { $set: { totalBalance: oppCompensation  } })
             const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { $set: { winner: { winnerId: 'Draw', winAmount: entryAmount }, betStatus: { code: 1000, message: "Bet settled" } } })
 
             req.flash('success', 'Both users Compensated')            
