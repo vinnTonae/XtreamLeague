@@ -12,14 +12,10 @@ window.addEventListener('load', () => {
         formBox.style.display = 'flex'
         setTimeout(() => {
             formBox.submit()
-        }, 15000)
-    }, 20000)
+        }, 16000)
+    }, 15000)
 })
 
-history.pushState(null, null, location.href)
-window.onpopstate = () => {
-    history.go(1)
-}
 
 
 
