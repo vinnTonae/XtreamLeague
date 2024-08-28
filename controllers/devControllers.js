@@ -370,9 +370,17 @@ const updateDevHeads = async (req, res) => {
         const opponentId = betDetails.opponentId
         const Host = await User.findOne({ teamId: hostId })
         const Opponent = await User.findOne({ teamId: opponentId })
+
+        const hostPointsObject = Host.points.find((eventObject) => {
+            return eventObject.gameweek == event
+        })
+
+        const oppPointsObject = Opponent.points.find((eventObject) => {
+            return eventObject.gameweek == event
+        })
     
-        const hostPoints = Host.points[event - 1].points
-        const oppPoints = Opponent.points[event - 1].points
+        const hostPoints = hostPointsObject.points 
+        const oppPoints = oppPointsObject.points
     
         const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { points: { host: hostPoints, opponent: oppPoints  } })
     
