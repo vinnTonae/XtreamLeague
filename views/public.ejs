@@ -64,8 +64,8 @@
             <% const entry = party.amount %>
             <% const amountToSpread = totalPlayers * entry * 0.85 %>
             <% const first = amountToSpread * 0.6 %>
-            <% const second = amountToSpread * 0.3 %>
-            <% const third = amountToSpread * 0.1 %> 
+            <% const second = amountToSpread * 0.4 %>
+            
 
             <section class="bet" style="position: relative; display: flex; flex-flow: column nowrap; margin-block: 20px; padding: 20px 10px 20px 10px; scroll-snap-align: start; width: 80%; height: 68%; border-radius: 0 30px 0 30px; background-color: white; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 12px 0 rgba(0, 0, 0, 0.39);">
              
@@ -79,11 +79,11 @@
                     <h2 style="color: blue; font-size: 1.3rem; font-weight: bold; font-family: 'Signika', sans-serif;">Gameweek <span id="event"><%= party.event %></span></h2>
                 </div>
                 <div class="host-details" style="position: relative; height: 15%; margin-block: 5px; width: 100%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: flex-start;">
-                    <h2 style="color: purple; margin-bottom: 5px; font-family: 'Signika', sans-serif; font-size: 1.05rem; ">Host: <span style="font-weight: bold;">Onana, Whats my name</span></h2>
+                    <h2 style="color: purple; margin-bottom: 5px; font-family: 'Signika', sans-serif; font-size: 1.05rem; ">Host: <span style="font-weight: bold;">User<%= party.hostId %></span></h2>
                     <h2 style="color: purple; font-size: 1.25rem; font-family: 'Signika', sans-serif;">Total players: <span style="font-weight: bold; color: green;"><%= totalPlayers %></span></h2>
                     <img src="/logos/13.png" alt="PL" width="25" height="25" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
                 </div>
-                <div class="winnings" style="height: 45%; width: 100%;">
+                <div class="winnings" style="height: 35%; width: 100%;">
                     <h2 style="font-size: 1.1rem; margin-bottom: 10px; text-align: center;  font-weight: bold;  font-family: 'Signika', sans serif;">Possible Wins</h2>
     
                     <section class="winners-list" style="width: 100%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: flex-start;">
@@ -95,10 +95,6 @@
                         <div class="second" style="display: flex; align-items: center; justify-content: center; margin-block: 5px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: gray; transform: msFilter"><path d="m21 2-5 5-4-5-4 5-5-5v13h18zM5 21h14a2 2 0 0 0 2-2v-2H3v2a2 2 0 0 0 2 2z"></path></svg>
                             <h2 style="font-size: 1.35rem;  margin-inline: 10px; font-weight: bold; font-family: 'Signika, sans-serif'; color: purple;">2nd: <span style="color: limegreen;">Ksh.<%= second %></span></h2>
-                        </div>
-                        <div class="third" style="display: flex; align-items: center; justify-content: center; margin-block: 5px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: brown; transform: msFilter"><path d="m21 2-5 5-4-5-4 5-5-5v13h18zM5 21h14a2 2 0 0 0 2-2v-2H3v2a2 2 0 0 0 2 2z"></path></svg>
-                            <h2 style="font-size: 1.35rem;  margin-inline: 10px; font-weight: bold; font-family: 'Signika, sans-serif'; color: purple;">3rd: <span style="color: limegreen;">Ksh.<%= third %></span></h2>
                         </div>
                                 
     
