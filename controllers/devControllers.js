@@ -560,41 +560,131 @@ const getDevParty = async (req, res) => {
 
     // SORT DETAILS ARRAY
      detailsArray.sort((a, b) => b.points - a.points)
-     const first = detailsArray[0]
-     const second = detailsArray[1] 
-     const third = detailsArray[2]  || { teamId: 'none', teamName: 'none' } 
+
+     const firstWinner = detailsArray[0]
+     const secondWinner = detailsArray[1] 
+     const thirdWinner = detailsArray[2]  || { teamId: 'none', teamName: 'none', points: 0 } 
 
     // WINNERS CALCULATIONS
     const totalPlayers = playerArray.length
 
-    const calculateWinner = (party, totalPlayers) => {
-       const entryAmount = party.amount
-       let first = 0
-       let second = 0
-       let third = 0
+    const calculateWinner = (partyDetails, totalPlayers, firstWinner, secondWinner, thirdWinner) => {
+        const entryAmount = partyDetails.amount
+        let first = 0
+        let second = 0
+        let third = 0
+        const No1 = firstWinner.points
+        const No2 = secondWinner.points
+        const No3 = thirdWinner.points
 
-       if ( totalPlayers <= 3 ) {
-           first = Math.floor((entryAmount * totalPlayers) * 0.85 )
-           second = 0
-           third = 0 
-        return [first, second, third]
+        if ( totalPlayers <= 3 ) {
+                
+            //    TODO: ONLY NUMBER ONE WINS
 
-       } else if ( 4 <= totalPlayers <= 10 )  {
-            const amountToSpread = Math.floor( (entryAmount * totalPlayers) * 0.85 )
-            first = Math.floor(amountToSpread * 0.6)
-            second = Math.floor(amountToSpread * 0.4)
-            third = 0
-           return [first, second, third]
+                first = Math.floor((entryAmount * totalPlayers) * 0.85 )
+                second = 0
+                third = 0 
+               return [first, second, third]
+            
 
-       } else if ( totalPlayers > 10 ) {
-           const amountToSpread = Math.floor( (entryAmount * totalPlayers) * 0.85)
-           first = Math.floor(amountToSpread * 0.6)
-           second = Math.floor(amountToSpread * 0.25)
-           third = Math.floor(amountToSpread * 0.15)
-          return [first, second, third] 
-       }
-    }
-    const winner = await calculateWinner(party, totalPlayers)
+        } else if ( 4 <= totalPlayers <= 10 )  {
+
+            // Todo: ONLY TOP 2 PLAYERS EARN
+
+             const amountToSpread = Math.floor( (entryAmount * totalPlayers) * 0.8 )
+
+            if ( No1 == No2 && No2 == No3 ) {
+
+                const equalShare = Math.floor( amountToSpread / 3 )
+                
+                first = equalShare
+                second = equalShare
+                third = equalShare
+               
+                return [ first, second, third ]
+
+            } else if ( No1 == No2 ) {
+
+                const topTwoAmount = Math.floor( ( amountToSpread / 2 ) )
+
+                first = topTwoAmount
+                second = topTwoAmount
+                third = 0
+
+                return [ first, second, third ]
+
+            } else if ( No2 == No3 ) {
+
+                const topOneAmount = Math.floor( amountToSpread * 0.5 )
+                const topTwoTie = Math.floor( amountToSpread * 0.25  )
+
+                first =  topOneAmount
+                second = topTwoTie
+                third = topTwoTie
+
+                return [ first, second, third ]
+
+            } else {
+
+                first = Math.floor(amountToSpread * 0.6)
+                second = Math.floor(amountToSpread * 0.4)
+                third = 0
+
+               return [first, second, third]
+
+            }  
+
+
+
+        } else if ( totalPlayers > 10 ) {
+
+            //  TODO: TOP 3 PLAYERS TO EARN
+
+            const amountToSpread = Math.floor( (entryAmount * totalPlayers) * 0.8 )
+
+           if ( No1 == No2 && No2 == No3 ) {
+
+              const equal = Math.floor( amountToSpread / 3 )
+
+              first = equal
+              second = equal
+              third = equal
+
+              return [ first, second, third ]
+
+           } else if ( No1 == No2 ) {
+
+               const topOneGet = Math.floor( ( amountToSpread * 0.85 ) / 2 )
+               
+               first = topOneGet
+               second = topOneGet
+               third = Math.floor( amountToSpread * 0.15 )
+
+               return [ first, second, third ]
+
+           } else if ( No2 == No3 ) {
+
+              first = Math.floor( amountToSpread * 0.5 )
+              second = Math.floor( amountToSpread * 0.25 )
+              third = Math.floor( amountToSpread * 0.25 )
+
+              return [ first. second, third ]
+
+           } else {
+
+             first = Math.floor(amountToSpread * 0.6)
+             second = Math.floor(amountToSpread * 0.25)
+             third = Math.floor(amountToSpread * 0.15)
+
+            return [first, second, third] 
+
+           }
+
+
+            
+        }
+     }
+     const winner = await calculateWinner(party, totalPlayers, firstWinner, secondWinner, thirdWinner)
 
 
 
