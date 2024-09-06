@@ -122,7 +122,11 @@ app.get('/boot', getBootstrap)
 
 app.get('/public', async (req, res) => {
 
-   const publicParties = await Party.find({ "betStatus.code": 1000 }) 
+   const allParties = await Party.find()
+   
+   const publicParties = allParties.filter((party) => {
+     return party.betStatus.code !== 1000
+   }) 
 
     res.render('public', { parties: publicParties })
 })

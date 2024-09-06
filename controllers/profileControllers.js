@@ -110,7 +110,9 @@ const getMain = async (req, res) => {
     const userTeamId = xUser.teamId
     const partiesHosting = await Party.find({ hostId: userTeamId })
     const allParties = await Party.find()
-    const publicParties = await Party.find({ "betStatus.code": 200 })
+    const publicParties = allParties.filter((party) => {
+        return party.betStatus.code !== 1000
+    })
     const invitedParties = allParties.filter((party) => {
 
            return party.players.some( player => player == userTeamId ) && party.hostId !== userTeamId
@@ -127,10 +129,10 @@ const getMain = async (req, res) => {
     
     const partyCount =  filPartyInvited.length + filPartyHost.length
 
-    const publicPartyCount = publicParties.length
+    const publicCount = publicParties.length
  
 
-    res.render('main', { user: xUser, head: headCounts, party: partyCount, public: publicPartyCount,  messages: req.flash('error') })
+    res.render('main', { user: xUser, head: headCounts, party: partyCount, public: publicCount,  messages: req.flash('error') })
 }
 
 const getTopDollar = async (req, res) => {
