@@ -149,10 +149,10 @@
         
         betCards.forEach((betCard) => {
 
-            const shareBtn  = betCard.childNodes.querySelector('.share')
-            const code = betCard.childNodes.querySelector('code').textContent
-            const amount = betCard.childNodes.querySelector('amount').textContent
-            const betEvent = betCard.childNodes.querySelector('event').textContent
+            const shareBtn  = betCard.children[5].children[1]
+            const code = betCard.children[4].children[2].children[0].textContent
+            const amount = betCard.children[4].children[0].textContent
+            const betEvent = betCard.children[1].children[0].children[0].textContent
 
             shareBtn.addEventListener('click', () => {
     
