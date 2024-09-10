@@ -154,7 +154,7 @@
               
                           <!-- After Registration  -->
 
-                    <div class="team-info" style="display: flex; justify-content: space-between; height: 65%; width: 96%; border-radius: 15px; background-color: antiquewhite; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.303), 0 6px 12px 0 rgba(0, 0, 0, 0.292);" >
+                    <div class="team-info" style="position: relative; display: flex; justify-content: space-between; height: 65%; width: 96%; border-radius: 15px; background-color: antiquewhite; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.303), 0 6px 12px 0 rgba(0, 0, 0, 0.292);" >
                
                         <div class="team-info" style="padding: 10px;  display: flex; flex-flow: column nowrap; justify-content: center; align-items: flex-start; width: 50%; height: 100%;">
                         
@@ -163,6 +163,10 @@
                            <p style="font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; color: limegreen; font-size: .8rem;" ><%= user.managerName %></p>
                            
                         </div>
+                        
+                        <p style="position: absolute; left: 50%; top: 95%; transform: translateX(-50%); font-family: 'Signika', sans-serif; color: red; font-size: .85rem;" ><%= user.teamId %></p>
+                         
+
                         <div class="points-wrapper" style="height: 100%; width: 20%; background-color: transparent; display: flex; justify-content: flex-end; align-items: center;">
                           
                             
