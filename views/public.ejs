@@ -151,7 +151,7 @@
 
             const shareBtn  = betCard.children[5].children[1]
             const code = betCard.children[4].children[2].children[0].textContent
-            const amount = betCard.children[4].children[0].textContent
+            const amount = betCard.children[4].children[0].children[0].textContent
             const betEvent = betCard.children[1].children[0].children[0].textContent
 
             shareBtn.addEventListener('click', () => {
@@ -161,7 +161,7 @@
                     navigator.share({
                         title: 'PublicParty',
                         url: `https://xtreamleague.onrender.com/party/${code}`,
-                        text:  `Hi there,\nJoin my Gameweek ${betEvent} party and compete with other FPL Managers. Entry fee is ${amount} use link https://xtreamleague.onrender.com/party/${code} or use code ${code} in the site`
+                        text:  `Hi there,\nJoin my Gameweek ${betEvent} party and compete with other FPL Managers. Entry fee is Ksh.${amount}\nuse link\nhttps://xtreamleague.onrender.com/party/${code}\nor use code\n${code}\nin the site`
                     })
     
                 } else {
