@@ -695,7 +695,7 @@ const getDevParty = async (req, res) => {
 
         req.flash('error', 'Error Accessing Party Details')
         res.redirect(`/dev/${gameweek}/party`)
-        console.log('MongoDB Access Errors')
+        console.log(error)
         
     }
 
