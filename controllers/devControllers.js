@@ -688,7 +688,7 @@ const getDevParty = async (req, res) => {
 
 
 
-    res.render('devParty', {messages: req.flash('success'), event: gameweek, Party: party, winners: winner, firstObject: first, secondObject: second, thirdObject: third, host: hostDetails, players: detailsArray })
+    res.render('devParty', {messages: req.flash('success'), event: gameweek, Party: party, winners: winner, firstObject: firstWinner, secondObject: secondWinner, thirdObject: thirdWinner, host: hostDetails, players: detailsArray })
 
         
     } catch (error) {
