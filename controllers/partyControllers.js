@@ -94,7 +94,7 @@ const getPartyId = async (req, res) => {
         const No2 = secondWinner.points
         const No3 = thirdWinner.points
 
-        if ( totalPlayers <= 3 ) {
+        if ( totalPlayers <= 5 ) {
                 
             //    TODO: ONLY NUMBER ONE WINS
 
@@ -104,7 +104,7 @@ const getPartyId = async (req, res) => {
                return [first, second, third]
             
 
-        } else if ( 4 <= totalPlayers <= 10 )  {
+        } else if ( 6 <= totalPlayers <= 10 )  {
 
             // Todo: ONLY TOP 2 PLAYERS EARN
 
