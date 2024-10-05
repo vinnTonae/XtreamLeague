@@ -254,7 +254,7 @@ try {
           if ( playerBalance < entryFee ) {
 
               req.flash('error', 'You have Insufficient Funds to join Party')
-              res.redirect('/main')
+              res.redirect('/deposit')
 
           } else if ( hostBalance < entryFee ) {
 
