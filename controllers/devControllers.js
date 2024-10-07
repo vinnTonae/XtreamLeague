@@ -670,7 +670,7 @@ const getDevParty = async (req, res) => {
 
               return [ first. second, third ]
 
-           } else if ( No1 !== No2 !== No3 ) {
+           } else if ( No1 > No2 && No2 > No3 ) {
 
               first = Math.floor(amountToSpread * 0.6)
               second = Math.floor(amountToSpread * 0.25)
