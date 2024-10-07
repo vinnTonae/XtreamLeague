@@ -187,7 +187,7 @@ const getPartyId = async (req, res) => {
 
               return [ first. second, third ]
 
-           } else if ( No1 !== No2 && No2 !== No3 ) {
+           }
 
              first = Math.floor(amountToSpread * 0.6)
              second = Math.floor(amountToSpread * 0.25)
@@ -195,10 +195,6 @@ const getPartyId = async (req, res) => {
 
             return [first, second, third] 
 
-           }
-
-
-            
         }
      }
      const winner = await calculateWinner(partyDetails, totalPlayers, firstWinner, secondWinner, thirdWinner)
