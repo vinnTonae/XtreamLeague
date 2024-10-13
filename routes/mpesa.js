@@ -185,7 +185,7 @@ router.post(`/${process.env.CALLBACK}`, (req, res) => {
                 }
             }
         }).save()
-            .then(async (data) => {
+            .then((data) => {
 
                 console.log('--SUCCESSFUL TRANSACTION SAVED')
                 const tranxId = data._id
@@ -193,7 +193,7 @@ router.post(`/${process.env.CALLBACK}`, (req, res) => {
 
                 // TODO: ACTIVATE THE NEW PATCH REQUEST TO CANCEL WAITING TIME
 
-                await axios.patch('/complete',
+                axios.patch('/complete',
                     {
                         "mpesaNumber": mpesaNumber,
                         "id": tranxId
