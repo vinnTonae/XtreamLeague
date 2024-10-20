@@ -152,8 +152,6 @@ router.post(`/${process.env.CALLBACK}`, (req, res) => {
 
             console.log('--INCOMPLETE TRANX SAVED--')
 
-            // TODO: ACTIVATE PATCH REQUEST TO CANCEL THE WAITING TIME
-
         }).catch((err) => {
             console.log('--FAILED TO SAVE TRANX--')
         })
@@ -188,24 +186,6 @@ router.post(`/${process.env.CALLBACK}`, (req, res) => {
             .then((data) => {
 
                 console.log('--SUCCESSFUL TRANSACTION SAVED')
-                const tranxId = data._id
-                const mpesaNumber = data.mpesaObject.mpesaNumber
-
-                // TODO: ACTIVATE THE NEW PATCH REQUEST TO CANCEL WAITING TIME
-
-                axios.patch('/complete',
-                    {
-                        "mpesaNumber": mpesaNumber,
-                        "id": tranxId
-                    },
-                    {
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    }
-                )
-
-
 
             })
             .catch(error => console.log('--ERROR SAVING TRANX SUCC'))
@@ -221,49 +201,6 @@ router.post(`/${process.env.CALLBACK}`, (req, res) => {
 router.get('/', (req, res) => {
     const reqid = req.query.reqID
     res.render('mpesaconfirm', { messages: req.flash('error'), reqID: reqid })
-})
-
-
-
-router.patch('/complete', async (req, res) => {
-
-    const { mpesaNumber, id } = req.body
-
-    const userToTransact = await User.findOne({ "mpesaObject.mpesaNumber": mpesaNumber })
-    const transaction = await Transactions.findOne({ _id: id })
-    const merchantID = transaction.mpesaObject.reqID
-
-    if (!userToTransact) {
-
-        res.redirect(`/mpesa?reqID=${merchantID}`)
-
-    } else {
-
-        try {
-
-            const userId = userToTransact._id
-            const userBalance = userToTransact.totalBalance
-            const tranxAmount = transaction.amount
-            const newBalance = userBalance + tranxAmount
-
-            await User.findByIdAndUpdate({ _id: userId }, { totalBalance: newBalance })
-            await Transactions.findByIdAndUpdate({ _id: id }, { status: 'complete', userId: userId })
-
-            req.flash('error', 'Deposit Complete')
-            res.redirect('/main')
-
-        } catch (error) {
-
-            console.log(error)
-            req.flash('error', 'Transaction pending!!.. contact Support')
-            res.redirect('/main')
-
-        }
-
-
-
-    }
-
 })
 
 
