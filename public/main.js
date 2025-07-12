@@ -41,3 +41,28 @@ closePartyBtn.addEventListener('click', () => {
     party.style.display = 'block'
     inviteParty.style.display = 'none'
 })
+
+
+     // ADD THIS SCRIPT TO THE MAIN PAGE
+        const refreshBtn = document.querySelector('#refresh')
+        const refreshIcon = document.querySelector('.refresh-icon')
+        const alertIcon = document.querySelector('#alert')
+        const refreshForm = document.querySelector('#refresh-form')
+        
+        //extract userMpesaNumber from the userObject sent by the server
+
+        // const userMpesaNumber = document.querySelector('a').textContent
+        
+        
+        refreshBtn.addEventListener('click', (e) => {
+
+            e.preventDefault()
+            refreshIcon.classList.add('spin')
+            alertIcon.style.display = 'none'
+
+            setTimeout(() => {
+                refreshForm.submit()
+            }, 1000)
+            
+        })
+      

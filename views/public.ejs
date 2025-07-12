@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <title>TopDollar</title>
+    <title>XtreamBets</title>
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
     <style>
@@ -45,8 +45,8 @@
     </style>
     
 </head>
-<body style="height: 100svh; width: 100vw; background-color: goldenrod;">
-    <header style="height: 10svh; width: 100vw; border-bottom: 2px solid purple; display: flex; align-items: center; justify-content: space-between;">
+<body style="height: 100svh; width: 100vw; background: rgba(218, 165, 32) url('logos/publicBG.png') repeat fixed center;">
+    <header style="height: 10svh; width: 100vw; background-color: goldenrod; display: flex; align-items: center; justify-content: space-between;">
         <a href="/main" style="text-decoration: none; border: none; outline: none; margin-left: 5px; display: flex; align-items: center; justify-content: center;">
             <ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon>
             <h1 style="text-decoration: none; margin-inline: 3px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Public Bets</h1>
@@ -67,21 +67,21 @@
             <% const second = amountToSpread * 0.4 %>
             
 
-            <section class="bet" style="position: relative; display: flex; flex-flow: column nowrap; margin-block: 20px; padding: 20px 10px 20px 10px; scroll-snap-align: start; width: 80%; height: 68%; border-radius: 0 30px 0 30px; background-color: white; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 12px 0 rgba(0, 0, 0, 0.39);">
+            <section class="bet" style="position: relative; display: flex; flex-flow: column nowrap; margin-block: 20px; padding: 20px 10px 20px 10px; scroll-snap-align: start; width: clamp(250px, 80%, 800px); height: 68%; border-radius: 0 30px 0 30px; background-color: white; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 12px 0 rgba(0, 0, 0, 0.39);">
              
                 <div class="heading" style="height: 10%; width: 100%; display: flex; justify-content: space-between; align-items: center;">
-                    <h2 style="color: purple; font-size: 1.2rem; font-family: 'Signika', sans-serif; font-weight: bold;" >Public Party</h2>
-                    <img src="/logos/plicon.png" alt="PL" width="20" height="20" />
-                    <h2 style="color: purple; font-size: 1.1rem; font-family: 'Signika', sans-serif;">Status: <span style="color: limegreen; font-size: 1.2rem; font-weight: bold;">Active</span></h2>
+                    <h2 style="color: rgba(67, 5, 67); font-size: 1.2rem; font-family: 'Signika', sans-serif; font-weight: bold;" >Public Party</h2>
+                    <img src="logos/XtreamICON.png" alt="PL" width="30" height="30" />
+                    <h2 style="color: red; font-size: 1.1rem; font-family: 'Signika', sans-serif;">status: <span style="color: limegreen; font-size: 1.2rem; font-weight: bold;">Active</span></h2>
     
                 </div>
                 <div class="gameweek" style="height: 10%; width: 100%; display: flex; justify-content: center; align-items: center;">
-                    <h2 style="color: blue; font-size: 1.3rem; font-weight: bold; font-family: 'Signika', sans-serif;">Gameweek <span class="event"><%= party.event %></span></h2>
+                    <h2 style="color: blue; font-size: 1.35rem; font-weight: bold; font-family: 'Signika', sans-serif;">Gameweek <span class="event"><%= party.event %></span></h2>
                 </div>
                 <div class="host-details" style="position: relative; height: 15%; margin-block: 5px; width: 100%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: flex-start;">
-                    <h2 style="color: purple; margin-bottom: 5px; font-family: 'Signika', sans-serif; font-size: 1.05rem; ">Host: <span style="font-weight: bold;">User<%= party.hostId %></span></h2>
-                    <h2 style="color: purple; font-size: 1.25rem; font-family: 'Signika', sans-serif;">Total players: <span style="font-weight: bold; color: green;"><%= totalPlayers %></span></h2>
-                    <img src="/logos/13.png" alt="PL" width="25" height="25" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
+                    <h2 style="color: purple; margin-bottom: 5px; font-family: 'Signika', sans-serif; font-size: 1.05rem; ">host: <span style="font-weight: bold; color: purple;">User<%= party.hostId %></span></h2>
+                    <h2 style="color: purple; font-size: 1.25rem; font-family: 'Signika', sans-serif;">Totalplayers: <span style="font-weight: bold; color: purple;"><%= totalPlayers %></span></h2>
+                    <img src="logos/plicon.png" alt="PL" width="25" height="25" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
                 </div>
                 <div class="winnings" style="height: 35%; width: 100%;">
                     <h2 style="font-size: 1.1rem; margin-bottom: 10px; text-align: center;  font-weight: bold;  font-family: 'Signika', sans serif;">Possible Wins</h2>
@@ -90,20 +90,20 @@
     
                         <div class="first" style="display: flex; align-items: center; justify-content: center; margin-block: 5px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: goldenrod;transform: msFilter"><path d="m21 2-5 5-4-5-4 5-5-5v13h18zM5 21h14a2 2 0 0 0 2-2v-2H3v2a2 2 0 0 0 2 2z"></path></svg>
-                            <h2 style="font-size: 1.35rem;  margin-inline: 10px; font-weight: bold; font-family: 'Signika, sans-serif'; color: purple;">1st: <span style="color: limegreen;">Ksh.<%= first %></span></h2>
+                            <h2 style="font-size: 1.35rem;  margin-inline: 10px; font-weight: bold; font-family: 'Signika, sans-serif'; color: goldenrod;">1st: <span style="color: goldenrod; font-family: 'Signika', sans-serif;">KES <%= first %></span></h2>
                         </div>
                         <div class="second" style="display: flex; align-items: center; justify-content: center; margin-block: 5px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: gray; transform: msFilter"><path d="m21 2-5 5-4-5-4 5-5-5v13h18zM5 21h14a2 2 0 0 0 2-2v-2H3v2a2 2 0 0 0 2 2z"></path></svg>
-                            <h2 style="font-size: 1.35rem;  margin-inline: 10px; font-weight: bold; font-family: 'Signika, sans-serif'; color: purple;">2nd: <span style="color: limegreen;">Ksh.<%= second %></span></h2>
+                            <h2 style="font-size: 1.35rem;  margin-inline: 10px; font-weight: bold; font-family: 'Signika, sans-serif'; color: gray;">2nd: <span style="color: gray; font-family: 'Signika', sans-serif;">KES <%= second %></span></h2>
                         </div>
                                 
     
                     </section>
     
                 </div>
-                <div class="join-btn" style="height: 30%; width: 100%;  display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+                <div class="join-btn" style="height: 25%; width: 100%;  display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
     
-                    <h2 style=" font-family: 'Signika', sans-serif; text-align: center; margin-block: 10px; font-weight: bold; color: red; font-size: 1.1rem;">Entry Amount: Ksh.<span class="amount"><%= party.amount %></span></h2>
+                    <h2 style=" font-family: 'Signika', sans-serif; text-align: center; margin-block: 10px; font-weight: bold; color: limegreen; font-size: 1.1rem;">Entry Amount: KES.<span class="amount"><%= party.amount %></span></h2>
     
                     <a href="/party/<%= party._id %>" style="text-decoration: none; cursor: pointer; width: 75%; height: 60%; border: none; outline: none; padding: 15px; background-color: purple; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); border-radius: 15px; color: white; display: flex; justify-content: center; align-items: center;" >
                         <h2 style="font-size: 1.5rem;  font-family: 'Signika', sans-serif;">View Party</h2>
@@ -116,14 +116,14 @@
                <!-- HANGING LINKS -->
                 <div class="links-wrapper" style="position: absolute; width: 15vw; height: 28%; bottom: 0; right: -70px; background-color: transparent; display: flex; flex-flow: column nowrap; justify-content: space-between; align-items: center;">
                     <!-- link to the specific party --> 
-                    <a href="/party/<%= party._id %>" style="cursor: pointer;" ><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" style="fill: purple; transform: msFilter"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg></a>
+                    <a href="/party/<%= party._id %>" style="cursor: pointer;" ><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" style="fill: rgb(67, 5, 67); transform: msFilter"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg></a>
                 
                     <button class="share" style="background-color: transparent; border: none; outline: none;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" style="fill: purple;transform: scaleX(-1); msFilter:progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);"><path d="M11 6.914V2.586L6.293 7.293l-3.774 3.774 3.841 3.201L11 18.135V13.9c8.146-.614 11 4.1 11 4.1 0-2.937-.242-5.985-2.551-8.293C16.765 7.022 12.878 6.832 11 6.914z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" style="fill: rgb(67, 5, 67); transform: scaleX(-1); msFilter:progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);"><path d="M11 6.914V2.586L6.293 7.293l-3.774 3.774 3.841 3.201L11 18.135V13.9c8.146-.614 11 4.1 11 4.1 0-2.937-.242-5.985-2.551-8.293C16.765 7.022 12.878 6.832 11 6.914z"></path></svg>
                     </button>    
                 </div>
             </section>
-            
+
 
         <% }) %>
 
@@ -133,7 +133,7 @@
     </main>
     
 
-    <footer style="height: 10svh; width: 100vw; border-top: 1px solid purple; display: flex; align-items: center; justify-content: center;">
+    <footer style="height: 10svh; width: 100vw; background-color: goldenrod; border-top: 1px solid purple; display: flex; align-items: center; justify-content: center;">
         <div style="display: flex; align-items: center; justify-content: center; font-weight: bold; ">
             <h1 style="font-weight: 900; font-size: 1.2rem; color: purple; font-family: 'Signika', sans-serif;">Xtream</h1>
             <span><img src="logos/plicon.png" alt="" width="40" height="40"></span>

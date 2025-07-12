@@ -125,12 +125,17 @@ app.get('/public', async (req, res) => {
    const allParties = await Party.find()
 
    const publicParties = allParties.filter((party) => {
-     return party.betStatus.code !== 1000
+     return party.betStatus.code == 1000
    }) 
 
    publicParties.sort((a, b) => b.amount - a.amount)
 
     res.render('public', { parties: publicParties })
+})
+
+app.get('/settings', async (req, res) => {
+
+    res.render('settings')
 })
 
 

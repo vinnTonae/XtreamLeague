@@ -264,3 +264,20 @@
  }
  
  }
+
+ 
+        .refresh-icon.spin {
+            animation: spin .75s ease-in-out 0.1s 30 normal forwards;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(360deg);
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+            }
+        }
