@@ -1,4 +1,4 @@
-// require('dotenv').config()
+require('dotenv').config()
 
 const User = require('../models/xtreamUsers')
 const Head = require('../models/head2head')
