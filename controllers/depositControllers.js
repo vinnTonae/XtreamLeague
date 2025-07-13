@@ -1,6 +1,6 @@
+// require('dotenv').config()
 const User = require('../models/xtreamUsers')
 const Transactions = require('../models/transactions')
-require('dotenv').config()
 
 
 const getConfirmDeposit = (req, res) => {
