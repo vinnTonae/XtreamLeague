@@ -2,4 +2,4 @@
   deployment:
      tasks:
         - export DEPLOYPATH=/home6/xtreamle/XTREAMLEAGUE
-        - /bin/cp -r * $DEPLOYPATH 
+        - /bin/cp .env $DEPLOYPATH 
