@@ -89,9 +89,28 @@ const patchConfirmDeposit = async (req, res) => {
 
 }
 
-const getDeposit = (req, res) => {
+const getDeposit = async (req, res) => {
 
-    res.render('deposit', { CLIENT: process.env.PAYPAL_CLIENT_ID, messages: req.flash('error') })
+    const userId = req.user._id
+
+    try {
+        
+        const userDetails = await User.findOne({ _id: userId })
+
+        const userMpesaNumber = userDetails.mpesa
+        const formatNumber = userMpesaNumber.toString()
+        const newNumber = formatNumber.substring(3)
+        const correctFormat = `0${newNumber}`
+        
+        res.render('deposit', { CLIENT: process.env.PAYPAL_CLIENT_ID, messages: req.flash('error'), user: userDetails, userFormatNumber: correctFormat })
+
+    } catch (error) {
+
+        req.flash('error', 'Server Timeout!!...Try Again later')
+        res.redirect('/deposit')
+        
+    }
+
 }
 
 

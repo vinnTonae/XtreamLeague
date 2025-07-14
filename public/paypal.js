@@ -76,10 +76,35 @@ function purchase(token) {
         inputAmount.setAttribute('value', 39.45)
         mpesaInputAmount.setAttribute('value', 5000)
         displayAmount.textContent = '5000'
-        console.log('done')
         display()
     }
 
 }
+
+const mpesaNumberInput = document.querySelector('#mpesa-number')
+const payBtn = document.querySelector('.submit')
+const errorMpesa = document.querySelector('#error-mpesa')
+
+     function validateNumber() {
+             
+              if ( mpesaNumberInput.value.match( /0[71]\d{8}$/ ) ) {
+                    
+                     mpesaNumberInput.style.border = '3px solid limegreen'
+                     mpesaNumberInput.style.color = 'limegreen'
+                     payBtn.style.display = 'block'
+                     errorMpesa.style.display = 'none'
+                     mpesaNumberInput.style.boxShadow = 'none'
+                  return true     
+
+              } else {
+                   mpesaNumberInput.style.border = '2px solid red'
+                   mpesaNumberInput.style.boxShadow = '0 5px 10px 0 rgba(255, 0, 0, 0.455)'
+                   mpesaNumberInput.style.color = 'red'
+                   payBtn.style.display = 'none'
+                   errorMpesa.style.display = 'block'
+                 return false  
+              }
+          
+       }
 
 

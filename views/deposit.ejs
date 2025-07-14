@@ -40,6 +40,7 @@
 
     }
 
+
     .formbox-mpesa {
       display: flex;
       flex-flow: column nowrap;
@@ -57,14 +58,12 @@
       justify-content: center;
 
     }
-
     #token-display {
       font-family: 'Signika', sans-serif;
       font-size: 1.2rem;
       font-weight: bold;
       color: limegreen;
     }
-
 
 
 
@@ -77,35 +76,40 @@
     }
 
     .input-box input {
-      height: 55%;
+      height: 25%;
       width: 90%;
-      padding: 15px;
+      padding: 30px;
+      outline: none;
       text-align: start;
       margin-bottom: 10px;
-      border: 2px solid limegreen;
-      font-size: 1.5rem;
+      border: 1px solid red;
+      font-size: 1.85rem;
       font-weight: bold;
-      font-style: italic;
-      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-family: 'Signika', sans-serif;
       border-radius: 20px;
-      color: purple;
+      color: red;
+    }
+    .input-box input:focus {
+        border: 2px solid red;
     }
 
-    ::placeholder {
-      color: red;
-      font-family: 'Signika', sans-serif;
-      font-weight: bold;
-      font-size: 1.2rem;
-      font-style: italic;
+
+     ::placeholder {
+       font-family: 'Signika', sans-serif;
+       font-weight: bold;
+       font-size: 1.2rem;
+       font-style: italic;
     }
+
 
 
     .mpesa-wrapper button {
+      display: none;  
       width: 70%;
       height: 50px;
       margin: 0;
       position: absolute;
-      top: 70%;
+      top: 80%;
       left: 50%;
       transform: translate(-50%, -50%);
       background-color: limegreen;
@@ -288,8 +292,62 @@
   
   <!-- MPESA CONTAINER FORM -->
 
-  <div class="mpesa-wrapper"
-  style="position: absolute; display: none; flex-flow: column nowrap; z-index: 10; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; height: 350px; width: 300px; border-radius: 20px; background-color: antiquewhite;">
+  <% if (user.mpesa == 254) { %>
+
+    <div class="mpesa-wrapper"
+     style="position: absolute; display: none; flex-flow: column nowrap; z-index: 10; top: 35%; left: 50%; transform: translate(-50%, -50%); text-align: center; height: 350px; width: 300px; border-radius: 20px; background-color: antiquewhite;">
+     
+     <!-- CLOSE BTN -->
+     <article>
+       
+       <div class="close-mpesa">
+           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+           style="fill: white;transform: msFilter">
+           <path
+           d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
+         </path>
+           </svg>
+         </div>
+         
+         <img src="logos/mpesa.png" width="180" height="80" alt="Lipa na Mpesa">
+         
+       </article>
+       
+       <form action="/mpesa/stk" method="post" class="formbox-mpesa">
+         
+         <div class="token-select">
+           
+           <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: limegreen; transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
+         
+           <h3 id="token-display">KSH <span id="displayAmount"></span></h3>
+         </div>
+   
+         <div class="input-box">
+           <p
+             style="margin-bottom: 8px; font-size: 1.2rem; font-weight: bold; font-family: 'Signika', sans-serif; color: purple;">
+             Enter Mpesa Number.</p>
+           <input id="mpesa-number" name="phone" type="number" placeholder="07 or 01...(10-digit-num)" onkeyup="validateNumber()" required>
+   
+           <span id="error-mpesa" style="display: none; color: red; margin-left: 8px; font-size: 1.25rem; font-weight: bold; font-family: 'Signika', sans-serif;">Invalid Mpesa Number</span>
+         </div>
+   
+         <div class="input-amount" style="display: none;">
+   
+           <input id="mpesa-amount" name="mpesaAmount" type="number" required>
+   
+         </div>
+   
+         <button type="submit" class="submit">PAY</button>
+   
+   
+       </form>
+     </div>
+
+  <% } else { %>
+
+       
+      <div class="mpesa-wrapper"
+  style="position: absolute; display: none; flex-flow: column nowrap; z-index: 10; top: 35%; left: 50%; transform: translate(-50%, -50%); text-align: center; height: 350px; width: 300px; border-radius: 20px; background-color: antiquewhite;">
   
   <!-- CLOSE BTN -->
   <article>
@@ -303,7 +361,7 @@
         </svg>
       </div>
       
-      <img src="/logos/mpesa.png" width="180" height="80" alt="Lipa na Mpesa">
+      <img src="logos/mpesa.png" width="180" height="80" alt="Lipa na Mpesa">
       
     </article>
     
@@ -313,14 +371,14 @@
         
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: limegreen; transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
       
-        <h3 id="token-display">KSH <span id="displayAmount"></span></h3>
+        <h3 id="token-display">KSH <span id="displayAmount">100</span></h3>
       </div>
 
       <div class="input-box">
-        <p
-          style="margin-bottom: 8px; font-size: 1.2rem; font-weight: bold; font-family: 'Signika', sans-serif; color: purple;">
-          Enter Mpesa Number.</p>
-        <input name="phone" type="number" placeholder="07 or 01...(10-digit-num)" required>
+        <p style="margin-bottom: 8px; font-size: 1.2rem; font-weight: bold; font-family: 'Signika', sans-serif; color: purple;">
+          An stk prompt will be pushed to...</p>
+        <input name="phone" type="number" value="<%= userFormatNumber %>" placeholder="07 or 01...(10-digit-num)" required style="font-size: 1.85rem; color: grey; text-align: center; border: 2px solid limegreen; font-style: normal; font-family: 'Signika', sans-serif;" />
+
       </div>
 
       <div class="input-amount" style="display: none;">
@@ -329,11 +387,14 @@
 
       </div>
 
-      <button type="submit" class="submit">PAY</button>
+      <button type="submit" class="submit" style="display: block;">PAY</button>
 
 
     </form>
   </div>
+       
+  <% } %>
+
 
 
 
@@ -341,12 +402,12 @@
 
 
   <script src="paypal.js"></script>
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=<%= CLIENT %>&components=buttons&disable-funding=credit,card"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=<%= CLIENT %>&components=buttons&disable-funding=credit,card"></script>
 
   <script>
 
-    const inputElem = document.getElementById('amount')
+
+  const inputElem = document.getElementById('amount')
 
     paypal.Buttons({
       style: {
