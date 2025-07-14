@@ -76,6 +76,7 @@ function purchase(token) {
         inputAmount.setAttribute('value', 39.45)
         mpesaInputAmount.setAttribute('value', 5000)
         displayAmount.textContent = '5000'
+        console.log('done')
         display()
     }
 
