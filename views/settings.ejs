@@ -28,19 +28,25 @@
 </head>
 <body style="height: 100svh; width: 100vw;">
 
-    <header style="height: 10svh; width: 100vw; display: flex; align-items: center; justify-content: space-between;">
+    <header style="height: 10svh; width: 100vw; position: relative; display: flex; align-items: center; justify-content: space-between;">
         <a href="/main" style="text-decoration: none; margin-left: 5px; display: flex; align-items: center; justify-content: center;">
             <ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon>
             <h1 style="text-decoration: none; margin-inline: 3px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Settings</h1>
         </a>
-        <!-- <span style="margin-right: 20px;"><img src="logos/plicon.png" alt="Paypal" width="40" height="40"></span> -->
+        
+        <% if (locals.messages) { %>
+          <p style="position: absolute; color: red; background-color: aliceblue;  text-align: center; border-radius: 4px; font-size: 1.1rem; width: 80%; top: 100%; left: 50%; transform: translate(-50%, -50%);
+           font-weight: bold; position: absolute;"><%= messages %></p>
+        <% } %>
         
     </header>
+
+   
 
     <section class="icon-profile" style="width: 100%; height: 20svh; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
 
         <img src="logos/XtreamICON.png" alt="PL" width="100" height="100">
-        <h1 style="font-family: 'Signika', sans-serif; color: maroon; font-size: 1.8rem;">Alvin</h1>
+        <h1 style="font-family: 'Signika', sans-serif; color: maroon; font-size: 1.8rem;"><%= user.userName %></h1>
 
     </section>
     <section class="payment-settings" style="width: 100%; height: 40svh;">
@@ -49,7 +55,7 @@
         </div>
         <div class="mpesa" style="position: relative; height: 42.5%; width: 100%; background-color: rgba(50, 205, 50, 0.32); display: flex; justify-content: space-between; align-items: center;">
             <img src="logos/mpesa.png" alt="MPESA" width="80" height="90" style="margin-left: 10px;">
-            <p id="mpesa-number-value" style="font-family: 'Signika', sans-serif; font-weight: bold; font-size: 1.2rem;">254701280373</p>
+            <p id="mpesa-number-value" style="font-family: 'Signika', sans-serif; font-weight: bold; font-size: 1.2rem;"><%= user.mpesa %></p>
             <button class="mpesa-edit-btn" style="cursor: pointer; margin-right: 10px; width: 20%; height: 25%; background-color: rgba(255, 0, 0, 0.651); color: white; display: flex; justify-content: center; align-items: center; outline: none; border-radius: 10px;">
                 <p style="margin-right: 5px; font-family: 'Signika', sans-serif; font-size: 1.2rem;">Edit</p>
                 <ion-icon style="color: white; font-size: .95rem;" name="create"></ion-icon>
@@ -63,7 +69,7 @@
         </div>
         <div class="paypal" style="position: relative; height: 42.5%; width: 100%; background-color: rgba(135, 206, 250, 0.32); display: flex; justify-content: space-between; align-items: center;">
             <img src="logos/paypal.png" alt="PAYPAL" width="70" height="40" style="margin-left: 10px;">
-             <p id="paypal-text-value" style="font-family: 'Signika', sans-serif; font-weight: bold; font-size: 1.05rem;">alvintonae5511@gmail.com</p>
+             <p id="paypal-text-value" style="font-family: 'Signika', sans-serif; font-weight: bold; font-size: 1.05rem;"><%= user.payPal %></p>
             <button class="paypal-edit-btn" style="cursor: pointer; margin-right: 10px; width: 20%; height: 25%; background-color: rgba(255, 0, 0, 0.651); color: white; display: flex; justify-content: center; align-items: center; outline: none; border-radius: 10px;">
                 <p style="margin-right: 5px; font-family: 'Signika', sans-serif; font-size: 1.25rem;">Edit</p>
                 <ion-icon style="color: white; font-size: .95rem;" name="create"></ion-icon>
@@ -80,15 +86,26 @@
 
     </section>
          <!-- TODO: DISCLAIMER TO CLIENTS ON EFFECTS OF CHANGING PAYMENT DETAILS -->
-    <p style="max-height: fit-content; width: 100%; margin-top: 15px; font-style: italic; font-weight: bold; color: red; font-size: .75rem; text-align: center;">
-        Plese ensure you DON'T have any pending transactions before changing the payment details. The site will be granted plausible deniability if the client doesn't adhere to the instruction.
-    </p>
+         <% if (user.mpesa == 254) { %>
+
+            <p style="display: none; max-height: fit-content; width: 100%; margin-top: 15px; font-style: italic; font-weight: bold; color: red; font-size: .75rem; text-align: center;">
+                Plese ensure you DON'T have any pending transactions before changing the payment details. The site will be granted plausible deniability if the client doesn't adhere to the instruction.
+            </p>
+            
+         <% } else { %>
+                
+            <p style="max-height: fit-content; width: 100%; margin-top: 15px; font-style: italic; font-weight: bold; color: red; font-size: .75rem; text-align: center;">
+                    Plese ensure you DON'T have any pending transactions before changing the payment details. The site will be granted plausible deniability if the client doesn't adhere to the instruction.
+            </p>
+
+         <% } %>
+
 
     <section class="submit" style="width: 100%; height: 20svh;  width: 100%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; margin-top: 20px;">
 
         <form action="/settings?_method=PATCH" method="post" class="settings-submit" style="display: none; margin-bottom: 20px; height: 30%; width: 40%; background-color: limegreen; border-radius: 20px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.29), 0 6px 12px 0 rgba(0, 0, 0, 0.3);">
-            <input type="text"  hidden/>
-            <input type="text"  hidden/>
+            <input id="mpesa-input-submit" name="mpesaNumber" type="number" hidden/>
+            <input id="paypal-input-submit" name="paypalEmail" type="text"  hidden/>
             <button type="submit"  style="cursor: pointer; background-color: transparent; height: 100%; width: 100%; color: white; font-size: 1.4rem; font-weight: bold; font-family: 'Signika', sans-serif; display: flex; justify-content: center; align-items: center;">
                 SUBMIT
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: white;transform: msFilter"><path d="M4 21h1V8H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2zM20 8h-7l1.122-3.368A2 2 0 0 0 12.225 2H12L7 7.438V21h11l3.912-8.596L22 12v-2a2 2 0 0 0-2-2z"></path></svg>
@@ -129,9 +146,7 @@
         </div>
         <div class="confirm-btn" style="background-color: transparent; border: 1px solid grey; border-radius: 0 0 20px 20px; height: 25%; width: 100%; display: none; align-items: center; justify-content: center;">
             <div style="height: 70%; width: 40%; background-color: transparent; ">
-                <input type="text" name="betType" id="type" style="display: none;">
-                <input type="number" name="event" id="event" style="display: none;">
-                <input type="number" name="amount" id="amount" style="display: none;">
+                
                 <button id="mpesa-submit-btn" style="display: block; cursor: pointer; height: 100%; width: 100%; border-radius: 10px; background-color: limegreen; color: white; border: none; outline: none; font-weight: bold; font-family: 'Signika', sans-serif; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.29), 0 6px 12px 0 rgba(0, 0, 0, 0.3); font-size: 1.1rem;">CONFIRM</button>
             </div>
         
@@ -167,9 +182,7 @@
         </div>
         <div class="confirm-btn-paypal" style="background-color: transparent; border: 1px solid grey; border-radius: 0 0 20px 20px; height: 25%; width: 100%; display: none; align-items: center; justify-content: center;">
             <div style="height: 70%; width: 40%; background-color: transparent; ">
-                <input type="text" name="betType" id="type" style="display: none;">
-                <input type="number" name="event" id="event" style="display: none;">
-                <input type="number" name="amount" id="amount" style="display: none;">
+                
                 <button id="paypal-submit-btn" style="display: block; cursor: pointer; height: 100%; width: 100%; border-radius: 10px; background-color: limegreen; color: white; border: none; outline: none; font-weight: bold; font-family: 'Signika', sans-serif; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.29), 0 6px 12px 0 rgba(0, 0, 0, 0.3); font-size: 1.1rem;">CONFIRM</button>
             </div>
         
@@ -198,6 +211,8 @@
         const paypalTextValue = document.querySelector('#paypal-text-value')
         const mpesaCheckBtn = document.querySelector('.mpesa-check')
         const paypalCheckBtn = document.querySelector('.paypal-check')
+        const mpesaNumberInput = document.querySelector('#mpesa-input-submit')
+        const paypalemailInput = document.querySelector('#paypal-input-submit')
 
 
         function validateNumber() {
@@ -268,6 +283,8 @@
         mpesaSubmitBtn.addEventListener('click', () => {
             mpesaTextValue.textContent = mpesaInput.value
             mpesaInput.value = ''
+            mpesaNumberInput.value = mpesaTextValue.textContent
+            paypalemailInput.value = paypalTextValue.textContent
             mpesaCheckBtn.style.display = 'flex'
             mpesaBox.style.display = 'none'
             submitSettingsBtn.style.display = 'block'
@@ -276,8 +293,27 @@
         })
 
         paypalSubmitBtn.addEventListener('click', () => {
+            // TRY AND FORMAT MPESA NUMBER BEFORE CHANGING THE MPESA INPUT
+
+            if (mpesaTextValue.textContent == 254) {
+                
+                mpesaNumberInput.value = 254
+            
+            } else if (mpesaTextValue.textContent.length = 10) {
+
+                mpesaNumberInput.value = mpesaTextValue.textContent
+                
+
+            } else {
+                 const formatMpesaNumber = mpesaTextValue.textContent.substring(3)
+                 const correctMpesaNumber = `0${formatMpesaNumber}`
+                 mpesaNumberInput.value = correctMpesaNumber
+                 
+            }
+
             paypalTextValue.textContent = paypalInput.value
             paypalInput.value = ''
+            paypalemailInput.value = paypalTextValue.textContent
             paypalCheckBtn.style.display = 'flex'
             paypalBox.style.display = 'none'
             submitSettingsBtn.style.display = 'block'

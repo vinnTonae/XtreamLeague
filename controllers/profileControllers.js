@@ -111,6 +111,7 @@ const getMain = async (req, res) => {
     const partiesHosting = await Party.find({ hostId: userTeamId })
     const allParties = await Party.find()
     const publicParties = allParties.filter((party) => {
+        
         return party.betStatus.code !== 1000
     })
     const invitedParties = allParties.filter((party) => {
@@ -119,6 +120,9 @@ const getMain = async (req, res) => {
     })
     const headHost = await Head.find({ hostId: userTeamId })
     const invitedHost = await Head.find({ opponentId: userTeamId })
+
+    const pendingMpesaTranx = await Transactions.findOne({ "mpesaObject.mpesaNumber": xUser.mpesa, status: 'pending', tranx_type: 'Deposit' })
+    
 
     const filHeadHost = headHost.filter((bet) => { return bet.betStatus.code !== 1000 })
     const filHeadInvited = invitedHost.filter((bet) => { return bet.betStatus.code !== 1000 })
@@ -132,7 +136,7 @@ const getMain = async (req, res) => {
     const publicCount = publicParties.length
  
 
-    res.render('main', { user: xUser, head: headCounts, party: partyCount, public: publicCount,  messages: req.flash('error') })
+    res.render('main', { user: xUser, head: headCounts, party: partyCount, public: publicCount, pendingTranx: pendingMpesaTranx,  messages: req.flash('error') })
 }
 
 const getTopDollar = async (req, res) => {

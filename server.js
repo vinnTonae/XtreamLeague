@@ -135,7 +135,103 @@ app.get('/public', async (req, res) => {
 
 app.get('/settings', async (req, res) => {
 
-    res.render('settings')
+    const userId = req.user._id
+
+    try {
+        
+        const userData = await User.findOne({ _id: userId })
+    
+        res.render('settings', { user: userData, messages: req.flash('error') })
+        
+    } catch (error) {
+         
+        req.flash('error', 'Server Error..Try again later!!')
+        res.redirect('/main')
+    }
+    
+})
+
+app.patch('/settings', async (req, res) => {
+     
+       const { mpesaNumber, paypalEmail } = req.body
+       const userId = req.user._id
+
+     try {
+
+       if(mpesaNumber == 254) {
+
+             await User.findByIdAndUpdate({ _id: userId }, { payPal: paypalEmail })
+           
+             req.flash('error', 'Paypal Email Updated')
+             res.redirect('/settings')
+
+       } else {
+
+          
+
+           const formatNumber = mpesaNumber.substring(1)
+           const stringFormatNumber = `254${formatNumber}`
+           const correctFormatNumber = Number(stringFormatNumber)
+           const userNumberExists = await User.findOne({ mpesa: correctFormatNumber })
+    
+           if (userNumberExists) {
+                 
+                 req.flash('error', 'Mpesa Number already Taken...Choose Another number!!')
+                 res.redirect('/settings')
+           } else {
+              
+              await User.findByIdAndUpdate({ _id: userId}, { mpesa: correctFormatNumber, payPal: paypalEmail })
+              req.flash('error', 'Update successful!!')
+              res.redirect('/settings')
+           }
+        
+         
+       }
+
+        } catch (error) {
+            
+            req.flash('error', 'Server Error!!!...Try Again Please')
+            res.redirect('/settings')
+       }
+
+
+})
+
+app.patch('/refresh', async (req, res) => {
+     
+      const { tranxId, userId } = req.body
+      
+      if (tranxId == 'none' ) {
+           
+          req.flash('error', 'No Pending Deposits')
+          res.redirect('/main')
+
+      } else {
+
+     try {
+        
+         const pendingTranx = await Transactions.findOne({ _id: tranxId })
+         const userToPatch = await User.findOne({ _id: userId })
+    
+         const tranxAmount = pendingTranx.amount
+         const userBalance = userToPatch.totalBalance
+         const newUserBalance = userBalance + tranxAmount 
+    
+         await Transactions.findByIdAndUpdate({ _id: tranxId }, { userId: userId, status: 'complete' })
+         await User.findByIdAndUpdate({ _id: userId }, { totalBalance: newUserBalance })
+         
+         req.flash('error', 'Balance Updated successfully')
+         res.redirect('/main')
+
+     } catch (error) {
+         
+         req.flash('error', 'Database Timeout Error')
+         res.redirect('/main')
+        
+     }
+
+
+     }
 })
 
 
