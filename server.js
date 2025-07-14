@@ -158,7 +158,7 @@ app.patch('/settings', async (req, res) => {
 
      try {
 
-       if(mpesaNumber == 254) {
+       if(mpesaNumber == 254 || mpesaNumber.length > 10 ) {
 
              await User.findByIdAndUpdate({ _id: userId }, { payPal: paypalEmail })
            
