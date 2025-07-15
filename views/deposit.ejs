@@ -12,8 +12,7 @@
     href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
     rel="stylesheet">
   <title>Deposit</title>
-  <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+ 
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
   <style>
     * {
@@ -89,6 +88,9 @@
       border-radius: 20px;
       color: red;
     }
+
+    
+
     .input-box input:focus {
         border: 2px solid red;
     }
@@ -103,25 +105,21 @@
 
 
 
-    .mpesa-wrapper button {
-      display: none;  
+    .mpesa-wrapper button { 
       width: 70%;
-      height: 50px;
-      margin: 0;
+      height: 60px;
       position: absolute;
-      top: 80%;
+      bottom: 15%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
       background-color: limegreen;
       border-radius: 15px;
-      margin-top: 20px;
+      margin-top: 5px;
       border: none;
       outline: none;
       color: white;
-      border: 1px solid gold;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: bold;
-      font-style: italic;
       font-family: 'Signika', sans-serif;
       cursor: pointer;
     }
@@ -131,7 +129,7 @@
 <body style="width: 100vw; background-color: white;">
   <header style="height: 10vh; width: 100%; display: flex; align-items: center; justify-content: space-between;">
     <a href="/main" style="text-decoration: none; margin-left: 5px; display: flex; align-items: center; justify-content: center;">
-      <ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon>
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: purple;transform: msFilter"><path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path></svg>
       <h1 style="text-decoration: none; margin-inline: 3px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Deposit</h1>
     </a>
     <span style="margin-right: 20px;"><img src="logos/plicon.png" alt="Paypal" width="40" height="40"></span>
@@ -276,7 +274,7 @@
 
       <img src="/logos/mpesa.png" alt="" width="120" height="60" style="position: absolute; top: 0; left: 10px;">
       <button id="lipa-mpesa"
-        style="display: flex; justify-content: center; align-items: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); outline: none; border: 1px solid gold; min-height: calc( min(25%, 150px)); min-width: calc( min(75%, 800px)); border-radius: 25px; background-color: limegreen;">
+        style="display: flex; justify-content: center; align-items: center; cursor: pointer; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); outline: none; border: 1px solid gold; min-height: calc( min(25%, 150px)); min-width: calc( min(75%, 800px)); border-radius: 25px; background-color: limegreen;">
         <h2
           style="font-size: 1.3rem; font-family: 'Signika', sans-serif; font-weight: bold; color: white;">
           Lipa Na Mpesa</h2>
@@ -295,7 +293,7 @@
   <% if (user.mpesa == 254) { %>
 
     <div class="mpesa-wrapper"
-     style="position: absolute; display: none; flex-flow: column nowrap; z-index: 10; top: 35%; left: 50%; transform: translate(-50%, -50%); text-align: center; height: 350px; width: 300px; border-radius: 20px; background-color: antiquewhite;">
+     style="position: absolute; display: none; flex-flow: column nowrap; z-index: 10; top: 35%; left: 50%; transform: translate(-50%, -50%); text-align: center; height: 250px; width: 300px; border-radius: 20px; background-color: antiquewhite;">
      
      <!-- CLOSE BTN -->
      <article>
@@ -315,21 +313,23 @@
        
        <form action="/mpesa/stk" method="post" class="formbox-mpesa">
          
-         <div class="token-select">
+         <div class="token-select" style="margin-bottom: 10px;">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 0, 0, 0.466);transform: msFilter"><path d="m17.284 3.707 1.412-1.416 3.01 3-1.413 1.417zm-10.586 0-2.99 2.999L2.29 5.294l2.99-3zM12 4c-4.879 0-9 4.121-9 9s4.121 9 9 9 9-4.121 9-9-4.121-9-9-9zm1 14h-2v-2h2v2zm0-4h-2V8h2v6z"></path></svg>
            
-           <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: limegreen; transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
-         
-           <h3 id="token-display">KSH <span id="displayAmount"></span></h3>
+              <h3 style="font-family: 'Signika', sans-serif; color: rgba(255, 0, 0, 0.466);">Can't Pay KES<span id="displayAmount"></span></h3>
+
          </div>
    
-         <div class="input-box">
-           <p
-             style="margin-bottom: 8px; font-size: 1.2rem; font-weight: bold; font-family: 'Signika', sans-serif; color: purple;">
-             Enter Mpesa Number.</p>
-           <input id="mpesa-number" name="phone" type="number" placeholder="07 or 01...(10-digit-num)" onkeyup="validateNumber()" required>
-   
-           <span id="error-mpesa" style="display: none; color: red; margin-left: 8px; font-size: 1.25rem; font-weight: bold; font-family: 'Signika', sans-serif;">Invalid Mpesa Number</span>
-         </div>
+         <section>
+           <p style="margin-bottom: 8px; font-size: 1.2rem; font-weight: bold; font-family: 'Signika', sans-serif; color: purple;">
+             You Need to Register an MPESA Number
+            </p>
+             
+         </section>
+            <a href="/settings" style="width: 60%; height: 30%; margin-top: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; font-family: 'Signika', sans-serif; text-decoration: none; cursor: pointer; border-radius: 20px; background-color: green; color: white;">
+              Go to Settings
+            </a>
    
          <div class="input-amount" style="display: none;">
    
@@ -337,7 +337,7 @@
    
          </div>
    
-         <button type="submit" class="submit">PAY</button>
+         <button type="submit" style="display: none;" class="submit">PAY</button>
    
    
        </form>
@@ -371,7 +371,7 @@
         
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: limegreen; transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
       
-        <h3 id="token-display">KSH <span id="displayAmount">100</span></h3>
+        <h3 id="token-display">KES <span id="displayAmount">100</span></h3>
       </div>
 
       <div class="input-box">
@@ -380,14 +380,14 @@
         <input name="phone" type="number" value="<%= userFormatNumber %>" placeholder="07 or 01...(10-digit-num)" required style="font-size: 1.85rem; color: grey; text-align: center; border: 2px solid limegreen; font-style: normal; font-family: 'Signika', sans-serif;" />
 
       </div>
-
+      
       <div class="input-amount" style="display: none;">
 
         <input id="mpesa-amount" name="mpesaAmount" type="number" required>
 
       </div>
 
-      <button type="submit" class="submit" style="display: block;">PAY</button>
+      <button type="submit" id="submit" style="display: block;">PAY</button>
 
 
     </form>

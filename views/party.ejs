@@ -48,7 +48,7 @@
         }
     </style>    
 </head>
-<body style="height: 100svh; position: relative; background-color: goldenrod;">
+<body style="height: 100svh; position: relative; background: rgba(218, 165, 32, 0.514) url('logos/publicBG.png') repeat fixed center;">
        
           <!-- PATCH BOX FOR OPPONENT -->
    
@@ -93,7 +93,7 @@
      </div>
 
 
-    <header style="height: 9svh; width: 100vw; display: flex; align-items: center; justify-content: space-between;">
+    <header style="height: 10svh; width: 100vw; background-color: goldenrod; display: flex; align-items: center; justify-content: space-between;">
         <a href="/parties/<%= party.event %>" style="text-decoration: none; margin-left: 5px; display: flex; align-items: center; justify-content: center;">
             <ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon>
             <h1 style="text-decoration: none; margin-inline: 3px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Party</h1>
@@ -108,19 +108,19 @@
         
     </header>
 
-<main style="height: 91svh; width: 100vw; border: 3px dotted purple; background-image: linear-gradient(-45deg, goldenrod, gold, yellow, whitesmoke, white, white,whitesmoke, yellow, gold, goldenrod);">
+<main style="height: 90svh; width: clamp(300px, 95%, 800px); position: absolute; left: 50%; transform: translateX(-50%); border: 3px dotted purple; background-image: linear-gradient(-45deg, goldenrod, gold, yellow, whitesmoke, white, white,whitesmoke, yellow, gold, goldenrod);">
         
-        <section class="bet-type" style="width: 100vw; height: 8vh; background-color: transparent; display: flex; justify-content: center; align-items: center;">
+        <section class="bet-type" style="width: 100%; height: 8vh; background-color: transparent; display: flex; justify-content: center; align-items: center;">
             <h1 style="font-size: 2rem; font-family: 'Signika', sans-serif; font-weight: bold; text-align: center; color: purple;">Party</h1>
         </section>
 
-        <section class="host" style="width: 100vw; height: 4vh; display: flex; align-items: center; justify-content: flex-start;">
+        <section class="host" style="width: 100%; height: 4vh; display: flex; align-items: center; justify-content: flex-start;">
             <h3 style="margin-left: 10px; text-wrap: nowrap; color: purple;"><span style="color: red; font-style: italic;">Host: </span><%= host.userName %></h3> 
             
              
         </section>
 
-        <section class="webshare" style="width: 100vw; height: 6vh; margin-block: 10px; display: flex; align-items: center; justify-content: center;">
+        <section class="webshare" style="width: 100%; height: 6vh; margin-block: 10px; display: flex; align-items: center; justify-content: center;">
              
             <h3 style="margin-right: 10px; font-size: .9rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic; font-weight: bold; color: blue;">
                 Bet Code
@@ -135,12 +135,12 @@
              </button>
         </section>
         
-        <section class="pool-details" style="width: 100vw; height: 5vh; display: flex; align-items: center; justify-content: space-between; padding-inline: 5px;">
+        <section class="pool-details" style="width: 100%; height: 5vh; display: flex; align-items: center; justify-content: space-between; padding-inline: 5px;">
             <h3 style="font-weight: bold; color: blue; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Total players: <span style="color: green;"><%= players.length %></span></h3>
             <h3 style="font-weight: bold; color: blue; font-family: 'Signika', sans-serif; margin-right: 15px;">Winners: <span style="color: green;">top 3</span></h3>
         </section>
 
-        <section class="managers" style="width: 95vw; height: 25vh;  justify-content: flex-start; align-items: flex-start;" >
+        <section class="managers" style="width: 95%; height: 25vh;  justify-content: flex-start; align-items: flex-start;" >
              
             
 
@@ -189,7 +189,7 @@
          
         </section>
 
-        <section class="winners" style="height: 10vh; width: 100vw; background-color: white; display: flex; align-items: center; justify-content: space-evenly;">
+        <section class="winners" style="height: 10vh; width: 100%; background-color: white; display: flex; align-items: center; justify-content: space-evenly;">
 
             <div class="first" style="width: fit-content; display: flex; flex-flow: column nowrap; align-items: center; justify-content: center;">
 
@@ -217,13 +217,13 @@
     
         </section>
 
-        <section class="event" style="width: 100vw; height: 5vh; display: flex; align-items: center; justify-content: center;">
+        <section class="event" style="width: 100%; height: 5vh; display: flex; align-items: center; justify-content: center;">
 
             <h1 id="event" style="font-size: 1.4rem; font-family: 'Signika', sans-serif; font-weight: bold; text-align: center; color: purple;">Gameweek <%= party.event %></h1>
 
         </section>
 
-        <section class="amount" style="position: relative; width: 100vw; height: 7vh; background-color: aliceblue; display: flex; justify-content: center; align-items: center;">
+        <section class="amount" style="position: relative; width: 100%; height: 7vh; background-color: aliceblue; display: flex; justify-content: center; align-items: center;">
             <div class="entry" style="height: 100%; width: 50%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap;">
                  <p id="amount" style="color: red; margin: 0; font-size: 1.3rem; font-weight: bold;">KSH <%= party.amount %></p>
                  <p style="margin: 5px; font-style: italic; font-size: .95rem; color: blue; ">Entry fee</p>
@@ -241,7 +241,7 @@
            
          <% if ( party.betStatus.code === 1000 ) { %>
 
-            <section class="join-btn" style="width: 100vw; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
+            <section class="join-btn" style="width: 100%; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
                 
                 <h3 style="color: limegreen; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.5rem;">Party Closed</h3>
     
@@ -252,7 +252,7 @@
             
            <% if (host.teamId == userData.teamId)  { %>
                 
-            <section class="join-btn" style="width: 100vw; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
+            <section class="join-btn" style="width: 100%; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
                 
                 <h3 style="font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.5rem;">&lt;&lt;You are the Host&gt;&gt;</h3>
     
@@ -260,7 +260,7 @@
 
              <% } else { %>
                
-            <section class="join-btn" style="width: 100vw; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
+            <section class="join-btn" style="width: 100%; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
 
                     <button id="join" style="height: 80%; width: 45%; cursor: pointer; font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.4rem; border: 2px solid gold; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); outline: none; border-radius: 20px; color: white; background-color: limegreen; " >
                         Join Party
@@ -272,7 +272,7 @@
 
         <% } %>
         
-              <section class="status" style="width: 100vw; height: 8vh; display: flex; justify-content: center; align-items: center;">
+              <section class="status" style="width: 100%; height: 8vh; display: flex; justify-content: center; align-items: center;">
                 <h3 style="margin-right: 10px; font-weight: bold; color: blue;">Bet Status:</h3>
                 <h3 style="font-style: italic; font-family: 'Signika', sans-serif; font-weight: bold; color: red;">"<%= party.betStatus.message %>"</h3>       
           

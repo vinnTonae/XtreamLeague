@@ -19,10 +19,14 @@
             border: 0;
             box-sizing: border-box;
         }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
     </style>
     
 </head>
-<body style="height: 100svh; position: relative; background-color: goldenrod; width: 100vw;">
+<body style="height: 100svh; position: relative; background: rgba(218, 165, 32, 0.658) url('logos/publicBG.png') repeat fixed center; width: 100vw;">
 
              <!-- PATCH BOX FOR OPPONENT -->
    
@@ -68,7 +72,7 @@
 
 
 
-    <header style="height: 10svh; width: 100vw; display: flex; align-items: center; justify-content: space-between;">
+    <header style="height: 10svh; width: 100vw; background-color: goldenrod; display: flex; align-items: center; justify-content: space-between;">
         <a href="/bets/<%= bet.event %>" style="text-decoration: none; margin-left: 5px; display: flex; align-items: center; justify-content: center;">
             <ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon>
             <h1 style="text-decoration: none; margin-inline: 3px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Bet Details</h1>
@@ -83,18 +87,18 @@
         
     </header>
 
-    <main style="height: 90svh; width: 100vw; margin-top: 10px; border: 3px dotted purple; background-image: linear-gradient(-45deg, goldenrod, gold, yellow, whitesmoke, white, white,whitesmoke, yellow, gold, goldenrod);">
+    <main style="position: absolute; top: 10%; left: 50%; transform: translateX(-50%); height: 85svh; width: clamp(300px, 95%, 800px); margin-top: 10px; border: 3px dotted purple; background-image: linear-gradient(-45deg, goldenrod, gold, yellow, whitesmoke, white, white,whitesmoke, yellow, gold, goldenrod);">
 
-        <section class="bet-type" style="width: 100vw; height: 8vh; background-color: transparent; display: flex; justify-content: center; align-items: center;">
+        <section class="bet-type" style="width: 100%; height: 8vh; background-color: transparent; display: flex; justify-content: center; align-items: center;">
             <h1 style="font-size: 1.8rem; font-family: 'Signika', sans-serif; font-weight: bold; text-align: center; color: purple;">Head-to-Head</h1>
         </section>
 
-        <section class="host" style="width: 100vw; height: 4vh; display: flex; align-items: center; justify-content: flex-start; ">
+        <section class="host" style="width: 100%; height: 4vh; display: flex; align-items: center; justify-content: flex-start; ">
             <h3 style="margin-left: 10px; font-style: italic; color: blue;"><span style="color: red;">Host:</span> <%= host.teamName %></h3> 
              
         </section>
 
-        <section class="webshare" style="width: 100vw; height: 6vh; margin-bottom: 10px; display: flex; align-items: center; justify-content: center;">
+        <section class="webshare" style="width: 100%; height: 6vh; margin-bottom: 10px; display: flex; align-items: center; justify-content: center;">
              
             <h3 style="margin-right: 10px; font-style: italic; font-size: .9rem; color: blue;">Bet Code</h3> 
              
@@ -107,7 +111,7 @@
              </button>
         </section>
 
-        <section class="managers" style="width: 100vw; height: 25vh; display: flex; justify-content: center; align-items: center;" >
+        <section class="managers" style="width: 100%; height: 25vh; display: flex; justify-content: center; align-items: center;" >
                
             <div class="host-box" style="position: relative; width: 45%; height: 95%; background-color: aliceblue; border: 2px solid purple; border-radius: 20px;">
                
@@ -183,13 +187,13 @@
 
         </section>
 
-        <section class="event" style="width: 100vw; height: 8vh; display: flex; align-items: center; justify-content: center;">
+        <section class="event" style="width: 100%; height: 8vh; display: flex; align-items: center; justify-content: center;">
 
             <h1 id="event" style="font-size: 1.5rem; font-family: 'Signika', sans-serif; font-weight: bold; text-align: center; color: purple;">Gameweek <%= bet.event %></h1>
 
         </section>
 
-        <section class="amount" style="position: relative; width: 100vw; height: 8vh; background-color: aliceblue; display: flex; justify-content: center; align-items: center;">
+        <section class="amount" style="position: relative; width: 100%; height: 8vh; background-color: aliceblue; display: flex; justify-content: center; align-items: center;">
            <div class="entry" style="height: 100%; width: 50%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap;">
                 <p id="amount" style="color: red; margin: 0; font-size: 1.3rem; font-weight: bold;">KSH <%= bet.amount %></p>
                 <p style="margin: 5px; font-style: italic; font-size: .9rem; color: blue; ">Entry fee</p>
@@ -208,7 +212,7 @@
            
         <% if ( bet.betStatus.code === 1000 ) { %>
            
-            <section class="join-btn" style="width: 100vw; height: 10vh; display: flex; align-items: center; justify-content: center;">
+            <section class="join-btn" style="width: 100%; height: 10vh; display: flex; align-items: center; justify-content: center;">
 
                 <% if ( bet.winner.winnerId == host.teamId ) { %>
 
@@ -235,13 +239,13 @@
 
        
            <% if (host.teamId === user) { %>
-              <section class="join-btn" style="width: 100vw; height: 10vh; display: flex; align-items: center; justify-content: center;">
+              <section class="join-btn" style="width: 100%; height: 10vh; display: flex; align-items: center; justify-content: center;">
 
                   <h3 style="font-weight: bolder; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.5rem;">&lt;&lt;You are the Host&gt;&gt;</h3>
     
               </section>
            <% } else { %>
-            <section class="join-btn" style="width: 100vw; height: 10vh; display: flex; align-items: center; justify-content: center;">
+            <section class="join-btn" style="width: 100%; height: 10vh; display: flex; align-items: center; justify-content: center;">
 
                  <button id="join"  style="height: 80%; width: 45%; cursor: pointer; font-weight: bolder; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.4rem; border: 2px solid gold; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); outline: none; border-radius: 20px; color: white; background-color: limegreen; " >
                     Join Bet
@@ -253,7 +257,7 @@
 
         <% } %>
       
-            <section class="status" style="width: 100vw; height: 8vh; display: flex; justify-content: center; align-items: center;">
+            <section class="status" style="width: 100%; height: 8vh; display: flex; justify-content: center; align-items: center;">
                 <h3 style="margin-right: 10px; font-weight: bold; color: blue;">Bet Status:</h3>
                 <h3 style="font-style: italic; font-family: 'Signika', sans-serif; font-weight: bold; color: red;">"<%= bet.betStatus.message %>"</h3>       
           

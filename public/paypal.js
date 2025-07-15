@@ -7,15 +7,11 @@ const lipaBtn = document.getElementById('lipa-mpesa')
 const mpesaCloseBtn = document.querySelector('.close-mpesa')
 const mpesaInputAmount = document.getElementById('mpesa-amount')
 const displayAmount = document.getElementById('displayAmount')
-const submitBtn = document.querySelector('.submit')
+const submitBtn = document.querySelector('#submit')
 const mpesaForm = document.querySelector('.formbox-mpesa')
 
 // TODO: SUBMIT BTN DISAPPEARS AFTER SUBMIT
 
-mpesaForm.addEventListener('submit', () => {
-    submitBtn.disabled = true
-    submitBtn.style.backgroundColor = 'gray'
-})
 
 
 
@@ -30,7 +26,7 @@ function display() {
 closeBtn.addEventListener('click', () => {
     paypalBox.style.display = 'none'
     mainBox.style.display = 'block'
-
+    
 })
 
 lipaBtn.addEventListener('click', () => {
@@ -81,30 +77,8 @@ function purchase(token) {
 
 }
 
-const mpesaNumberInput = document.querySelector('#mpesa-number')
-const payBtn = document.querySelector('.submit')
-const errorMpesa = document.querySelector('#error-mpesa')
-
-     function validateNumber() {
-             
-              if ( mpesaNumberInput.value.match( /0[71]\d{8}$/ ) ) {
-                    
-                     mpesaNumberInput.style.border = '3px solid limegreen'
-                     mpesaNumberInput.style.color = 'limegreen'
-                     payBtn.style.display = 'block'
-                     errorMpesa.style.display = 'none'
-                     mpesaNumberInput.style.boxShadow = 'none'
-                  return true     
-
-              } else {
-                   mpesaNumberInput.style.border = '2px solid red'
-                   mpesaNumberInput.style.boxShadow = '0 5px 10px 0 rgba(255, 0, 0, 0.455)'
-                   mpesaNumberInput.style.color = 'red'
-                   payBtn.style.display = 'none'
-                   errorMpesa.style.display = 'block'
-                 return false  
-              }
-          
-       }
-
+mpesaForm.addEventListener('submit', () => {
+    submitBtn.disabled = true
+    submitBtn.style.backgroundColor = 'gray'
+})
 

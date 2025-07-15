@@ -40,9 +40,12 @@ router.post('/stk', async (req, res) => {
 
     const { mpesaAmount, phone } = req.body
 
+    console.log(phone)
+    console.log(typeof phone)
 
-    const requiredlength = phone.toString().length
-    const startingNum = phone.toString().charAt(0)
+
+    const requiredlength = phone.length
+    const startingNum = phone.charAt(0)
 
     if (requiredlength !== 10 && startingNum !== 0) {
 
