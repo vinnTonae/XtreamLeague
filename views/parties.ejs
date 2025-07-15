@@ -148,7 +148,7 @@
 
                      <% if (party.hostId == user.teamId ) { %>
 
-                        <a href="/party/<%= party._id %>" class="bets-card" style="cursor: pointer; text-decoration: none; padding: 5px; display: flex; align-items: center; justify-content: space-between; width: 95%; height: 15%; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); background-image: linear-gradient(45deg, blue, skyblue, skyblue, aliceblue, whitesmoke,  white, whitesmoke, aliceblue, skyblue, skyblue, blue); border-radius: 0 20px 20px 0; margin-block: 10px;">
+                        <a href="/party/<%= party._id %>" class="bets-card" style="cursor: pointer; text-decoration: none; padding: 5px; display: flex; align-items: center; justify-content: space-between; width: clamp(300px, 95%, 1000px); height: 15%; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); background-image: linear-gradient(45deg, blue, skyblue, skyblue, aliceblue, whitesmoke,  white, whitesmoke, aliceblue, skyblue, skyblue, blue); border-radius: 0 20px 20px 0; margin-block: 10px;">
                             <div class="competitors" style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 30%;">
                                <h2 style="text-wrap: wrap; text-align: center; font-size: .85rem; font-family: 'Signika', sans-serif; color: rgba(65, 5, 65);"><%= user.teamName %></h2>
                                <p style="color: red; font-size: .75rem; font-style: italic;">host</p>
@@ -171,7 +171,7 @@
 
                         <% } else { %>
 
-                            <a href="/party/<%= party._id %>" class="bets-card" style="cursor: pointer; text-decoration: none; padding: 5px; display: flex; align-items: center; justify-content: space-between; width: 95%; height: 15%; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); background-image: linear-gradient(45deg, blue, skyblue, skyblue, aliceblue, whitesmoke,  white, whitesmoke, aliceblue, skyblue, skyblue, blue); border-radius: 0 20px 20px 0; margin-block: 10px;">
+                            <a href="/party/<%= party._id %>" class="bets-card" style="cursor: pointer; text-decoration: none; padding: 5px; display: flex; align-items: center; justify-content: space-between; width: clamp(300px, 95%, 1000px); height: 15%; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); background-image: linear-gradient(45deg, blue, skyblue, skyblue, aliceblue, whitesmoke,  white, whitesmoke, aliceblue, skyblue, skyblue, blue); border-radius: 0 20px 20px 0; margin-block: 10px;">
                                 <div class="competitors" style="display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 30%;">
                                    <h2 style="text-wrap: wrap; text-align: center; font-size: .85rem; font-family: 'Signika', sans-serif; color: rgba(65, 5, 65);">user<%= party.hostId %></h2>
                                    <p style="color: red; font-size: .75rem; font-style: italic;">invited</p>
