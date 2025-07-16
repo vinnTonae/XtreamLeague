@@ -18,6 +18,7 @@ const getOpponentId = async (req, res) => {
         accept: 'application/json'
     }
     const results = await fetch(baseUrl, options)
+    console.log(results)
     const data = await results.json()
     const players = await data.picks
     const array = []
