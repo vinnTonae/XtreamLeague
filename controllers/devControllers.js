@@ -242,7 +242,7 @@ const patchDevUsers = async (req, res) => {
         if (currentEvent) {
 
             const gameweekPoints = currentEvent.points
-            const pointsObject = { gameweek: event, points: gameweekPoints }
+            const pointsObject = { gameweek: event, points: gameweekPoints }  // change pointsObject to { gameweek26: event, points: gameweekPoints }
 
             const updatedUser = await User.findByIdAndUpdate({ _id: userid }, { $push: { points: pointsObject } })
 
