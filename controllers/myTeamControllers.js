@@ -15,7 +15,7 @@ const getOpponentId = async (req, res) => {
     const options = {
         method: 'GET',
         agent: new HttpsProxyAgent(proxyInstance), 
-        accept: 'application/json',
+        accept: 'application/json'
     }
     const results = await fetch(baseUrl, options)
     const data = await results.json()
@@ -92,7 +92,7 @@ const getMyTeamId = async (req, res) => {
         const options = {
             method: 'GET', 
             agent: new HttpsProxyAgent(proxyInstance),
-            accept: 'application/json',
+            accept: 'application/json'
         }
         const results = await fetch(baseUrl, options)
         const data = await results.json()
@@ -165,7 +165,7 @@ const getMyTeam = async (req, res) => {
         const options = {
             method: 'GET', 
             agent: new HttpsProxyAgent(proxyInstance),
-            accept: 'application/json',
+            accept: 'application/json'
         }
         const results = await fetch(baseUrl, options)
         const data = await results.json()
