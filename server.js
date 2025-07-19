@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const ObjectId = require('mongoose').Types.ObjectId
 
 const express = require('express')
@@ -233,27 +231,3 @@ app.patch('/refresh', async (req, res) => {
 
      }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
