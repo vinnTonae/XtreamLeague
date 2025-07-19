@@ -3,15 +3,16 @@ require('dotenv').config()
 const { caseInSwitch } = require('../controllers/test')
 
 const Head = require('../models/head2head')
+const Head26 = require('../models/head2head26')   //TODO: ADD THE NEW HEADSCHEMA CREATED IN MODELS FOR 25/26 SEASON      
 const User = require('../models/xtreamUsers')
 const ObjectId = require('mongoose').Types.ObjectId
-const { HttpsProxyAgent } = require('https-proxy-agent')
 const fetch = require('node-fetch')
 const { proxyInstance } = require('../controllers/test')
 
 const getBetHead = async (req, res) => {
     const xUser = req.user
     const month = new Date().getMonth()
+    console.log(month)
     const fplBaseUrl = process.env.FPLBASE
 
     try {
@@ -19,13 +20,13 @@ const getBetHead = async (req, res) => {
         const baseUrl = `${fplBaseUrl}/bootstrap-static`
         const options = {
             method: 'GET',
-            agent: new HttpsProxyAgent(proxyInstance),
             Accept: 'application/json'
         }
         const  response = await fetch(baseUrl, options)
         const data = await response.json()
         const phases = data.phases
-        const currentPhase = caseInSwitch(month)
+        const currentPhase = caseInSwitch(month + 1)
+        console.log(`CONFIRMATION caseInSwitch Works fine ---- ${currentPhase}`)
     
         const array = []
         const chunk = 38
@@ -51,15 +52,17 @@ const getBetHead = async (req, res) => {
                     })
                     const bootstrapDeadline = new Date(event.deadline_time)
                     const dateNow = new Date()
-                    const customDiffMs = ( bootstrapDeadline - dateNow ) + 86400000
+                    // TODO: RETURN BACK TO ( bootstapDeadline - dateNow ) AFTER FPL API UDATES NEW CALENDER
+                    const customDiffMs = ( dateNow - bootstrapDeadline ) + 86400000
                 
             
                     dataArray.push( [gameweek, event.deadline_time, customDiffMs ] )
                 })
-    
+                console.log(dataArray)
                 const latestGameweek = dataArray.find((event) => {
                     return event[2] > 0
                 })
+                console.log(latestGameweek)
                 const msToDeadline = latestGameweek[2]
                 const daysLeft = Math.floor(msToDeadline / 86400000)
                 const eventObject = [latestGameweek[0], daysLeft]
@@ -79,6 +82,7 @@ const getBetHead = async (req, res) => {
     } catch (error) {
            
           req.flash('error', 'Proxy Error!! Try again Later')
+          console.log(error)
           res.redirect('/main')
           console.log('PROXY DEPRICATION ERRORS')
     }
@@ -89,7 +93,7 @@ const postBetHead = (req, res) => {
 
     const { event, betType, amount } = req.body
     const hostId = req.user.teamId
-    const newBet = new Head({
+    const newBet = new Head26({
          betType,
          hostId,
          amount,
@@ -104,7 +108,7 @@ const postBetHead = (req, res) => {
 
        req.flash('error', 'Server Error!! Try again Later') 
        res.redirect('/main')
-       console.log('An error occured' + error)
+       console.log(error)
       })   
 }
 
@@ -115,7 +119,7 @@ const h2hId = async (req, res) => {
     
     try {
 
-    const betDetails = await Head.findOne({ _id: id })
+    const betDetails = await Head26.findOne({ _id: id })
     const hostId = betDetails.hostId
     const time = betDetails.createdAt
     const hostDetails = await User.findOne({ teamId: hostId })
@@ -142,7 +146,7 @@ const patchConfirmBet = async (req, res) => {
     
     try {
     
-    const bet = await Head.findOne({ _id: betid })
+    const bet = await Head26.findOne({ _id: betid })
     const hostId = bet.hostId
     const host = await User.findOne({ teamId: hostId })
     const hostBalance = host.totalBalance
@@ -173,7 +177,7 @@ const patchConfirmBet = async (req, res) => {
          
        const newHostBalance = hostBalance - entryFee
        const newOpponentBalance = opponentBalance - entryFee
-       const newBetDetails = await Head.findByIdAndUpdate({ _id: betid }, { $set: { opponentId: oppId, betStatus: { code: 200, message: 'Bet placed' }} })
+       const newBetDetails = await Head26.findByIdAndUpdate({ _id: betid }, { $set: { opponentId: oppId, betStatus: { code: 200, message: 'Bet placed' }} })
        const newOpponent = await User.findByIdAndUpdate({ _id: opponent._id }, { $set: { totalBalance: newOpponentBalance } })
        const newHost = await User.findByIdAndUpdate({ _id: host._id }, { $set: { totalBalance: newHostBalance } })
        const event = bet.event 
@@ -206,7 +210,7 @@ const postJoinBet = async (req, res) => {
 
         try {
 
-            const bet = await Head.findOne({ _id: newId })
+            const bet = await Head26.findOne({ _id: newId })
     
             if (!bet) {
         
@@ -240,8 +244,8 @@ const getBets = async (req, res) => {
     
     try {
 
-        const headBetsHost = await Head.find({ hostId: userTeamId })       // All head to head bets this User has hosted
-        const headBetsOpponent = await Head.find({ opponentId: userTeamId })  // All head to head bets this User was invited
+        const headBetsHost = await Head26.find({ hostId: userTeamId })       // All head to head bets this User has hosted
+        const headBetsOpponent = await Head26.find({ opponentId: userTeamId })  // All head to head bets this User was invited
       
     
          // FILTER FOR ONLY GW 1 BETS
@@ -280,8 +284,8 @@ const getBetsEvents = async (req, res) => {
     
     try {
 
-        const headBetsHost = await Head.find({ hostId: userTeamId })       // All head to head bets this User has hosted
-        const headBetsOpponent = await Head.find({ opponentId: userTeamId })  // All head to head bets this User was invited
+        const headBetsHost = await Head26.find({ hostId: userTeamId })       // All head to head bets this User has hosted
+        const headBetsOpponent = await Head26.find({ opponentId: userTeamId })  // All head to head bets this User was invited
        
     //    FILTER ALL BETS FOR EACH GAMEWEEK
     

@@ -6,6 +6,7 @@ const port = 5511
 const mongoose = require('mongoose')
 const User = require('./models/xtreamUsers')
 const Head = require('./models/head2head')
+const Head26 = require('./models/head2head26')
 const Party = require('./models/party')
 const Transactions = require('./models/transactions')
 const ejs = require('ejs') 

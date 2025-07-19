@@ -7,6 +7,7 @@ const Transactions = require('../models/transactions')
 const { HttpsProxyAgent } = require('https-proxy-agent')
 const fetch = require('node-fetch')
 const { proxyInstance } = require('../controllers/test')
+const Head26 = require('../models/head2head26')
 
 const getTransactions = async (req, res) => {
     const reqUserId = req.user._id
@@ -28,7 +29,6 @@ const patchUserId = async (req, res) => {
 
         const options = {
             method: 'GET',
-            agent: new HttpsProxyAgent(proxyInstance),
             accept: 'application/json'
         }
         const baseUrl = `${fplBaseUrl}/entry/${teamid}/`
@@ -86,12 +86,11 @@ const postRegister = async (req, res) => {
     const baseUrl = `${fplBaseUrl}/leagues-classic/${id}/standings/`
     const options = {
         method: 'GET',
-         agent: new HttpsProxyAgent(proxyInstance),
         accept: 'application/json'
     }    
     const response = await fetch(baseUrl, options)
     const data = await response.json()
-    const teams = data.new_entries.results 
+    const teams = data.standings.results 
     res.render('register', { managers: teams }) 
         
     } catch (error) {
@@ -118,8 +117,8 @@ const getMain = async (req, res) => {
 
            return party.players.some( player => player == userTeamId ) && party.hostId !== userTeamId
     })
-    const headHost = await Head.find({ hostId: userTeamId })
-    const invitedHost = await Head.find({ opponentId: userTeamId })
+    const headHost = await Head26.find({ hostId: userTeamId })
+    const invitedHost = await Head26.find({ opponentId: userTeamId })
 
     const pendingMpesaTranx = await Transactions.findOne({ "mpesaObject.mpesaNumber": xUser.mpesa, status: 'pending', tranx_type: 'Deposit' })
     
