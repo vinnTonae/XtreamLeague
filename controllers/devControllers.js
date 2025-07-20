@@ -5,7 +5,6 @@ const Head = require('../models/head2head')
 const Party = require('../models/party')
 const Transactions = require('../models/transactions')
 const fetch = require('node-fetch')
-const { HttpsProxyAgent } = require('https-proxy-agent')
 const { proxyInstance } = require('../controllers/test')
 
 
@@ -20,7 +19,6 @@ const getDev = async (req, res) => {
         const baseUrl = `${fplBaseUrl}/bootstrap-static`
         const options = {
             method: 'GET',
-            agent: new HttpsProxyAgent(proxyInstance),
             Accept: 'application/json'
         }
 
@@ -229,7 +227,6 @@ const patchDevUsers = async (req, res) => {
         const baseUrl = `https://fantasy.premierleague.com/api/entry/${teamId}/history`
         const options = {
             method: 'GET',
-            agent: new HttpsProxyAgent(proxyInstance),
             Accept: 'application/json'
         }
         const response = await fetch(baseUrl, options)

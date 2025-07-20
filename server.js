@@ -8,6 +8,7 @@ const User = require('./models/xtreamUsers')
 const Head = require('./models/head2head')
 const Head26 = require('./models/head2head26')
 const Party = require('./models/party')
+const Party26 = require('./models/party26')
 const Transactions = require('./models/transactions')
 const ejs = require('ejs') 
 const methodOverride = require('method-override')
@@ -121,7 +122,7 @@ app.get('/boot', getBootstrap)
 
 app.get('/public', async (req, res) => {
 
-   const allParties = await Party.find()
+   const allParties = await Party26.find()
 
    const publicParties = allParties.filter((party) => {
      return party.betStatus.code !== 1000

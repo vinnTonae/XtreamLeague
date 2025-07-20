@@ -8,6 +8,7 @@ const { HttpsProxyAgent } = require('https-proxy-agent')
 const fetch = require('node-fetch')
 const { proxyInstance } = require('../controllers/test')
 const Head26 = require('../models/head2head26')
+const Party26 = require('../models/party26')
 
 const getTransactions = async (req, res) => {
     const reqUserId = req.user._id
@@ -107,8 +108,8 @@ const getMain = async (req, res) => {
     
     const xUser = req.user
     const userTeamId = xUser.teamId
-    const partiesHosting = await Party.find({ hostId: userTeamId })
-    const allParties = await Party.find()
+    const partiesHosting = await Party26.find({ hostId: userTeamId })
+    const allParties = await Party26.find()
     const publicParties = allParties.filter((party) => {
         
         return party.betStatus.code !== 1000

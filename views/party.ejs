@@ -257,8 +257,16 @@
                 <h3 style="font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.5rem;">&lt;&lt;You are the Host&gt;&gt;</h3>
     
             </section>   
+            
+            <% } else if ( party.players.includes(userData.teamId) ) { %>
 
-             <% } else { %>
+                <section class="join-btn" style="width: 100%; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
+                    
+                    <h3 style="font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.5rem;">&lt;&lt;You Joined Party&gt;&gt;</h3>
+        
+                </section>   
+                
+             <% } else {  %>
                
             <section class="join-btn" style="width: 100%; height: 10vh; margin-bottom: 5px; display: flex; align-items: center; justify-content: center;">
 

@@ -3,8 +3,8 @@ require('dotenv').config()
 const { caseInSwitch } = require('../controllers/test')
 const User = require('../models/xtreamUsers')
 const Party = require('../models/party')
+const Party26 = require('../models/party26')
 const ObjectId = require('mongoose').Types.ObjectId
-const { HttpsProxyAgent } = require('https-proxy-agent')
 const fetch = require('node-fetch')
 const { proxyInstance } = require('../controllers/test')
 
@@ -15,7 +15,7 @@ const postJoinParty = async (req, res) => {
 
     if (ObjectId.isValid(newId)) {
 
-        const party = await Party.findOne({ _id: newId })
+        const party = await Party26.findOne({ _id: newId })
 
         if (!party) {
 
@@ -39,7 +39,7 @@ const getPartyId = async (req, res) => {
     try {
 
 
-        const partyDetails = await Party.findOne({ _id: partyId })
+        const partyDetails = await Party26.findOne({ _id: partyId })
         const event = partyDetails.event
         const host = partyDetails.hostId
         const hostDetails = await User.findOne({ teamId: host })
@@ -60,7 +60,7 @@ const getPartyId = async (req, res) => {
             const teamid = user.teamId
             const team = user.teamName
             const pointsObject = user.points.find((oneObject) => {
-                return oneObject.gameweek == event
+                return oneObject.gameweek26 == event
             })
 
             if (!pointsObject) {
@@ -223,7 +223,7 @@ const patchConfirmParty = async (req, res) => {
     try {
 
 
-        const partyDetails = await Party.findOne({ _id: betid })
+        const partyDetails = await Party26.findOne({ _id: betid })
         const partyEvent = partyDetails.event
         const hostId = partyDetails.hostId
         const hostDetails = await User.findOne({ teamId: hostId })
@@ -266,8 +266,8 @@ const patchConfirmParty = async (req, res) => {
                     const newPlayerBalance = playerBalance - entryFee
                     const updatedHost = await User.findByIdAndUpdate({ _id: hostDetails._id }, { $set: { totalBalance: newHostBalance } })
                     const updatedPlayer = await User.findByIdAndUpdate({ _id: playerId }, { $set: { totalBalance: newPlayerBalance } })
-                    const updatedParty = await Party.findByIdAndUpdate({ _id: betid }, { $set: { betStatus: { code: 200, message: 'Party is now Active' } } })
-                    const newUpdatedParty = await Party.findByIdAndUpdate({ _id: betid }, { $addToSet: { players: playerTeamId } })
+                    const updatedParty = await Party26.findByIdAndUpdate({ _id: betid }, { $set: { betStatus: { code: 200, message: 'Party is now Active' } } })
+                    const newUpdatedParty = await Party26.findByIdAndUpdate({ _id: betid }, { $addToSet: { players: playerTeamId } })
 
                     req.flash('success', `Successfully Joined Party in GW${partyEvent}`)
                     res.redirect(`/parties/${partyEvent}`)
@@ -292,7 +292,7 @@ const patchConfirmParty = async (req, res) => {
 
                     const newPlayerBalance = playerBalance - entryFee
                     const updatedPlayer = await User.findByIdAndUpdate({ _id: playerId }, { $set: { totalBalance: newPlayerBalance } })
-                    const updatedParty = await Party.findByIdAndUpdate({ _id: betid }, { $addToSet: { players: playerTeamId } })
+                    const updatedParty = await Party26.findByIdAndUpdate({ _id: betid }, { $addToSet: { players: playerTeamId } })
 
                     req.flash('success', `You have successfully joined Party in GW${partyEvent}`)
                     res.redirect(`/parties/${partyEvent}`)
@@ -335,7 +335,7 @@ const postBetParty = (req, res) => {
     const hostId = req.user.teamId
 
 
-    const newParty = new Party({
+    const newParty = new Party26({
         betType,
         hostId,
         event,
@@ -368,13 +368,12 @@ const getBetParty = async (req, res) => {
         const baseUrl = `${fplBaseUrl}/bootstrap-static`
         const options = {
             method: 'GET',
-            agent: new HttpsProxyAgent(proxyInstance),
             Accept: 'application/json'
         }
         const response = await fetch(baseUrl, options)
         const data = await response.json()
         const phases = data.phases
-        const currentPhase = caseInSwitch(month)
+        const currentPhase = caseInSwitch(month + 1)
         //console.log(phases)
         const array = []
         const chunk = 38
@@ -398,7 +397,10 @@ const getBetParty = async (req, res) => {
                 })
                 const bootstrapDeadline = new Date(event.deadline_time)
                 const dateNow = new Date()
-                const customDiffMs = (bootstrapDeadline - dateNow) + 86400000
+
+            // TODO: REMEMBER TO RETURN BACK TO (bootstrapDeadline - datenow) after FPL UPDATES CALENDER YEAR 
+
+                const customDiffMs = ( dateNow - bootstrapDeadline ) + 86400000
 
                 dataArray.push([gameweek, event.deadline_time, customDiffMs])
 
@@ -439,8 +441,8 @@ const getParties = async (req, res) => {
 
     try {
 
-        const partyBetsHost = await Party.find({ hostId: userTeamId })   // All parties this User has hosted
-        const allParties = await Party.find()
+        const partyBetsHost = await Party26.find({ hostId: userTeamId })   // All parties this User has hosted
+        const allParties = await Party26.find()
 
         const partyOppArray = allParties.filter((party) => {         // All parties this User was invited
 
@@ -478,8 +480,8 @@ const getPartiesEvents = async (req, res) => {
 
     try {
 
-        const partyBetsHost = await Party.find({ hostId: userTeamId })   // All parties this User has hosted
-        const allParties = await Party.find()
+        const partyBetsHost = await Party26.find({ hostId: userTeamId })   // All parties this User has hosted
+        const allParties = await Party26.find()
 
         const partyOppArray = allParties.filter((party) => {         // All parties this User was invited
 
