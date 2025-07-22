@@ -233,3 +233,19 @@ app.patch('/refresh', async (req, res) => {
 
      }
 })
+
+app.get('/live', async (req, res) => {
+    
+    try {
+        
+        const userId = req.user._id
+        const userDetails = await User.findOne({ _id: userId })
+    
+        res.render('live', { user: userDetails })
+
+    } catch (error) {
+        
+        req.flash('error', 'Cant Access Live Bets')
+        res.redirect('/main')
+    }
+})

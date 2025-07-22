@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="40" height="40">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <title>Live</title>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+         ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body style="height: 100svh; width: 100vw; background-color: goldenrod;">
+    <header style="height: 10svh; width: 100vw; background-color: goldenrod; display: flex; align-items: center; justify-content: space-between;">
+        <a href="/main" style="text-decoration: none; margin-left: 5px; display: flex; align-items: center; justify-content: center;">
+            <ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon>
+            <h1 style="text-decoration: none; margin-inline: 3px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Live</h1>
+        </a>
+        <div class="account" style="height: 60%; display: flex; justify-content: flex-end; align-items: center;">
+            <div class="balance" style="width: 100%; padding-inline: 5px; height: 100%; margin-right: 10px; display: flex; align-items: center; justify-content: space-evenly; background-color: rgb(67, 5, 67); border-radius: 15px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 15c-1.84 0-2-.86-2-1H8c0 .92.66 2.55 3 2.92V18h2v-1.08c2-.34 3-1.63 3-2.92 0-1.12-.52-3-4-3-2 0-2-.63-2-1s.7-1 2-1 1.39.64 1.4 1h2A3 3 0 0 0 13 7.12V6h-2v1.09C9 7.42 8 8.71 8 10c0 1.12.52 3 4 3 2 0 2 .68 2 1s-.62 1-2 1z"></path><path d="M5 2H2v2h2v17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4h2V2H5zm13 18H6V4h12z"></path></svg>
+                <h2 style="color: white; margin-inline: 5px;  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold; text-wrap: nowrap;">KSH <%= user.totalBalance %></h2>
+            </div>
+            
+        </div>
+        
+    </header>
+
+    <div class="heading"
+        style="width: 100vw; height: 6svh; display: flex; justify-content: center; align-items: center;">
+        <h1
+            style="font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple; font-style: italic;">
+            Markets</h1>
+    </div>
+
+    <main style="background-color: green; height: 74svh; width: 100vw; display: flex; flex-flow: column nowrap; align-items: center; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-x: hidden; overflow-y: scroll;">
+
+       <section style="background-color: silver; height: 4%; width: 100%;">
+
+       </section>
+       <section style="background-color: blue; height: 32%; width: 100%;">
+
+       </section>
+
+       <section style="background-color: black; height: 32%; width: 100%;">
+
+       </section>
+
+       <section style="background-color: red; height: 32%; width: 100%;">
+
+       </section>
+
+    </main>
+
+
+
+    <footer
+        style="height: 10svh; width: 100vw; margin-block: .75rem; display: flex; align-items: center; justify-content: center;">
+        <div style="display: flex; align-items: center; justify-content: center; font-weight: bold; ">
+            <h1 style="font-weight: bold; font-size: 1.2rem; color: purple; font-family: 'Signika', sans-serif;">Xtream
+            </h1>
+            <span><img src="logos/plicon.png" alt="" width="40" height="40"></span>
+            <h1 style="font-weight: bold; font-size: 1.2rem; color: purple; font-family: 'Signika', sans-serif;">League
+            </h1>
+        </div>
+
+    </footer>
+</body>
+
+</html>
