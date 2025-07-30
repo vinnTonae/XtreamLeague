@@ -1,4 +1,4 @@
-require('dotenv').config()
+// require('dotenv').config()
 
 const User = require('../models/xtreamUsers')
 const Head = require('../models/head2head')
@@ -62,10 +62,10 @@ const getDevConsole = async (req, res) => {
     try {
 
         const allUsers = await User.find()
-        const dev = await User.findOne({ teamId: '571043' })
+        const dev = await User.findOne({ teamId: '274175' })
 
         const updatedUsers = allUsers.filter((user) => {
-            return user.points.some((pointsObject) => { return pointsObject.gameweek == id })
+            return user.points.some((pointsObject) => { return pointsObject.gameweek26 == id })
         })
 
         // TODO: USERTOTALBAL

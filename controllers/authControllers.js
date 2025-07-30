@@ -33,7 +33,7 @@ const alreadyRegisterCheck = (req, res, next) => {
 }
 
 const devCheck = (req, res, next) => {
-    if (req.user.teamId !== '571043') {
+    if (req.user.teamId !== '274175') {
         req.flash('error', 'Authorization failed')
         res.redirect('/main')
     } else {
