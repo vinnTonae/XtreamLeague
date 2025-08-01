@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="400" height="400">
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
+    <title>LiveBet-Authorize</title>
+    <style>
+       
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.spining {
+   animation: spin 1s ease-in-out 0.1s 10 normal forwards ;
+}
+
+@keyframes spin {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3) rotate(360deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+body {
+    height: 100svh;
+    background-color: aliceblue;
+
+}
+
+.wrapper {
+    position: absolute;
+    z-index: 10;
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 80vw;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-flow: column nowrap;
+    background-image: linear-gradient(45deg, gray, silver, whitesmoke, white, whitesmoke, silver, gray); 
+    border-radius: 10px;
+    margin: auto;
+    padding: 10px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.28);
+    border-radius: 30px;
+}
+ 
+.form-box form .input-box {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 5px;
+    height: 30%;
+}
+
+.form-box form .input-box.hidden {
+    display: none;
+}
+
+.form-box form .input-box button {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-family: 'Signika', sans-serif;
+    font-weight: bold;
+    color: white;
+    background-color: purple;
+}
+
+
+.form-box form .input-box input {
+  width: 100%;
+  height: 100%;
+  padding-inline: 1rem;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 2px solid whitesmoke;
+  color: white;
+  font-size: 1.2rem;
+}
+
+::placeholder {
+    font-size: 1rem;
+    color: yellow;
+}
+
+.form-box form .input-box label {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    white-space: nowrap;
+    color: whitesmoke;
+    transform: translateX(-50%);
+}
+
+.header-box {
+  width: fit-content;
+  margin-left: 3px;
+  margin-bottom: 2rem;
+  margin-top: 10px;
+  height: fit-content;
+  color: white;
+}
+
+.header-box h1 {
+    color: limegreen;
+    font-size: 2.4rem;
+    text-align: center;
+    text-wrap: wrap;
+    font-weight: bold;
+    font-family: 'Signika', sans-serif;
+}
+
+.header-box .h2 {
+    margin-inline: auto;
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    height: 40%;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.header-box .h2 h2 {
+    font-size: 1.2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+
+.img {
+    position: fixed;
+    bottom: 6vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+    </style>
+</head>
+<body>
+
+    <header style="height: 10vh; width: 100%; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">LiveBet</h1>
+        </div>
+        <span style="margin-right: 20px;"><img src="logos/XtreamICON.png" alt="Xtream" width="70" height="70"></span>
+        
+    </header>
+
+
+   <div class="wrapper">
+         
+     
+          <div class="header-box">
+            <h1>Placing Bet</h1>
+          </div>
+
+          <div class="elec">
+            <h1 style="color: purple; font-size: 1.35rem; font-weight: bold; font-family: 'Signika', sans-serif;">Please Wait...</h1>
+          </div>
+ 
+          <div class="form-box" style="display: flex; justify-content: center; width: 100%; height: 60%;">
+             <form action="/live/<%= betId %>?_method=PATCH" method="post" style=" display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; width: 80%; height: 100%;">
+               
+             <div class="input-box" style="display: none;">
+                <input id="input-target" type="text" name="betid" value="<%= betId %>">
+             </div>
+                <!-- spinning logo -->
+               <div class="input-box">
+                  <img class="spining"  src="/logos/plicon.png" alt="PL" width="80" height="80">
+               </div> 
+               
+             </form>
+          </div>   
+         
+    
+   </div>
+
+   <div class="img">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" style="fill: blue;transform: msFilter"><path d="M19.071 4.929a9.936 9.936 0 0 0-7.07-2.938 9.943 9.943 0 0 0-7.072 2.938c-3.899 3.898-3.899 10.243 0 14.142a9.94 9.94 0 0 0 7.073 2.938 9.936 9.936 0 0 0 7.07-2.937c3.899-3.898 3.899-10.243-.001-14.143zM12.181 4h-.359c.061-.001.119-.009.18-.009s.118.008.179.009zm6.062 13H16l-1.258 2.516a7.956 7.956 0 0 1-2.741.493 7.96 7.96 0 0 1-2.746-.494L8 17.01H5.765a7.96 7.96 0 0 1-1.623-3.532L6 11 4.784 8.567a7.936 7.936 0 0 1 1.559-2.224 7.994 7.994 0 0 1 3.22-1.969L12 6l2.438-1.625a8.01 8.01 0 0 1 3.22 1.968 7.94 7.94 0 0 1 1.558 2.221L18 11l1.858 2.478A7.952 7.952 0 0 1 18.243 17z"></path><path d="m8.5 11 1.5 4h4l1.5-4L12 8.5z"></path></svg>
+   </div>
+  
+   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+   <script>
+
+
+       const inputTranx = document.getElementById('input-target')
+      
+     window.addEventListener('load', setTimeout(() => {
+
+          const betId = inputTranx.value
+
+          return new Promise((resolve, reject) => {
+
+             fetch(`/live/${betId}`, {
+                method: 'PATCH',
+                headers: {
+                   'Content-Type': 'application/json'
+                   },
+                body: JSON.stringify({
+                        betid: betId
+                  })
+           })    
+            .then((res) => {
+                if (res.ok) {
+                    return res.json()
+                } else {
+                    reject('Failed to Connect')
+                }
+            })
+            .then((data) => {
+                
+                resolve(data)
+                window.location.href = '/live'
+            })
+            .catch((err) => {
+                reject('SERVER ERROR!!')
+            })
+        
+         })
+           
+      }, 1000) )
+
+   </script>   
+    
+</body>
+</html>

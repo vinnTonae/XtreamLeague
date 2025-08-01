@@ -31,7 +31,9 @@
 </head>
 
 <body style="height: 100svh; width: 100vw; background-color: aliceblue; position: relative;">
-    <header style="height: 10svh; width: 100vw; display: flex; align-items: center; justify-content: space-between;">
+     
+    
+    <header style="height: 10svh; width: 100vw; display: flex; align-items: center; justify-content: space-between; position: relative;">
         <a href="/main" style="text-decoration: none; margin-left: 5px; display: flex; align-items: center; justify-content: center;">
             <ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon>
             <h1 style="text-decoration: none; margin-inline: 3px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Live</h1>
@@ -39,64 +41,79 @@
         <div class="account" style="height: 60%; display: flex; justify-content: flex-end; align-items: center;">
             <div class="balance" style="width: 100%; padding-inline: 5px; height: 100%; margin-right: 10px; display: flex; align-items: center; justify-content: space-evenly; background-color: rgb(67, 5, 67); border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 15c-1.84 0-2-.86-2-1H8c0 .92.66 2.55 3 2.92V18h2v-1.08c2-.34 3-1.63 3-2.92 0-1.12-.52-3-4-3-2 0-2-.63-2-1s.7-1 2-1 1.39.64 1.4 1h2A3 3 0 0 0 13 7.12V6h-2v1.09C9 7.42 8 8.71 8 10c0 1.12.52 3 4 3 2 0 2 .68 2 1s-.62 1-2 1z"></path><path d="M5 2H2v2h2v17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4h2V2H5zm13 18H6V4h12z"></path></svg>
-                <h2 style="color: white; margin-inline: 5px;  font-family: 'Signika', sans-serif; font-weight: bold; text-wrap: nowrap;">KES 197</h2>
+                <h2 style="color: white; margin-inline: 5px;  font-family: 'Signika', sans-serif; font-weight: bold; text-wrap: nowrap;">KES <%= user.totalBalance %></h2>
             </div>
             
         </div>
         
+        <% if (locals.messages) { %>
+            
+            <p style="color: red; background-color: #fff; text-align: center; border-radius: 4px; font-size: 1.2rem; width: 80%; position: absolute; top: 90%; left: 50%; transform: translateX(-50%); z-index: 2; 
+                      font-weight: bold; z-index: 3;"><%= messages %></p>
+        <% } %>
+        
     </header>
 
-    <div class="heading"
+     <% if ( gameweekData === null ) { %>
+
+           <div class="desrip" style="position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%); height: 8%; width: 100%; display: flex; justify-content: center; align-items: center;">
+                    <h3 style="font-family: 'Signika', sans-serif; font-weight: bold; font-size: 1.5rem; color: purple;" ><%= message %></h3>
+           </div> 
+
+     <% } else { %>
+
+        
+        <div class="heading"
         style="width: 100vw; height: 6svh; display: flex; justify-content: center; align-items: center;">
         <h1
-            style="font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple; font-style: italic;">
-            Markets</h1>
+        style="font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple; font-style: italic;">
+        Markets</h1>
     </div>
-
+    
     <main style="height: 74svh; width: 100vw; display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
-
-           
-            <article id="seventy-one-wrapper" style="padding-inline: 10px; width: clamp(350px, 85%, 500px); height: 30%; background-color: antiquewhite; margin-inline: 20px; border: 1px solid purple; border-radius: 20px;">
-                <div class="header-wrapper" style="border-radius: 20px 20px 0 0;  height: 20%; width: 100%; display: flex; justify-content: space-between; align-items: center;">
-                    <p style="font-size: 0.8rem; font-weight: bold; font-family: 'Signika', sans-serif; color: purple;">Points Total | ID: 4108</p>
-                    <h3 style="font-size: .8rem; font-weight: bold; font-family: 'Signika', sans-serif; display: flex; align-items: center; justify-content: center; color: orangered;"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: orangered;transform: msFilter"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1 16v-5H7l6-7v5h4l-6 7z"></path></svg></span>BOOSTED ODDS</h3>
-
+        
+        
+        <article id="seventy-one-wrapper" style="padding-inline: 10px; width: clamp(350px, 85%, 500px); height: 30%; background-color: antiquewhite; margin-inline: 20px; border: 1px solid purple; border-radius: 20px;">
+            <div class="header-wrapper" style="border-radius: 20px 20px 0 0;  height: 20%; width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                <p style="font-size: 0.8rem; font-weight: bold; font-family: 'Signika', sans-serif; color: purple;">Points Total | ID: 4108</p>
+                <h3 style="font-size: .8rem; font-weight: bold; font-family: 'Signika', sans-serif; display: flex; align-items: center; justify-content: center; color: orangered;"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: orangered;transform: msFilter"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1 16v-5H7l6-7v5h4l-6 7z"></path></svg></span>BOOSTED ODDS</h3>
+                
+            </div>
+            <div class="odds-wrapper" style="position: relative; display: flex; height: 80%; width: 100%; border-radius: 0 0 20px 20px;" >
+                
+                <div class="bet-descrip" style="display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; height: 100%; width: 40%;">
+                    
+                    <h3 style="font-size: .9rem; font-weight: bold; font-family: 'Signika', sans-serif; text-wrap: nowrap; color: rgb(67, 5, 67);">OVER 71.5 POINTS</h3>
+                    <h2 style="font-size: .85rem; font-weight: bold; font-family: 'Signika', sans-serif; color: rgb(67, 5, 67);">GW<span><%= gameweekData[0] %></span></h2>
+                    
                 </div>
-                <div class="odds-wrapper" style="position: relative; display: flex; height: 80%; width: 100%; border-radius: 0 0 20px 20px;" >
-
-                    <div class="bet-descrip" style="display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; height: 100%; width: 40%;">
-
-                        <h3 style="font-size: .9rem; font-weight: bold; font-family: 'Signika', sans-serif; text-wrap: nowrap; color: rgb(67, 5, 67);">OVER 71.5 POINTS</h3>
-                        <h2 style="font-size: .85rem; font-weight: bold; font-family: 'Signika', sans-serif; color: rgb(67, 5, 67);">GW<span>1</span></h2>
-
-                    </div>
-                    <div class="bet-descrip" style="height: 100%;  width: 60%; display: flex; align-items: center; justify-content: space-around; border-radius: inherit;" >
-
-                        <button id="seventy-one-nochip-btn" style="width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); border: 2px solid orangered; outline: none; border-radius: 15px 0 0 15px;">
-
-                            <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">No Chip</h3>
-                            <h2 id="seventy-nochip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >1.48</h2>
-
-                        </button>
-
-                        <button id="seventy-one-chip-btn" style="width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); outline: none; border-radius: 0 15px 15px 0; border: none;">
-
-                            <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">Chip Active</h3>
-                            <h2 id="seventy-chip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >1.16</h2>
-
-                        </button>
-                       
-
-                    </div>
-
-                    <p style="position: absolute; bottom: 5px; color: red; font-size: .75rem; font-style: italic; font-family: 'Signika', sans-serif; left: 50%; transform: translateX(-50%);" >Deadline: 22/08/2025</p>
-
+                <div class="bet-descrip" style="height: 100%;  width: 60%; display: flex; align-items: center; justify-content: space-around; border-radius: inherit;" >
+                    
+                    <button id="seventy-one-nochip-btn" style="cursor: pointer; width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); border: 2px solid orangered; outline: none; border-radius: 15px 0 0 15px;">
+                        
+                        <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">No Chip</h3>
+                        <h2 id="seventy-nochip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >1.48</h2>
+                        
+                    </button>
+                    
+                    <button id="seventy-one-chip-btn" style="cursor: pointer; width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); outline: none; border-radius: 0 15px 15px 0; border: none;">
+                        
+                        <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">Chip Active</h3>
+                        <h2 id="seventy-chip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >1.16</h2>
+                        
+                    </button>
+                    
+                    
                 </div>
-
-            </article>
-            <article id="eighty-wrapper" style="padding-inline: 10px; width: clamp(350px, 85%, 500px); height: 30%; background-color: antiquewhite; margin-inline: 20px; border: 1px solid purple; border-radius: 20px;">
-                <div class="header-wrapper" style="border-radius: 20px 20px 0 0;  height: 20%; width: 100%; display: flex; justify-content: space-between; align-items: center;">
-                    <p style="font-size: 0.8rem; font-weight: bold; font-family: 'Signika', sans-serif; color: purple;">Points Total | ID: 4108</p>
+                
+                <p style="position: absolute; bottom: 5px; color: red; font-size: .5rem; font-style: italic; font-family: 'Signika', sans-serif; left: 50%; transform: translateX(-50%); text-wrap: nowrap;" >Deadline: <%= gameweekData[1] %></p>
+                
+            </div>
+            
+        </article>
+        <article id="eighty-wrapper" style="padding-inline: 10px; width: clamp(350px, 85%, 500px); height: 30%; background-color: antiquewhite; margin-inline: 20px; border: 1px solid purple; border-radius: 20px;">
+            <div class="header-wrapper" style="border-radius: 20px 20px 0 0;  height: 20%; width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                <p style="font-size: 0.8rem; font-weight: bold; font-family: 'Signika', sans-serif; color: purple;">Points Total | ID: 4304</p>
                     <h3 style="font-size: .8rem; font-weight: bold; font-family: 'Signika', sans-serif; display: flex; align-items: center; justify-content: center; color: orangered;"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: orangered;transform: msFilter"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1 16v-5H7l6-7v5h4l-6 7z"></path></svg></span>BOOSTED ODDS</h3>
 
                 </div>
@@ -105,19 +122,19 @@
                     <div class="bet-descrip" style="display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; height: 100%; width: 40%;">
 
                         <h3 style="font-size: .9rem; font-weight: bold; font-family: 'Signika', sans-serif; text-wrap: nowrap; color: rgb(67, 5, 67);">OVER 79.5 POINTS</h3>
-                        <h2 style="font-size: .85rem; font-weight: bold; font-family: 'Signika', sans-serif; color: rgb(67, 5, 67);">GW<span>1</span></h2>
+                        <h2 style="font-size: .85rem; font-weight: bold; font-family: 'Signika', sans-serif; color: rgb(67, 5, 67);">GW<span><%= gameweekData[0] %></span></h2>
 
                     </div>
                     <div class="bet-descrip" style="height: 100%;  width: 60%; display: flex; align-items: center; justify-content: space-around; border-radius: inherit;" >
 
-                        <button id="eighty-nochip-btn" style="width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); border: 2px solid orangered; outline: none; border-radius: 15px 0 0 15px;">
+                        <button id="eighty-nochip-btn" style="cursor: pointer; width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); border: 2px solid orangered; outline: none; border-radius: 15px 0 0 15px;">
 
                             <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">No Chip</h3>
                             <h2 id="eighty-nochip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >1.65</h2>
-
+                            
                         </button>
 
-                        <button id="eighty-chip-btn" style="width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); outline: none; border-radius: 0 15px 15px 0; border: none;">
+                        <button id="eighty-chip-btn" style="cursor: pointer; width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); outline: none; border-radius: 0 15px 15px 0; border: none;">
 
                             <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">Chip Active</h3>
                             <h2 id="eighty-chip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >1.24</h2>
@@ -127,7 +144,7 @@
 
                     </div>
 
-                    <p style="position: absolute; bottom: 5px; color: red; font-size: .75rem; font-style: italic; font-family: 'Signika', sans-serif; left: 50%; transform: translateX(-50%);" >Deadline: 22/08/2025</p>
+                    <p style="position: absolute; bottom: 5px; color: red; font-size: .5rem; font-style: italic; font-family: 'Signika', sans-serif; left: 50%; transform: translateX(-50%); text-wrap: nowrap;" >Deadline: <%= gameweekData[1] %></p>
 
                 </div>
 
@@ -137,26 +154,26 @@
                 <div class="header-wrapper" style="border-radius: 20px 20px 0 0;  height: 20%; width: 100%; display: flex; justify-content: space-between; align-items: center;">
                     <p style="font-size: 0.8rem; font-weight: bold; font-family: 'Signika', sans-serif; color: purple;">Points Total | ID: 4108</p>
                     <h3 style="font-size: .8rem; font-weight: bold; font-family: 'Signika', sans-serif; display: flex; align-items: center; justify-content: center; color: orangered;"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: orangered;transform: msFilter"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1 16v-5H7l6-7v5h4l-6 7z"></path></svg></span>BOOSTED ODDS</h3>
-
+                    
                 </div>
                 <div class="odds-wrapper" style="position: relative; display: flex; height: 80%; width: 100%; border-radius: 0 0 20px 20px;" >
 
                     <div class="bet-descrip" style="display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; height: 100%; width: 40%;">
 
                         <h3 style="font-size: .9rem; font-weight: bold; font-family: 'Signika', sans-serif; text-wrap: nowrap; color: rgb(67, 5, 67);">OVER 99.5 POINTS</h3>
-                        <h2 style="font-size: .85rem; font-weight: bold; font-family: 'Signika', sans-serif; color: rgb(67, 5, 67);">GW<span>1</span></h2>
+                        <h2 style="font-size: .85rem; font-weight: bold; font-family: 'Signika', sans-serif; color: rgb(67, 5, 67);">GW<span><%= gameweekData[0] %></span></h2>
 
                     </div>
                     <div class="bet-descrip" style="height: 100%;  width: 60%; display: flex; align-items: center; justify-content: space-around; border-radius: inherit;" >
-
-                        <button id="hundred-nochip-btn" style="width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); border: none; outline: none; border-radius: 15px 0 0 15px;">
+                        
+                        <button id="hundred-nochip-btn" style="cursor: pointer; width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); border: none; outline: none; border-radius: 15px 0 0 15px;">
 
                             <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">No Chip</h3>
                             <h2 id="hundred-nochip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >3.06</h2>
-
+                            
                         </button>
 
-                        <button id="hundred-chip-btn" style="width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); outline: none; border-radius: 0 15px 15px 0; border: 2px solid orangered;">
+                        <button id="hundred-chip-btn" style="cursor: pointer; width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); outline: none; border-radius: 0 15px 15px 0; border: 2px solid orangered;">
 
                             <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">Chip Active</h3>
                             <h2 id="hundred-chip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >2.27</h2>
@@ -166,21 +183,21 @@
 
                     </div>
 
-                    <p style="position: absolute; bottom: 5px; color: red; font-size: .75rem; font-style: italic; font-family: 'Signika', sans-serif; left: 50%; transform: translateX(-50%);" >Deadline: 22/08/2025</p>
-
+                    <p style="position: absolute; bottom: 5px; color: red; font-size: .5rem; font-style: italic; font-family: 'Signika', sans-serif; left: 50%; transform: translateX(-50%); text-wrap: nowrap;" >Deadline: <%= gameweekData[1] %></p>
+                    
                 </div>
 
             </article>
            
            
-
-    
-    </main>
-
-    <div class="formbox" style="display: none; border-radius: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); height: 400px; width: clamp(350px, 75vw, 700px); background-image: linear-gradient(45deg, goldenrod, gold, greenyellow,yellow, whitesmoke, white, white, whitesmoke, yellow, greenyellow, gold, goldenrod);">
+            
+            
+        </main>
+        
+        <div class="formbox" style="display: none; border-radius: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3), 0 6px 12px 0 rgba(0, 0, 0, 0.29); height: 400px; width: clamp(350px, 75vw, 700px); background-image: linear-gradient(45deg, goldenrod, gold, greenyellow,yellow, whitesmoke, white, white, whitesmoke, yellow, greenyellow, gold, goldenrod);">
         <div class="head-wrapper" style="width: 100%; height: 15%; position: relative; background-color: transparent; border-radius: 20px 20px 0 0;">
             <div class="icon-confirm" style="position: absolute; left: 0; height: 100%; width: 85%; padding: 10px; display: flex; justify-content: flex-start; align-items: center;">
-                <img src="images/plicon.png" alt="PL" width="40" height="40">
+                <img src="logos/plicon.png" alt="PL" width="40" height="40">
                 <h2 style="color: purple; margin-left: 5px;">Create Bet</h2>
             </div>
             <div class="close" style="display: flex; justify-content: center; align-items: center; background-color: red; position: absolute; right: 0; height: 100%; width: 15%; border-radius: 0 20px 0 20px;">
@@ -189,27 +206,27 @@
         </div>
         <div class="details-wrapper" style="height: 60%; padding-block: 10px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
           
-            <div class="button" style="height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: gray; border: 1px solid black; border-radius: 20px; margin: 2px;">
+            <div class="button" style="cursor: pointer; height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: gray; border: 1px solid black; border-radius: 20px; margin: 2px;">
               <h2 style="font-size: 1rem; font-weight: bold; margin-top: 10px; color: white;">100</h2>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 6C7.03 6 2 7.546 2 10.5v4C2 17.454 7.03 19 12 19s10-1.546 10-4.5v-4C22 7.546 16.97 6 12 6zm-8 8.5v-1.197a9.989 9.989 0 0 0 2 .86v1.881c-1.312-.514-2-1.126-2-1.544zm12 .148v1.971c-.867.179-1.867.31-3 .358v-2a21.75 21.75 0 0 0 3-.329zm-5 2.33a18.788 18.788 0 0 1-3-.358v-1.971c.959.174 1.972.287 3 .33v1.999zm7-.934v-1.881a9.931 9.931 0 0 0 2-.86V14.5c0 .418-.687 1.03-2 1.544zM12 13c-5.177 0-8-1.651-8-2.5S6.823 8 12 8s8 1.651 8 2.5-2.823 2.5-8 2.5z"></path></svg>
             </div>
-            <div class="button" style="height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;">
+            <div class="button" style="cursor: pointer; height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;">
                 <h2 style="font-size: 1rem; font-weight: bold; margin-top: 10px; color: white; ">200</h2>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 6C7.03 6 2 7.546 2 10.5v4C2 17.454 7.03 19 12 19s10-1.546 10-4.5v-4C22 7.546 16.97 6 12 6zm-8 8.5v-1.197a9.989 9.989 0 0 0 2 .86v1.881c-1.312-.514-2-1.126-2-1.544zm12 .148v1.971c-.867.179-1.867.31-3 .358v-2a21.75 21.75 0 0 0 3-.329zm-5 2.33a18.788 18.788 0 0 1-3-.358v-1.971c.959.174 1.972.287 3 .33v1.999zm7-.934v-1.881a9.931 9.931 0 0 0 2-.86V14.5c0 .418-.687 1.03-2 1.544zM12 13c-5.177 0-8-1.651-8-2.5S6.823 8 12 8s8 1.651 8 2.5-2.823 2.5-8 2.5z"></path></svg>
               </div>
-              <div class="button" style="height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;">
-                <h2 style="font-size: 1rem; font-weight: bold; margin-top: 10px; color: white;">500</h2>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 6C7.03 6 2 7.546 2 10.5v4C2 17.454 7.03 19 12 19s10-1.546 10-4.5v-4C22 7.546 16.97 6 12 6zm-8 8.5v-1.197a9.989 9.989 0 0 0 2 .86v1.881c-1.312-.514-2-1.126-2-1.544zm12 .148v1.971c-.867.179-1.867.31-3 .358v-2a21.75 21.75 0 0 0 3-.329zm-5 2.33a18.788 18.788 0 0 1-3-.358v-1.971c.959.174 1.972.287 3 .33v1.999zm7-.934v-1.881a9.931 9.931 0 0 0 2-.86V14.5c0 .418-.687 1.03-2 1.544zM12 13c-5.177 0-8-1.651-8-2.5S6.823 8 12 8s8 1.651 8 2.5-2.823 2.5-8 2.5z"></path></svg>
+              <div class="button" style="cursor: pointer; height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;">
+                  <h2 style="font-size: 1rem; font-weight: bold; margin-top: 10px; color: white;">500</h2>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 6C7.03 6 2 7.546 2 10.5v4C2 17.454 7.03 19 12 19s10-1.546 10-4.5v-4C22 7.546 16.97 6 12 6zm-8 8.5v-1.197a9.989 9.989 0 0 0 2 .86v1.881c-1.312-.514-2-1.126-2-1.544zm12 .148v1.971c-.867.179-1.867.31-3 .358v-2a21.75 21.75 0 0 0 3-.329zm-5 2.33a18.788 18.788 0 0 1-3-.358v-1.971c.959.174 1.972.287 3 .33v1.999zm7-.934v-1.881a9.931 9.931 0 0 0 2-.86V14.5c0 .418-.687 1.03-2 1.544zM12 13c-5.177 0-8-1.651-8-2.5S6.823 8 12 8s8 1.651 8 2.5-2.823 2.5-8 2.5z"></path></svg>
               </div>
-              <div class="button" style="height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;" >
+              <div class="button" style="cursor: pointer; height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;" >
                 <h2 style="font-size: 1rem; font-weight: bold; margin-top: 10px; color: white;">1000</h2>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
               </div>
-              <div class="button" style="height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;" >
+              <div class="button" style="cursor: pointer; height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;" >
                 <h2 style="font-size: 1rem; font-weight: bold; margin-top: 10px; color: white;">2000</h2>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
               </div>
-              <div class="button" style="height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;" >
+              <div class="button" style="cursor: pointer; height: 90px; width: 90px; display: flex; justify-content: center; align-items: center; flex-flow: column nowrap; background-color: rgba(128, 128, 128); border: 1px solid black; border-radius: 20px; margin: 2px;" >
                 <h2 style="font-size: 1rem; font-weight: bold; margin-top: 10px; color: white;">5000</h2>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path><path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path><path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path></svg>
               </div>
@@ -217,25 +234,26 @@
               <!-- CONFIRM OR DENY DETAILS BOX -->
 
               <section class="confirm-details" style="display: none; position: absolute; padding-top: 35px; top: 50%; left: 50%; transform: translate(-50%, -60%); width: 92%; height: 58%; z-index: 5; background-color: white; border-radius: 10px;">
-                     <h1 style="color: rgba(0, 0, 255, 0.479); margin: 0 5px 15px 5px; text-align: center; font-size: 1.5rem; font-family: 'Signika', sans-serif; font-weight: bold;">Over <span id="market">79.5</span> Points ( GW <span id="event-span">1</span> )</h1>
+                     <h1 style="color: rgba(0, 0, 255, 0.479); margin: 0 5px 15px 5px; text-align: center; font-size: 1.5rem; font-family: 'Signika', sans-serif; font-weight: bold;">Over <span id="market">79.5</span> Points ( GW <span id="event-span"><%= gameweekData[0] %></span> )</h1>
                      <h1 style="color: grey; margin: 0 8px 10px  8px;  display: flex; align-items: center; justify-content: space-between; text-align: center; font-family: 'Signika', sans-serif; font-size: 1.2rem;" >Stake <span id="amount-span" style="color: black; font-size: 1.1rem;">100</span></h1>
                      <h1 style="color: grey; margin: 0 8px 10px 8px; display: flex; align-items: center; justify-content: space-between;  text-align: center; font-family: 'Signika', sans-serif; font-size: 1.2rem;">ODDS <span id="odds-span" style="color: black; font-size: 1.1rem;"></span></h1>
                      <h1 style="color: grey; margin: 0 8px 15px 8px; display: flex; align-items: center; justify-content: space-between; text-align: center; font-size: 1.15rem; font-family: 'Signika', sans-serif;">Excise Tax <span  style="color: red; font-style: italic; font-size: .9rem;">7.5%</span><span id="excise-span" style="color: black; font-size: 1.1rem;"></span></h1>
                      <h1 style="color: grey; margin: 0px 8px 10px 8px; display: flex; align-items: center; justify-content: space-between; text-align: center; font-size: 1.2rem; font-family: 'Signika', sans-serif;">Possible Win.<span style="font-size: 1.1rem; color: black;" id="possible-win-span">176.45</span></h1>
-
-              </section>
+                     
+                    </section>
 
  
         </div>
         <div class="confirm-btn" style="background-color: transparent; border: 1px solid grey; border-radius: 0 0 20px 20px; height: 25%; width: 100%; display: flex; align-items: center; justify-content: center;">
-            <form action="" method="post" style="height: 70%; width: 60%; background-color: transparent;">
+            <form action="/live" method="post" style="height: 70%; width: 60%; background-color: transparent;">
                 <input type="text" name="odds" id="odds-input" style="display: none;">
-                <input type="number" name="event" id="event" style="display: none;">
+                <input type="text" name="userId" id="userid" value="<%= user._id %>" style="display: none;">
+                <input type="number" name="event" id="event" value="<%= gameweekData[0] %>" style="display: none;">
                 <input type="number" name="market" id="market-input" style="display: none;">
                 <input type="number" name="amount" id="amount" style="display: none;">
                 <input type="number" name="tax" id="tax" style="display: none;">
                 <input type="number" name="possibleWin" id="possible-win" style="display: none;">
-                <button id="submit" type="submit" style="display: none; height: 90%; width: 100%; border-radius: 20px; background-color: limegreen; color: white; border: none; outline: none; font-family: 'Signika', sans-serif; font-size: 1.4rem; font-weight: bold;">CONFIRM</button>
+                <button id="submit" type="submit" style="cursor: pointer; display: none; height: 90%; width: 100%; border-radius: 20px; background-color: limegreen; color: white; border: none; outline: none; font-family: 'Signika', sans-serif; font-size: 1.4rem; font-weight: bold;">CONFIRM</button>
             </form>
         
         </div>
@@ -244,8 +262,8 @@
 
     <section class="betslip" style="display: none; position: absolute; bottom: 10svh; left: 50%; transform: translateX(-50%); border: 2px solid grey; height: 80svh; width: clamp(350px, 87%, 500px); background: whitesmoke; border-radius: 20px;">
         <div class="header-betslip" style="position: relative; height: 10%; width: 100%; display: flex; align-items: center; justify-content: start;">
-
-                <div class="close-betslip" style="cursor: pointer; display: flex; justify-content: center; align-items: center; background-color: red; position: absolute; right: 0; top: 0; height: 70%; width: 12%; border-radius: 0 20px 0 20px;">
+            
+            <div class="close-betslip" style="cursor: pointer; display: flex; justify-content: center; align-items: center; background-color: red; position: absolute; right: 0; top: 0; height: 70%; width: 12%; border-radius: 0 20px 0 20px;">
                    <ion-icon name="close" style="font-size: 2rem; color: white; font-weight: bold;"></ion-icon>
                </div>
 
@@ -254,66 +272,116 @@
                
             </div>
             <div class="betslip-wrapper" style="height: 90%; width: 100%; border-radius: 0 0 20px 20px; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-x: hidden; overflow-y: scroll; background: transparent;">
+
+            <% userBets.map((bet) => { %>
+
+                <div class="bet-card" style="width: 100%; height: fit-content; padding: 10px; padding-block: 15px; border-bottom: .5px solid grey; scroll-snap-align: start; background-color: #fff;">
+                    <div class="header-wrapper" style="width: 100%; display: flex; align-items: center; justify-content: space-between;">
+                      <h2 style="font-size: 1.1rem; color: orangered; display: flex; align-items: center; justify-content: start;"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: orangered;transform: msFilter"><path d="M19.071 4.929a9.936 9.936 0 0 0-7.07-2.938 9.943 9.943 0 0 0-7.072 2.938c-3.899 3.898-3.899 10.243 0 14.142a9.94 9.94 0 0 0 7.073 2.938 9.936 9.936 0 0 0 7.07-2.937c3.899-3.898 3.899-10.243-.001-14.143zM12.181 4h-.359c.061-.001.119-.009.18-.009s.118.008.179.009zm6.062 13H16l-1.258 2.516a7.956 7.956 0 0 1-2.741.493 7.96 7.96 0 0 1-2.746-.494L8 17.01H5.765a7.96 7.96 0 0 1-1.623-3.532L6 11 4.784 8.567a7.936 7.936 0 0 1 1.559-2.224 7.994 7.994 0 0 1 3.22-1.969L12 6l2.438-1.625a8.01 8.01 0 0 1 3.22 1.968 7.94 7.94 0 0 1 1.558 2.221L18 11l1.858 2.478A7.952 7.952 0 0 1 18.243 17z"></path><path d="m8.5 11 1.5 4h4l1.5-4L12 8.5z"></path></svg>
+                        Points Total
+                      </h2>
+                      <h2 style="font-size: 1rem; font-weight: bold; color: orangered;">GW<%= bet.event %></h2>  
+                    </div>
+                    <div class="pick-odds-wrapper" style="display: flex; align-items: center; justify-content: space-between; margin-block: 20px;">
+
+                       <% if ( bet.market == 101 ) { %>
+
+                           <h1 style="font-size: 1.1rem; color: rgb(67, 5, 67);">Pick: <span style="margin-left: 2px; font-size: 1.2rem; color: blue; font-weight: bold;">OVER 71.5</span> <span style="color: red; font-size: .75rem;" >(No Chip)</span></h1>
+                           
+                       <% } else if ( bet.market == 102 ) { %>
+                            
+                           <h1 style="font-size: 1.1rem; color: rgb(67, 5, 67);">Pick: <span style="margin-left: 2px; font-size: 1.2rem; color: blue; font-weight: bold;">OVER 71.5</span> <span style="color: limegreen; font-size: .75rem;" >(Chip Active)</span></h1>
+                           
+                       <% } else if ( bet.market == 201 ) { %>
+                            
+                            <h1 style="font-size: 1.1rem; color: rgb(67, 5, 67);">Pick: <span style="margin-left: 2px; font-size: 1.2rem; color: blue; font-weight: bold;">OVER 79.5</span> <span style="color: red; font-size: .75rem;" >(No Chip)</span></h1>
+
+                       <% } else if ( bet.market == 202 ) { %>
+
+                             <h1 style="font-size: 1.1rem; color: rgb(67, 5, 67);">Pick: <span style="margin-left: 2px; font-size: 1.2rem; color: blue; font-weight: bold;">OVER 79.5</span> <span style="color: limegreen; font-size: .75rem;" >(Chip Active)</span></h1>
+
+                       <% } else if ( bet.market == 301 ) { %>
+
+                              <h1 style="font-size: 1.1rem; color: rgb(67, 5, 67);">Pick: <span style="margin-left: 2px; font-size: 1.2rem; color: blue; font-weight: bold;">OVER 99.5</span> <span style="color: red; font-size: .75rem;" >(No Chip)</span></h1>
+
+                       <% } else if ( bet.market == 302 ) { %>
+
+                               <h1 style="font-size: 1.1rem; color: rgb(67, 5, 67);">Pick: <span style="margin-left: 2px; font-size: 1.2rem; color: blue; font-weight: bold;">OVER 99.5</span> <span style="color: limegreen; font-size: .75rem;" >(Chip Active)</span></h1>
+
+                       <% } %>
+
+
+                        <h1 style="font-size: 1.1rem; font-weight: bold; color: rgb(67, 5,67);"><%= bet.amount %></h1>
+                        
+                       </div>
+                    
+                    <div class="possible-wrapper" style="display: flex; align-items: center; justify-content: space-between;">
+                        
+                       <h2 style="color: rgb(67, 5, 67); font-size: 1rem;">Possible win: KES.<%= bet.possibleWin %></h2>
+
+                       <% if ( bet.betStatus.code == 200 ) { %>
+
+                          <div class="status" style="display: flex; align-items: center; justify-content: center; width: fit-content; background-color: orange; border-radius: 5px; padding-inline: 5px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: orangered;transform: msFilter"><path d="M5 11h14v2H5z"></path></svg>
+                            <h2 style="color: orangered; font-weight: bold; font-size: .95rem;">PENDING</h2>
+                          </div>
+
+                       <% } else if ( bet.betStatus.code == 500 ) { %> 
+
+                          <div class="status" style="display: flex; align-items: center; justify-content: center; width: fit-content; background-color: rgba(255, 0, 0, 0.404); border-radius: 5px; padding-inline: 5px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: red;transform: msFilter"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
+                            <h2 style="color: red; font-weight: bold; font-size: .95rem;">LOST</h2>
+                          </div>
+
+                       <% } else if ( bet.betStatus.code == 1000 ) { %>
+                          
+                          <div class="status" style="display: flex; align-items: center; justify-content: center; width: fit-content; background-color: rgba(50, 205, 50, 0.395); border-radius: 5px; padding-inline: 5px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: green;transform: msFilter"><path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path></svg>
+                            <h2 style="color: green; font-weight: bold; font-size: .95rem;">WON</h2>
+                          </div>
+
+                       <% } %>
+
+                        
+                    </div>
+    
+                </div>
+
+            <% }) %>
                 
-            <div class="bet-card" style="width: 100%; height: fit-content; padding: 10px; border-bottom: .5px solid grey; scroll-snap-align: start; background-color: #fff;">
-                 <div class="header-wrapper" style="width: 100%; display: flex; align-items: center; justify-content: space-between;">
-                   <h2 style="font-family: 'Signika', sans-serif; font-size: 1.1rem; color: rgb(67, 5, 67); display: flex; align-items: center; justify-content: start;"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: orangered;transform: msFilter"><path d="M19.071 4.929a9.936 9.936 0 0 0-7.07-2.938 9.943 9.943 0 0 0-7.072 2.938c-3.899 3.898-3.899 10.243 0 14.142a9.94 9.94 0 0 0 7.073 2.938 9.936 9.936 0 0 0 7.07-2.937c3.899-3.898 3.899-10.243-.001-14.143zM12.181 4h-.359c.061-.001.119-.009.18-.009s.118.008.179.009zm6.062 13H16l-1.258 2.516a7.956 7.956 0 0 1-2.741.493 7.96 7.96 0 0 1-2.746-.494L8 17.01H5.765a7.96 7.96 0 0 1-1.623-3.532L6 11 4.784 8.567a7.936 7.936 0 0 1 1.559-2.224 7.994 7.994 0 0 1 3.22-1.969L12 6l2.438-1.625a8.01 8.01 0 0 1 3.22 1.968 7.94 7.94 0 0 1 1.558 2.221L18 11l1.858 2.478A7.952 7.952 0 0 1 18.243 17z"></path><path d="m8.5 11 1.5 4h4l1.5-4L12 8.5z"></path></svg>
-                     Points Total
-                   </h2>
-                   <h2 style="font-family: 'Signika', sans-serif; font-size: 1.2rem; color: rgb(67, 5, 67);">GW1</h2>  
-                 </div>
-                 <div class="pick-odds-wrapper" style="display: flex; align-items: center; justify-content: space-between; margin-block: 20px;">
-                     <h1 style="font-family: 'Signika', sans-serif; font-size: 1.1rem; color: rgb(67, 5, 67);">
-                        Pick: <span style="margin-left: 2px; font-size: 1.2rem; color: blue; font-weight: bold;">OVER 79.5</span>
-                        <span style="color: limegreen;" >( CA )</span>
-                    </h1>
-                     <h1 style="font-family: 'Signika', sans-serif; font-size: 1.3rem; font-weight: bold; color: rgb(67, 5,67);">100</h1>
-
-                 </div>
-                 
-                 <div class="possible-wrapper" style="display: flex; align-items: center; justify-content: space-between;">
-                     
-                    <h2 style="color: rgb(67, 5, 67); font-family: 'Signika', sans-serif; font-size: 1.1rem;">Possible win: KES167</h2>
-
-                     <div class="status" style="display: none; align-items: center; justify-content: center; width: fit-content; background-color: rgba(255, 0, 0, 0.404); border-radius: 5px; padding-inline: 5px;">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: red;transform: msFilter"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
-                         <h2 style="color: red; font-family: 'Signika', sans-serif; font-weight: bold; font-size: .95rem;">LOST</h2>
-                     </div>
-                     <div class="status" style="display: none; align-items: center; justify-content: center; width: fit-content; background-color: rgba(50, 205, 50, 0.395); border-radius: 5px; padding-inline: 5px;">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: green;transform: msFilter"><path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path></svg>
-                         <h2 style="color: green; font-family: 'Signika', sans-serif; font-weight: bold; font-size: .95rem;">WON</h2>
-                     </div>
-                     <div class="status" style="display: flex; align-items: center; justify-content: center; width: fit-content; background-color: orange; border-radius: 5px; padding-inline: 5px;">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: orangered;transform: msFilter"><path d="M5 11h14v2H5z"></path></svg>
-                         <h2 style="color: orangered; font-family: 'Signika', sans-serif; font-weight: bold; font-size: .95rem;">PENDING</h2>
-                     </div>
-
-                 </div>
-
-            </div>
-         
+                
 
            
         </div>
 
     </section>
 
-
-
+    
+    
     <footer style="height: 10svh; width: 100vw; margin-block: .75rem; display: flex; align-items: center; justify-content: center;">
-
+        
         <button id="mybets" style="display: flex; align-items: center; justify-content: center; height: 50px; width: 170px; border: none; outline: none; cursor: pointer; border-radius: 15px; background-color: rgb(67, 5, 67);">
-
+            
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" style="fill: white;transform: msFilter"><path d="M21 4h-3V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v1H3a1 1 0 0 0-1 1v3c0 4.31 1.8 6.91 4.82 7A6 6 0 0 0 11 17.91V20H9v2h6v-2h-2v-2.09A6 6 0 0 0 17.18 15c3-.1 4.82-2.7 4.82-7V5a1 1 0 0 0-1-1zM4 8V6h2v6.83C4.22 12.08 4 9.3 4 8zm14 4.83V6h2v2c0 1.3-.22 4.08-2 4.83z"></path></svg>
             <h1 style="font-weight: bold; font-size: 1.2rem; color: white; font-family: 'Signika', sans-serif; margin-left: 5px;">My Bets 
+                
+              <% if ( betLength == 0 ) { %>
 
-                <span style="color: antiquewhite;">(3)</span>
+                <span style="color: antiquewhite; display: none;">(0)</span>
 
+              <% } else { %>
+
+                <span style="color: antiquewhite;">(<%= betLength %>)</span>
+
+             <% } %>  
+                
             </h1>
-
+            
         </button>
-
+        
     </footer>
+    
+    <% } %>
 
     <script>
        

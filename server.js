@@ -44,6 +44,7 @@ const patchIdRoute = require('./routes/patchid-route')
 const topdollarRoute = require('./routes/topdollar-route')
 const transactionRoute = require('./routes/transaction-route')
 const mpesaRoutes = require('./routes/mpesa')
+const liveRoutes = require('./routes/live-routes')
 const devRoutes = require('./routes/dev-routes')
 const { getBootstrap } = require('./controllers/profileControllers')
 
@@ -110,6 +111,7 @@ app.use('/main', mainRoute)
 app.use('/patchId', patchIdRoute)
 app.use('/register', registerRoute)
 app.use('/search', searchRoute)
+app.use('/live', liveRoutes)
 app.use('/mpesa', mpesaRoutes)
 app.use('/dev', devRoutes)
 
@@ -232,20 +234,4 @@ app.patch('/refresh', async (req, res) => {
 
 
      }
-})
-
-app.get('/live', async (req, res) => {
-    
-    try {
-        
-        const userId = req.user._id
-        const userDetails = await User.findOne({ _id: userId })
-    
-        res.render('live', { user: userDetails })
-
-    } catch (error) {
-        
-        req.flash('error', 'Cant Access Live Bets')
-        res.redirect('/main')
-    }
 })
