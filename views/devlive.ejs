@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="40" height="40">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>devHeads</title>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <style>
+      * {
+        margin: 0;
+        border: 0;
+        box-sizing: border-box;
+      }
+     
+    </style>
+
+    
+</head>
+<body style="background-color: aliceblue; height: 100svh; width: 100vw;">
+    <header style="height: 10svh; width: 100vw; border-bottom: 2px solid purple; display: flex; align-items: center; justify-content: space-around;">
+    
+
+            <a href="/dev/<%= gameweek %>"><ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon></a>
+
+            <h1 style="margin:0 10px 10px 10px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">LiveBets</h1>
+        
+        
+    </header>
+    <section style="height: 4svh; width: 100vw; display: flex; align-items: center; justify-content: center;">
+              <h2 style="font-size: 1.1rem; font-weight: bold; font-style: italic; color: purple; font-family: 'Signika', sans-serif;">GW<%= gameweek %></h2>
+        
+              <h2 style="font-size: 1.1rem; margin-left: 20px; font-weight: bold; font-style: italic; color: red; font-family: 'Signika', sans-serif;">Bet Updated Successfully!!..</h2>
+        
+    </section>
+
+    <main style="height: 86svh; width: 100%; padding-top: 10px; display: flex; flex-flow: column nowrap; align-items: center; justify-content: flex-start; scroll-snap-type: inline mandatory; scroll-padding-inline: 10px; overflow-x: hidden; overflow-y: scroll;">
+
+
+        
+         <% dataArray.map((bet) => { %>
+
+            <section class="bet-card" style="padding-inline: 8px; padding-bottom: 15px; margin-block: 15px; height: 35%;  width: clamp(350px, 90%, 700px); border-radius: 10px; background-color: papayawhip; border: 2px solid red; scroll-snap-align: start;">
+    
+                <div class="header" style="height: 25%; width: 100%; border-radius: 10px 10px 0 0; display: flex; align-items: center; justify-content: space-between;">
+    
+                    <h2 style="font-size: 1.3rem; color: purple; font-weight: bold;"><%= bet.teamName %> <span style="font-size: .9rem; color: red;"><%= bet.teamId %></span></h2>
+                    
+                    <h2 style="font-size: 1.3rem; color: limegreen; font-weight: bold; font-family: 'Signika', sans-serif;"><%= bet.userName %></h2>
+    
+                </div>
+    
+                <div class="details" style="position: relative; margin-bottom: 10px; height: 50%; width: 100%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+    
+                    <div class="market-wrapper" style="width: 100%; display: flex; justify-content: space-between;">
+    
+                        <h2 style="font-size: 1.2rem; color: grey; margin-bottom: 15px; font-family: 'Signika', sans-serif;">pick: 
+
+                           <% if ( bet.liveBetMarket == 101 ) { %>
+
+                                 <span style="color: blue; font-size: 1.4rem;">Over 71.5 <span style="color: red; font-size: .9rem;">(No chip)</span></span>
+                                 
+                           <% } else if ( bet.liveBetMarket == 102 ) { %>
+
+                                 <span style="color: blue; font-size: 1.4rem;">Over 71.5 <span style="color: limegreen; font-size: .9rem;">(Chip Active)</span></span>
+                                 
+                           <% } else if ( bet.liveBetMarket == 201 ) { %>
+
+                                 <span style="color: blue; font-size: 1.4rem;">Over 79.5 <span style="color: red; font-size: .9rem;">(No Chip)</span></span>
+                                    
+                           <% } else if ( bet.liveBetMarket == 202 ) { %>
+
+                                 <span style="color: blue; font-size: 1.4rem;">Over 79.5 <span style="color: limegreen; font-size: .9rem;">(Chip Active)</span></span>
+                                        
+                           <% } else if ( bet.liveBetMarket == 301 ) { %>
+
+                                 <span style="color: blue; font-size: 1.4rem;">Over 99.5 <span style="color: red; font-size: .9rem;">(No chip)</span></span>
+                                            
+                           <% } else if ( bet.liveBetMarket == 302 ) { %>
+
+                                 <span style="color: blue; font-size: 1.4rem;">Over 99.5 <span style="color: limegreen; font-size: .9rem;">(Chip Active)</span></span>
+
+                           <% } %>
+
+
+                        </h2>
+        
+                        <h2 style="font-size: 1.2rem; color: grey; font-family: 'Signika', sans-serif;">userPoints: <span style="color: limegreen; font-size: 1.4rem;"><%= bet.userPoints.points %></span></h2>
+                     
+                    </div>
+                    <div class="stake-wrapper" style="width: 100%; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+                        
+                        <h2 style="font-size: 1.2rem; color: rgb(67, 5, 67); font-family: 'Signika', sans-serif;">Stake: <%= bet.liveBetAmount %></h2>
+                        <h2 style="font-size: 1.2rem; color: rgb(67, 5, 67); font-family: 'Signika', sans-serif;">userBal: <span style="color: limegreen;"><%= bet.balance %></span></h2>
+    
+                        
+                    </div>
+                    
+                    <h3 style="font-size: .9rem; color: limegreen; position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); font-family: 'Signika', sans-serif;">CHIP ACTIVE</h3>
+    
+                </div>
+    
+                <div class="update-btns" style="height: 25%; margin-bottom: 10px; width: 100%; display: flex; align-items: center; justify-content: space-around;">
+
+                    <% if ( bet.liveStatusCode == 200 ) { %>
+
+                          <form action="" style="width: 40%; height: 80%; border-radius: 12px; background-color: transparent;">
+                       
+                            <button type="submit" style="width: 100%; height: 100%; border-radius: 12px; background-color: red; color: white; border: none; outline: none; text-align: center; font-weight: bold; font-family: 'Signika', sans-serif;">LOST</button>
+    
+                          </form> 
+    
+                          <form action="" style="width: 40%; height: 80%; border-radius: 12px; background-color: transparent;">
+                       
+                             <button type="submit" style="width: 100%; height: 100%; border-radius: 12px; background-color: limegreen; color: white; border: none; outline: none; text-align: center; font-weight: bold; font-family: 'Signika', sans-serif;">WON</button>
+    
+                          </form> 
+    
+                          <div class="settled" style="border-radius: 5px; width: 60%; height: 80%; background-color: purple; display: none; justify-content: center; align-items: center;">
+    
+                             <h2 style="font-size: 1.4rem; color: white; font-family: 'Signika', sans-serif;">settled</h2>
+    
+                          </div>
+
+                    <% } else { %>
+
+                         <form action="" style="display: none; width: 40%; height: 80%; border-radius: 12px; background-color: transparent;">
+                       
+                            <button type="submit" style="width: 100%; height: 100%; border-radius: 12px; background-color: red; color: white; border: none; outline: none; text-align: center; font-weight: bold; font-family: 'Signika', sans-serif;">LOST</button>
+    
+                          </form> 
+    
+                          <form action="" style="display: none; width: 40%; height: 80%; border-radius: 12px; background-color: transparent;">
+                       
+                             <button type="submit" style="width: 100%; height: 100%; border-radius: 12px; background-color: limegreen; color: white; border: none; outline: none; text-align: center; font-weight: bold; font-family: 'Signika', sans-serif;">WON</button>
+    
+                          </form> 
+    
+                          <div class="settled" style="border-radius: 5px; width: 60%; height: 80%; background-color: purple; display: flex; justify-content: center; align-items: center;">
+    
+                             <h2 style="font-size: 1.4rem; color: white; font-family: 'Signika', sans-serif;">settled</h2>
+    
+                          </div>
+
+                    <% } %>
+                   
+                 
+         
+    
+                </div>
+    
+            </section>
+
+             <% }) %>
+
+        
+
+          
+
+        
+
+       
+    </main>
+          
+
+            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+           
+    </body>
+    </html>
+

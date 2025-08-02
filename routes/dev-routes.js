@@ -1,4 +1,4 @@
-const { getDev, getDevConsole, getDevUsers, patchDevUsers, getDevUser, getDevHeads, updateDevHeads, settleDevHeads, getDevParties, getDevParty, updateDevParty, deleteDepHeads, deleteDepParties, settleDevParty, getDevdeposits, updateDeposit, getDevWithdraws, patchDevWithdraws, deleteMpesaDeps, deleteWithdrawDeps, deleteDepLiveBets } = require('../controllers/devControllers.js')
+const { getDev, getDevConsole, getDevUsers, patchDevUsers, getDevUser, getDevHeads, updateDevHeads, settleDevHeads, getDevParties, getDevParty, updateDevParty, deleteDepHeads, deleteDepParties, settleDevParty, getDevdeposits, updateDeposit, getDevWithdraws, patchDevWithdraws, deleteMpesaDeps, deleteWithdrawDeps, deleteDepLiveBets, getDevLiveBets } = require('../controllers/devControllers.js')
 const { devCheck, authCheck } = require('../controllers/authControllers')
 
 
@@ -29,6 +29,7 @@ router.patch('/:id/party/:party/update', updateDevParty)
 
 router.patch('/:id/party/settle', settleDevParty)
 
+router.get('/:id/livebets', getDevLiveBets)
 
 router.delete('/:id/headsdelete', deleteDepHeads)
 

@@ -808,6 +808,67 @@ const settleDevParty = async (req, res) => {
     }
 }
 
+const getDevLiveBets = async (req, res) => {
+
+    const id = req.params.id
+    
+    try {
+   
+
+    const currentLiveBets = await Live.find({ event: id })
+
+    const allUsers = await User.find()
+
+    const dataArray = []
+
+
+    currentLiveBets.forEach( (livebet) => {
+        
+        const event = livebet.event 
+        const liveBetId = livebet._id
+        const liveBetAmount = livebet.amount
+        const liveBetMarket = livebet.market
+        const liveBetStatusCode = livebet.betStatus.code
+
+        
+        const userIdLive = livebet.userId
+
+        const currentUser = allUsers.find((user)=> { return user._id == userIdLive })
+        
+        // TODO: UPDATE EXTRACTION OF CHIP STATUS FROM FPL API USING TEAM ID HISTORY <<< TRIAL >>>
+
+        const teamName = currentUser.teamName
+        const userName = currentUser.userName
+        const teamId = currentUser.teamId
+        const balance = currentUser.totalBalance
+      
+        const userEventPoints = currentUser.points.find((pointsObject) => {
+               return pointsObject.gameweek26 == event
+              })
+    
+    
+             
+        const finalLiveBetObject = { liveBetId: liveBetId, liveBetAmount: liveBetAmount, liveBetMarket: liveBetMarket, liveStatusCode: liveBetStatusCode, userIdLive: userIdLive, teamName: teamName, userName: userName, teamId: teamId, balance: balance, userPoints: userEventPoints }
+
+        dataArray.push(finalLiveBetObject)
+             
+              
+            })
+        
+        
+        res.render('devlive', { gameweek: id, dataArray: dataArray })
+
+         
+    } catch (error) {
+
+        req.flash('error', 'Cannot get LiveBets.. DB or FPLAPI')
+        res.redirect(`/dev/${id}`)
+        
+    }
+
+
+}
+
 const deleteDepHeads = async (req, res) => {
 
     const { event } = req.body
@@ -1001,6 +1062,7 @@ module.exports = {
     getDevParty,
     updateDevParty,
     settleDevParty,
+    getDevLiveBets,
     deleteDepHeads,
     deleteDepParties,
     deleteDepLiveBets,
