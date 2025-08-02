@@ -1,11 +1,13 @@
-// require('dotenv').config()
+ require('dotenv').config()
 
 const User = require('../models/xtreamUsers')
-const Head = require('../models/head2head')
-const Party = require('../models/party')
+
+const Head26 = require('../models/head2head26')
+const Party26 = require('../models/party26')
 const Transactions = require('../models/transactions')
 const fetch = require('node-fetch')
-const { proxyInstance } = require('../controllers/test')
+//const { proxyInstance } = require('../controllers/test')
+const Live = require('../models/liveBets26')
 
 
 
@@ -57,7 +59,9 @@ const getDev = async (req, res) => {
 }
 
 const getDevConsole = async (req, res) => {
+
     const id = req.params.id
+
 
     try {
 
@@ -117,8 +121,8 @@ const getDevConsole = async (req, res) => {
 
         // TODO: BETS & PROFITS
 
-        const currentHeads = await Head.find({ event: id })
-        const currentParties = await Party.find({ event: id })
+         const currentHeads = await Head26.find({ event: id })
+         const currentParties = await Party26.find({ event: id })
 
         // TODO: BETS
 
@@ -173,12 +177,20 @@ const getDevConsole = async (req, res) => {
 
         const totalProfit = totalProfParty + totalProfHeads
 
+        // TODO:  LIVE BETS
+        
+        const currentLiveBets = await Live.find({ event: id })
+        const updatedLiveBets = currentLiveBets.filter((bet) => { return bet.betStatus.code !== 200 })
+        const liveBetsCount = currentLiveBets.length
+        const updatedLiveCount = updatedLiveBets.length
+        const depLiveBets = await Live.find({ "betStatus.code": 100  })
+        const depLiveBetsCounts = depLiveBets.length
 
 
-        const depArray = [depHeadCount, depPartyCount, depTranxCount, depWithCount, pendingCounts]
+        const depArray = [depHeadCount, depPartyCount, depTranxCount, depWithCount, pendingCounts, depLiveBetsCounts]
         const reducedArray = [totalDepos, totalWiths, userTotal, totalProfHeads, totalProfParty, totalProfit]
 
-        res.render('devconsole', { event: id, messages: req.flash('error'), finance: reducedArray, withdraws: withdrawCount, heads: headCount, party: partyCount, users: userCount, updated: updatedCount, updatedWithdraws: updatedWithCount, updatedHead: updatedHeadCount, updatedParty: updatedPartyCount, deps: depArray })
+        res.render('devconsole', { event: id, messages: req.flash('error'), allLive: liveBetsCount, updatedLive: updatedLiveCount, finance: reducedArray, withdraws: withdrawCount, heads: headCount, party: partyCount, users: userCount, updated: updatedCount, updatedWithdraws: updatedWithCount, updatedHead: updatedHeadCount, updatedParty: updatedPartyCount, deps: depArray })
 
 
     } catch (error) {
@@ -239,7 +251,7 @@ const patchDevUsers = async (req, res) => {
         if (currentEvent) {
 
             const gameweekPoints = currentEvent.points
-            const pointsObject = { gameweek: event, points: gameweekPoints }  // change pointsObject to { gameweek26: event, points: gameweekPoints }
+            const pointsObject = { gameweek26: event, points: gameweekPoints }  // change pointsObject to { gameweek26: event, points: gameweekPoints }
 
             const updatedUser = await User.findByIdAndUpdate({ _id: userid }, { $push: { points: pointsObject } })
 
@@ -309,11 +321,11 @@ const getDevUser = async (req, res) => {
         // TODO: BETS PARTICIPATED
 
         const userteamId = userDetails.teamId
-        const headsPlayedHost = await Head.find({ hostId: userteamId })
-        const headsPlayedOpp = await Head.find({ opponentId: userteamId })
+        const headsPlayedHost = await Head26.find({ hostId: userteamId })
+        const headsPlayedOpp = await Head26.find({ opponentId: userteamId })
         const TotalHeadCounts = headsPlayedHost.length + headsPlayedOpp.length
 
-        const allParties = await Party.find()
+        const allParties = await Party26.find()
 
         const partiesPlayed = allParties.filter((party) => {
             return party.players.some((player) => { return player == userteamId })
@@ -340,7 +352,7 @@ const getDevHeads = async (req, res) => {
 
     try {
 
-        const allHeads = await Head.find({ event: event })
+        const allHeads = await Head26.find({ event: event })
 
         res.render('devheads', { gameweek: event, heads: allHeads, messages: req.flash('success') })
 
@@ -362,7 +374,7 @@ const updateDevHeads = async (req, res) => {
 
     try {
 
-        const betDetails = await Head.findOne({ _id: betid })
+        const betDetails = await Head26.findOne({ _id: betid })
         const hostId = betDetails.hostId
         const opponentId = betDetails.opponentId
         const Host = await User.findOne({ teamId: hostId })
@@ -379,7 +391,7 @@ const updateDevHeads = async (req, res) => {
         const hostPoints = hostPointsObject.points
         const oppPoints = oppPointsObject.points
 
-        const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { points: { host: hostPoints, opponent: oppPoints } })
+        const updatedBet = await Head26.findByIdAndUpdate({ _id: betid }, { points: { host: hostPoints, opponent: oppPoints } })
 
         req.flash('success', 'Bet Updated')
         res.redirect(`/dev/${event}/heads`)
@@ -402,7 +414,7 @@ const settleDevHeads = async (req, res) => {
 
     try {
 
-        const betDetails = await Head.findOne({ _id: betid })
+        const betDetails = await Head26.findOne({ _id: betid })
         const entryAmount = betDetails.amount
         const amountToPay = Math.floor((entryAmount * 2) * 0.85)
         const hostId = betDetails.hostId
@@ -426,7 +438,7 @@ const settleDevHeads = async (req, res) => {
             try {
 
                 const updatedWinner = await User.findOneAndUpdate({ teamId: opponentId }, { $set: { totalBalance: oppNewBalance, totalEarned: newOppEarned } })
-                const updatedBetDetails = await Head.findByIdAndUpdate({ _id: betid }, { $set: { winner: { winnerId: opponentId, winAmount: amountToPay }, betStatus: { code: 1000, message: "Bet settled" } } })
+                const updatedBetDetails = await Head26.findByIdAndUpdate({ _id: betid }, { $set: { winner: { winnerId: opponentId, winAmount: amountToPay }, betStatus: { code: 1000, message: "Bet settled" } } })
 
                 req.flash('success', 'Opponent Paid')
                 res.redirect(`/dev/${event}/heads`)
@@ -444,7 +456,7 @@ const settleDevHeads = async (req, res) => {
             try {
 
                 const updatedWinner = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: hostNewBalance, totalEarned: newHostEarned } })
-                const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { $set: { winner: { winnerId: hostId, winAmount: amountToPay }, betStatus: { code: 1000, message: "Bet settled" } } })
+                const updatedBet = await Head26.findByIdAndUpdate({ _id: betid }, { $set: { winner: { winnerId: hostId, winAmount: amountToPay }, betStatus: { code: 1000, message: "Bet settled" } } })
 
                 req.flash('success', 'Host Paid')
                 res.redirect(`/dev/${event}/heads`)
@@ -466,7 +478,7 @@ const settleDevHeads = async (req, res) => {
 
                 const newHost = await User.findOneAndUpdate({ teamId: hostId }, { $set: { totalBalance: hostCompensation } })
                 const newOpp = await User.findOneAndUpdate({ teamId: opponentId }, { $set: { totalBalance: oppCompensation } })
-                const updatedBet = await Head.findByIdAndUpdate({ _id: betid }, { $set: { winner: { winnerId: 'Draw', winAmount: entryAmount }, betStatus: { code: 1000, message: "Bet settled" } } })
+                const updatedBet = await Head26.findByIdAndUpdate({ _id: betid }, { $set: { winner: { winnerId: 'Draw', winAmount: entryAmount }, betStatus: { code: 1000, message: "Bet settled" } } })
 
                 req.flash('success', 'Both users Compensated')
                 res.redirect(`/dev/${event}/heads`)
@@ -497,7 +509,7 @@ const getDevParties = async (req, res) => {
     const event = req.params.id
     try {
 
-        const currentParties = await Party.find({ event: event })
+        const currentParties = await Party26.find({ event: event })
 
         res.render('devparties', { parties: currentParties, event: event, messages: req.flash('error') })
 
@@ -519,7 +531,7 @@ const getDevParty = async (req, res) => {
 
     try {
 
-        const party = await Party.findOne({ _id: partyId })
+        const party = await Party26.findOne({ _id: partyId })
 
         const host = party.hostId
         const hostDetails = await User.findOne({ teamId: host })
@@ -541,7 +553,7 @@ const getDevParty = async (req, res) => {
             const teamid = user.teamId
             const team = user.teamName
             const pointsObject = user.points.find((oneObject) => {
-                return oneObject.gameweek == gameweek
+                return oneObject.gameweek26 == gameweek
             })
 
             if (!pointsObject) {
@@ -709,7 +721,7 @@ const updateDevParty = async (req, res) => {
 
     try {
 
-        const updatedParty = await Party.findByIdAndUpdate({ _id: partyId }, { $set: { winners: winnerObject } })
+        const updatedParty = await Party26.findByIdAndUpdate({ _id: partyId }, { $set: { winners: winnerObject } })
 
         req.flash('success', 'Party details Updated')
         res.redirect(`/dev/${event}/party/${partyId}`)
@@ -727,7 +739,7 @@ const settleDevParty = async (req, res) => {
 
     const { partyid } = req.body
     const event = req.params.id
-    const partyDetails = await Party.findOne({ _id: partyid })
+    const partyDetails = await Party26.findOne({ _id: partyid })
     const firstId = partyDetails.winners.first.teamId
     const secondId = partyDetails.winners.second.teamId
     const thirdId = partyDetails.winners.third.teamId
@@ -755,7 +767,7 @@ const settleDevParty = async (req, res) => {
 
             const uptFirst = await User.findOneAndUpdate({ teamId: firstId }, { $set: { totalBalance: firstNewBalance, totalEarned: newFirstTotalEarned } })
             const uptSecond = await User.findOneAndUpdate({ teamId: secondId }, { $set: { totalBalance: secondNewBalance, totalEarned: newSecondTotalEarned } })
-            const upParty = await Party.findByIdAndUpdate({ _id: partyid }, { $set: { betStatus: { code: 1000, message: "Bet settled" } } })
+            const upParty = await Party26.findByIdAndUpdate({ _id: partyid }, { $set: { betStatus: { code: 1000, message: "Bet settled" } } })
 
             req.flash('success', 'Bet Settled for 2 player Party')
             res.redirect(`/dev/${event}/party/${partyid}`)
@@ -782,7 +794,7 @@ const settleDevParty = async (req, res) => {
             const uptFirst = await User.findOneAndUpdate({ teamId: firstId }, { $set: { totalBalance: firstNewBalance, totalEarned: newFirstTotalEarned } })
             const uptSecond = await User.findOneAndUpdate({ teamId: secondId }, { $set: { totalBalance: secondNewBalance, totalEarned: newSecondTotalEarned } })
             const uptThird = await User.findOneAndUpdate({ teamId: thirdId }, { $set: { totalBalance: thirdNewBalance, totalEarned: newThirdEarned } })
-            const upParty = await Party.findByIdAndUpdate({ _id: partyid }, { $set: { betStatus: { code: 1000, message: "Bet settled" } } })
+            const upParty = await Party26.findByIdAndUpdate({ _id: partyid }, { $set: { betStatus: { code: 1000, message: "Bet settled" } } })
 
             req.flash('success', 'Bet Settled for above 2 Players party')
             res.redirect(`/dev/${event}/party/${partyid}`)
@@ -802,7 +814,7 @@ const deleteDepHeads = async (req, res) => {
 
     try {
 
-        const updatedHeads = await Head.deleteMany({ "betStatus.code": 100 })
+        const updatedHeads = await Head26.deleteMany({ "betStatus.code": 100 })
 
         res.redirect(`/dev/${event}`)
 
@@ -823,7 +835,7 @@ const deleteDepParties = async (req, res) => {
 
     try {
 
-        const updatedParties = await Party.deleteMany({ "betStatus.code": 100 })
+        const updatedParties = await Party26.deleteMany({ "betStatus.code": 100 })
         res.redirect(`/dev/${event}`)
 
     } catch (error) {
@@ -834,6 +846,23 @@ const deleteDepParties = async (req, res) => {
     }
 
 
+}
+
+const deleteDepLiveBets = async (req, res) => {
+
+    const { event } = req.body
+
+    try {
+        
+        await Live.deleteMany({ "betStatus.code": 100 })
+        res.redirect(`/dev/${event}`)
+
+    } catch (error) {
+
+        req.flash('error', 'Delete Request Failed')
+        res.redirect(`/dev/${event}`)
+        
+    }
 }
 
 const deleteMpesaDeps = async (req, res) => {
@@ -974,6 +1003,7 @@ module.exports = {
     settleDevParty,
     deleteDepHeads,
     deleteDepParties,
+    deleteDepLiveBets,
     deleteMpesaDeps,
     deleteWithdrawDeps,
     getDevdeposits,
