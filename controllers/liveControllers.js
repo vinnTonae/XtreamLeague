@@ -130,6 +130,15 @@ const patchAuthorizeLive = async (req, res) => {
             const userDetails = await User.findOne({ _id: userid })
             const betAmount = liveBetDetails.amount
             const userTotalBalance = userDetails.totalBalance 
+
+            if ( userTotalBalance < betAmount ) {
+
+                req.flash('success', 'You have insufficient Funds to Place Bet')
+                res.redirect('/live')
+
+            } else {
+
+            
     
             const newUserBalance = userTotalBalance - betAmount
             
@@ -139,6 +148,8 @@ const patchAuthorizeLive = async (req, res) => {
     
             req.flash('success', 'Bet Placed Successfully!!..')
             res.redirect('/live')
+
+            }
             
         } catch (error) {
             
@@ -147,6 +158,8 @@ const patchAuthorizeLive = async (req, res) => {
             res.redirect('/live')
             
         }
+
+    
         
     } else {
 

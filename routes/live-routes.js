@@ -9,7 +9,7 @@ router.get('/:id', getAuthorizeLive)
 
 router.patch('/:id', patchAuthorizeLive)
 
-router.get('/', authCheck, registerCheck, getLiveBet)
+router.get('/', authCheck, getLiveBet)
 
 router.post('/', postLiveBet)
 
