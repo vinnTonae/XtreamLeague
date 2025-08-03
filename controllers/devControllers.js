@@ -1,7 +1,7 @@
  require('dotenv').config()
 
 const User = require('../models/xtreamUsers')
-
+const ObjectId = require('mongoose').Types.ObjectId
 const Head26 = require('../models/head2head26')
 const Party26 = require('../models/party26')
 const Transactions = require('../models/transactions')
@@ -856,7 +856,7 @@ const getDevLiveBets = async (req, res) => {
             })
         
         
-        res.render('devlive', { gameweek: id, dataArray: dataArray })
+        res.render('devlive', { gameweek: id, dataArray: dataArray, messages: req.flash('error') })
 
          
     } catch (error) {
@@ -866,6 +866,63 @@ const getDevLiveBets = async (req, res) => {
         
     }
 
+
+}
+
+
+const patchDevLiveBetLost = async (req, res) => {
+    
+    const event = req.params.id
+    const { liveId } = req.body
+
+    try {
+        
+        await Live.findByIdAndUpdate({ _id: liveId }, { $set: { betStatus: { code: 500, message: 'Lost' } } })
+        
+        req.flash('error', 'Bet Lost Updated Successfully!...')
+        res.redirect(`/dev/${event}/livebets`)
+
+    } catch (error) {
+
+        req.flash('error', 'Update Failed')
+        res.redirect(`/dev/${event}/livebets`)
+        
+    }
+    
+
+} 
+
+
+const patchDevLiveBetWon = async (req, res) => {
+
+    const event = req.params.id
+    const { liveId } = req.body
+
+    try {
+        
+        const liveBetDetails = await Live.findOne({ _id: liveId })
+        const userId = liveBetDetails.userId
+        const userDetails = await User.findOne({ _id: userId })
+    
+        const userTotalBalance = userDetails.totalBalance
+        const userTotalEarned = userDetails.totalEarned
+        const possibleWin = liveBetDetails.possibleWin
+        const newUserTotalBalance = userTotalBalance + possibleWin
+        const newUserTotalEarned = userTotalEarned + possibleWin
+    
+        await Live.findByIdAndUpdate({ _id: liveId }, { $set: { betStatus: { code: 1000, message: 'Won' } } })
+    
+        await User.findByIdAndUpdate({ _id: userId }, { $set: { totalBalance: newUserTotalBalance, totalEarned: newUserTotalEarned } })
+    
+        req.flash('error', 'Bet Won Update Successful!!..')
+        res.redirect(`/dev/${event}/livebets`)
+
+    } catch (error) {
+
+        req.flash('error', 'Update Failed!!...')
+        res.redirect(`/dev/${event}/livebets`)
+        
+    }
 
 }
 
@@ -1063,6 +1120,8 @@ module.exports = {
     updateDevParty,
     settleDevParty,
     getDevLiveBets,
+    patchDevLiveBetLost,
+    patchDevLiveBetWon,
     deleteDepHeads,
     deleteDepParties,
     deleteDepLiveBets,
