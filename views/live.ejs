@@ -38,7 +38,7 @@
             <ion-icon name="arrow-round-back" style="font-weight: bold; color: purple; font-size: 2rem;"></ion-icon>
             <h1 style="text-decoration: none; margin-inline: 3px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: purple;">Live</h1>
         </a>
-        <a href="/deposit" class="account" style="height: 60%; display: flex; justify-content: flex-end; align-items: center;">
+        <a href="/deposit" class="account" style="height: 60%; display: flex; justify-content: flex-end; align-items: center; text-decoration: none;">
             <div class="balance" style="width: 100%; padding-inline: 5px; height: 100%; margin-right: 10px; display: flex; align-items: center; justify-content: space-evenly; background-color: rgb(67, 5, 67); border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: gold;transform: msFilter"><path d="M12 15c-1.84 0-2-.86-2-1H8c0 .92.66 2.55 3 2.92V18h2v-1.08c2-.34 3-1.63 3-2.92 0-1.12-.52-3-4-3-2 0-2-.63-2-1s.7-1 2-1 1.39.64 1.4 1h2A3 3 0 0 0 13 7.12V6h-2v1.09C9 7.42 8 8.71 8 10c0 1.12.52 3 4 3 2 0 2 .68 2 1s-.62 1-2 1z"></path><path d="M5 2H2v2h2v17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4h2V2H5zm13 18H6V4h12z"></path></svg>
                 <h2 style="color: white; margin-inline: 5px;  font-family: 'Signika', sans-serif; font-weight: bold; text-wrap: nowrap;">KES <%= user.totalBalance %></h2>
@@ -92,14 +92,14 @@
                     <button id="seventy-one-nochip-btn" style="cursor: pointer; width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); border: 2px solid orangered; outline: none; border-radius: 15px 0 0 15px;">
                         
                         <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">No Chip</h3>
-                        <h2 id="seventy-nochip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >1.48</h2>
+                        <h2 id="seventy-nochip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" ><%= odds.seventyNoChip %></h2>
                         
                     </button>
                     
                     <button id="seventy-one-chip-btn" style="cursor: pointer; width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); outline: none; border-radius: 0 15px 15px 0; border: none;">
                         
                         <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">Chip Active</h3>
-                        <h2 id="seventy-chip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >1.16</h2>
+                        <h2 id="seventy-chip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" ><%= odds.seventyChip %></h2>
                         
                     </button>
                     
@@ -130,14 +130,14 @@
                         <button id="eighty-nochip-btn" style="cursor: pointer; width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); border: 2px solid orangered; outline: none; border-radius: 15px 0 0 15px;">
 
                             <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">No Chip</h3>
-                            <h2 id="eighty-nochip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >1.65</h2>
+                            <h2 id="eighty-nochip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" ><%= odds.eightyNoChip %></h2>
                             
                         </button>
 
                         <button id="eighty-chip-btn" style="cursor: pointer; width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); outline: none; border-radius: 0 15px 15px 0; border: none;">
 
                             <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">Chip Active</h3>
-                            <h2 id="eighty-chip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >1.24</h2>
+                            <h2 id="eighty-chip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" ><%= odds.eightyChip %></h2>
 
                         </button>
                        
@@ -169,14 +169,14 @@
                         <button id="hundred-nochip-btn" style="cursor: pointer; width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); border: none; outline: none; border-radius: 15px 0 0 15px;">
 
                             <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">No Chip</h3>
-                            <h2 id="hundred-nochip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >3.06</h2>
+                            <h2 id="hundred-nochip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" ><%= odds.hundredNoChip %></h2>
                             
                         </button>
 
                         <button id="hundred-chip-btn" style="cursor: pointer; width: 45%; height: 40%; display: flex; align-items: center; justify-content: center; flex-flow: column nowrap; background-color: rgba(0, 0, 255, 0.479); outline: none; border-radius: 0 15px 15px 0; border: 2px solid orangered;">
 
                             <h3 style="font-size: .75rem; color: antiquewhite; margin-bottom: 2px; font-style: italic;">Chip Active</h3>
-                            <h2 id="hundred-chip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" >2.27</h2>
+                            <h2 id="hundred-chip-odds" style="color: white; font-weight: bold; font-size: 1.3rem;" ><%= odds.hundredChip %></h2>
 
                         </button>
                        

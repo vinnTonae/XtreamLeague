@@ -66,8 +66,18 @@ const getLiveBet = async (req, res) => {
                const activeUserLiveBets = userLiveBets.filter((bet) => { return bet.betStatus.code !== 100 })
                const validUserLiveBetsLength = activeUserLiveBets.length
 
+               const oddsObject = { 
+                   seventyNoChip: process.env.OVER71NC,
+                   seventyChip: process.env.OVER71CA,
+                   eightyNoChip: process.env.OVER79NC,
+                   eightyChip: process.env.OVER79CA,
+                   hundredNoChip: process.env.OVER99NC,
+                   hundredChip: process.env.OVER99CA
+
+               }
+
                const alert = 'Choose Gameweek'
-               res.render('live', { user: userData, gameweekData: latestGameweek, userBets: activeUserLiveBets, betLength: validUserLiveBetsLength ,messages: req.flash('success') })
+               res.render('live', { user: userData, odds: oddsObject, gameweekData: latestGameweek, userBets: activeUserLiveBets, betLength: validUserLiveBetsLength ,messages: req.flash('success') })
            } else {
                const alert = 'PL is currently in Pre-Season'
                const latestGameweek = null
