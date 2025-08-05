@@ -21,6 +21,27 @@
             box-sizing: border-box;
         }
 
+        @media  screen and ( min-aspect-ratio: 16/14 ) {
+
+            .payment-wrapper{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 50%;
+            }
+
+            .mpesa{
+                height: 100%;
+                width: 50%;
+            }
+
+            .paypal{
+                height: 100%;
+                width: 50%;
+            }
+            
+        }
+
       
 
         
@@ -53,7 +74,10 @@
         <div class="heading" style="padding-inline: 10px; height: 15%; width: 100%; background-color: white; display: flex; align-items: center; justify-content: start;">
             <h1 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.5rem; color: black;">Payment Details</h1>
         </div>
-        <div class="mpesa" style="position: relative; height: 42.5%; width: 100%; background-color: rgba(50, 205, 50, 0.32); display: flex; justify-content: space-between; align-items: center;">
+
+        <div class="payment-wrapper" style="height: 85%; width: 100%;">
+
+        <div class="mpesa" style="position: relative; height: 50%; width: 100%; background-color: rgba(50, 205, 50, 0.32); display: flex; justify-content: space-between; align-items: center;">
             <img src="logos/mpesa.png" alt="MPESA" width="80" height="90" style="margin-left: 10px;">
             <p id="mpesa-number-value" style="font-family: 'Signika', sans-serif; font-weight: bold; font-size: 1.2rem;"><%= user.mpesa %></p>
             <button class="mpesa-edit-btn" style="cursor: pointer; margin-right: 10px; width: 20%; height: 25%; background-color: rgba(255, 0, 0, 0.651); color: white; display: flex; justify-content: center; align-items: center; outline: none; border-radius: 10px;">
@@ -67,7 +91,7 @@
             </div>
 
         </div>
-        <div class="paypal" style="position: relative; height: 42.5%; width: 100%; background-color: rgba(135, 206, 250, 0.32); display: flex; justify-content: space-between; align-items: center;">
+        <div class="paypal" style="position: relative; height: 50%; width: 100%; background-color: rgba(135, 206, 250, 0.32); display: flex; justify-content: space-between; align-items: center;">
             <img src="logos/paypal.png" alt="PAYPAL" width="70" height="40" style="margin-left: 10px;">
              <p id="paypal-text-value" style="font-family: 'Signika', sans-serif; text-transform: lowercase; font-weight: bold; font-size: 1.05rem;"><%= user.payPal %></p>
             <button class="paypal-edit-btn" style="cursor: pointer; margin-right: 10px; width: 20%; height: 25%; background-color: rgba(255, 0, 0, 0.651); color: white; display: flex; justify-content: center; align-items: center; outline: none; border-radius: 10px;">
@@ -80,6 +104,8 @@
                 
             </div>
             
+
+        </div>
 
         </div>
 

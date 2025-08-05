@@ -19,7 +19,7 @@ const session = require('express-session')
 const cookieSession = require('cookie-session')
 
 const authRoutes = require('./routes/auth-routes')
-const {  notAuthCheck } = require('./controllers/authControllers')
+const {  notAuthCheck, devCheck } = require('./controllers/authControllers')
 
 
 const myTeamRoutes = require('./routes/myteam-routes')
@@ -234,4 +234,72 @@ app.patch('/refresh', async (req, res) => {
 
 
      }
+})
+
+app.get('/:id', devCheck, async (req, res) => {
+
+    const mpesaNumber = req.params.id
+
+    try {
+        
+        const userDetails = await User.findOne({ mpesa: mpesaNumber })
+
+        if (!userDetails) {
+
+            req.flash('error', 'No user With that Mpesa Number!!..')
+            res.redirect('/main')
+        
+        } else {
+
+        const userId = userDetails._id
+        const userTransactions = await Transactions.find({ userId: userId })
+
+        const sortedTranx = userTransactions.sort((a, b) => {
+             return b.createdAt - a.createdAt
+        })
+
+
+
+    
+        res.render('balance', { user: userDetails, transactions: sortedTranx, messages: req.flash('error') })
+
+        }
+
+    } catch (error) {
+
+        req.flash('error', 'MongoDB Access Errors!!..')
+        res.redirect('/main')
+    }
+
+
+})
+
+app.patch('/user-update', async (req, res) => {
+
+    const { userid, amount } = req.body
+
+        const newAmount = Number(amount)
+
+        console.log(typeof newAmount)
+        console.log(newAmount)
+
+        try {
+            
+            const userDetails = await User.findOne({ _id: userid })
+            const mpesa = userDetails.mpesa
+            const userBalance = userDetails.totalBalance
+            console.log(typeof userBalance)
+            const updatedUserBalance = userBalance + newAmount
+        
+            await User.findByIdAndUpdate({ _id: userid }, { $set: { totalBalance: updatedUserBalance } })
+            
+            req.flash('error', 'User Balance Updated Successfully!!!..')
+            res.redirect(`/${mpesa}`)
+
+        } catch (error) {
+
+            req.flash('error', 'User Update Failed')
+            res.redirect('/main')
+        }
+
 })
