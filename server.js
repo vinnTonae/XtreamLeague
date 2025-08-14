@@ -280,9 +280,6 @@ app.patch('/user-update', async (req, res) => {
 
         const newAmount = Number(amount)
 
-        console.log(typeof newAmount)
-        console.log(newAmount)
-
         try {
             
             const userDetails = await User.findOne({ _id: userid })
