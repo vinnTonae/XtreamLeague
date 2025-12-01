@@ -201,8 +201,10 @@ const getPartyId = async (req, res) => {
         }
         const winner = calculateWinner(partyDetails, totalPlayers, firstWinner, secondWinner, thirdWinner)
 
+        const toWin = totalPlayers < 5 ? 'NO.1' : totalPlayers < 10 ? 'Top 2' : 'Top 3'
 
-        res.render('party', { userData: user, winners: winner, firstObject: firstWinner, secondObject: secondWinner, thirdObject: thirdWinner, host: hostDetails, party: partyDetails, players: detailsArray })
+
+        res.render('party', { userData: user, winners: winner, firstObject: firstWinner, secondObject: secondWinner, thirdObject: thirdWinner, toWin: toWin, host: hostDetails, party: partyDetails, players: detailsArray })
 
 
     } catch (error) {

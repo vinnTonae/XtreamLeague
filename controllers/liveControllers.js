@@ -51,7 +51,7 @@ const getLiveBet = async (req, res) => {
    
                // TODO: REMEMBER TO RETURN BACK TO (bootstrapDeadline - datenow) after FPL UPDATES CALENDER YEAR 
    
-                   const customDiffMs = ( bootstrapDeadline - dateNow ) + 21600000
+                   const customDiffMs = ( bootstrapDeadline - dateNow ) + 220320000
    
                    dataArray.push([gameweek, event.deadline_time, customDiffMs])
    
@@ -60,6 +60,9 @@ const getLiveBet = async (req, res) => {
                 const latestGameweek = dataArray.find((event) => {
                     return event[2] > 0
                 })
+
+                
+                console.log(dataArray)
                 
                      
                const userLiveBets = await Live.find({ userId: userid  })
