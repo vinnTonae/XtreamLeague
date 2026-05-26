@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="400" height="400">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <title>XtreamLeague</title>
+    <style>
+
+:root {
+    --background-color: #121212;
+    --card-bg-color: #212121;
+    --card-light-gray-grad: #535353;
+    --neon-green: #1ed760;
+    --sport-green: #1db954;
+    --text-white: #FFFFFF;
+    --muted-gray: #B3B3B3;
+    --neon-red: #FF073A;
+}
+
+
+@keyframes throb  {0%,100%{opacity:.42}50%{opacity:1}}
+
+         .team-info a:active {
+            transform: scale(0.9);
+         }
+         ::placeholder {
+            color: var(--muted-gray);
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.15rem;
+        }
+    </style>
+</head>
+
+<body style="position: relative; height: 100svh; width: 100vw; background-color: var(--background-color);">
+
+    <!-- JOIN H-2-H BOX POSITION ABSOLUTE -->
+
+    <section class="register" style="display: none; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 5; border-radius: 10px;  height: 20vh; width: 95vw; background-image: linear-gradient(45deg, var(--card-bg-color), var(--card-light-gray-grad)); margin-inline: auto; ">
+        <div class="reg" style="cursor: pointer; position: relative; margin-top: 5px; display: flex; justify-content: center; align-items: center; height: 20%;">
+            <div id="close-head" style="position: absolute; right: 0; top: 0; height: 100%; display: flex; justify-content: center; align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24" style="fill: var(--text-white);transform: scaleY(-1);"><path d="m8.5 18 3.5 4 3.5-4H19c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2H5c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h3.5zM7.293 6.707l1.414-1.414L12 8.586l3.293-3.293 1.414 1.414L13.414 10l3.293 3.293-1.414 1.414L12 11.414l-3.293 3.293-1.414-1.414L10.586 10 7.293 6.707z"></path></svg>
+            </div>
+            <h1 style="color: var(--text-white); font-size: 1.5rem; font-weight: bold; font-family: 'Signika', sans-serif;">Join Bet</h1>
+        </div>
+        <form action="/join-bet" method="post" style="display: flex; align-items: center; justify-content: center; height: 60%; background-color: transparent;">
+                <div class="input-box" style="background-color: transparent; height: 50%; width: 60%; display: flex; justify-content: center; align-items: center;">
+                    <input type="text" name="id" placeholder="Enter invite code..." style="background-color: var(--card-bg-color); padding: 20px; border: none; outline: none; border-radius: 20px 0 0 20px; height: 100%; width: 90%; font-family: 'Signika', sans-serif; font-size: 1.2rem; color: var(--text-white); font-weight: bold;">
+                </div>
+                <button type="submit" style="background-color: var(--sport-green); color: var(--background-color); border: none; font-size: .9rem; font-weight: bold; height: 50%; width: 15%; border-radius: 0 20px 20px 0;" >Send</button>
+        </form>
+        
+    </section>
+
+    <!-- JOIN PARTY BOX POSITION ABSOLUTE -->
+
+    <section id="party" style="display: none; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 5; border-radius: 10px; height: 20vh; width: 95vw; background-image: linear-gradient(45deg, var(--card-bg-color), var(--card-light-gray-grad)); margin-inline: auto; ">
+        <div class="reg" style="cursor: pointer; position: relative; margin-top: 5px; display: flex; justify-content: center; align-items: center; height: 20%;">
+            <div id="close-party" style="position: absolute; right: 0; top: 0; height: 100%; display: flex; justify-content: center; align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24" style="fill: var(--text-white);transform: scaleY(-1);"><path d="m8.5 18 3.5 4 3.5-4H19c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2H5c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h3.5zM7.293 6.707l1.414-1.414L12 8.586l3.293-3.293 1.414 1.414L13.414 10l3.293 3.293-1.414 1.414L12 11.414l-3.293 3.293-1.414-1.414L10.586 10 7.293 6.707z"></path></svg>
+            </div>
+            <h1 style="color: var(--text-white); font-size: 1.5rem; font-weight: bold; font-family: 'Signika', sans-serif;">Join Party</h1>
+        </div>
+        <form action="/join-party" method="post" style="display: flex; align-items: center; justify-content: center; height: 60%; background-color: transparent;">
+                <div class="input-box" style="background-color: transparent; height: 50%; width: 60%; display: flex; justify-content: center; align-items: center;">
+                    <input type="text" name="id" placeholder="Enter invite code..." style="background-color: var(--card-bg-color); padding: 20px; border: none; outline: none; border-radius: 20px 0 0 20px; height: 100%; width: 90%; font-family: 'Signika', sans-serif; font-size: 1.2rem; color: var(--text-white); font-weight: bold;">
+                </div>
+                <button type="submit" style="background-color: var(--sport-green); color: var(--background-color); font-size: .9rem; font-weight: bold; height: 50%; width: 15%; border-radius: 0 20px 20px 0; border: none;" >Send</button>
+        </form>
+        
+    </section>
+
+
+
+    <header style="position: relative; height: 10svh; width: 100vw; display: flex; align-items: center; justify-content: space-between;">
+        <section style="display: flex; align-items: center; justify-content: center;">
+            <div style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-inline: 5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 269.04 342.49">
+                       <path d="M430.79 369.07a131.3 131.3 0 0 1 26.76 17c-.66-4-3.76-22.78-5.75-34.29 8.63 6 29.42 20.35 36.05 25 2.65-8.41 12.39-36.05 12.39-36.05s17.25 27.67 19.91 32.27c3.76-3.54 24.11-26.54 29.42-32.29 1.11 13.05 2 32.07 2.43 34.73a131.5 131.5 0 0 1 22.12-22.78c-5.75 11.28-8.41 26.76-9.73 39.37a147 147 0 0 0-40.7-5.75A150.8 150.8 0 0 0 448.92 406c-3.76-12.16-9.73-27.2-18.13-36.93m207.48 237.56-11.94-13.27c-3.32 35.61-21 66.14-53.09 87.37l-5.09-19.24c-27.43 19.69-74.1 32.29-114.36 9.73 5.09-25.44 9.29-51.32 0-82.28-22.34 34.29-42 48-42 48-15-25.44-13.71-76.09-9.29-91.13l-25 7.74c0-17 12.39-53.09 30.08-73.44l-15.26-2.43a148.3 148.3 0 0 1 46-54.64c-6 9.73-6 32.29 11.06 40.92-7.3-12.61-8-28.31-.66-36.72 7.74-8.41 20.35-5.31 28.31 1.11-2.43-7.08-9.73-15.93-19.91-16.59 19.91-10.4 43.13-15.93 67-15.93 4.65 0 9.07.44 13.27.66 7.08 2.65 17.25 12.61 22.12 19a35.1 35.1 0 0 0-3.76-15.93c26.1 6.41 38.71 17 43.8 22.12 1.11 11.28 4.42 17.92 9.07 28.76-8.41-9.29-29.64-24.77-40-28.31 0 0-1.11 9.73-4.42 14.38-20.35-14.6-30.08-18.36-30.08-18.36-22.56 2.21-36.5 11.06-44.46 17.7l6.64 5.75c-13.27 4-22.12 15.7-22.12 15.7 0 .44 11.94 2 11.94 2s-1.33 13.94 16.37 22.78c15 7.3 36.28-1.77 56.63 6.41-13.27-15.26-22.34-22.34-22.34-22.34a55.5 55.5 0 0 0-9.07-1.11c-4.65 0-11.72 1.11-19-2-3.76-1.33-8-4-11.06-6 0 0 9.29-9.73 23-11.72 0 0 12.39 3.32 22.12 10.62 6.41-6.41 13.27-6 13.27-6s-6.64 6.41-4.65 13.71a256 256 0 0 1 20.35 21c10.62-6 34.06-4.65 38.93 1.11-6-8-15-14.38-21.68-19.91-.66-3.1-8.41-13.27-9.29-14.38a45.9 45.9 0 0 1 13.27 7.74 16.85 16.85 0 0 1 9.73-6.41c4.65 4 5.75 10 5.31 11.06a12.84 12.84 0 0 1-4.42 3.76l11.28 12.39 1.11-9.07c26.27 37.48 40.65 81.06 22.29 135.69m-49.55-80.74v-19.24a61.8 61.8 0 0 1-17.92-10c-18.58 2.65-40.92 21.46-40.92 21.46s7.74 14.38 15.93 30.08c14.6 1.59 36.27-16.54 42.91-22.3m18.58 34.95a33.26 33.26 0 0 0-8-15.26L585 546s-19.69 16.59-31.41 17l10 18.58c6.64-1.33 17.92-6.64 22.78-11.94a68.4 68.4 0 0 1 2.43 21.68c6.55-4.15 15.62-14.32 18.5-30.48m6-63.7a148 148 0 0 1-13.3 9.73v19.24c5.31 5.75 10.4 10.62 14.38 19.24 7.3-12.82 5.53-32.06-1.11-48.21Z"
+                             fill="var(--sport-green)" transform="translate(-377.48 -340.75)"/>
+                </svg>
+            </div>
+            <h1 style="font-weight: 900; font-size: 1.35rem; color: var(--text-white); font-family: 'Signika', sans-serif;">Fantasy</h1>
+        </section>
+        <section style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="margin-right: 20px; font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: var(--muted-gray); font-size: 1.1rem;"><%= user.userName %></span>
+            <button id="menu-btn" style="cursor: pointer; background-color: transparent; border: none; outline: none; width: 48px; height: 48px; display: flex; justify-content: center; align-items: center; position: relative;">
+                <div class="hambugger"></div>    
+            </button>
+        </section>
+        <nav class="navbar">
+           <ul>
+              <li><a href="/deposit">Deposit</a></li>
+              <li><a href="/withdraw">Withdraw</a></li>
+              <li><a href="/transactions">Transactions</a></li>
+              <li><a href="https://wa.me/254708514191" style="display: flex; align-items: center; justify-content: center;">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: var(--neon-green);transform: msFilter"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.403 5.633A8.919 8.919 0 0 0 12.053 3c-4.948 0-8.976 4.027-8.978 8.977 0 1.582.413 3.126 1.198 4.488L3 21.116l4.759-1.249a8.981 8.981 0 0 0 4.29 1.093h.004c4.947 0 8.975-4.027 8.977-8.977a8.926 8.926 0 0 0-2.627-6.35m-6.35 13.812h-.003a7.446 7.446 0 0 1-3.798-1.041l-.272-.162-2.824.741.753-2.753-.177-.282a7.448 7.448 0 0 1-1.141-3.971c.002-4.114 3.349-7.461 7.465-7.461a7.413 7.413 0 0 1 5.275 2.188 7.42 7.42 0 0 1 2.183 5.279c-.002 4.114-3.349 7.462-7.461 7.462m4.093-5.589c-.225-.113-1.327-.655-1.533-.73-.205-.075-.354-.112-.504.112s-.58.729-.711.879-.262.168-.486.056-.947-.349-1.804-1.113c-.667-.595-1.117-1.329-1.248-1.554s-.014-.346.099-.458c.101-.1.224-.262.336-.393.112-.131.149-.224.224-.374s.038-.281-.019-.393c-.056-.113-.505-1.217-.692-1.666-.181-.435-.366-.377-.504-.383a9.65 9.65 0 0 0-.429-.008.826.826 0 0 0-.599.28c-.206.225-.785.767-.785 1.871s.804 2.171.916 2.321c.112.15 1.582 2.415 3.832 3.387.536.231.954.369 1.279.473.537.171 1.026.146 1.413.089.431-.064 1.327-.542 1.514-1.066.187-.524.187-.973.131-1.067-.056-.094-.207-.151-.43-.263"></path></svg>
+                     Help Chat
+                  </a>
+              </li>
+              <li id="bottom-li" >
+                
+                <a href="/auth/logout" style="display: flex; align-items: center; justify-content: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: red;transform: msFilter"><path d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z"></path><path d="M11 2h2v10h-2z"></path></svg>
+                    Logout
+                </a>
+              </li>
+           </ul>
+        </nav>
+       
+        <% if (locals.messages) { %>
+          <p style="color: var(--neon-red); background-color: var(--text-white); text-align: center; border-radius: 4px; font-size: 1.2rem; width: 80%; top: 100%; left: 50%; transform: translate(-50%, -50%);
+           font-weight: bold; position: absolute;"><%= messages %></p>
+          <% } %>
+        
+    </header>
+    <main style="height: 90svh; width: 100vw; background-color: transparent;">
+                       
+                       <!-- CHECKING IF REGISTERED  -->
+
+     
+         <section class="accnt-wrapper" style="padding-inline: 20px; width: 100vw; height: 15%; display: flex; justify-content: flex-start; align-items: center; background-color: transparent;">
+            <div class="balance" style="width: fit-content; padding-inline: 5px; height: 40%; display: flex; align-items: center; justify-content: space-around; background-color: var(--card-bg-color); border-radius: 10px;">
+
+                <h2 style="color: var(--text-white); margin-inline: 4px;  font-family: 'Poppins', sans-serif; font-size: 1.3rem; text-wrap: nowrap;">KES <%= user.totalBalance %></h2>
+                    
+                
+
+                <form action="/refresh?_method=PATCH" method="post" id="refresh-form" style=" background-color: transparent; height: fit-content; width: clamp(30px, 20%, 60px);">
+                    
+                    <% if (!pendingTranx) { %>
+
+                        <input type="text" value="none" name="tranxId"  hidden/>
+                        <input type="text" value="<%= user._id %>" name="userId" hidden/>
+
+                    <% } else { %>
+
+                        <input type="text" value="<%= pendingTranx._id %>" name="tranxId"  hidden/>
+                        <input type="text" value="<%= user._id %>" name="userId" hidden/>
+                        
+                    <% } %>
+                    
+                    <button type="submit" id="refresh" style="cursor: pointer; background-color: transparent; outline: none; border: none; position: relative; height: 100%; width: 100%; display: flex; align-items: center; justify-content: center;">
+
+                     <!-- TODO: ICON FOR ALERT PENDING  -->
+                      
+                     <% if (pendingTranx) { %>
+
+                        <ion-icon id="alert" style="color: var(--neon-red); position: absolute; top: -50%; right: -30%; font-size: 2rem;" name="alert-outline"></ion-icon>
+                        
+                     <% } else { %>
+                            
+                        <ion-icon id="alert" style="display: none; color: var(--neon-red); position: absolute; top: -50%; right: -30%; font-size: 2rem;" name="alert-outline"></ion-icon>
+
+                     <% } %>
+
+                      
+                      <svg class="refresh-icon" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: var(--text-white);transform: msFilter"><path d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787 5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0 4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501 6.921 6.921 0 0 0-1.315-.408 7.079 7.079 0 0 0-2.819 0 6.94 6.94 0 0 0-1.316.409 7.04 7.04 0 0 0-3.08 2.534 6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4 4-4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138 4.943 4.943 0 0 1-1.787.752 5.073 5.073 0 0 1-2.017 0 4.956 4.956 0 0 1-1.787-.752 5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0 7.031 7.031 0 0 0 4.395-2.945 6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4-4 4z"></path></svg>
+                      
+                  </button>
+                </form>    
+                
+            </div>
+            <div class="settings" style="position: relative; display: flex; align-items: center; justify-content: center; height: 40%; width: fit-content; padding-inline: 12px; margin-inline: 10px; border-radius: 10px; background-color: var(--card-bg-color);">
+                  
+                <%   if (user.mpesa == 254) { %> 
+
+                    <ion-icon id="alert" style="display: block; color: var(--neon-red); position: absolute; top: -17%; right: 0; font-size: 2rem;" name="alert-outline"></ion-icon>
+                    
+                <% } else { %>
+                        
+                    <ion-icon id="alert" style="display: none; color: var(--neon-red); position: absolute; top: -17%; right: 0; font-size: 2rem;" name="alert-outline"></ion-icon>
+
+                <% } %>
+
+                <a style="border-radius: 50%;" href="/settings"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" style="fill: var(--muted-gray);transform: msFilter"><path d="M12 16c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.084 0 2 .916 2 2s-.916 2-2 2-2-.916-2-2 .916-2 2-2z"></path><path d="m2.845 16.136 1 1.73c.531.917 1.809 1.261 2.73.73l.529-.306A8.1 8.1 0 0 0 9 19.402V20c0 1.103.897 2 2 2h2c1.103 0 2-.897 2-2v-.598a8.132 8.132 0 0 0 1.896-1.111l.529.306c.923.53 2.198.188 2.731-.731l.999-1.729a2.001 2.001 0 0 0-.731-2.732l-.505-.292a7.718 7.718 0 0 0 0-2.224l.505-.292a2.002 2.002 0 0 0 .731-2.732l-.999-1.729c-.531-.92-1.808-1.265-2.731-.732l-.529.306A8.1 8.1 0 0 0 15 4.598V4c0-1.103-.897-2-2-2h-2c-1.103 0-2 .897-2 2v.598a8.132 8.132 0 0 0-1.896 1.111l-.529-.306c-.924-.531-2.2-.187-2.731.732l-.999 1.729a2.001 2.001 0 0 0 .731 2.732l.505.292a7.683 7.683 0 0 0 0 2.223l-.505.292a2.003 2.003 0 0 0-.731 2.733zm3.326-2.758A5.703 5.703 0 0 1 6 12c0-.462.058-.926.17-1.378a.999.999 0 0 0-.47-1.108l-1.123-.65.998-1.729 1.145.662a.997.997 0 0 0 1.188-.142 6.071 6.071 0 0 1 2.384-1.399A1 1 0 0 0 11 5.3V4h2v1.3a1 1 0 0 0 .708.956 6.083 6.083 0 0 1 2.384 1.399.999.999 0 0 0 1.188.142l1.144-.661 1 1.729-1.124.649a1 1 0 0 0-.47 1.108c.112.452.17.916.17 1.378 0 .461-.058.925-.171 1.378a1 1 0 0 0 .471 1.108l1.123.649-.998 1.729-1.145-.661a.996.996 0 0 0-1.188.142 6.071 6.071 0 0 1-2.384 1.399A1 1 0 0 0 13 18.7l.002 1.3H11v-1.3a1 1 0 0 0-.708-.956 6.083 6.083 0 0 1-2.384-1.399.992.992 0 0 0-1.188-.141l-1.144.662-1-1.729 1.124-.651a1 1 0 0 0 .471-1.108z"></path></svg></a>
+
+            </div>
+
+            <a href="/public" class="public-bets" style="text-decoration: none; height: 40%; position: relative; display: flex; align-items: center; justify-content: center;  cursor: pointer; width: clamp(60px, 18%, 70px); border-radius: 25px; margin-left: 5px; border: 1px solid var(--card-light-gray-grad);">
+                 
+                <% if (public === 0 ) { %>
+
+                    <div class="count" style="position: absolute; top: -5px; right: 2px; z-index: 2; height: 22px; width: 22px; display: none; align-items: center; justify-content: center; border-radius: 50%; background-color: var(--neon-red); text-align: center;">
+                        <p style="font-weight: bold; color: var(--text-white);" ><%= public %></p>
+                    </div>
+
+                <% } else { %>
+
+                    <div class="count" style="position: absolute; top: -5px; right: 2px; z-index: 2; height: 22px; width: 22px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-color: var(--neon-red); text-align: center;">
+                        <p style="font-weight: bold; color: var(--text-white);" ><%= public %></p>
+                    </div>
+
+                <% } %>
+
+                <h2 style="color: var(--muted-gray); margin-inline: 2px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: bold; font-size: .95rem; text-wrap: nowrap;">Public</h2> 
+            </a>
+
+            <a id="live-cont" href="/live" style="position: relative; text-decoration: none; display: flex; align-items: center; justify-content: center; cursor: pointer; height: 40%; width: clamp(60px, 18%, 70px); border-radius: 25px; border: 1px solid var(--neon-green); margin-left: 15px;">
+                   <!--! RENDERED IN JAVASCRIPT  -->
+            </a>
+
+        </section>
+        
+         <% if (user.teamId == 'none') { %>
+                  
+            <section class="team-info" style="width: 100vw; height: 15%; background-color: transparent; display: flex; align-items: center; justify-content: center; ">
+        
+                                         <!-- BEFORE REGISTRATION  -->
+                     <a href="/search" class="register" style="text-decoration: none; display: flex; justify-content: center; align-items: center; height: 60%; width: 70%; border-radius: 20px; background-color: var(--card-bg-color);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: var(--text-white);transform: msFilter"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                        <h1 style="font-family: 'Signika', sans-serif; font-size: 1.2rem; color: var(--text-white); margin-left: 5px; font-size: 1.2rem;" >Register Fpl Team</h1>
+                     </a>
+ 
+
+            </section>
+             
+            <% } else { %>
+                   
+                <section class="team-info" style="width: 100vw; height: 15%; background-color: transparent; display: flex; align-items: center; justify-content: center; ">
+              
+                          <!-- After Registration  -->
+
+                    <div class="team-info" style="position: relative; display: flex; justify-content: space-between; height: 65%; width: 96%; border-radius: 15px; background: linear-gradient(45deg, var(--card-bg-color), var(--card-light-gray-grad)) ; box-shadow: 0 2px 4px 0 var(--neon-green);" >
+               
+                        <div class="team-info" style="padding: 10px;  display: flex; flex-flow: column nowrap; justify-content: center; align-items: flex-start; width: 50%; height: 100%;">
+                        
+                           <h3 style="padding-right: 10px; text-wrap: nowrap; font-size: 1rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: var(--text-white); font-weight: bold;"><%= user.teamName %></h3>
+                    
+                           <p style="font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: var(--muted-gray); font-size: .8rem;" ><%= user.managerName %></p>
+                           
+                        </div>
+                        
+                        <p style="position: absolute; left: 50%; top: 80%; transform: translate(-50%, -50%); font-family: 'Signika', sans-serif; color: var(--neon-red); font-size: .85rem;" ><%= user.teamId %></p>
+                         
+
+                        <div class="points-wrapper" style="height: 100%; width: 20%; background-color: transparent; display: flex; justify-content: flex-end; align-items: center;">
+                           
+                            <% if ( user.favTeam == null ) { %>
+
+                                 <div style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-inline: 5px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 269.04 342.49">
+                                       <path d="M430.79 369.07a131.3 131.3 0 0 1 26.76 17c-.66-4-3.76-22.78-5.75-34.29 8.63 6 29.42 20.35 36.05 25 2.65-8.41 12.39-36.05 12.39-36.05s17.25 27.67 19.91 32.27c3.76-3.54 24.11-26.54 29.42-32.29 1.11 13.05 2 32.07 2.43 34.73a131.5 131.5 0 0 1 22.12-22.78c-5.75 11.28-8.41 26.76-9.73 39.37a147 147 0 0 0-40.7-5.75A150.8 150.8 0 0 0 448.92 406c-3.76-12.16-9.73-27.2-18.13-36.93m207.48 237.56-11.94-13.27c-3.32 35.61-21 66.14-53.09 87.37l-5.09-19.24c-27.43 19.69-74.1 32.29-114.36 9.73 5.09-25.44 9.29-51.32 0-82.28-22.34 34.29-42 48-42 48-15-25.44-13.71-76.09-9.29-91.13l-25 7.74c0-17 12.39-53.09 30.08-73.44l-15.26-2.43a148.3 148.3 0 0 1 46-54.64c-6 9.73-6 32.29 11.06 40.92-7.3-12.61-8-28.31-.66-36.72 7.74-8.41 20.35-5.31 28.31 1.11-2.43-7.08-9.73-15.93-19.91-16.59 19.91-10.4 43.13-15.93 67-15.93 4.65 0 9.07.44 13.27.66 7.08 2.65 17.25 12.61 22.12 19a35.1 35.1 0 0 0-3.76-15.93c26.1 6.41 38.71 17 43.8 22.12 1.11 11.28 4.42 17.92 9.07 28.76-8.41-9.29-29.64-24.77-40-28.31 0 0-1.11 9.73-4.42 14.38-20.35-14.6-30.08-18.36-30.08-18.36-22.56 2.21-36.5 11.06-44.46 17.7l6.64 5.75c-13.27 4-22.12 15.7-22.12 15.7 0 .44 11.94 2 11.94 2s-1.33 13.94 16.37 22.78c15 7.3 36.28-1.77 56.63 6.41-13.27-15.26-22.34-22.34-22.34-22.34a55.5 55.5 0 0 0-9.07-1.11c-4.65 0-11.72 1.11-19-2-3.76-1.33-8-4-11.06-6 0 0 9.29-9.73 23-11.72 0 0 12.39 3.32 22.12 10.62 6.41-6.41 13.27-6 13.27-6s-6.64 6.41-4.65 13.71a256 256 0 0 1 20.35 21c10.62-6 34.06-4.65 38.93 1.11-6-8-15-14.38-21.68-19.91-.66-3.1-8.41-13.27-9.29-14.38a45.9 45.9 0 0 1 13.27 7.74 16.85 16.85 0 0 1 9.73-6.41c4.65 4 5.75 10 5.31 11.06a12.84 12.84 0 0 1-4.42 3.76l11.28 12.39 1.11-9.07c26.27 37.48 40.65 81.06 22.29 135.69m-49.55-80.74v-19.24a61.8 61.8 0 0 1-17.92-10c-18.58 2.65-40.92 21.46-40.92 21.46s7.74 14.38 15.93 30.08c14.6 1.59 36.27-16.54 42.91-22.3m18.58 34.95a33.26 33.26 0 0 0-8-15.26L585 546s-19.69 16.59-31.41 17l10 18.58c6.64-1.33 17.92-6.64 22.78-11.94a68.4 68.4 0 0 1 2.43 21.68c6.55-4.15 15.62-14.32 18.5-30.48m6-63.7a148 148 0 0 1-13.3 9.73v19.24c5.31 5.75 10.4 10.62 14.38 19.24 7.3-12.82 5.53-32.06-1.11-48.21Z"
+                                       fill="var(--sport-green)" transform="translate(-377.48 -340.75)"/>
+                                    </svg>
+                                 </div>
+
+                            <% } else { %>
+                                    
+                                <img src="/logos/<%= user.favTeam %>.png" alt="PL" style="margin-right: 5px;" width="40" height="40">
+                                
+                            <% } %>
+                            
+                    
+                        </div>      
+                    </div> 
+                    
+                </section>
+
+              <% } %>
+       
+     
+    
+        
+        <section class="bets">
+            
+            <div class="head">
+                <div class="details" style="height: 60%; width: 100%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; border-radius: 25px 25px 0 0;">
+                     <h1 style="margin-bottom: 5px; font-size: 1.4rem; color: var(--text-white); font-weight: bold; font-family: 'Signika', sans-serif;">Head to Head</h1>
+                     <p style="text-align: center; text-wrap: wrap; font-size: .85rem; color: var(--muted-gray); font-weight: bold;">Place Head to Head Bets with other FPL managers</p>
+                     <p style="text-align: center; text-wrap: wrap; font-weight: bold; font-size: .83rem; color: var(--muted-gray);">Each Gameweek has a deadline to place bets</p>
+                     <div class="icons" style="display: flex; justify-content: center; align-items: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: var(--neon-green);transform: msFilter"><path d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h17z"></path></svg>
+                        <p style="color: var(--neon-green); font-size: 1.15rem;" >vs</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: var(--neon-green);transform: msFilter"><path d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h17z"></path></svg>
+                     </div>
+                </div>
+                <div class="buttons" style="height: 40%; width: 100%; background-color: transparent; border-radius: 0 0 25px 25px; display: flex; justify-content: space-evenly; align-items: center;">
+                    <a href="/bet-head" style="text-decoration: none; height: 60%; width: 40%; border-radius: 10px; display: flex; justify-content: center; align-items: center; background-color: var(--sport-green);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: var(--background-color);transform: msFilter"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                        <h1 style="text-wrap: nowrap; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1rem; color: var(--background-color); margin-left: 2px;">Create Bet</h1>
+                    </a>
+                    <button class="join-head" style="height: 60%; width: 40%; background-color: var(--card-light-gray-grad); cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 10px; outline: none; border: none;">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: var(--text-white);transform: msFilter"><path d="M13 11H5v2h8v3l4-4-4-4v3zM19 3h2v3h-2zM19 8h2v3h-2zM19 13h2v3h-2zM19 18h2v3h-2z"></path></svg>
+                          <h1 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1rem; color: var(--text-white);">Join invite</h1>
+                    </button>
+                </div>
+            </div>
+
+            <div class="party">
+                
+                <div class="details" style="padding-top: 10px; height: 60%; width: 100%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; border-radius: 25px 25px 0 0;">
+                    <h1 style="margin-bottom: 5px; font-size: 1.4rem; color: var(--text-white); font-family: 'Signika', sans-serif; font-weight: bold;" >Party</h1>
+                    <p style="text-align: center; text-wrap: wrap; font-size: .85rem; color: var(--muted-gray); font-weight: bold;">Place group Bets for a race to top 3 fpl managers</p>
+                    <p style="text-align: center; text-wrap: wrap; font-weight: bold; font-size: .83rem; color: var(--muted-gray);">Each Gameweek has a deadline to place bets</p>
+                    <div class="icons" style="display: flex; justify-content: center; align-items: center;">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: var(--neon-green);transform: msFilter"><path d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h17z"></path></svg>
+                       <p style="color: var(--neon-green); font-size: 1.15rem;" >vs</p>
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: var(--neon-green);transform: msFilter"><path d="M9.5 12c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm1.5 1H8c-3.309 0-6 2.691-6 6v1h15v-1c0-3.309-2.691-6-6-6z"></path><path d="M16.604 11.048a5.67 5.67 0 0 0 .751-3.44c-.179-1.784-1.175-3.361-2.803-4.44l-1.105 1.666c1.119.742 1.8 1.799 1.918 2.974a3.693 3.693 0 0 1-1.072 2.986l-1.192 1.192 1.618.475C18.951 13.701 19 17.957 19 18h2c0-1.789-.956-5.285-4.396-6.952z"></path></svg>
+                    </div>
+               </div>
+               
+               <div class="buttons" style="height: 40%; width: 100%; background-color: transparent; border-radius: 0 0 25px 25px; display: flex; justify-content: space-evenly; align-items: center;">
+                   <a href="/bet-party" style="text-decoration: none; height: 60%; width: 40%; border-radius: 10px; display: flex; justify-content: center; align-items: center; background-color: var(--sport-green);">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: var(--background-color);transform: msFilter"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                       <h1 style="text-wrap: nowrap; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1rem; color: var(--background-color); margin-left: 2px;">Create Party</h1>
+                   </a>
+                   <button class="join-party" style="height: 60%; width: 40%; background-color: var(--card-light-gray-grad); cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 10px; outline: none; border: none;">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: var(--text-white);transform: msFilter"><path d="M13 11H5v2h8v3l4-4-4-4v3zM19 3h2v3h-2zM19 8h2v3h-2zM19 13h2v3h-2zM19 18h2v3h-2z"></path></svg>
+                         <h1 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1rem; color: var(--text-white); margin-left: 2px;">Join Party</h1>
+                   </button>
+               </div>
+            </div>
+        </section>
+        
+        <section class="links" style="width: 100vw; height: 15%; display: flex; align-items: center; justify-content: space-evenly;">
+              
+              <a href="/myteam" class="my-teams">
+
+                 <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; margin-inline: 5px;">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 269.04 342.49">
+                       <path d="M430.79 369.07a131.3 131.3 0 0 1 26.76 17c-.66-4-3.76-22.78-5.75-34.29 8.63 6 29.42 20.35 36.05 25 2.65-8.41 12.39-36.05 12.39-36.05s17.25 27.67 19.91 32.27c3.76-3.54 24.11-26.54 29.42-32.29 1.11 13.05 2 32.07 2.43 34.73a131.5 131.5 0 0 1 22.12-22.78c-5.75 11.28-8.41 26.76-9.73 39.37a147 147 0 0 0-40.7-5.75A150.8 150.8 0 0 0 448.92 406c-3.76-12.16-9.73-27.2-18.13-36.93m207.48 237.56-11.94-13.27c-3.32 35.61-21 66.14-53.09 87.37l-5.09-19.24c-27.43 19.69-74.1 32.29-114.36 9.73 5.09-25.44 9.29-51.32 0-82.28-22.34 34.29-42 48-42 48-15-25.44-13.71-76.09-9.29-91.13l-25 7.74c0-17 12.39-53.09 30.08-73.44l-15.26-2.43a148.3 148.3 0 0 1 46-54.64c-6 9.73-6 32.29 11.06 40.92-7.3-12.61-8-28.31-.66-36.72 7.74-8.41 20.35-5.31 28.31 1.11-2.43-7.08-9.73-15.93-19.91-16.59 19.91-10.4 43.13-15.93 67-15.93 4.65 0 9.07.44 13.27.66 7.08 2.65 17.25 12.61 22.12 19a35.1 35.1 0 0 0-3.76-15.93c26.1 6.41 38.71 17 43.8 22.12 1.11 11.28 4.42 17.92 9.07 28.76-8.41-9.29-29.64-24.77-40-28.31 0 0-1.11 9.73-4.42 14.38-20.35-14.6-30.08-18.36-30.08-18.36-22.56 2.21-36.5 11.06-44.46 17.7l6.64 5.75c-13.27 4-22.12 15.7-22.12 15.7 0 .44 11.94 2 11.94 2s-1.33 13.94 16.37 22.78c15 7.3 36.28-1.77 56.63 6.41-13.27-15.26-22.34-22.34-22.34-22.34a55.5 55.5 0 0 0-9.07-1.11c-4.65 0-11.72 1.11-19-2-3.76-1.33-8-4-11.06-6 0 0 9.29-9.73 23-11.72 0 0 12.39 3.32 22.12 10.62 6.41-6.41 13.27-6 13.27-6s-6.64 6.41-4.65 13.71a256 256 0 0 1 20.35 21c10.62-6 34.06-4.65 38.93 1.11-6-8-15-14.38-21.68-19.91-.66-3.1-8.41-13.27-9.29-14.38a45.9 45.9 0 0 1 13.27 7.74 16.85 16.85 0 0 1 9.73-6.41c4.65 4 5.75 10 5.31 11.06a12.84 12.84 0 0 1-4.42 3.76l11.28 12.39 1.11-9.07c26.27 37.48 40.65 81.06 22.29 135.69m-49.55-80.74v-19.24a61.8 61.8 0 0 1-17.92-10c-18.58 2.65-40.92 21.46-40.92 21.46s7.74 14.38 15.93 30.08c14.6 1.59 36.27-16.54 42.91-22.3m18.58 34.95a33.26 33.26 0 0 0-8-15.26L585 546s-19.69 16.59-31.41 17l10 18.58c6.64-1.33 17.92-6.64 22.78-11.94a68.4 68.4 0 0 1 2.43 21.68c6.55-4.15 15.62-14.32 18.5-30.48m6-63.7a148 148 0 0 1-13.3 9.73v19.24c5.31 5.75 10.4 10.62 14.38 19.24 7.3-12.82 5.53-32.06-1.11-48.21Z"
+                             fill="var(--muted-gray)" transform="translate(-377.48 -340.75)"/>
+                    </svg>
+                 </div>
+                 
+                 <h3 style="color: var(--muted-gray); font-size: .85rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; margin-top: 8px; font-weight: bold;">MyTeams</h3>
+              </a>
+
+              <a href="/bets" class="all-bets">
+
+                    <% if ( head === 0 ) { %> 
+                        <div class="count" style="position: absolute; top: 2px; right: 2px; z-index: 2; height: 22px; width: 22px; display: none; align-items: center; justify-content: center; border-radius: 50%; background-color: var(--neon-green); text-align: center;">
+                            <p style="font-weight: bold; color: var(--text-white);"><%= head %></p>
+                         </div>
+                     <% } else { %>
+                        <div class="count" style="position: absolute; top: 2px; right: 2px; z-index: 2; height: 22px; width: 22px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-color: var(--neon-green); text-align: center;">
+                            <p style="font-weight: bold; color: var(--text-white);"><%= head %></p>
+                         </div>
+                       <%  }  %>
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: var(--muted-gray);transform: msFilter"><path d="M8 13v4H6v2h3v2h2v-2h2v2h2v-2.051c1.968-.249 3.5-1.915 3.5-3.949 0-1.32-.65-2.484-1.64-3.213A3.982 3.982 0 0 0 18 9c0-1.858-1.279-3.411-3-3.858V3h-2v2h-2V3H9v2H6v2h2v6zm6.5 4H10v-4h4.5c1.103 0 2 .897 2 2s-.897 2-2 2zM10 7h4c1.103 0 2 .897 2 2s-.897 2-2 2h-4V7z"></path></svg>
+                 <h3 style="color: var(--muted-gray); font-size: .85rem; margin-top: 3px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bold;">H-2-H</h3>
+              </a>
+
+              <a href="/parties" class="Rankings">
+
+                     <% if ( party === 0 )  { %>
+                        <div class="count" style="position: absolute; top: 2px; right: 2px; z-index: 2; height: 22px; width: 22px; display: none; align-items: center; justify-content: center; border-radius: 50%; background-color: var(--neon-green); text-align: center;">
+                            <p style="font-weight: bold; color: var(--text-white);" ><%= party %></p>
+                         </div>
+                     <%  } else { %>
+                        <div class="count" style="position: absolute; top: 2px; right: 2px; z-index: 2; height: 22px; width: 22px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-color: var(--neon-green); text-align: center;">
+                            <p style="font-weight: bold; color: var(--text-white);" ><%= party %></p>
+                         </div>
+                      <% } %>
+               
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: var(--muted-gray);transform: msFilter"><path d="M2 2h2v20H2z"></path><rect x="6" y="13" width="16" height="6" rx="1"></rect><rect x="6" y="5" width="12" height="6" rx="1"></rect></svg>
+                <h3 style="color: var(--muted-gray); font-size: .85rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; margin-top: 3px; font-weight: bold;">Party</h3>
+              </a>
+
+              <a href="/topdollar" class="top-earners">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: var(--muted-gray);transform: msFilter"><path d="M15.999 8.5h2c0-2.837-2.755-4.131-5-4.429V2h-2v2.071c-2.245.298-5 1.592-5 4.429 0 2.706 2.666 4.113 5 4.43v4.97c-1.448-.251-3-1.024-3-2.4h-2c0 2.589 2.425 4.119 5 4.436V22h2v-2.07c2.245-.298 5-1.593 5-4.43s-2.755-4.131-5-4.429V6.1c1.33.239 3 .941 3 2.4zm-8 0c0-1.459 1.67-2.161 3-2.4v4.799c-1.371-.253-3-1.002-3-2.399zm8 7c0 1.459-1.67 2.161-3 2.4v-4.8c1.33.239 3 .941 3 2.4z"></path></svg>
+                <h3 style="color: var(--muted-gray); font-size: .85rem; font-style: italic; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; margin-top: 3px; font-weight: bold;">TopEarners</h3>
+              </a>
+
+        </section>
+
+    </main>
+
+
+
+
+    <script src="main.js"></script>
+    <script>
+
+        const liveContainer = document.getElementById('live-cont')
+        const dot=(col)=>`<div style="width:6px;height:6px;border-radius:50%;background:${col};box-shadow:0 0 6px ${col};animation:throb 1.8s ease-in-out infinite;flex-shrink:0"></div>`;
+
+        liveContainer.innerHTML = ` ${dot('#1ed760')} 
+                                     <h2 style="color: var(--neon-green); margin-left: 5px;  font-family: sans-serif; font-weight: bold;  font-size: .95rem;">Live</h2> 
+                                     <img src="/logos/label_new_yellow.png" alt="" style="position: absolute; top: -5px; right: 2px; z-index: 1; width: 20px; height: 20px;">
+                                   `
+    </script>
+</body>
+</html>

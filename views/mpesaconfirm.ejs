@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm</title>
+    <link rel="stylesheet" href="mpesa.css">
+    <script defer src="mpesa.js"></script>
+    <style>
+        :root {
+          --background-color: #121212;
+          --card-bg-color: #212121;
+          --card-light-gray-grad: #535353;
+          --neon-green: #1ed760;
+          --sport-green: #1db954;
+          --text-white: #FFFFFF;
+          --muted-gray: #B3B3B3;
+          --neon-red: #FF073A;
+        }
+    </style>
+</head>
+
+<body style="background-color: rgba(0, 255, 0, 0.21); position: relative; height: 100svh; width: 100vw;">
+
+    <header
+        style="height: 8svh; width: 100vw; display: flex; align-items: center; justify-content: space-between; padding-inline: 10px;">
+        <img src="/logos/mpesa.png" alt="Mpesa" width="120" height="70">
+        <img src="/logos/safaricom.png" alt="Safaricom" width="150" height="70">
+    </header>
+
+    <section class="error"
+        style="width: 100vw; height: 8svh; display: flex; align-items: center; justify-content: center;">
+
+        <!-- ! ALL ERROR MESSAGES DISPLAYED HERE -->
+        
+
+            <p id="flash" style="color: var(--neon-red); background-color: var(--text-white); text-align: center; border-radius: 4px; font-size: 1.2rem; font-style: italic; width: 90%;
+             font-weight: bold; font-family: 'Signika', sans-serif;">
+    
+            </p>
+
+            
+
+    </section>
+
+    <!-- TODO: TWO BOXES NEEDED, { Loading icon BOX }, { formBox comfirm patch BOX } -->
+    <!-- ! CURRENTLY DISPLAY SPINNING LOGO ON LOAD 5 SECONDS ITERATION -->
+
+    <!-- *  ////////// LOADING SPINNING BOX ERASED HERE ////////// -->
+
+    <!-- todo: Attach eventlisteners for form below  -->
+    <!-- ! CURRENTLY DISPLAY NONE -->
+
+    <form action="/mpesa?_method=PATCH" method="post" class="confirm-box">
+
+        <h1
+            style="text-align: center; text-wrap: wrap; color: var(--neon-green); margin-bottom: 10px; font-family: 'Signika', sans-serif; font-style: italic; font-size: 1.7rem; font-weight: bold;">
+            Safaricom STK initiated....</h1>
+        <article
+            style="display: flex; align-items: center; justify-content: space-evenly; width: 100%; margin-bottom: 5px;">
+            <svg class="small-spin" xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24"
+                style="fill: var(--sport-green);transform: msFilter">
+                <path
+                    d="M7.08 11.25A4.84 4.84 0 0 1 8 9.05L4.43 5.49A9.88 9.88 0 0 0 2 11.25zM9.05 8a4.84 4.84 0 0 1 2.2-.91V2a9.88 9.88 0 0 0-5.76 2.43zm3.7-6v5A4.84 4.84 0 0 1 15 8l3.56-3.56A9.88 9.88 0 0 0 12.75 2zM8 15a4.84 4.84 0 0 1-.91-2.2H2a9.88 9.88 0 0 0 2.39 5.76zm3.25 1.92a4.84 4.84 0 0 1-2.2-.92l-3.56 3.57A9.88 9.88 0 0 0 11.25 22zM16 9.05a4.84 4.84 0 0 1 .91 2.2h5a9.88 9.88 0 0 0-2.39-5.76zM15 16a4.84 4.84 0 0 1-2.2.91v5a9.88 9.88 0 0 0 5.76-2.39zm1.92-3.25A4.84 4.84 0 0 1 16 15l3.56 3.56A9.88 9.88 0 0 0 22 12.75z">
+                </path>
+            </svg>
+            <img src="/logos/mpesa.png" alt="MPESA" height="80" width="120" />
+        </article>
+        <div class="instructions"
+            style="margin-bottom: 10px; width: 100%; display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; background-color: #fff; height: 30%;">
+            <p id="tranx-message"  style="margin-bottom: 20px; color: #1F51FF; text-align: center; text-wrap: wrap; 
+           font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.1rem; font-style: italic; 
+           font-weight: bold;">An STK Prompt has been pushed to your Phone</p>
+            <p class="tranx-status" style="color: var(--sport-green); text-align: center; text-wrap: wrap; 
+           font-family: 'Signika', sans-serif; font-size: 1.4rem; font-style: italic; 
+           font-weight: bold;">Click to Complete Transaction </p>
+        </div>
+
+        <input id="merchant" type="text" name="reqid" value="<%= reqID %>" style="display: none;">
+
+        <button type="submit" id="confirm-btn" style="display: flex; align-items: center; justify-content: center; height: 8svh; width: 60%; border: none; outline: none; border-radius: 15px; font-size: 1.3rem; background-color: var(--sport-green); color: var(--text-white); font-family: 'Signika', sans-serif; font-weight: bold;
+         outline: none;">Complete</button>
+
+
+    </form>
+
+
+</body>
+
+</html>

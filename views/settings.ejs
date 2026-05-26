@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logos/plicon.png" type="images/x-icon" width="40" height="40">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+     <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <title>Settings</title>
+
+    <style>
+        * {
+            padding: 0;
+            border: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+          :root {
+          --background-color: #121212;
+          --card-bg-color: #212121;
+          --card-light-gray-grad: #535353;
+          --neon-green: #1ed760;
+          --sport-green: #1db954;
+          --text-white: #FFFFFF;
+          --muted-gray: #B3B3B3;
+          --neon-red: #FF073A;
+        }
+
+
+        @media  screen and ( min-aspect-ratio: 16/14 ) {
+
+            .payment-wrapper{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 50%;
+            }
+
+            .mpesa{
+                height: 100%;
+                width: 50%;
+            }
+
+            .paypal{
+                height: 100%;
+                width: 50%;
+            }
+            
+        }
+
+      
+
+        
+    </style>
+</head>
+<body style="height: 100svh; width: 100vw; background-color: var(--background-color);">
+
+    <header style="height: 10svh; width: 100vw; position: relative; display: flex; align-items: center; justify-content: space-between;">
+        <a href="/main" style="text-decoration: none; margin-left: 5px; display: flex; align-items: center; justify-content: center;">
+            <ion-icon name="arrow-round-back" style="font-weight: bold; color: var(--muted-gray); font-size: 2rem;"></ion-icon>
+            <h1 style="text-decoration: none; margin-inline: 3px; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.75rem; color: var(--muted-gray);">Settings</h1>
+        </a>
+        
+        <% if (locals.messages) { %>
+          <p style="position: absolute; color: var(--neon-red); background-color: aliceblue;  text-align: center; border-radius: 4px; font-size: 1.1rem; width: 80%; top: 100%; left: 50%; transform: translate(-50%, -50%);
+           font-weight: bold; position: absolute;"><%= messages %></p>
+        <% } %>
+        
+    </header>
+
+   
+
+    <section class="icon-profile" style="width: 100%; height: 20svh; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+
+        <img src="logos/XtreamICON.png" alt="PL" width="100" height="100">
+        <h1 style="font-family: 'Signika', sans-serif; color: var(--text-white); font-size: 1.8rem;"><%= user.userName %></h1>
+
+    </section>
+    <section class="payment-settings" style="width: 100%; height: 40svh;">
+        <div class="heading" style="padding-inline: 10px; height: 15%; width: 100%; background-color: var(--card-bg-color); display: flex; align-items: center; justify-content: start;">
+            <h1 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 1.5rem; color: var(--muted-gray);">Payment Details</h1>
+        </div>
+
+        <div class="payment-wrapper" style="height: 85%; width: 100%;">
+
+        <div class="mpesa" style="position: relative; height: 50%; width: 100%; background-color: var(--card-bg-color); display: flex; justify-content: space-between; align-items: center;">
+            <img src="logos/mpesa.png" alt="MPESA" width="80" height="90" style="margin-left: 10px;">
+            <p id="mpesa-number-value" style="font-family: 'Signika', sans-serif; font-weight: bold; font-size: 1.2rem; color: var(--text-white);"><%= user.mpesa %></p>
+            <button class="mpesa-edit-btn" style="cursor: pointer; margin-right: 10px; width: 20%; height: 25%; background-color: var(--neon-red); color: var(--text-white); display: flex; justify-content: center; align-items: center; outline: none; border-radius: 10px;">
+                <p style="margin-right: 5px; font-family: 'Signika', sans-serif; font-size: 1.2rem;">Edit</p>
+                <ion-icon style="color: white; font-size: .95rem;" name="create"></ion-icon>
+            </button>
+            <div class="mpesa-check" style="height: 25%; width: 20%; display: none; justify-content: center; align-items: center; position: absolute; right: 0; top: 70%; transform: translateY(-50%);">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: var(--neon-green);transform: msFilter"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path><path d="M9.999 13.587 7.7 11.292l-1.412 1.416 3.713 3.705 6.706-6.706-1.414-1.414z"></path></svg>
+                
+            </div>
+
+        </div>
+        <div class="paypal" style="position: relative; height: 50%; width: 100%; background-color: var(--card-bg-color); display: flex; justify-content: space-between; align-items: center;">
+            <img src="logos/paypal.png" alt="PAYPAL" width="70" height="40" style="margin-left: 10px;">
+             <p id="paypal-text-value" style="font-family: 'Signika', sans-serif; text-transform: lowercase; font-weight: bold; font-size: 1.05rem; color: var(--text-white);"><%= user.payPal %></p>
+            <button class="paypal-edit-btn" style="cursor: pointer; margin-right: 10px; width: 20%; height: 25%; background-color: var(--neon-red); color: var(--text-white); display: flex; justify-content: center; align-items: center; outline: none; border-radius: 10px;">
+                <p style="margin-right: 5px; font-family: 'Signika', sans-serif; font-size: 1.25rem;">Edit</p>
+                <ion-icon style="color: white; font-size: .95rem;" name="create"></ion-icon>
+            </button>
+             <div class="paypal-check" style="height: 25%; width: 20%; display: none; justify-content: center; align-items: center; position: absolute; right: 0; top: 70%; transform: translateY(-50%);">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: var(--neon-green);transform: msFilter"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path><path d="M9.999 13.587 7.7 11.292l-1.412 1.416 3.713 3.705 6.706-6.706-1.414-1.414z"></path></svg>
+                
+            </div>
+            
+
+        </div>
+
+        </div>
+
+
+    </section>
+         <!-- TODO: DISCLAIMER TO CLIENTS ON EFFECTS OF CHANGING PAYMENT DETAILS -->
+         <% if (user.mpesa == 254) { %>
+
+            <p style="display: none; max-height: fit-content; width: 100%; margin-top: 15px; font-style: italic; font-weight: bold; color: var(--neon-red); font-size: .75rem; text-align: center;">
+                Plese ensure you DON'T have any pending transactions before changing the payment details. The site will be granted plausible deniability if the client doesn't adhere to the instruction.
+            </p>
+            
+         <% } else { %>
+                
+            <p style="max-height: fit-content; width: 100%; margin-top: 15px; font-style: italic; font-weight: bold; color: var(--neon-red); font-size: .75rem; text-align: center;">
+                    Plese ensure you DON'T have any pending transactions before changing the payment details. The site will be granted plausible deniability if the client doesn't adhere to the instruction.
+            </p>
+
+         <% } %>
+
+
+    <section class="submit" style="width: 100%; height: 20svh;  width: 100%; display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; margin-top: 20px;">
+
+        <form action="/settings?_method=PATCH" method="post" class="settings-submit" style="display: none; margin-bottom: 20px; height: 30%; width: 40%; background-color: var(--sport-green); border-radius: 20px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.29), 0 6px 12px 0 rgba(0, 0, 0, 0.3);">
+            <input id="mpesa-input-submit" name="mpesaNumber" type="number" hidden/>
+            <input id="paypal-input-submit" name="paypalEmail" type="text"  hidden/>
+            <button type="submit"  style="cursor: pointer; background-color: transparent; height: 100%; width: 100%; color: var(--background-color); font-size: 1.4rem; font-weight: bold; font-family: 'Signika', sans-serif; display: flex; justify-content: center; align-items: center;">
+                SUBMIT
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: var(--background-color);transform: msFilter"><path d="M4 21h1V8H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2zM20 8h-7l1.122-3.368A2 2 0 0 0 12.225 2H12L7 7.438V21h11l3.912-8.596L22 12v-2a2 2 0 0 0-2-2z"></path></svg>
+            </button>
+        </form>
+        <button class="settings-cancel"  style="cursor: pointer; display: none; align-items: center; justify-content: center; height: 30%; width: 40%; color: var(--text-white); font-size: 1.4rem; font-family: 'Signika', sans-serif; font-weight: bold;  background-color: var(--neon-red); border-radius: 20px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.29), 0 6px 12px 0 rgba(0, 0, 0, 0.3);">
+            CANCEL
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: var(--text-white);transform: msFilter"><path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path><path d="M9 10h2v8H9zm4 0h2v8h-2z"></path></svg>
+        </button>
+
+    </section>
+
+    <!-- MPESA DIALOGUE BOX -->
+
+     <div id="formbox-mpesa" style="display: none; cursor: pointer; border-radius: 20px; position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%); z-index: 3; height: 250px; width: clamp(300px, 75vw, 500px); background-color: var(--card-bg-color); border: 1px solid var(--muted-gray);">
+        <div class="head-wrapper" style="width: 100%; height: 15%; position: relative; background-color: transparent; border-radius: 20px 20px 0 0;">
+            <div class="icon-confirm" style="position: absolute; left: 0; height: 100%; width: 85%; padding: 10px; display: flex; justify-content: flex-start; align-items: center;">
+                <div style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; margin-inline: 8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 269.04 342.49">
+                       <path d="M430.79 369.07a131.3 131.3 0 0 1 26.76 17c-.66-4-3.76-22.78-5.75-34.29 8.63 6 29.42 20.35 36.05 25 2.65-8.41 12.39-36.05 12.39-36.05s17.25 27.67 19.91 32.27c3.76-3.54 24.11-26.54 29.42-32.29 1.11 13.05 2 32.07 2.43 34.73a131.5 131.5 0 0 1 22.12-22.78c-5.75 11.28-8.41 26.76-9.73 39.37a147 147 0 0 0-40.7-5.75A150.8 150.8 0 0 0 448.92 406c-3.76-12.16-9.73-27.2-18.13-36.93m207.48 237.56-11.94-13.27c-3.32 35.61-21 66.14-53.09 87.37l-5.09-19.24c-27.43 19.69-74.1 32.29-114.36 9.73 5.09-25.44 9.29-51.32 0-82.28-22.34 34.29-42 48-42 48-15-25.44-13.71-76.09-9.29-91.13l-25 7.74c0-17 12.39-53.09 30.08-73.44l-15.26-2.43a148.3 148.3 0 0 1 46-54.64c-6 9.73-6 32.29 11.06 40.92-7.3-12.61-8-28.31-.66-36.72 7.74-8.41 20.35-5.31 28.31 1.11-2.43-7.08-9.73-15.93-19.91-16.59 19.91-10.4 43.13-15.93 67-15.93 4.65 0 9.07.44 13.27.66 7.08 2.65 17.25 12.61 22.12 19a35.1 35.1 0 0 0-3.76-15.93c26.1 6.41 38.71 17 43.8 22.12 1.11 11.28 4.42 17.92 9.07 28.76-8.41-9.29-29.64-24.77-40-28.31 0 0-1.11 9.73-4.42 14.38-20.35-14.6-30.08-18.36-30.08-18.36-22.56 2.21-36.5 11.06-44.46 17.7l6.64 5.75c-13.27 4-22.12 15.7-22.12 15.7 0 .44 11.94 2 11.94 2s-1.33 13.94 16.37 22.78c15 7.3 36.28-1.77 56.63 6.41-13.27-15.26-22.34-22.34-22.34-22.34a55.5 55.5 0 0 0-9.07-1.11c-4.65 0-11.72 1.11-19-2-3.76-1.33-8-4-11.06-6 0 0 9.29-9.73 23-11.72 0 0 12.39 3.32 22.12 10.62 6.41-6.41 13.27-6 13.27-6s-6.64 6.41-4.65 13.71a256 256 0 0 1 20.35 21c10.62-6 34.06-4.65 38.93 1.11-6-8-15-14.38-21.68-19.91-.66-3.1-8.41-13.27-9.29-14.38a45.9 45.9 0 0 1 13.27 7.74 16.85 16.85 0 0 1 9.73-6.41c4.65 4 5.75 10 5.31 11.06a12.84 12.84 0 0 1-4.42 3.76l11.28 12.39 1.11-9.07c26.27 37.48 40.65 81.06 22.29 135.69m-49.55-80.74v-19.24a61.8 61.8 0 0 1-17.92-10c-18.58 2.65-40.92 21.46-40.92 21.46s7.74 14.38 15.93 30.08c14.6 1.59 36.27-16.54 42.91-22.3m18.58 34.95a33.26 33.26 0 0 0-8-15.26L585 546s-19.69 16.59-31.41 17l10 18.58c6.64-1.33 17.92-6.64 22.78-11.94a68.4 68.4 0 0 1 2.43 21.68c6.55-4.15 15.62-14.32 18.5-30.48m6-63.7a148 148 0 0 1-13.3 9.73v19.24c5.31 5.75 10.4 10.62 14.38 19.24 7.3-12.82 5.53-32.06-1.11-48.21Z"
+                             fill="var(--sport-green)" transform="translate(-377.48 -340.75)"/>
+                  </svg>
+                </div>
+                <h2 style="font-size: 1.3rem; color: var(--muted-gray); margin-left: 10px; font-family: 'Signika', sans-serif; text-wrap: nowrap;">Edit Mpesa Number</h2>
+            </div>
+            <div id="close-mpesa" style="display: flex; justify-content: center; align-items: center; background-color: var(--neon-red); position: absolute; right: 0; height: 100%; width: 15%; border-radius: 0 20px 0 20px;">
+                <ion-icon name="close" style="font-size: 2rem; color: var(--text-white); font-weight: bold;"></ion-icon>
+            </div>
+        </div>
+        <div class="details-wrapper" style="height: 60%; padding-block: 10px; display: flex; justify-content: center; align-items: center;">
+
+            
+                <div class="input-box" style=" width: 85%; height: 50%; position: relative;">
+                   <input class="mpesa-input" id="mpesa" type="number" placeholder="07...or..01..." onkeyup="validateNumber()" style="outline: none; line-height: 80px; background-color: var(--background-color); height: 100%; padding: 5px; width: 100%; padding-inline: 20px; border-radius: 10px; font-size: 1.65rem; font-weight: bold; color: var(--neon-red);"/>
+                <p class="mpesa-label" for="mpesa"  style=" position: absolute; top: 0; left: 2%; transform: translateY(-50%); background: var(--background-color); padding-inline: 5px; font-size: 1.2rem; font-family: 'Signika', sans-serif; font-weight: bold; color: var(--muted-gray);">
+                    New Mpesa Number
+                </p>
+                 <span id="error-mpesa" style="color: var(--neon-red); margin-left: 8px; font-weight: bold; font-family: 'Signika', sans-serif;">Number format incomplete</span>
+                </div>
+                
+          
+            
+        </div>
+        <div class="confirm-btn" style="background-color: transparent; border: 1px solid var(--muted-gray); border-radius: 0 0 20px 20px; height: 25%; width: 100%; display: none; align-items: center; justify-content: center;">
+            <div style="height: 70%; width: 40%; background-color: transparent; ">
+                
+                <button id="mpesa-submit-btn" style="display: block; cursor: pointer; height: 100%; width: 100%; border-radius: 10px; background-color: var(--neon-green); color: var(--background-color); border: none; outline: none; font-weight: bold; font-family: 'Signika', sans-serif; font-size: 1.1rem;">CONFIRM</button>
+            </div>
+        
+        </div>
+        
+     </div>
+
+     <!-- PAYPAL DIALOGUE BOX -->
+
+       <div id="formbox-paypal" style="display: none; border-radius: 20px; position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%); z-index: 3; height: 250px; width: clamp(350px, 75vw, 500px ); background-color: var(--card-bg-color); border: 1px solid var(--muted-gray);">
+        <div class="head-wrapper" style="width: 100%; height: 15%; position: relative; background-color: transparent; border-radius: 20px 20px 0 0;">
+            <div class="icon-confirm" style="position: absolute; left: 0; height: 100%; width: 85%; padding: 10px; display: flex; justify-content: flex-start; align-items: center;">
+                <div style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; margin-inline: 8px;">
+                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 269.04 342.49">
+                       <path d="M430.79 369.07a131.3 131.3 0 0 1 26.76 17c-.66-4-3.76-22.78-5.75-34.29 8.63 6 29.42 20.35 36.05 25 2.65-8.41 12.39-36.05 12.39-36.05s17.25 27.67 19.91 32.27c3.76-3.54 24.11-26.54 29.42-32.29 1.11 13.05 2 32.07 2.43 34.73a131.5 131.5 0 0 1 22.12-22.78c-5.75 11.28-8.41 26.76-9.73 39.37a147 147 0 0 0-40.7-5.75A150.8 150.8 0 0 0 448.92 406c-3.76-12.16-9.73-27.2-18.13-36.93m207.48 237.56-11.94-13.27c-3.32 35.61-21 66.14-53.09 87.37l-5.09-19.24c-27.43 19.69-74.1 32.29-114.36 9.73 5.09-25.44 9.29-51.32 0-82.28-22.34 34.29-42 48-42 48-15-25.44-13.71-76.09-9.29-91.13l-25 7.74c0-17 12.39-53.09 30.08-73.44l-15.26-2.43a148.3 148.3 0 0 1 46-54.64c-6 9.73-6 32.29 11.06 40.92-7.3-12.61-8-28.31-.66-36.72 7.74-8.41 20.35-5.31 28.31 1.11-2.43-7.08-9.73-15.93-19.91-16.59 19.91-10.4 43.13-15.93 67-15.93 4.65 0 9.07.44 13.27.66 7.08 2.65 17.25 12.61 22.12 19a35.1 35.1 0 0 0-3.76-15.93c26.1 6.41 38.71 17 43.8 22.12 1.11 11.28 4.42 17.92 9.07 28.76-8.41-9.29-29.64-24.77-40-28.31 0 0-1.11 9.73-4.42 14.38-20.35-14.6-30.08-18.36-30.08-18.36-22.56 2.21-36.5 11.06-44.46 17.7l6.64 5.75c-13.27 4-22.12 15.7-22.12 15.7 0 .44 11.94 2 11.94 2s-1.33 13.94 16.37 22.78c15 7.3 36.28-1.77 56.63 6.41-13.27-15.26-22.34-22.34-22.34-22.34a55.5 55.5 0 0 0-9.07-1.11c-4.65 0-11.72 1.11-19-2-3.76-1.33-8-4-11.06-6 0 0 9.29-9.73 23-11.72 0 0 12.39 3.32 22.12 10.62 6.41-6.41 13.27-6 13.27-6s-6.64 6.41-4.65 13.71a256 256 0 0 1 20.35 21c10.62-6 34.06-4.65 38.93 1.11-6-8-15-14.38-21.68-19.91-.66-3.1-8.41-13.27-9.29-14.38a45.9 45.9 0 0 1 13.27 7.74 16.85 16.85 0 0 1 9.73-6.41c4.65 4 5.75 10 5.31 11.06a12.84 12.84 0 0 1-4.42 3.76l11.28 12.39 1.11-9.07c26.27 37.48 40.65 81.06 22.29 135.69m-49.55-80.74v-19.24a61.8 61.8 0 0 1-17.92-10c-18.58 2.65-40.92 21.46-40.92 21.46s7.74 14.38 15.93 30.08c14.6 1.59 36.27-16.54 42.91-22.3m18.58 34.95a33.26 33.26 0 0 0-8-15.26L585 546s-19.69 16.59-31.41 17l10 18.58c6.64-1.33 17.92-6.64 22.78-11.94a68.4 68.4 0 0 1 2.43 21.68c6.55-4.15 15.62-14.32 18.5-30.48m6-63.7a148 148 0 0 1-13.3 9.73v19.24c5.31 5.75 10.4 10.62 14.38 19.24 7.3-12.82 5.53-32.06-1.11-48.21Z"
+                             fill="var(--sport-green)" transform="translate(-377.48 -340.75)"/>
+                   </svg>
+                </div>
+                <h2 style="font-size: 1.3rem; color: var(--muted-gray); margin-left: 10px; font-family: 'Signika', sans-serif; text-wrap: nowrap;">Edit Paypal Email</h2>
+            </div>
+            <div id="close-paypal" style="cursor: pointer; display: flex; justify-content: center; align-items: center; background-color: var(--neon-red); position: absolute; right: 0; height: 100%; width: 15%; border-radius: 0 20px 0 20px;">
+                <ion-icon name="close" style="font-size: 2rem; color: var(--text-white); font-weight: bold;"></ion-icon>
+            </div>
+        </div>
+        <div class="details-wrapper" style="height: 60%; padding-block: 10px; display: flex; justify-content: center; align-items: center;">
+
+            
+                <div class="input-box" style=" width: 85%; height: 50%; position: relative;">
+                   <input class="paypal-input" id="mpesa" type="email" placeholder="xyx123@gmail.com..." onkeyup="validateEmail()" style="background-color: var(--background-color); outline: none; line-height: 60px;  height: 100%; padding-inline: 1px; width: 100%; padding-inline: 20px; border-radius: 10px; font-size: 1.25rem; font-weight: bold; color: var(--neon-red); font-style: italic;"/>
+                <p class="mpesa-label" for="mpesa"  style=" position: absolute; top: 0; left: 2%; transform: translateY(-50%); margin-bottom: 5px; background: var(--background-color); padding-inline: 5px; font-size: 1.2rem; font-weight: bold; color: var(--muted-gray);">
+                    New Email
+                </p>
+                <span id="error-paypal" style="color: var(--neon-red); margin-left: 8px; font-weight: bold; font-family: 'Signika', sans-serif;">Email format incorrect</span>
+                </div>
+                
+          
+            
+        </div>
+        <div class="confirm-btn-paypal" style="background-color: transparent; border: 1px solid var(--muted-gray); border-radius: 0 0 20px 20px; height: 25%; width: 100%; display: none; align-items: center; justify-content: center;">
+            <div style="height: 70%; width: 40%; background-color: transparent; ">
+                
+                <button id="paypal-submit-btn" style="display: block; cursor: pointer; height: 100%; width: 100%; border-radius: 10px; background-color: var(--sport-green); color: var(--background-color); border: none; outline: none; font-weight: bold; font-family: 'Signika', sans-serif; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.29), 0 6px 12px 0 rgba(0, 0, 0, 0.3); font-size: 1.1rem;">CONFIRM</button>
+            </div>
+        
+        </div>
+        
+     </div>
+    <script>
+        
+        const paypalBox = document.querySelector('#formbox-paypal')
+        const mpesaBox = document.querySelector('#formbox-mpesa')
+        const mpesaCloseBtn = document.querySelector('#close-mpesa')
+        const paypalCloseBtn = document.querySelector('#close-paypal')
+        const paypalEditBtn = document.querySelector('.paypal-edit-btn')
+        const mpesaEditBtn = document.querySelector('.mpesa-edit-btn')
+        const mpesaInput = document.querySelector('.mpesa-input')
+        const paypalInput = document.querySelector('.paypal-input')
+        const errorMpesa = document.querySelector('#error-mpesa')
+        const errorPaypal = document.querySelector('#error-paypal')
+        const mpesaConfirmBtn = document.querySelector('.confirm-btn')
+        const paypalConfirmBtn = document.querySelector('.confirm-btn-paypal')
+        const paypalSubmitBtn = document.querySelector('#paypal-submit-btn')
+        const mpesaSubmitBtn = document.querySelector('#mpesa-submit-btn')
+        const submitSettingsBtn = document.querySelector('.settings-submit')
+        const cancelSettingsBtn = document.querySelector('.settings-cancel')
+        const mpesaTextValue = document.querySelector('#mpesa-number-value')
+        const paypalTextValue = document.querySelector('#paypal-text-value')
+        const mpesaCheckBtn = document.querySelector('.mpesa-check')
+        const paypalCheckBtn = document.querySelector('.paypal-check')
+        const mpesaNumberInput = document.querySelector('#mpesa-input-submit')
+        const paypalemailInput = document.querySelector('#paypal-input-submit')
+
+
+        function validateNumber() {
+            if ( mpesaInput.value.match( /0[71]\d{8}$/ ) ) {
+                 
+                    errorMpesa.style.color = 'limegreen'
+                    errorMpesa.textContent = 'Correct Format'
+                    mpesaInput.style.color = 'limegreen'
+                    mpesaInput.style.boxShadow = 'none'
+                    mpesaInput.style.border = '2px solid limegreen'
+                    mpesaConfirmBtn.style.display = 'flex'
+                return true
+            } else {
+                    errorMpesa.style.color = 'red'
+                    errorMpesa.textContent = 'Number Incorrect'
+                    mpesaInput.style.color = 'red'
+                    mpesaInput.style.border = '1px solid red'
+                    mpesaConfirmBtn.style.display = 'none'
+                return false
+            }
+        }
+
+        function validateEmail() {
+            if ( paypalInput.value.match( /^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][A-Za-z]{2,4}$/ ) ) {
+                   
+                    errorPaypal.style.color = 'limegreen'
+                    errorPaypal.textContent = 'Email Correct'
+                    paypalInput.style.color = 'limegreen'
+                    paypalInput.style.border = '2px solid limegreen'
+                    paypalConfirmBtn.style.display = 'flex'
+                return true    
+            } else { 
+
+                    errorPaypal.style.color = 'red'
+                    errorPaypal.textContent = 'Email Incomplete'
+                    paypalInput.style.color = 'red'
+                    paypalInput.style.border = '1px solid red'
+                    paypalConfirmBtn.style.display = 'none'
+
+            }
+        }
+
+        paypalEditBtn.addEventListener('click', () => {
+            paypalBox.style.display = 'block'
+            paypalEditBtn.style.display = 'none'
+        })
+
+        mpesaEditBtn.addEventListener('click', () => {
+            mpesaBox.style.display = 'block'
+            mpesaEditBtn.style.display = 'none'
+            
+        })
+
+        paypalCloseBtn.addEventListener('click', () => {
+            paypalBox.style.display = 'none'
+            mpesaEditBtn.style.display = 'flex'
+            paypalEditBtn.style.display = 'flex'
+            paypalInput.value = ''
+        })
+
+        mpesaCloseBtn.addEventListener('click', () => {
+            mpesaBox.style.display = 'none'
+            mpesaEditBtn.style.display = 'flex'
+            paypalEditBtn.style.display = 'flex'
+            mpesaInput.value = ''
+        })
+
+        mpesaSubmitBtn.addEventListener('click', () => {
+            mpesaTextValue.textContent = mpesaInput.value
+            mpesaInput.value = ''
+            mpesaNumberInput.value = mpesaTextValue.textContent
+            paypalemailInput.value = paypalTextValue.textContent
+            mpesaCheckBtn.style.display = 'flex'
+            mpesaBox.style.display = 'none'
+            submitSettingsBtn.style.display = 'block'
+            cancelSettingsBtn.style.display = 'flex'
+            
+        })
+
+        paypalSubmitBtn.addEventListener('click', () => {
+            // TRY AND FORMAT MPESA NUMBER BEFORE CHANGING THE MPESA INPUT
+
+            if (mpesaTextValue.textContent == 254) {
+                
+                mpesaNumberInput.value = 254
+            
+            } else if (mpesaTextValue.textContent.length = 10) {
+
+                mpesaNumberInput.value = mpesaTextValue.textContent
+                
+
+            } else {
+                 const formatMpesaNumber = mpesaTextValue.textContent.substring(3)
+                 const correctMpesaNumber = `0${formatMpesaNumber}`
+                 mpesaNumberInput.value = correctMpesaNumber
+                 
+            }
+
+            paypalTextValue.textContent = paypalInput.value
+            paypalInput.value = ''
+            paypalemailInput.value = paypalTextValue.textContent
+            paypalCheckBtn.style.display = 'flex'
+            paypalBox.style.display = 'none'
+            submitSettingsBtn.style.display = 'block'
+            cancelSettingsBtn.style.display = 'flex'
+
+        })
+
+        cancelSettingsBtn.addEventListener('click', () => {
+            paypalCheckBtn.style.display = 'none'
+            mpesaCheckBtn.style.display = 'none'
+            mpesaEditBtn.style.display = 'flex'
+            paypalEditBtn.style.display = 'flex'
+            submitSettingsBtn.style.display = 'none'
+            cancelSettingsBtn.style.display = 'none'
+            errorPaypal.style.color = 'red'
+            errorPaypal.textContent = 'Email Incomplete'
+            paypalInput.style.color = 'red'
+            paypalInput.style.border = '1px solid red'
+            paypalConfirmBtn.style.display = 'none'
+            errorMpesa.style.color = 'red'
+            errorMpesa.textContent = 'Number Incomplete'
+            mpesaInput.style.color = 'red'
+            mpesaInput.style.border = '1px solid red'
+            mpesaConfirmBtn.style.display = 'none'
+
+            window.location.reload()
+        })
+        
+
+    </script>
+    
+</body>
+</html>
