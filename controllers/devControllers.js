@@ -391,7 +391,7 @@ const updateDevHeads = async (req, res) => {
         const hostPoints = hostPointsObject.points
         const oppPoints = oppPointsObject.points
 
-        const updatedBet = await Head26.findByIdAndUpdate({ _id: betid }, { points: { host: hostPoints, opponent: oppPoints } })
+        const updatedBet = await Head26.findByIdAndUpdate({ _id: betid }, { $set: { points: { host: hostPoints, opponent: oppPoints } } })
 
         req.flash('success', 'Bet Updated')
         res.redirect(`/dev/${event}/heads`)
