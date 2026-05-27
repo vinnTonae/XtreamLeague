@@ -402,7 +402,7 @@ const getBetParty = async (req, res) => {
 
             // TODO: REMEMBER TO RETURN BACK TO (bootstrapDeadline - datenow) after FPL UPDATES CALENDER YEAR 
 
-                const customDiffMs = ( bootstrapDeadline - dateNow ) + 86400000
+                const customDiffMs = ( dateNow - bootstrapDeadline ) + 86400000
 
                 dataArray.push([gameweek, event.deadline_time, customDiffMs])
 
