@@ -381,11 +381,11 @@ const updateDevHeads = async (req, res) => {
         const Opponent = await User.findOne({ teamId: opponentId })
 
         const hostPointsObject = Host.points.find((eventObject) => {
-            return eventObject.gameweek == event
+            return eventObject.gameweek26 == event
         })
 
         const oppPointsObject = Opponent.points.find((eventObject) => {
-            return eventObject.gameweek == event
+            return eventObject.gameweek26 == event
         })
 
         const hostPoints = hostPointsObject.points
