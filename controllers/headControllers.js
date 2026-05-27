@@ -51,8 +51,8 @@ const getBetHead = async (req, res) => {
                     })
                     const bootstrapDeadline = new Date(event.deadline_time)
                     const dateNow = new Date()
-                    // TODO: RETURN BACK TO ( bootstapDeadline - dateNow ) AFTER FPL API UDATES NEW CALENDER
-                    const customDiffMs = ( bootstrapDeadline - dateNow ) + 86400000
+                    // TODO: RETURN BACK TO ( bootstrapDeadline - dateNow ) AFTER FPL API UDATES NEW CALENDER
+                    const customDiffMs = ( dateNow - bootstrapDeadline ) + 86400000
                 
             
                     dataArray.push( [gameweek, event.deadline_time, customDiffMs ] )
